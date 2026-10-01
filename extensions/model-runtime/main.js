@@ -30312,6 +30312,29 @@ var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 
+// src/shared/product.ts
+var PRODUCT_NAME = "pine";
+
+// src/shared/extensionApi.ts
+var EXTENSION_API_VERSION = "1.0";
+var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
+var EXTENSION_API_ENV = "PINE_EXTENSION_API";
+function parseApiVersion(value) {
+  if (typeof value !== "string") return null;
+  const match = EXTENSION_API_PATTERN.exec(value);
+  return match ? { major: Number(match[1]), minor: Number(match[2]) } : null;
+}
+function isApiCompatible(required2, provided) {
+  return required2.major === provided.major && required2.minor <= provided.minor;
+}
+function apiProblem(required2, provided = EXTENSION_API_VERSION) {
+  const wanted = parseApiVersion(required2);
+  if (!wanted) return "api must be an extension API version such as 1.0";
+  const have = parseApiVersion(provided);
+  if (have && isApiCompatible(wanted, have)) return null;
+  return `needs extension API ${required2}; this ${PRODUCT_NAME} provides ${provided}`;
+}
+
 // src/shared/extensions.ts
 var SETTINGS_CHANGED_EVENT = "settings.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
@@ -30342,6 +30365,9 @@ async function connect() {
   const socketPath = process.env.PINE_SOCKET;
   const token = process.env.PINE_TOKEN;
   if (!socketPath || !token) throw new Error("PINE_SOCKET / PINE_TOKEN missing");
+  const provided = process.env[EXTENSION_API_ENV];
+  const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
+  if (incompatible) throw new Error(`this extension ${incompatible}`);
   const socket = (0, import_node_net.createConnection)(socketPath);
   await new Promise((resolve2, reject) => {
     socket.once("connect", resolve2);
@@ -85054,9 +85080,6 @@ var TERMINAL_COMPLETION_MAX = 500;
 var COMPLETION_TEXT_MAX = 2e3;
 var REVIEW_NOTES_MAX = 5;
 var COMMAND_SUGGESTIONS_MAX = 3;
-
-// src/shared/product.ts
-var PRODUCT_NAME = "pine";
 
 // src/extensions/sdk/assist/prompts.ts
 var FAST_TEMPERATURE = 0.1;

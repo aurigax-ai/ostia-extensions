@@ -22,6 +22,9 @@ which has a starter template and `pine-extension validate` to check a folder bef
 
 ## How it is built
 
-The files under `extensions/` are build output. The sources live in the Pine repository
-(`src/extensions/<id>`); `pnpm publish:marketplace <this checkout>` there rebuilds and copies them
-here. `pine-marketplace.json` lists the folders Pine offers.
+`extensions/<id>/` is what Pine installs: the manifest and one bundled, unminified `main.js`.
+`src/` holds the TypeScript each extension was built from (`src/extensions/<id>`), with the SDK
+and contract types it imports (`src/extensions/sdk`, `src/shared`), at the same paths as in the
+[Pine repository](https://github.com/aurigax-ai/pine). Change them there:
+`pnpm publish:marketplace <this checkout>` rebuilds and copies both folders here.
+`pine-marketplace.json` lists the folders Pine offers.
