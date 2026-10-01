@@ -1,0 +1,9 @@
+{
+  "name": "Pine extensions",
+  "description": "Extensions for Pine that are not built in",
+  "extensions": [
+    "extensions/keeper",
+    "extensions/model-runtime",
+    "extensions/trellis"
+  ]
+}
