@@ -3712,7 +3712,7 @@ var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
 );
 
 // src/shared/extensionApi.ts
-var EXTENSION_API_VERSION = "1.0";
+var EXTENSION_API_VERSION = "1.1";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "PINE_EXTENSION_API";
 function parseApiVersion(value) {
