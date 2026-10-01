@@ -1,0 +1,33 @@
+{
+  "name": "pine-extensions",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Extensions for Pine that are not built in",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aurigax-ai/pine-extensions.git"
+  },
+  "packageManager": "pnpm@11.10.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "validate": "pine-extension validate ."
+  },
+  "devDependencies": {
+    "@aurigax-ai/pine-extension-sdk": "0.4.0",
+    "@ai-sdk-tool/parser": "^5.1.6",
+    "@ai-sdk/openai-compatible": "^3.0.59",
+    "@types/node": "^22.20.1",
+    "ai": "^7.0.122",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.9.3",
+    "undici": "^6.28.0",
+    "vitest": "^2.1.9",
+    "zod": "^4.6.5"
+  }
+}

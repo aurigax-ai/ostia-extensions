@@ -25,9 +25,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/is.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/is.js
 var require_is = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/is.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/is.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.boolean = boolean;
@@ -61,9 +61,9 @@ var require_is = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messages.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messages.js
 var require_messages = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messages.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messages.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -446,9 +446,9 @@ var require_messages = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/linkedMap.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/linkedMap.js
 var require_linkedMap = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/linkedMap.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/linkedMap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LRUCache = exports2.LinkedMap = exports2.Touch = void 0;
@@ -830,9 +830,9 @@ var require_linkedMap = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/disposable.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/disposable.js
 var require_disposable = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/disposable.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/disposable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Disposable = void 0;
@@ -848,9 +848,9 @@ var require_disposable = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/ral.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/ral.js
 var require_ral = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/ral.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/ral.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var _ral;
@@ -873,9 +873,9 @@ var require_ral = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/events.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/events.js
 var require_events = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/events.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/events.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1010,9 +1010,9 @@ var require_events = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/cancellation.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/cancellation.js
 var require_cancellation = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/cancellation.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/cancellation.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -1139,9 +1139,9 @@ var require_cancellation = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/sharedArrayCancellation.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/sharedArrayCancellation.js
 var require_sharedArrayCancellation = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/sharedArrayCancellation.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/sharedArrayCancellation.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.SharedArrayReceiverStrategy = exports2.SharedArraySenderStrategy = void 0;
@@ -1218,9 +1218,9 @@ var require_sharedArrayCancellation = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/semaphore.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/semaphore.js
 var require_semaphore = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/semaphore.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/semaphore.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1292,9 +1292,9 @@ var require_semaphore = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messageReader.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageReader.js
 var require_messageReader = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messageReader.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageReader.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -1534,9 +1534,9 @@ ${JSON.stringify(Object.fromEntries(headers))}`));
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messageWriter.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageWriter.js
 var require_messageWriter = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messageWriter.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageWriter.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -1692,9 +1692,9 @@ var require_messageWriter = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messageBuffer.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageBuffer.js
 var require_messageBuffer = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/messageBuffer.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageBuffer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AbstractMessageBuffer = void 0;
@@ -1843,9 +1843,9 @@ ${header}`);
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/connection.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/connection.js
 var require_connection = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/connection.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/connection.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -2549,7 +2549,8 @@ ${JSON.stringify(message, null, 4)}`);
               }
             }
           }
-          tracer.log(`Sending response '${method} - (${message.id})'. Processing request took ${Date.now() - startTime}ms`, data);
+          const error = message.error ? ` Request failed: ${message.error.message} (${message.error.code}).` : "";
+          tracer.log(`Sending response '${method} - (${message.id})'. Processing request took ${Date.now() - startTime}ms.${error}`, data);
         } else {
           logLSPMessage("send-response", message);
         }
@@ -2889,7 +2890,6 @@ ${JSON.stringify(message, null, 4)}`);
               responsePromises.delete(id);
               responsePromise.reject(new messages_1.ResponseError(messages_1.ErrorCodes.MessageWriteError, error.message ? error.message : "Unknown reason"));
               logger.error(`Sending request failed.`);
-              throw error;
             }
           });
         },
@@ -3009,9 +3009,9 @@ ${JSON.stringify(message, null, 4)}`);
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/api.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/api.js
 var require_api = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/common/api.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/api.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -3223,9 +3223,9 @@ var require_api = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/node/ril.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/node/ril.js
 var require_ril = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/node/ril.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/node/ril.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var util_1 = require("util");
@@ -3381,9 +3381,9 @@ var require_ril = __commonJS({
   }
 });
 
-// node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/node/main.js
+// node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/node/main.js
 var require_main = __commonJS({
-  "node_modules/.pnpm/vscode-jsonrpc@9.0.1/node_modules/vscode-jsonrpc/lib/node/main.js"(exports2) {
+  "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/node/main.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
@@ -3639,7 +3639,14 @@ var require_main = __commonJS({
         server.on("error", reject);
         server.listen(port, "127.0.0.1", () => {
           server.removeListener("error", reject);
+          const address = server.address();
+          if (address === null || typeof address === "string") {
+            reject(new Error(`Unexpected server address: ${address}`));
+            return;
+          }
+          const boundPort = address.port;
           resolve2({
+            port: () => boundPort,
             onConnected: () => {
               return connected;
             }
@@ -3679,18 +3686,18 @@ var require_main = __commonJS({
 // src/extensions/trellis/main.ts
 var import_node_os = require("node:os");
 
-// src/shared/product.ts
-var PRODUCT_NAME = "pine";
-
-// src/extensions/sdk/index.ts
-var import_node_net = require("node:net");
-var import_node = __toESM(require_main());
-
-// src/shared/capabilities.ts
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.4.0_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_ff7cf2c8e9a6c60fd0a5a2b97d15b582/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-UDCLSES7.js
+var import_net = require("net");
+var import_node = __toESM(require_main(), 1);
+var import_child_process = require("child_process");
+var import_crypto = require("crypto");
+var import_http = require("http");
 var ALL_CAPABILITIES = [
   "drive-self",
   "read-board",
   "send-other-pane",
+  "type-other-pane",
+  "read-other-pane",
   "kill-pane",
   "all-workspaces",
   "shell",
@@ -3710,9 +3717,8 @@ var ALL_CAPABILITIES = [
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
-
-// src/shared/extensionApi.ts
-var EXTENSION_API_VERSION = "1.1";
+var PRODUCT_NAME = "pine";
+var EXTENSION_API_VERSION = "1.3";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "PINE_EXTENSION_API";
 function parseApiVersion(value) {
@@ -3730,14 +3736,9 @@ function apiProblem(required, provided = EXTENSION_API_VERSION) {
   if (have && isApiCompatible(wanted, have)) return null;
   return `needs extension API ${required}; this ${PRODUCT_NAME} provides ${provided}`;
 }
-
-// src/shared/extensions.ts
 var SETTINGS_CHANGED_EVENT = "settings.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
 var DIFF_TEXT_MAX = 5 * 1024 * 1024;
-
-// src/extensions/sdk/tool.ts
-var import_node_child_process = require("node:child_process");
 var DEFAULT_TIMEOUT_MS = 15e3;
 var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
 function runTool(bin, args, opts = {}) {
@@ -3753,7 +3754,7 @@ function runTool(bin, args, opts = {}) {
       clearTimeout(timer);
       resolve2(run);
     };
-    const child = (0, import_node_child_process.spawn)(bin, args, {
+    const child = (0, import_child_process.spawn)(bin, args, {
       cwd: opts.cwd,
       stdio: ["ignore", "pipe", "pipe"],
       env: process.env
@@ -3784,10 +3785,6 @@ function nextBackoff(failures, baseMs, maxMs) {
   if (failures <= 0) return baseMs;
   return Math.min(maxMs, baseMs * 2 ** Math.min(failures, 16));
 }
-
-// src/extensions/sdk/messagePage.ts
-var import_node_crypto = require("node:crypto");
-var import_node_http = require("node:http");
 function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
@@ -3803,9 +3800,9 @@ p{margin:0;color:var(--pine-fg-muted,#9aa1a5);white-space:pre-wrap}
 <body><main role="alert"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p></main></body></html>`;
 }
 async function startMessageServer() {
-  const secret = (0, import_node_crypto.randomBytes)(16).toString("hex");
+  const secret = (0, import_crypto.randomBytes)(16).toString("hex");
   let port = 0;
-  const server = (0, import_node_http.createServer)((req, res) => {
+  const server = (0, import_http.createServer)((req, res) => {
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
     const ok2 = req.method === "GET" && req.headers.host === `127.0.0.1:${port}` && url.pathname === "/message" && url.searchParams.get("t") === secret;
     if (!ok2) {
@@ -3831,8 +3828,6 @@ async function startMessageServer() {
     close: () => new Promise((resolve2) => server.close(() => resolve2()))
   };
 }
-
-// src/extensions/sdk/index.ts
 var AssistFailure = class extends Error {
   constructor(code, message) {
     super(message ?? code);
@@ -3872,7 +3867,7 @@ async function connect() {
   const provided = process.env[EXTENSION_API_ENV];
   const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
   if (incompatible) throw new Error(`this extension ${incompatible}`);
-  const socket = (0, import_node_net.createConnection)(socketPath);
+  const socket = (0, import_net.createConnection)(socketPath);
   await new Promise((resolve2, reject) => {
     socket.once("connect", resolve2);
     socket.once("error", reject);
@@ -4051,8 +4046,8 @@ function cliArgs(args) {
 var MAX_BODY = 1024 * 1024;
 
 // src/extensions/trellis/proxy.ts
-var import_node_crypto2 = require("node:crypto");
-var import_node_http2 = require("node:http");
+var import_node_crypto = require("node:crypto");
+var import_node_http = require("node:http");
 var COOKIE = "pine_proxy";
 var HOP_HEADERS = /* @__PURE__ */ new Set([
   "connection",
@@ -4066,7 +4061,7 @@ var HOP_HEADERS = /* @__PURE__ */ new Set([
 function sameSecret(a, b) {
   const x = Buffer.from(a);
   const y = Buffer.from(b);
-  return x.length === y.length && (0, import_node_crypto2.timingSafeEqual)(x, y);
+  return x.length === y.length && (0, import_node_crypto.timingSafeEqual)(x, y);
 }
 function cookieValue(header, name) {
   if (!header) return null;
@@ -4097,7 +4092,7 @@ function forwardHeaders(headers, upstream) {
   return out;
 }
 async function startAuthProxy(opts) {
-  const secret = (0, import_node_crypto2.randomBytes)(24).toString("hex");
+  const secret = (0, import_node_crypto.randomBytes)(24).toString("hex");
   let port = 0;
   const handle = (req, res) => {
     if (req.headers.host !== `127.0.0.1:${port}`) return plain(res, 421, "bad host");
@@ -4119,7 +4114,7 @@ async function startAuthProxy(opts) {
     const upstream = opts.upstream();
     if (!upstream) return plain(res, 503, "upstream unavailable");
     const target = new URL(upstream.origin);
-    const proxied = (0, import_node_http2.request)(
+    const proxied = (0, import_node_http.request)(
       {
         hostname: target.hostname,
         port: target.port,
@@ -4144,7 +4139,7 @@ async function startAuthProxy(opts) {
     res.on("close", () => proxied.destroy());
     req.pipe(proxied);
   };
-  const server = (0, import_node_http2.createServer)(handle);
+  const server = (0, import_node_http.createServer)(handle);
   await new Promise((resolve2) => server.listen(0, "127.0.0.1", resolve2));
   const address = server.address();
   port = typeof address === "object" && address ? address.port : 0;
@@ -4159,7 +4154,7 @@ async function startAuthProxy(opts) {
 }
 
 // src/extensions/trellis/service.ts
-var import_node_child_process2 = require("node:child_process");
+var import_node_child_process = require("node:child_process");
 var import_promises = require("node:timers/promises");
 
 // src/extensions/trellis/strings.ts
@@ -4409,7 +4404,8 @@ function isAppPath(path) {
 }
 
 // src/extensions/trellis/service.ts
-var SIDEBAR_KEY = "cards";
+var CARDS_CHIP = "cards";
+var OPEN_COMMAND = "open";
 var PRIME_PAGE = 5e3;
 var PRIME_MAX_PAGES = 50;
 var ACK_DELAY_MS = 2e3;
@@ -4494,25 +4490,25 @@ var TrellisService = class {
       if (!byProject.has(key)) byProject.set(key, this.counts(project));
       const counts = await byProject.get(key);
       if (!counts) continue;
-      next.add(workspaceId);
-      await this.opts.host.setSidebarItem({
+      const res = await this.opts.host.setWorkspaceChip({
         workspaceId,
-        key: SIDEBAR_KEY,
-        text: this.strings.sidebar(counts),
+        id: CARDS_CHIP,
+        text: String(counts.open),
+        tooltip: this.strings.sidebar(counts),
         icon: "kanban",
-        tone: counts.claimed > 0 ? "brand" : "neutral"
+        tone: counts.claimed > 0 ? "brand" : "neutral",
+        command: OPEN_COMMAND
       });
+      if (res.ok) next.add(workspaceId);
     }
     for (const workspaceId of this.shown) {
-      if (!next.has(workspaceId)) {
-        await this.opts.host.setSidebarItem({ workspaceId, key: SIDEBAR_KEY, text: "" });
-      }
+      if (!next.has(workspaceId)) await this.opts.host.clearWorkspaceChip(workspaceId, CARDS_CHIP);
     }
     this.shown = next;
   }
   async clearSidebar() {
     for (const workspaceId of this.shown) {
-      await this.opts.host.setSidebarItem({ workspaceId, key: SIDEBAR_KEY, text: "" });
+      await this.opts.host.clearWorkspaceChip(workspaceId, CARDS_CHIP);
     }
     this.shown.clear();
   }
@@ -4564,7 +4560,7 @@ var TrellisService = class {
       let stdout = "";
       let stderr = "";
       let settled = false;
-      const child = (0, import_node_child_process2.spawn)(this.bin, ["ui", "--json"], { stdio: ["ignore", "pipe", "pipe"] });
+      const child = (0, import_node_child_process.spawn)(this.bin, ["ui", "--json"], { stdio: ["ignore", "pipe", "pipe"] });
       const settle = (err, url) => {
         if (settled) return;
         settled = true;
@@ -4695,7 +4691,7 @@ var TrellisService = class {
   }
   follow() {
     const started = Date.now();
-    const child = (0, import_node_child_process2.spawn)(
+    const child = (0, import_node_child_process.spawn)(
       this.bin,
       ["events", "--consumer", this.opts.consumer, "--json", "--all-projects", "--follow"],
       { stdio: ["ignore", "pipe", "ignore"] }
@@ -4804,7 +4800,8 @@ async function main() {
     consumer: PRODUCT_NAME,
     host: {
       listWorkspaces: async () => workspacesFrom(await ext.call("workspace.list")),
-      setSidebarItem: (item) => ext.setSidebarItem(item),
+      setWorkspaceChip: (chip) => ext.setWorkspaceChip(chip),
+      clearWorkspaceChip: (workspaceId, id) => ext.clearWorkspaceChip(workspaceId, id),
       notifyPanel: (title, body, path) => ext.notifyPanel(title, body, path),
       log: (line) => console.error(line)
     }

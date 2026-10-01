@@ -1,10 +1,10 @@
 import { homedir } from 'node:os'
-import type { ExtensionEventType } from '../../shared/extensions'
-import { PRODUCT_NAME } from '../../shared/product'
 import {
   type CommandHandler,
   type ExtensionCaller,
+  type ExtensionEventType,
   type ExtensionSettingValues,
+  PRODUCT_NAME,
   booleanSetting,
   cliArgs,
   connect,
@@ -13,7 +13,7 @@ import {
   ok,
   onShutdown,
   startMessageServer,
-} from '../sdk'
+} from '@aurigax-ai/pine-extension-sdk'
 import { type AuthProxy, type ProxyUpstream, startAuthProxy } from './proxy'
 import { TrellisService, TrellisUnavailable, type WorkspaceRef } from './service'
 import { cardPath, cardRef, isAppPath, loopbackHttpUrl, projectPath } from './trellis'
@@ -48,7 +48,8 @@ async function main(): Promise<void> {
     consumer: PRODUCT_NAME,
     host: {
       listWorkspaces: async () => workspacesFrom(await ext.call('workspace.list')),
-      setSidebarItem: (item) => ext.setSidebarItem(item),
+      setWorkspaceChip: (chip) => ext.setWorkspaceChip(chip),
+      clearWorkspaceChip: (workspaceId, id) => ext.clearWorkspaceChip(workspaceId, id),
       notifyPanel: (title, body, path) => ext.notifyPanel(title, body, path),
       log: (line) => console.error(line),
     },

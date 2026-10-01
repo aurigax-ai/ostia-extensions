@@ -2,8 +2,16 @@
   "name": "Pine extensions",
   "description": "Extensions for Pine that are not built in",
   "extensions": [
-    "extensions/keeper",
-    "extensions/model-runtime",
-    "extensions/trellis"
+    "extensions/model-runtime"
+  ],
+  "unlisted": [
+    {
+      "path": "extensions/keeper",
+      "code": "vdjystvvhgheoubnwypeekc57d"
+    },
+    {
+      "path": "extensions/trellis",
+      "code": "cefe5h32dlpzxqnfttcaws4yjl"
+    }
   ]
 }
