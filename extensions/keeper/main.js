@@ -3947,6 +3947,8 @@ async function connect() {
     openPanel: (workspaceId, path) => conn.sendRequest("ext.openPanel", { workspaceId, path }),
     setPaneChip: (chip) => conn.sendRequest("ext.setPaneChip", chip),
     clearPaneChip: (paneId, id) => conn.sendRequest("ext.clearPaneChip", { paneId, id }),
+    setWorkspaceChip: (chip) => conn.sendRequest("ext.setWorkspaceChip", chip),
+    clearWorkspaceChip: (workspaceId, id) => conn.sendRequest("ext.clearWorkspaceChip", { workspaceId, id }),
     getSettings: async () => {
       const res = await conn.sendRequest("ext.getSettings");
       return res?.values ?? {};
