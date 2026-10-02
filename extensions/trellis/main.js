@@ -94,12 +94,12 @@ var require_messages = __commonJS({
       };
       return function(mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
+        var result2 = {};
         if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result2, mod, k[i]);
         }
-        __setModuleDefault(result, mod);
-        return result;
+        __setModuleDefault(result2, mod);
+        return result2;
       };
     }();
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -133,14 +133,14 @@ var require_messages = __commonJS({
         Object.setPrototypeOf(this, _ResponseError.prototype);
       }
       toJson() {
-        const result = {
+        const result2 = {
           code: this.code,
           message: this.message
         };
         if (this.data !== void 0) {
-          result.data = this.data;
+          result2.data = this.data;
         }
-        return result;
+        return result2;
       }
     };
     exports2.ResponseError = ResponseError;
@@ -595,9 +595,9 @@ var require_linkedMap = __commonJS({
               throw new Error(`LinkedMap got modified during iteration.`);
             }
             if (current) {
-              const result = { value: current.key, done: false };
+              const result2 = { value: current.key, done: false };
               current = current.next;
-              return result;
+              return result2;
             } else {
               return { value: void 0, done: true };
             }
@@ -617,9 +617,9 @@ var require_linkedMap = __commonJS({
               throw new Error(`LinkedMap got modified during iteration.`);
             }
             if (current) {
-              const result = { value: current.value, done: false };
+              const result2 = { value: current.value, done: false };
               current = current.next;
-              return result;
+              return result2;
             } else {
               return { value: void 0, done: true };
             }
@@ -639,9 +639,9 @@ var require_linkedMap = __commonJS({
               throw new Error(`LinkedMap got modified during iteration.`);
             }
             if (current) {
-              const result = { value: [current.key, current.value], done: false };
+              const result2 = { value: [current.key, current.value], done: false };
               current = current.next;
-              return result;
+              return result2;
             } else {
               return { value: void 0, done: true };
             }
@@ -970,22 +970,22 @@ var require_events = __commonJS({
               this._options.onFirstListenerAdd(this);
             }
             this._callbacks.add(listener, thisArgs);
-            const result = {
+            const result2 = {
               dispose: () => {
                 if (!this._callbacks) {
                   return;
                 }
                 this._callbacks.remove(listener, thisArgs);
-                result.dispose = _Emitter._noop;
+                result2.dispose = _Emitter._noop;
                 if (this._options && this._options.onLastListenerRemove && this._callbacks.isEmpty()) {
                   this._options.onLastListenerRemove(this);
                 }
               }
             };
             if (Array.isArray(disposables)) {
-              disposables.push(result);
+              disposables.push(result2);
             }
-            return result;
+            return result2;
           };
         }
         return this._event;
@@ -1043,12 +1043,12 @@ var require_cancellation = __commonJS({
       };
       return function(mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
+        var result2 = {};
         if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result2, mod, k[i]);
         }
-        __setModuleDefault(result, mod);
-        return result;
+        __setModuleDefault(result2, mod);
+        return result2;
       };
     }();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
@@ -1156,15 +1156,15 @@ var require_sharedArrayCancellation = __commonJS({
       constructor() {
         this.buffers = /* @__PURE__ */ new Map();
       }
-      enableCancellation(request2) {
-        if (request2.id === null) {
+      enableCancellation(request) {
+        if (request.id === null) {
           return;
         }
         const buffer = new SharedArrayBuffer(4);
         const data = new Int32Array(buffer, 0, 1);
         data[0] = CancellationState.Continue;
-        this.buffers.set(request2.id, buffer);
-        request2.$cancellationData = buffer;
+        this.buffers.set(request.id, buffer);
+        request.$cancellationData = buffer;
       }
       async sendCancellation(_conn, id) {
         const buffer = this.buffers.get(id);
@@ -1206,8 +1206,8 @@ var require_sharedArrayCancellation = __commonJS({
     };
     var SharedArrayReceiverStrategy = class {
       kind = "request";
-      createCancellationTokenSource(request2) {
-        const buffer = request2.$cancellationData;
+      createCancellationTokenSource(request) {
+        const buffer = request.$cancellationData;
         if (buffer === void 0) {
           return new cancellation_1.CancellationTokenSource();
         }
@@ -1265,9 +1265,9 @@ var require_semaphore = __commonJS({
           throw new Error(`Too many thunks active`);
         }
         try {
-          const result = next.thunk();
-          if (result instanceof Promise) {
-            result.then((value) => {
+          const result2 = next.thunk();
+          if (result2 instanceof Promise) {
+            result2.then((value) => {
               this._active--;
               next.resolve(value);
               this.runNext();
@@ -1278,7 +1278,7 @@ var require_semaphore = __commonJS({
             });
           } else {
             this._active--;
-            next.resolve(result);
+            next.resolve(result2);
             this.runNext();
           }
         } catch (err) {
@@ -1325,12 +1325,12 @@ var require_messageReader = __commonJS({
       };
       return function(mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
+        var result2 = {};
         if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result2, mod, k[i]);
         }
-        __setModuleDefault(result, mod);
-        return result;
+        __setModuleDefault(result2, mod);
+        return result2;
       };
     }();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
@@ -1395,7 +1395,7 @@ var require_messageReader = __commonJS({
     (function(ResolvedMessageReaderOptions2) {
       function fromOptions(options) {
         let charset;
-        let result;
+        let result2;
         let contentDecoder;
         const contentDecoders = /* @__PURE__ */ new Map();
         let contentTypeDecoder;
@@ -1462,12 +1462,12 @@ var require_messageReader = __commonJS({
         this.messageToken = 0;
         this.partialMessageTimer = void 0;
         this.callback = callback;
-        const result = this.readable.onData((data) => {
+        const result2 = this.readable.onData((data) => {
           this.onData(data);
         });
         this.readable.onError((error) => this.fireError(error));
         this.readable.onClose(() => this.fireClose());
-        return result;
+        return result2;
       }
       onData(data) {
         try {
@@ -1567,12 +1567,12 @@ var require_messageWriter = __commonJS({
       };
       return function(mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
+        var result2 = {};
         if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result2, mod, k[i]);
         }
-        __setModuleDefault(result, mod);
-        return result;
+        __setModuleDefault(result2, mod);
+        return result2;
       };
     }();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
@@ -1769,10 +1769,10 @@ var require_messageBuffer = __commonJS({
           return void 0;
         }
         const buffer = this._read(chunkBytesRead + offset);
-        const result = /* @__PURE__ */ new Map();
+        const result2 = /* @__PURE__ */ new Map();
         const headers = this.toString(buffer, "ascii").split(CRLF);
         if (headers.length < 2) {
-          return result;
+          return result2;
         }
         for (let i = 0; i < headers.length - 2; i++) {
           const header = headers[i];
@@ -1783,9 +1783,9 @@ ${header}`);
           }
           const key = header.substr(0, index);
           const value = header.substr(index + 1).trim();
-          result.set(lowerCaseKeys ? key.toLowerCase() : key, value);
+          result2.set(lowerCaseKeys ? key.toLowerCase() : key, value);
         }
-        return result;
+        return result2;
       }
       tryReadBody(length) {
         if (this._totalLength < length) {
@@ -1811,32 +1811,32 @@ ${header}`);
         }
         if (this._chunks[0].byteLength > byteCount) {
           const chunk = this._chunks[0];
-          const result2 = this.asNative(chunk, byteCount);
+          const result3 = this.asNative(chunk, byteCount);
           this._chunks[0] = chunk.slice(byteCount);
           this._totalLength -= byteCount;
-          return result2;
+          return result3;
         }
-        const result = this.allocNative(byteCount);
+        const result2 = this.allocNative(byteCount);
         let resultOffset = 0;
         const chunkIndex = 0;
         while (byteCount > 0) {
           const chunk = this._chunks[chunkIndex];
           if (chunk.byteLength > byteCount) {
             const chunkPart = chunk.slice(0, byteCount);
-            result.set(chunkPart, resultOffset);
+            result2.set(chunkPart, resultOffset);
             resultOffset += byteCount;
             this._chunks[chunkIndex] = chunk.slice(byteCount);
             this._totalLength -= byteCount;
             byteCount -= byteCount;
           } else {
-            result.set(chunk, resultOffset);
+            result2.set(chunk, resultOffset);
             resultOffset += chunk.byteLength;
             this._chunks.shift();
             this._totalLength -= chunk.byteLength;
             byteCount -= chunk.byteLength;
           }
         }
-        return result;
+        return result2;
       }
     };
     exports2.AbstractMessageBuffer = AbstractMessageBuffer;
@@ -1876,12 +1876,12 @@ var require_connection = __commonJS({
       };
       return function(mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
+        var result2 = {};
         if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result2, mod, k[i]);
         }
-        __setModuleDefault(result, mod);
-        return result;
+        __setModuleDefault(result2, mod);
+        return result2;
       };
     }();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
@@ -2219,20 +2219,20 @@ var require_connection = __commonJS({
             return;
           }
           const message = messageQueue.shift();
-          let result;
+          let result2;
           try {
             inFlight++;
             const messageStrategy = options?.messageStrategy;
             if (MessageStrategy.is(messageStrategy)) {
-              result = messageStrategy.handleMessage(message, handleMessage);
+              result2 = messageStrategy.handleMessage(message, handleMessage);
             } else {
-              result = handleMessage(message);
+              result2 = handleMessage(message);
             }
           } catch (error) {
             logger.error(`Processing message queue failed: ${error.toString()}`);
           } finally {
-            if (result instanceof Promise) {
-              result.then(() => {
+            if (result2 instanceof Promise) {
+              result2.then(() => {
                 inFlight--;
                 triggerMessageQueue();
               }).catch((error) => {
@@ -2681,28 +2681,28 @@ ${JSON.stringify(message, null, 4)}`);
         }
       }
       function computeMessageParams(type, params) {
-        let result;
+        let result2;
         const numberOfParams = type.numberOfParams;
         switch (numberOfParams) {
           case 0:
-            result = void 0;
+            result2 = void 0;
             break;
           case 1:
-            result = computeSingleParam(type.parameterStructures, params[0]);
+            result2 = computeSingleParam(type.parameterStructures, params[0]);
             break;
           default:
-            result = [];
+            result2 = [];
             for (let i = 0; i < params.length && i < numberOfParams; i++) {
-              result.push(undefinedToNull(params[i]));
+              result2.push(undefinedToNull(params[i]));
             }
             if (params.length < numberOfParams) {
               for (let i = params.length; i < numberOfParams; i++) {
-                result.push(null);
+                result2.push(null);
               }
             }
             break;
         }
-        return result;
+        return result2;
       }
       const connection = {
         sendNotification: (type, ...args) => {
@@ -3414,12 +3414,12 @@ var require_main = __commonJS({
       };
       return function(mod) {
         if (mod && mod.__esModule) return mod;
-        var result = {};
+        var result2 = {};
         if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+          for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result2, mod, k[i]);
         }
-        __setModuleDefault(result, mod);
-        return result;
+        __setModuleDefault(result2, mod);
+        return result2;
       };
     }();
     var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
@@ -3684,14 +3684,99 @@ var require_main = __commonJS({
 });
 
 // src/extensions/trellis/main.ts
-var import_node_os = require("node:os");
+var import_node_os2 = require("node:os");
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.4.0_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_ff7cf2c8e9a6c60fd0a5a2b97d15b582/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-UDCLSES7.js
-var import_net = require("net");
-var import_node = __toESM(require_main(), 1);
-var import_child_process = require("child_process");
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
+function isDangerousSegment(segment) {
+  return DANGEROUS_SEGMENTS.has(segment);
+}
+var EXTENSION_LOCALES_DIR = "locales";
+var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
+var EXTENSION_MESSAGES_MAX = 2e3;
+var EXTENSION_MESSAGE_MAX = 4e3;
+var EXTENSION_MESSAGE_KEY_MAX = 120;
+var EXTENSION_BASE_LOCALE = "en";
+var LOCALE_CHANGED_EVENT = "locale.changed";
+function matchLocale(locale, available) {
+  if (!locale) return void 0;
+  const subtags = locale.toLowerCase().split("-");
+  for (let length = subtags.length; length > 0; length--) {
+    const wanted = subtags.slice(0, length).join("-");
+    const exact = available.find((tag) => tag.toLowerCase() === wanted);
+    if (exact) return exact;
+  }
+  return available.find((tag) => tag.toLowerCase().split("-")[0] === subtags[0]);
+}
+function formatMessage(template, vars = {}) {
+  return template.replace(
+    /\{([A-Za-z0-9_]+)\}/g,
+    (placeholder, name) => Object.hasOwn(vars, name) ? String(vars[name]) : placeholder
+  );
+}
+function messageIn(catalog, key) {
+  return catalog && Object.hasOwn(catalog, key) ? catalog[key] : void 0;
+}
+function translatorFor(catalogs, locale) {
+  const tag = matchLocale(locale, Object.keys(catalogs));
+  const own = tag ? catalogs[tag] : void 0;
+  const base = Object.hasOwn(catalogs, EXTENSION_BASE_LOCALE) ? catalogs[EXTENSION_BASE_LOCALE] : void 0;
+  return (key, vars) => formatMessage(messageIn(own, key) ?? messageIn(base, key) ?? key, vars);
+}
+function parseMessages(raw) {
+  const messages = /* @__PURE__ */ Object.create(null);
+  const problems = [];
+  if (raw === void 0) return { messages, problems };
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    return { messages, problems: ["messages must be an object of strings"] };
+  }
+  const entries = Object.entries(raw);
+  if (entries.length > EXTENSION_MESSAGES_MAX) {
+    problems.push(`messages holds more than ${EXTENSION_MESSAGES_MAX} strings`);
+  }
+  for (const [key, value] of entries.slice(0, EXTENSION_MESSAGES_MAX)) {
+    if (!key || key.length > EXTENSION_MESSAGE_KEY_MAX || isDangerousSegment(key)) {
+      problems.push(`messages.${key}: not a usable key`);
+    } else if (typeof value !== "string") {
+      problems.push(`messages.${key}: must be a string`);
+    } else if (value.length > EXTENSION_MESSAGE_MAX) {
+      problems.push(`messages.${key}: longer than ${EXTENSION_MESSAGE_MAX} characters`);
+    } else {
+      messages[key] = value;
+    }
+  }
+  return { messages, problems };
+}
+var PANEL_SIZES_PATH = "/sizes";
+var MAX_PANEL_SIZES = 64;
+var PANEL_SIZE_KEY = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+function isFraction(value) {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 1;
+}
+function parsePanelSizes(raw) {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return {};
+  const entries = Object.entries(raw).filter(
+    ([key, value]) => PANEL_SIZE_KEY.test(key) && isFraction(value)
+  );
+  return Object.fromEntries(entries.slice(-MAX_PANEL_SIZES));
+}
+function withPanelSize(sizes, key, fraction) {
+  const { [key]: _old, ...rest } = sizes;
+  return parsePanelSizes(fraction === null ? rest : { ...rest, [key]: fraction });
+}
+
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-Z2JJV4MK.js
 var import_crypto = require("crypto");
+var import_fs = require("fs");
 var import_http = require("http");
+var import_net = require("net");
+var import_path = require("path");
+var import_node = __toESM(require_main(), 1);
+var import_fs2 = require("fs");
+var import_path2 = require("path");
+var import_fs3 = require("fs");
+var import_path3 = require("path");
+var import_child_process = require("child_process");
 var ALL_CAPABILITIES = [
   "drive-self",
   "read-board",
@@ -3712,13 +3797,15 @@ var ALL_CAPABILITIES = [
   "settings-read",
   "settings-write",
   "assist",
-  "credentials"
+  "credentials",
+  "language-server",
+  "agent-plugin"
 ];
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.3";
+var EXTENSION_API_VERSION = "1.11";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "PINE_EXTENSION_API";
 function parseApiVersion(value) {
@@ -3737,8 +3824,76 @@ function apiProblem(required, provided = EXTENSION_API_VERSION) {
   return `needs extension API ${required}; this ${PRODUCT_NAME} provides ${provided}`;
 }
 var SETTINGS_CHANGED_EVENT = "settings.changed";
+var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
 var DIFF_TEXT_MAX = 5 * 1024 * 1024;
+var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
+var FOLDER_CLOSED_EVENT = "folder.closed";
+var PANEL_SIZES_FILE = "panel-sizes.json";
+var PanelSizeStore = class {
+  constructor(file) {
+    this.file = file;
+    this.sizes = parsePanelSizes(file ? readJson(file) : null);
+  }
+  sizes;
+  all() {
+    return { ...this.sizes };
+  }
+  set(key, fraction) {
+    if (typeof key !== "string" || !PANEL_SIZE_KEY.test(key)) return false;
+    if (fraction !== null && !isFraction(fraction)) return false;
+    this.sizes = withPanelSize(this.sizes, key, fraction);
+    this.save();
+    return true;
+  }
+  save() {
+    if (!this.file) return;
+    (0, import_fs2.mkdirSync)((0, import_path2.dirname)(this.file), { recursive: true, mode: 448 });
+    const tmp = `${this.file}.${process.pid}.tmp`;
+    (0, import_fs2.writeFileSync)(tmp, JSON.stringify(this.sizes, null, 2), { mode: 384 });
+    (0, import_fs2.renameSync)(tmp, this.file);
+  }
+};
+function readJson(file) {
+  try {
+    return JSON.parse((0, import_fs2.readFileSync)(file, "utf8"));
+  } catch {
+    return null;
+  }
+}
+var LANGUAGE_ID_PATTERN = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8}){0,3}$/;
+var CATALOG_SUFFIX = ".json";
+function extensionDir() {
+  return process.env.PINE_EXTENSION_DIR ?? process.cwd();
+}
+function readMessageFile(file) {
+  try {
+    if ((0, import_fs3.statSync)(file).size > EXTENSION_LOCALE_FILE_MAX_BYTES) return void 0;
+    const raw = JSON.parse((0, import_fs3.readFileSync)(file, "utf8"));
+    return typeof raw === "object" && raw !== null ? raw.messages : void 0;
+  } catch {
+    return void 0;
+  }
+}
+function readMessages(dir = extensionDir()) {
+  const catalogs = /* @__PURE__ */ Object.create(null);
+  const folder = (0, import_path3.join)(dir, EXTENSION_LOCALES_DIR);
+  let names = [];
+  try {
+    names = (0, import_fs3.readdirSync)(folder);
+  } catch {
+  }
+  for (const name of names) {
+    const tag = name.endsWith(CATALOG_SUFFIX) ? name.slice(0, -CATALOG_SUFFIX.length) : "";
+    if (!LANGUAGE_ID_PATTERN.test(tag)) continue;
+    catalogs[tag] = parseMessages(readMessageFile((0, import_path3.join)(folder, name))).messages;
+  }
+  return catalogs;
+}
+function createTranslator(dir = extensionDir()) {
+  const catalogs = readMessages(dir);
+  return (locale) => translatorFor(catalogs, locale);
+}
 var DEFAULT_TIMEOUT_MS = 15e3;
 var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
 function runTool(bin, args, opts = {}) {
@@ -3785,49 +3940,6 @@ function nextBackoff(failures, baseMs, maxMs) {
   if (failures <= 0) return baseMs;
   return Math.min(maxMs, baseMs * 2 ** Math.min(failures, 16));
 }
-function escapeHtml(s) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
-}
-function messagePageHtml(title, body) {
-  return `<!doctype html>
-<html><head><meta charset="utf-8"><title>${escapeHtml(title)}</title>
-<style>
-html,body{margin:0;height:100%;background:var(--pine-surface-1,#272a2d);color:var(--pine-fg,#e3edf5);font-family:var(--pine-font-ui,system-ui,sans-serif);font-size:var(--pine-font-size,13px);line-height:calc(var(--pine-font-size,13px) + 7px);font-weight:var(--pine-font-weight,400);color-scheme:var(--pine-color-scheme,dark)}
-main{display:flex;flex-direction:column;justify-content:center;gap:8px;height:100%;max-width:560px;margin:0 auto;padding:0 24px}
-h1{font-size:calc(var(--pine-font-size,13px) + 3px);line-height:calc(var(--pine-font-size,13px) + 9px);font-weight:calc(var(--pine-font-weight,400) + 200);margin:0}
-p{margin:0;color:var(--pine-fg-muted,#9aa1a5);white-space:pre-wrap}
-</style></head>
-<body><main role="alert"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p></main></body></html>`;
-}
-async function startMessageServer() {
-  const secret = (0, import_crypto.randomBytes)(16).toString("hex");
-  let port = 0;
-  const server = (0, import_http.createServer)((req, res) => {
-    const url = new URL(req.url ?? "/", "http://127.0.0.1");
-    const ok2 = req.method === "GET" && req.headers.host === `127.0.0.1:${port}` && url.pathname === "/message" && url.searchParams.get("t") === secret;
-    if (!ok2) {
-      res.writeHead(404, { "content-type": "text/plain" });
-      res.end("not found");
-      return;
-    }
-    res.writeHead(200, {
-      "content-type": "text/html; charset=utf-8",
-      "cache-control": "no-store",
-      "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; font-src data:",
-      "x-content-type-options": "nosniff"
-    });
-    res.end(
-      messagePageHtml(url.searchParams.get("title") ?? "", url.searchParams.get("body") ?? "")
-    );
-  });
-  await new Promise((resolve2) => server.listen(0, "127.0.0.1", resolve2));
-  const address = server.address();
-  port = typeof address === "object" && address ? address.port : 0;
-  return {
-    url: (title, body) => `http://127.0.0.1:${port}/message?${new URLSearchParams({ t: secret, title, body })}`,
-    close: () => new Promise((resolve2) => server.close(() => resolve2()))
-  };
-}
 var AssistFailure = class extends Error {
   constructor(code, message) {
     super(message ?? code);
@@ -3840,10 +3952,10 @@ function assistFailureReply(err, aborted) {
   return { error: "failed", message: errorMessage(err) };
 }
 function ok(text, data) {
-  const result = { ok: true };
-  if (text !== void 0) result.text = text;
-  if (data !== void 0) result.data = data;
-  return result;
+  const result2 = { ok: true };
+  if (text !== void 0) result2.text = text;
+  if (data !== void 0) result2.data = data;
+  return result2;
 }
 function failure(error, message) {
   return message ? { ok: false, error, message } : { ok: false, error };
@@ -3880,8 +3992,12 @@ async function connect() {
   let panelHandler = null;
   let eventHandler = null;
   let settingsHandler = null;
+  let localeHandler = null;
   let assistHandler = null;
+  let providersHandler = null;
   let modelsHandler = null;
+  let filesHandler = null;
+  let folderClosedHandler = null;
   conn.onRequest(
     "ext.command",
     async (params) => {
@@ -3905,6 +4021,7 @@ async function connect() {
         return await assistHandler(params.point, params.input, {
           requestId: params.requestId,
           signal: abort.signal,
+          ...params.model ? { model: params.model } : {},
           chunk: async (text) => {
             if (abort.signal.aborted) return false;
             const res = await conn.sendRequest("ext.assistChunk", {
@@ -3921,17 +4038,29 @@ async function connect() {
       }
     }
   );
-  conn.onRequest("ext.assistModels", async (params) => {
-    if (!modelsHandler) throw new Error("no models handler");
-    if (params.action === "list") return modelsHandler.list();
-    if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
-      return { ok: false, error: "invalid" };
+  conn.onRequest(
+    "ext.assistModels",
+    async (params) => {
+      if (!modelsHandler) throw new Error("no models handler");
+      const provider = typeof params.provider === "string" ? params.provider : void 0;
+      if (params.action === "list") return modelsHandler.list(provider);
+      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
+        return { ok: false, error: "invalid" };
+      }
+      try {
+        await modelsHandler.setLoaded(params.id, params.action === "load", provider);
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: errorMessage(err) };
+      }
     }
+  );
+  conn.onRequest("ext.files", async (params) => {
+    if (!filesHandler) return { ok: false, error: "unavailable" };
     try {
-      await modelsHandler.setLoaded(params.id, params.action === "load");
-      return { ok: true };
-    } catch (err) {
-      return { ok: false, error: errorMessage(err) };
+      return await filesHandler(params);
+    } catch {
+      return { ok: false, error: "failed" };
     }
   });
   conn.onRequest("ext.panel", async (params) => {
@@ -3943,6 +4072,12 @@ async function connect() {
     (params) => {
       if (params.type === SETTINGS_CHANGED_EVENT) {
         settingsHandler?.(params.payload.values);
+      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
+        providersHandler?.(params.payload.providers);
+      } else if (params.type === LOCALE_CHANGED_EVENT) {
+        localeHandler?.(params.payload.locale);
+      } else if (params.type === FOLDER_CLOSED_EVENT) {
+        folderClosedHandler?.(params.payload.folderId);
       } else {
         eventHandler?.(params.type, params.payload);
       }
@@ -3985,6 +4120,13 @@ async function connect() {
     onSettingsChanged: (handler) => {
       settingsHandler = handler;
     },
+    getLocale: async () => {
+      const res = await conn.sendRequest("ext.locale");
+      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
+    },
+    onLocaleChanged: (handler) => {
+      localeHandler = handler;
+    },
     callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
     setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
     openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
@@ -3993,6 +4135,35 @@ async function connect() {
         return await conn.sendRequest("ext.openTerminal", opts);
       } catch (err) {
         return { ok: false, error: "open-terminal-failed", message: errorMessage(err) };
+      }
+    },
+    listAgents: async () => {
+      try {
+        const res = await conn.sendRequest("ext.agents");
+        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
+      } catch {
+        return [];
+      }
+    },
+    runAgent: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.runAgent", opts);
+      } catch (err) {
+        return { ok: false, error: "run-agent-failed", message: errorMessage(err) };
+      }
+    },
+    offerToAgent: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.offerToAgent", opts);
+      } catch (err) {
+        return { ok: false, error: "offer-failed", message: errorMessage(err) };
+      }
+    },
+    focusPane: async (paneId) => {
+      try {
+        return await conn.sendRequest("ext.focusPane", { paneId });
+      } catch (err) {
+        return failure("focus-failed", errorMessage(err));
       }
     },
     listWorkspaces: () => conn.sendRequest("workspace.list"),
@@ -4015,6 +4186,35 @@ async function connect() {
     getSecret: async (key) => {
       const res = await conn.sendRequest("ext.getSecret", { key });
       return typeof res?.value === "string" ? res.value : null;
+    },
+    getAssistProviders: async () => {
+      const res = await conn.sendRequest(
+        "ext.assistProviders"
+      );
+      return Array.isArray(res?.providers) ? res.providers : [];
+    },
+    onAssistProvidersChanged: (handler) => {
+      providersHandler = handler;
+    },
+    openFolder: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.openFolder", opts);
+      } catch (err) {
+        return { ok: false, error: "open-folder-failed", message: errorMessage(err) };
+      }
+    },
+    closeFolder: async (folderId) => {
+      try {
+        return await conn.sendRequest("ext.closeFolder", { folderId });
+      } catch (err) {
+        return failure("close-folder-failed", errorMessage(err));
+      }
+    },
+    onFiles: (handler) => {
+      filesHandler = handler;
+    },
+    onFolderClosed: (handler) => {
+      folderClosedHandler = handler;
     }
   };
 }
@@ -4043,168 +4243,146 @@ function cliArgs(args) {
   const stdin = args.stdin;
   return typeof stdin === "string" ? { argv, stdin } : { argv };
 }
-var MAX_BODY = 1024 * 1024;
-
-// src/extensions/trellis/proxy.ts
-var import_node_crypto = require("node:crypto");
-var import_node_http = require("node:http");
-var COOKIE = "pine_proxy";
-var HOP_HEADERS = /* @__PURE__ */ new Set([
-  "connection",
-  "keep-alive",
-  "proxy-connection",
-  "transfer-encoding",
-  "upgrade",
-  "te",
-  "trailer"
-]);
-function sameSecret(a, b) {
-  const x = Buffer.from(a);
-  const y = Buffer.from(b);
-  return x.length === y.length && (0, import_node_crypto.timingSafeEqual)(x, y);
+function namedArgs(args) {
+  return typeof args === "object" && args !== null ? args : {};
 }
-function cookieValue(header, name) {
-  if (!header) return null;
-  for (const part of header.split(";")) {
-    const [k, ...v] = part.trim().split("=");
-    if (k === name) return v.join("=");
+function panelCaller(context) {
+  const caller = { kind: "user", capabilities: [...ALL_CAPABILITIES] };
+  if (typeof context.workDir === "string" && context.workDir) caller.workDir = context.workDir;
+  if (typeof context.workspaceId === "string" && context.workspaceId) {
+    caller.workspaceId = context.workspaceId;
   }
-  return null;
+  if (typeof context.locale === "string" && context.locale) caller.locale = context.locale;
+  return caller;
 }
-function plain(res, status, body) {
+var CONTENT_TYPES = {
+  ".html": "text/html; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
+  ".css": "text/css; charset=utf-8"
+};
+var MAX_BODY = 1024 * 1024;
+function readBody(req) {
+  return new Promise((resolve2, reject) => {
+    let size = 0;
+    const chunks = [];
+    req.on("data", (c) => {
+      size += c.length;
+      if (size > MAX_BODY) {
+        reject(new Error("body too large"));
+        req.destroy();
+      } else chunks.push(c);
+    });
+    req.on("end", () => resolve2(Buffer.concat(chunks).toString("utf8")));
+    req.on("error", reject);
+  });
+}
+function send(res, status, type, body) {
   res.writeHead(status, {
-    "content-type": "text/plain; charset=utf-8",
+    "content-type": type,
     "cache-control": "no-store",
-    "x-content-type-options": "nosniff"
+    "x-content-type-options": "nosniff",
+    "content-security-policy": "default-src 'self'; img-src 'self' data:; font-src 'self' data:"
   });
   res.end(body);
 }
-function forwardHeaders(headers, upstream) {
-  const out = {};
-  for (const [k, v] of Object.entries(headers)) {
-    if (v === void 0 || HOP_HEADERS.has(k) || k === "cookie" || k === "referer") continue;
-    out[k] = v;
-  }
-  const up = new URL(upstream.origin);
-  out.host = up.host;
-  if (headers.origin) out.origin = up.origin;
-  for (const [k, v] of Object.entries(upstream.headers)) out[k.toLowerCase()] = v;
-  return out;
-}
-async function startAuthProxy(opts) {
-  const secret = (0, import_node_crypto.randomBytes)(24).toString("hex");
+async function startPanelServer(opts) {
+  const secret = (0, import_crypto.randomBytes)(24).toString("hex");
+  const sizes = new PanelSizeStore(
+    process.env.PINE_EXTENSION_DATA ? (0, import_path.join)(process.env.PINE_EXTENSION_DATA, PANEL_SIZES_FILE) : null
+  );
+  const streams = /* @__PURE__ */ new Set();
   let port = 0;
-  const handle = (req, res) => {
-    if (req.headers.host !== `127.0.0.1:${port}`) return plain(res, 421, "bad host");
-    const url = new URL(req.url ?? "/", `http://127.0.0.1:${port}`);
-    if (url.pathname === "/__pine/enter") {
-      const t = url.searchParams.get("t") ?? "";
-      if (!sameSecret(t, secret)) return plain(res, 403, "forbidden");
-      const to = url.searchParams.get("to") ?? "/";
-      res.writeHead(303, {
-        "set-cookie": `${COOKIE}=${secret}; Path=/; HttpOnly; SameSite=Strict`,
-        location: opts.isAllowedEntry(to) ? to : "/",
-        "cache-control": "no-store"
-      });
-      res.end();
+  const server = (0, import_http.createServer)(async (req, res) => {
+    const url = new URL(req.url ?? "/", "http://127.0.0.1");
+    if (req.headers.host !== `127.0.0.1:${port}`) return send(res, 421, "text/plain", "bad host");
+    const origin = req.headers.origin;
+    if (origin && origin !== `http://127.0.0.1:${port}`)
+      return send(res, 403, "text/plain", "origin");
+    const authed = req.headers["x-pine-panel"] === secret || url.searchParams.get("t") === secret;
+    if (req.method === "GET" && url.pathname === "/events") {
+      if (!authed) return send(res, 403, "text/plain", "forbidden");
+      res.writeHead(200, { "content-type": "text/event-stream", "cache-control": "no-store" });
+      res.write(": ok\n\n");
+      streams.add(res);
+      req.on("close", () => streams.delete(res));
       return;
     }
-    const cookie = cookieValue(req.headers.cookie, COOKIE);
-    if (!cookie || !sameSecret(cookie, secret)) return plain(res, 403, "forbidden");
-    const upstream = opts.upstream();
-    if (!upstream) return plain(res, 503, "upstream unavailable");
-    const target = new URL(upstream.origin);
-    const proxied = (0, import_node_http.request)(
-      {
-        hostname: target.hostname,
-        port: target.port,
-        method: req.method,
-        path: req.url,
-        headers: forwardHeaders(req.headers, upstream)
-      },
-      (up) => {
-        const headers = {};
-        for (const [k, v] of Object.entries(up.headers)) {
-          if (v !== void 0 && !HOP_HEADERS.has(k) && k !== "set-cookie") headers[k] = v;
-        }
-        res.writeHead(up.statusCode ?? 502, headers);
-        up.pipe(res);
+    if (url.pathname === PANEL_SIZES_PATH) {
+      if (req.headers["x-pine-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
+      if (req.method === "GET")
+        return send(res, 200, "application/json", JSON.stringify(sizes.all()));
+      if (req.method !== "POST") return send(res, 405, "text/plain", "method not allowed");
+      try {
+        const body = JSON.parse(await readBody(req));
+        if (!sizes.set(body.key, body.fraction ?? null)) throw new Error("key, fraction");
+        return send(res, 200, "application/json", JSON.stringify(sizes.all()));
+      } catch (err) {
+        return send(
+          res,
+          400,
+          "application/json",
+          JSON.stringify(failure("bad-request", errorMessage(err)))
+        );
       }
-    );
-    proxied.on("error", () => {
-      if (!res.headersSent) plain(res, 502, "upstream unavailable");
-      else res.destroy();
-    });
-    req.on("aborted", () => proxied.destroy());
-    res.on("close", () => proxied.destroy());
-    req.pipe(proxied);
-  };
-  const server = (0, import_node_http.createServer)(handle);
+    }
+    if (req.method === "POST" && url.pathname === "/api") {
+      if (req.headers["x-pine-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
+      try {
+        const body = JSON.parse(await readBody(req));
+        if (typeof body.command !== "string") throw new Error("missing command");
+        const result2 = await opts.handle(body.command, body.args, panelCaller(body.context ?? {}));
+        return send(res, 200, "application/json", JSON.stringify(result2));
+      } catch (err) {
+        return send(
+          res,
+          400,
+          "application/json",
+          JSON.stringify(failure("bad-request", errorMessage(err)))
+        );
+      }
+    }
+    if (req.method === "GET") {
+      const name = url.pathname === "/" ? "panel.html" : url.pathname.slice(1);
+      if (!opts.files.includes(name)) return send(res, 404, "text/plain", "not found");
+      const ext = name.slice(name.lastIndexOf("."));
+      try {
+        return send(
+          res,
+          200,
+          CONTENT_TYPES[ext] ?? "application/octet-stream",
+          (0, import_fs.readFileSync)((0, import_path.join)(opts.dir, name))
+        );
+      } catch {
+        return send(res, 404, "text/plain", "not found");
+      }
+    }
+    send(res, 405, "text/plain", "method not allowed");
+  });
   await new Promise((resolve2) => server.listen(0, "127.0.0.1", resolve2));
   const address = server.address();
   port = typeof address === "object" && address ? address.port : 0;
   return {
-    port,
-    entryUrl: (path) => `http://127.0.0.1:${port}/__pine/enter?${new URLSearchParams({ t: secret, to: path })}`,
-    close: () => new Promise((resolve2) => {
-      server.closeAllConnections?.();
-      server.close(() => resolve2());
-    })
+    url: (query) => {
+      const params = new URLSearchParams({ ...query, t: secret });
+      return `http://127.0.0.1:${port}/?${params.toString()}`;
+    },
+    changed: () => {
+      for (const res of streams) res.write("data: changed\n\n");
+    }
   };
-}
-
-// src/extensions/trellis/service.ts
-var import_node_child_process = require("node:child_process");
-var import_promises = require("node:timers/promises");
-
-// src/extensions/trellis/strings.ts
-var en = {
-  sidebar: (c) => c.claimed > 0 ? `${c.open} open \xB7 ${c.claimed} claimed` : `${c.open} open`,
-  notInstalled: "Trellis is not installed or not on PATH. Install it from https://github.com/mtch3n/trellis and restart the extension.",
-  uiFailed: "The Trellis web UI did not start. Run `trellis doctor` in a terminal to see why.",
-  noDir: "No working directory is known for this pane yet.",
-  initTitle: "Initialize Trellis project",
-  initMessage: (dir) => `Run \`trellis init\` in ${dir}?`,
-  initDetail: "This writes a .trellis marker in that directory and creates a project named after it if none exists.",
-  initConfirm: "Initialize",
-  cancel: "Cancel",
-  initCancelled: "Cancelled; nothing was changed.",
-  initDone: (key, dir) => key ? `Trellis project ${key} is set up in ${dir}` : `Trellis is set up in ${dir}`,
-  reviewTitle: "Trellis: ready for your review",
-  blockedTitle: "Trellis: a card is blocked",
-  unavailableTitle: "Trellis is unavailable",
-  cardUsage: "Give a card id, for example: pine trellis card SHOP-12",
-  invalidRef: (raw) => `"${raw}" is not a card id like SHOP-12`,
-  cardOpened: (ref) => `Opened ${ref}`
-};
-var zhHant = {
-  sidebar: (c) => c.claimed > 0 ? `${c.open} \u5F35\u672A\u5B8C\u6210 \xB7 ${c.claimed} \u5F35\u5DF2\u8A8D\u9818` : `${c.open} \u5F35\u672A\u5B8C\u6210`,
-  notInstalled: "\u5C1A\u672A\u5B89\u88DD Trellis\uFF0C\u6216\u5B83\u4E0D\u5728 PATH \u4E2D\u3002\u8ACB\u5F9E https://github.com/mtch3n/trellis \u5B89\u88DD\u5F8C\u91CD\u65B0\u555F\u52D5\u6B64\u64F4\u5145\u529F\u80FD\u3002",
-  uiFailed: "Trellis \u7DB2\u9801\u4ECB\u9762\u6C92\u6709\u555F\u52D5\u3002\u8ACB\u5728\u7D42\u7AEF\u6A5F\u57F7\u884C `trellis doctor` \u67E5\u770B\u539F\u56E0\u3002",
-  noDir: "\u5C1A\u4E0D\u77E5\u9053\u6B64\u7A97\u683C\u7684\u5DE5\u4F5C\u76EE\u9304\u3002",
-  initTitle: "\u521D\u59CB\u5316 Trellis \u5C08\u6848",
-  initMessage: (dir) => `\u8981\u5728 ${dir} \u57F7\u884C \`trellis init\` \u55CE\uFF1F`,
-  initDetail: "\u9019\u6703\u5728\u8A72\u76EE\u9304\u5BEB\u5165 .trellis \u6A19\u8A18\uFF0C\u82E5\u5C1A\u7121\u5C08\u6848\uFF0C\u6703\u4EE5\u76EE\u9304\u540D\u7A31\u5EFA\u7ACB\u4E00\u500B\u3002",
-  initConfirm: "\u521D\u59CB\u5316",
-  cancel: "\u53D6\u6D88",
-  initCancelled: "\u5DF2\u53D6\u6D88\uFF0C\u6C92\u6709\u4EFB\u4F55\u8B8A\u66F4\u3002",
-  initDone: (key, dir) => key ? `\u5DF2\u5728 ${dir} \u8A2D\u5B9A Trellis \u5C08\u6848 ${key}` : `\u5DF2\u5728 ${dir} \u8A2D\u5B9A Trellis`,
-  reviewTitle: "Trellis\uFF1A\u7B49\u5F85\u4F60\u5BE9\u95B1",
-  blockedTitle: "Trellis\uFF1A\u6709\u5361\u7247\u88AB\u963B\u64CB",
-  unavailableTitle: "Trellis \u7121\u6CD5\u4F7F\u7528",
-  cardUsage: "\u8ACB\u63D0\u4F9B\u5361\u7247\u7DE8\u865F\uFF0C\u4F8B\u5982\uFF1Apine trellis card SHOP-12",
-  invalidRef: (raw) => `\u300C${raw}\u300D\u4E0D\u662F\u50CF SHOP-12 \u9019\u6A23\u7684\u5361\u7247\u7DE8\u865F`,
-  cardOpened: (ref) => `\u5DF2\u958B\u555F ${ref}`
-};
-function stringsFor(locale) {
-  return locale?.startsWith("zh") ? zhHant : en;
 }
 
 // src/extensions/trellis/trellis.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
+var HUMAN_ACTOR = `human:${PRODUCT_NAME}`;
+var PRIORITIES = ["urgent", "high", "normal", "low"];
+var TITLE_MAX = 300;
+var TEXT_MAX = 64 * 1024;
+var NAME_MAX = 100;
 var KEY_RE = /^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*$/;
 var SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+var ENTRY_SLUG_RE = /^[a-z0-9][a-z0-9_-]*(\/[a-z0-9][a-z0-9_-]*)*$/;
 var MARKER_FILE = ".trellis";
 function parseJson(text) {
   try {
@@ -4213,14 +4391,21 @@ function parseJson(text) {
     return void 0;
   }
 }
-function parseObject(stdout) {
+function parseObjectOutput(stdout) {
   const trimmed = stdout.trim();
   let value = parseJson(trimmed);
   if (value === void 0) value = parseJson(trimmed.split("\n")[0] ?? "");
-  return typeof value === "object" && value !== null && !Array.isArray(value) ? value : null;
+  return isRecord(value) ? value : null;
+}
+function isRecord(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function records(value) {
+  return Array.isArray(value) ? value.filter(isRecord) : [];
 }
 var str = (v) => typeof v === "string" ? v : void 0;
 var num = (v) => typeof v === "number" && Number.isFinite(v) ? v : void 0;
+var strings = (v) => Array.isArray(v) ? v.filter((s) => typeof s === "string") : [];
 function loopbackHttpUrl(raw) {
   if (typeof raw !== "string") return null;
   try {
@@ -4232,73 +4417,189 @@ function loopbackHttpUrl(raw) {
     return null;
   }
 }
-function parseUiInfo(stdout) {
-  const obj = parseObject(stdout);
-  const url = obj ? loopbackHttpUrl(obj.url) : null;
-  if (!obj || !url) return null;
-  return { url: url.href, started: obj.started === true };
-}
 function parseDaemonStatus(stdout) {
-  const obj = parseObject(stdout);
+  const obj = parseObjectOutput(stdout);
   if (!obj || typeof obj.running !== "boolean") return null;
   const url = loopbackHttpUrl(obj.url);
   return { running: obj.running, url: url ? url.href : null };
 }
-function parseError(stdout) {
-  const obj = parseObject(stdout);
+function parseError(output) {
+  const obj = parseObjectOutput(output);
   const err = obj?.error;
-  if (typeof err !== "object" || err === null) return null;
-  const e = err;
-  const code = str(e.code);
-  const message = str(e.message);
+  if (!isRecord(err)) return null;
+  const code = str(err.code);
+  const message = str(err.message);
   if (!code || !message) return null;
-  const fix = str(e.fix);
+  const fix = str(err.fix);
   return fix ? { code, message, fix } : { code, message };
 }
-function parseCards(stdout) {
-  const obj = parseObject(stdout);
-  if (!obj || !Array.isArray(obj.cards)) return null;
-  const cards = [];
-  for (const raw of obj.cards) {
-    if (typeof raw !== "object" || raw === null) continue;
-    const c = raw;
-    const ref = str(c.ref);
-    const column = str(c.column);
-    if (!ref || !column) continue;
-    const card = { ref, title: str(c.title) ?? "", column };
-    const claimedBy = str(c.claimed_by);
-    if (claimedBy) card.claimedBy = claimedBy;
-    const claimUntil = num(c.claim_until);
-    if (claimUntil !== void 0) card.claimUntil = claimUntil;
-    cards.push(card);
-  }
-  return cards;
+function readCard(c) {
+  const ref = str(c.ref);
+  const column = str(c.column);
+  if (!ref || !column) return null;
+  const card = {
+    ref,
+    title: str(c.title) ?? "",
+    column,
+    priority: str(c.priority) ?? "normal",
+    labels: strings(c.labels),
+    version: num(c.version) ?? 0,
+    updatedAt: num(c.updated_at) ?? 0
+  };
+  const claimedBy = str(c.claimed_by);
+  if (claimedBy) card.claimedBy = claimedBy;
+  const claimUntil = num(c.claim_until);
+  if (claimUntil !== void 0) card.claimUntil = claimUntil;
+  return card;
 }
-function parseColumns(stdout) {
-  const obj = parseObject(stdout);
-  if (!obj || !Array.isArray(obj.columns)) return null;
+function parseCard(stdout) {
+  const obj = parseObjectOutput(stdout);
+  return obj ? readCard(obj) : null;
+}
+function parseBoard(stdout) {
+  const obj = parseObjectOutput(stdout);
+  const project = str(obj?.project);
+  if (!obj || !project || !Array.isArray(obj.columns)) return null;
   const columns = [];
-  for (const raw of obj.columns) {
-    if (typeof raw !== "object" || raw === null) continue;
-    const c = raw;
+  for (const c of records(obj.columns)) {
     const name = str(c.name);
-    if (name) columns.push({ name, isDone: c.is_done === true });
+    if (!name) continue;
+    const cards = records(c.cards).map(readCard).filter((card) => card !== null);
+    columns.push({ name, done: c.done === true, cards });
   }
-  return columns;
+  return {
+    project,
+    board: str(obj.board) ?? "",
+    slug: str(obj.slug) ?? "",
+    columns
+  };
 }
-function countCards(cards, columns, nowMs) {
-  const done = new Set(columns.filter((c) => c.isDone).map((c) => c.name));
+function parseBoards(stdout) {
+  const obj = parseObjectOutput(stdout);
+  if (!obj || !Array.isArray(obj.boards)) return null;
+  return records(obj.boards).flatMap((b) => {
+    const slug = str(b.slug);
+    if (!slug) return [];
+    return [
+      {
+        name: str(b.name) ?? slug,
+        slug,
+        isDefault: b.is_default === true,
+        cardCount: num(b.card_count) ?? 0
+      }
+    ];
+  });
+}
+function parseProjects(stdout) {
+  const obj = parseObjectOutput(stdout);
+  if (!obj || !Array.isArray(obj.projects)) return null;
+  return records(obj.projects).flatMap((p) => {
+    const key = str(p.key);
+    return key && KEY_RE.test(key) ? [{ key, name: str(p.name) ?? key }] : [];
+  });
+}
+function readRelation(r) {
+  const rel = str(r.rel);
+  const ref = str(r.ref);
+  if (!rel || !ref) return null;
+  const relation = { rel, ref, title: str(r.title) ?? "", done: r.done === true };
+  const column = str(r.column);
+  if (column) relation.column = column;
+  return relation;
+}
+function parseCardDetail(stdout) {
+  const obj = parseObjectOutput(stdout);
+  const card = obj ? readCard(obj) : null;
+  if (!obj || !card) return null;
+  return {
+    ...card,
+    body: str(obj.body) ?? "",
+    createdAt: num(obj.created_at) ?? 0,
+    relations: records(obj.relations).map(readRelation).filter((r) => r !== null)
+  };
+}
+function parseCardThread(text) {
+  const obj = parseObjectOutput(text);
+  if (!obj || !Array.isArray(obj.comments)) return null;
+  const comments = records(obj.comments).flatMap((c) => {
+    const body = str(c.body);
+    if (body === void 0) return [];
+    return [
+      {
+        id: str(c.id) ?? "",
+        actor: str(c.actor) ?? "",
+        body,
+        createdAt: num(c.created_at) ?? 0
+      }
+    ];
+  });
+  const activity = records(obj.events).flatMap((e) => {
+    const seq = num(e.seq);
+    const action = str(e.action);
+    if (seq === void 0 || !action) return [];
+    const item = {
+      seq,
+      at: num(e.timestamp) ?? 0,
+      actor: str(e.actor) ?? "",
+      action
+    };
+    const field = str(e.field);
+    if (field) item.field = field;
+    const oldValue = str(e.old_value);
+    if (oldValue !== void 0) item.old = oldValue;
+    const newValue = str(e.new_value);
+    if (newValue !== void 0) item.new = newValue;
+    return [item];
+  });
+  return { comments, activity };
+}
+function readEntrySummary(e) {
+  const slug = str(e.slug);
+  if (!slug) return null;
+  return {
+    slug,
+    ref: str(e.ref) ?? "",
+    title: str(e.title) ?? slug,
+    template: str(e.template) ?? "",
+    summary: str(e.summary) ?? "",
+    private: e.private === true,
+    tags: strings(e.tags),
+    updatedAt: num(e.updated_at) ?? 0
+  };
+}
+function parseVaultList(stdout) {
+  const obj = parseObjectOutput(stdout);
+  if (!obj || !Array.isArray(obj.entries)) return null;
+  return records(obj.entries).map(readEntrySummary).filter((e) => e !== null);
+}
+function parseVaultEntry(stdout) {
+  const obj = parseObjectOutput(stdout);
+  const summary = obj ? readEntrySummary(obj) : null;
+  if (!obj || !summary) return null;
+  return {
+    ...summary,
+    body: (str(obj.body) ?? "").replace(/^\n/, ""),
+    sources: strings(obj.sources),
+    version: num(obj.version) ?? 0
+  };
+}
+function countBoard(board, nowMs) {
   let open = 0;
   let claimed = 0;
-  for (const card of cards) {
-    if (done.has(card.column)) continue;
-    open += 1;
-    if (card.claimedBy && (card.claimUntil === void 0 || card.claimUntil > nowMs)) claimed += 1;
+  for (const column of board.columns) {
+    if (column.done) continue;
+    for (const card of column.cards) {
+      open += 1;
+      if (isClaimLive(card, nowMs)) claimed += 1;
+    }
   }
   return { open, claimed };
 }
+function isClaimLive(card, nowMs) {
+  return Boolean(card.claimedBy) && (card.claimUntil === void 0 || card.claimUntil > nowMs);
+}
 function parseEventLine(line) {
-  const obj = parseObject(line);
+  const obj = parseObjectOutput(line);
   if (!obj) return null;
   if (obj.gap === true) return { gap: true };
   const seq = num(obj.seq);
@@ -4323,6 +4624,8 @@ function parseEventLine(line) {
   return ev;
 }
 function projectOfRef(ref) {
+  const address = /^\/([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*)\//.exec(ref);
+  if (address) return address[1] === "GLOBAL" ? null : address[1];
   const m = /^([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*?)-\d+$/.exec(ref);
   return m ? m[1] : null;
 }
@@ -4385,23 +4688,494 @@ function findProject(workDir, home) {
     dir = parent;
   }
 }
-function projectPath(project) {
-  if (!project) return "/";
-  const base = `/p/${encodeURIComponent(project.project)}`;
-  return project.board ? `${base}/b/${encodeURIComponent(project.board)}` : base;
-}
 function cardRef(raw) {
+  if (typeof raw !== "string") return null;
   const ref = raw.trim().toUpperCase();
-  return projectOfRef(ref) ? ref : null;
+  return /^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*-\d+$/.test(ref) ? ref : null;
+}
+function projectKey(raw) {
+  return typeof raw === "string" && KEY_RE.test(raw) && raw !== "GLOBAL" ? raw : null;
+}
+function boardSlug(raw) {
+  return typeof raw === "string" && SLUG_RE.test(raw) && raw.length <= NAME_MAX ? raw : null;
+}
+function entrySlug(raw) {
+  return typeof raw === "string" && raw.length <= 200 && ENTRY_SLUG_RE.test(raw) ? raw : null;
+}
+function hasControlCharacter(text) {
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    if (code < 32 || code === 127) return true;
+  }
+  return false;
+}
+function columnName(raw) {
+  if (typeof raw !== "string") return null;
+  const name = raw.trim();
+  return name && name.length <= NAME_MAX && !hasControlCharacter(name) ? name : null;
+}
+function priority(raw) {
+  return PRIORITIES.find((p) => p === raw) ?? null;
+}
+function cardTitle(raw) {
+  if (typeof raw !== "string") return null;
+  const title = raw.replace(/\s+/g, " ").trim();
+  return title && title.length <= TITLE_MAX ? title : null;
+}
+function longText(raw) {
+  if (typeof raw !== "string") return null;
+  const text = raw.replace(/\r\n?/g, "\n");
+  return text.length <= TEXT_MAX ? text : null;
 }
 function cardPath(ref) {
   const valid = cardRef(ref);
-  const project = valid ? projectOfRef(valid) : null;
-  return valid && project ? `/p/${project}/card/${valid}` : null;
+  return valid ? `/card/${valid}` : null;
 }
-function isAppPath(path) {
-  return path === "/" || /^\/p\/[A-Z][A-Z0-9-]*(\/b\/[a-z0-9-]+)?$/.test(path) || /^\/p\/[A-Z][A-Z0-9-]*\/card\/[A-Z][A-Z0-9-]*-\d+$/.test(path);
+var BOARD_PATH = "/board";
+var VAULT_PATH = "/vault";
+function panelTarget(path) {
+  if (!path) return { view: "board" };
+  if (path === VAULT_PATH) return { view: "vault" };
+  const card = /^\/card\/([^/?#]+)$/.exec(path);
+  const ref = card ? cardRef(card[1]) : null;
+  return ref ? { view: "board", card: ref } : { view: "board" };
 }
+
+// src/extensions/trellis/daemon.ts
+var TOKEN_HEADER = "x-trellis-token";
+var THREAD_MAX_BYTES = 4 * 1024 * 1024;
+var TIMEOUT_MS = 5e3;
+function daemonApi(url) {
+  const parsed = loopbackHttpUrl(url);
+  const token = parsed?.searchParams.get("token");
+  return parsed && token ? { origin: parsed.origin, token } : null;
+}
+function threadUrl(api, project, board, ref) {
+  const path = ["api", "p", project, "b", board, "cards", ref].map(encodeURIComponent).join("/");
+  return `${api.origin}/${path}`;
+}
+async function readThread(api, project, board, ref) {
+  try {
+    const res = await fetch(threadUrl(api, project, board, ref), {
+      headers: { [TOKEN_HEADER]: api.token, accept: "application/json" },
+      redirect: "error",
+      signal: AbortSignal.timeout(TIMEOUT_MS)
+    });
+    if (!res.ok) return null;
+    const text = await res.text();
+    if (text.length > THREAD_MAX_BYTES) return null;
+    return parseCardThread(text);
+  } catch {
+    return null;
+  }
+}
+
+// src/extensions/trellis/prompt.ts
+var PROMPT_BODY_MAX = 6e3;
+var OFFER_LABEL_MAX = 120;
+var TASK_SKILL = "trellis-card";
+var REVIEW_COLUMN2 = /review/i;
+function reviewColumn(columns) {
+  return columns.find((name) => REVIEW_COLUMN2.test(name) && /^[^\s'"`]+$/.test(name)) ?? null;
+}
+function withoutControls(text, keep) {
+  let out = "";
+  for (const ch of text) out += (ch < " " || ch === "\x7F") && !keep.includes(ch) ? " " : ch;
+  return out;
+}
+function oneLine(text) {
+  return withoutControls(text, "").replace(/\s+/g, " ").trim();
+}
+function promptBody(body, t) {
+  const text = withoutControls(body.replace(/\r\n?/g, "\n"), "\n").trim();
+  if (text.length <= PROMPT_BODY_MAX) return text;
+  return `${text.slice(0, PROMPT_BODY_MAX).trimEnd()}
+
+${t("task.bodyCut")}`;
+}
+function lastStep(ref, review, t) {
+  return review ? t("task.lastReview", { ref, column: review }) : t("task.lastReviewAny");
+}
+function taskPrompt(card, review, t) {
+  const ref = card.ref;
+  return [
+    t("task.heading", { ref, title: oneLine(card.title) }),
+    promptBody(card.body, t),
+    t("task.how", { ref, skill: TASK_SKILL, last: lastStep(ref, review, t) })
+  ].filter(Boolean).join("\n\n");
+}
+function taskLine(card, review, t) {
+  const ref = card.ref;
+  return oneLine(
+    t("task.line", {
+      ref,
+      title: oneLine(card.title),
+      skill: TASK_SKILL,
+      last: lastStep(ref, review, t)
+    })
+  );
+}
+function sessionContext(project) {
+  if (!project) return "";
+  const board = project.board ? `, board ${project.board}` : "";
+  return `This folder belongs to Trellis project ${project.project}${board}. The ${TASK_SKILL} skill explains how to work on one of its cards.`;
+}
+function taskLabel(card) {
+  const label = `${card.ref} \xB7 ${oneLine(card.title)}`;
+  return label.length <= OFFER_LABEL_MAX ? label : `${label.slice(0, OFFER_LABEL_MAX - 1)}\u2026`;
+}
+
+// src/extensions/trellis/panelApi.ts
+var AGENT_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+function agentArg(raw) {
+  return typeof raw === "string" && AGENT_NAME.test(raw) ? raw : null;
+}
+var DAEMON_CACHE_MS = 15e3;
+function errorResult(error) {
+  return failure(error.code, error.fix ? `${error.message}
+${error.fix}` : error.message);
+}
+function result(res, data) {
+  return res.ok ? ok(void 0, data(res.value)) : errorResult(res.error);
+}
+function invalid(field) {
+  return failure("invalid-args", field);
+}
+function panelHandlers(deps) {
+  const { service } = deps;
+  const cli = service.cli;
+  let daemon = null;
+  const currentDaemon = async () => {
+    const now = Date.now();
+    if (daemon && now - daemon.at < (deps.daemonCacheMs ?? DAEMON_CACHE_MS)) return daemon.api;
+    const status = await cli.daemonStatus();
+    const api = status.ok && status.value.running ? daemonApi(status.value.url) : null;
+    daemon = { api, at: now };
+    return api;
+  };
+  const wrote = (res, data) => {
+    if (res.ok) service.changed();
+    return result(res, data);
+  };
+  const refArg = (args) => cardRef(namedArgs(args).ref);
+  const taskCard = async (ref, board) => {
+    const detail = await cli.card(ref);
+    if (!detail.ok) return errorResult(detail.error);
+    const project = projectOfRef(ref);
+    const shown = project ? await cli.board({ project, board }) : null;
+    const review = shown?.ok ? reviewColumn(shown.value.columns.map((c) => c.name)) : null;
+    return { card: detail.value, review };
+  };
+  const track = (card, paneId, agent, locale) => {
+    deps.tasks.set({ ref: card.ref, paneId, agent, at: Date.now() });
+    deps.agents.mark(paneId, card, locale);
+    service.changed();
+  };
+  const taskArgs = (args, caller) => {
+    const named = namedArgs(args);
+    const ref = refArg(args);
+    const board = named.board === void 0 ? void 0 : boardSlug(named.board);
+    if (!ref) return invalid("ref");
+    if (board === null) return invalid("board");
+    if (!caller.workspaceId) {
+      return failure("no-workspace", deps.translate(caller.locale)("task.noWorkspace"));
+    }
+    return { ref, board, workspaceId: caller.workspaceId };
+  };
+  return {
+    context: async (_args, caller) => {
+      if (!await cli.isInstalled()) {
+        return failure("not-installed", deps.translate(caller.locale)("notInstalled"));
+      }
+      const projects = await cli.projects();
+      if (!projects.ok) return errorResult(projects.error);
+      const own = service.projectFor(caller.workDir);
+      return ok(void 0, {
+        actor: HUMAN_ACTOR,
+        workspace: own ? { project: own.project, board: own.board ?? null } : null,
+        canInit: Boolean(caller.workDir) && !own,
+        projects: projects.value
+      });
+    },
+    board: async (args) => {
+      const named = namedArgs(args);
+      const project = projectKey(named.project);
+      if (!project) return invalid("project");
+      const board = named.board === void 0 || named.board === null ? void 0 : boardSlug(named.board);
+      if (board === null) return invalid("board");
+      const [shown, boards] = await Promise.all([
+        cli.board({ project, board }),
+        cli.boards(project)
+      ]);
+      if (!shown.ok) return errorResult(shown.error);
+      return ok(void 0, { board: shown.value, boards: boards.ok ? boards.value : [] });
+    },
+    card: async (args) => {
+      const ref = refArg(args);
+      if (!ref) return invalid("ref");
+      const board = boardSlug(namedArgs(args).board);
+      const detail = await cli.card(ref);
+      if (!detail.ok) return errorResult(detail.error);
+      const api = board ? await currentDaemon() : null;
+      const project = ref.slice(0, ref.lastIndexOf("-"));
+      const thread = api && board ? await readThread(api, project, board, ref) : null;
+      return ok(void 0, { card: detail.value, thread });
+    },
+    move: async (args) => {
+      const ref = refArg(args);
+      const column = columnName(namedArgs(args).column);
+      if (!ref) return invalid("ref");
+      if (!column) return invalid("column");
+      return wrote(await cli.move(ref, column), (card) => ({ card }));
+    },
+    comment: async (args) => {
+      const ref = refArg(args);
+      const body = longText(namedArgs(args).body);
+      if (!ref) return invalid("ref");
+      if (!body?.trim()) return invalid("body");
+      return wrote(await cli.comment(ref, body), () => ({ ref }));
+    },
+    claim: async (args) => {
+      const ref = refArg(args);
+      if (!ref) return invalid("ref");
+      return wrote(await cli.claim(ref), (card) => ({ card }));
+    },
+    renew: async (args) => {
+      const ref = refArg(args);
+      if (!ref) return invalid("ref");
+      return wrote(await cli.renew(ref), () => ({ ref }));
+    },
+    release: async (args) => {
+      const ref = refArg(args);
+      if (!ref) return invalid("ref");
+      return wrote(await cli.release(ref), () => ({ ref }));
+    },
+    create: async (args) => {
+      const named = namedArgs(args);
+      const project = projectKey(named.project);
+      const board = named.board === void 0 ? void 0 : boardSlug(named.board);
+      const title = cardTitle(named.title);
+      const body = named.body === void 0 ? "" : longText(named.body);
+      const column = named.column === void 0 ? void 0 : columnName(named.column);
+      const level = named.priority === void 0 ? void 0 : priority(named.priority);
+      if (!project) return invalid("project");
+      if (board === null) return invalid("board");
+      if (!title) return invalid("title");
+      if (body === null) return invalid("body");
+      if (column === null) return invalid("column");
+      if (level === null) return invalid("priority");
+      const res = await cli.newCard({
+        project,
+        board,
+        title,
+        body,
+        column,
+        priority: level
+      });
+      return wrote(res, (card) => ({ card }));
+    },
+    vault: async (args) => {
+      const project = projectKey(namedArgs(args).project);
+      if (!project) return invalid("project");
+      return result(await cli.vaultList(project), (entries) => ({ entries }));
+    },
+    entry: async (args) => {
+      const named = namedArgs(args);
+      const project = projectKey(named.project);
+      const slug = entrySlug(named.slug);
+      if (!project) return invalid("project");
+      if (!slug) return invalid("slug");
+      return result(await cli.vaultEntry(project, slug), (entry) => ({ entry }));
+    },
+    init: async (_args, caller) => initHere(deps, caller),
+    agents: async () => ok(void 0, { agents: await deps.agents.list() }),
+    tasks: async () => ok(void 0, {
+      tasks: deps.tasks.list().map(({ ref, agent, at }) => ({ ref, agent, at }))
+    }),
+    start: async (args, caller) => {
+      const target = taskArgs(args, caller);
+      if ("ok" in target) return target;
+      const agent = agentArg(namedArgs(args).agent);
+      if (!agent) return invalid("agent");
+      const found = await taskCard(target.ref, target.board);
+      if ("ok" in found) return found;
+      const t = deps.translate(caller.locale);
+      const res = await deps.agents.run({
+        workspaceId: target.workspaceId,
+        agent,
+        prompt: taskPrompt(found.card, found.review, t)
+      });
+      if (!res.ok) return failure(res.error, res.message);
+      track(found.card, res.paneId, agent, caller.locale);
+      return ok(void 0, { ref: target.ref, agent });
+    },
+    offer: async (args, caller) => {
+      const target = taskArgs(args, caller);
+      if ("ok" in target) return target;
+      const found = await taskCard(target.ref, target.board);
+      if ("ok" in found) return found;
+      const t = deps.translate(caller.locale);
+      const res = await deps.agents.offer({
+        workspaceId: target.workspaceId,
+        text: taskLine(found.card, found.review, t),
+        label: taskLabel(found.card)
+      });
+      if (!res.ok) return failure(res.error, res.message);
+      if (!res.sent) return ok(void 0, { ref: target.ref, sent: false });
+      track(found.card, res.paneId, null, caller.locale);
+      return ok(void 0, { ref: target.ref, sent: true });
+    },
+    focus: async (args, caller) => {
+      const ref = refArg(args);
+      if (!ref) return invalid("ref");
+      const t = deps.translate(caller.locale);
+      const task = deps.tasks.get(ref);
+      if (!task) return failure("no-task", t("task.none"));
+      const res = await deps.agents.focus(task.paneId);
+      if (res.ok) return ok();
+      deps.tasks.dropPane(task.paneId);
+      service.changed();
+      return failure("pane-closed", t("task.gone"));
+    }
+  };
+}
+async function initHere(deps, caller) {
+  const t = deps.translate(caller.locale);
+  const dir = caller.cwd ?? caller.workDir;
+  if (!dir) return failure("no-dir", t("noDir"));
+  if (!await deps.service.isInstalled()) return failure("not-installed", t("notInstalled"));
+  const confirmed = await deps.confirm({
+    title: t("initTitle"),
+    message: t("initMessage", { dir }),
+    detail: t("initDetail"),
+    confirmLabel: t("initConfirm"),
+    cancelLabel: t("cancel")
+  });
+  if (!confirmed) return failure("cancelled", t("initCancelled"));
+  const res = await deps.service.init(dir);
+  return res.ok ? ok(res.text) : failure("init-failed", res.message);
+}
+
+// src/extensions/trellis/service.ts
+var import_node_child_process = require("node:child_process");
+
+// src/extensions/trellis/cli.ts
+var import_node_fs2 = require("node:fs");
+var import_node_os = require("node:os");
+var import_node_path2 = require("node:path");
+var NOT_INSTALLED = "not-installed";
+var TEXT_DIR_PREFIX = "pine-trellis-text-";
+var TEXT_FILE_MODE = 384;
+function scopeArgs(scope) {
+  const args = ["--project", scope.project];
+  if (scope.board) args.push("--board", scope.board);
+  return args;
+}
+function failureOf(run) {
+  if (run.missing) return { code: NOT_INSTALLED, message: "trellis is not on PATH" };
+  if (run.timedOut) return { code: "timeout", message: "trellis did not answer in time" };
+  const structured = parseError(run.stderr) ?? parseError(run.stdout);
+  if (structured) return structured;
+  const line = run.stderr.trim().split("\n")[0] ?? "";
+  return { code: "failed", message: line || `trellis exited with ${run.code}` };
+}
+var TrellisCli = class {
+  constructor(opts = {}) {
+    this.opts = opts;
+    this.bin = opts.bin ?? "trellis";
+  }
+  bin;
+  installed = null;
+  async run(args, opts = {}) {
+    const texts = Object.entries(opts.texts ?? {});
+    const dir = texts.length > 0 ? (0, import_node_fs2.mkdtempSync)((0, import_node_path2.join)((0, import_node_os.tmpdir)(), TEXT_DIR_PREFIX)) : null;
+    const full = [...args];
+    try {
+      texts.forEach(([flag, value], i) => {
+        const file = (0, import_node_path2.join)(dir, `text-${i}`);
+        (0, import_node_fs2.writeFileSync)(file, value, { mode: TEXT_FILE_MODE });
+        full.push(`--${flag}`, `@${file}`);
+      });
+      const run = await runTool(this.bin, [...full, "--json"], {
+        cwd: opts.cwd,
+        timeoutMs: opts.timeoutMs ?? this.opts.timeoutMs
+      });
+      if (run.missing) this.installed = false;
+      if (run.code === 0) return { ok: true, value: run.stdout };
+      return { ok: false, error: failureOf(run) };
+    } finally {
+      if (dir) (0, import_node_fs2.rmSync)(dir, { recursive: true, force: true });
+    }
+  }
+  async parsed(args, parse, opts = {}) {
+    const res = await this.run(args, opts);
+    if (!res.ok) return res;
+    const value = parse(res.value);
+    return value === null ? {
+      ok: false,
+      error: { code: "unreadable", message: "trellis printed output it cannot read" }
+    } : { ok: true, value };
+  }
+  async isInstalled() {
+    if (this.installed !== null) return this.installed;
+    const res = await runTool(this.bin, ["version", "--json"], { timeoutMs: 5e3 });
+    this.installed = !res.missing && res.code === 0 && parseObjectOutput(res.stdout) !== null;
+    return this.installed;
+  }
+  knownMissing() {
+    return this.installed === false;
+  }
+  board(scope) {
+    return this.parsed(["board", "show", ...scopeArgs(scope)], parseBoard);
+  }
+  boards(project) {
+    return this.parsed(["board", "ls", "--project", project], parseBoards);
+  }
+  projects() {
+    return this.parsed(["project", "ls"], parseProjects);
+  }
+  card(ref) {
+    return this.parsed(["card", "show", ref], parseCardDetail);
+  }
+  newCard(card) {
+    const args = ["card", "new", ...scopeArgs(card)];
+    if (card.column) args.push(`--column=${card.column}`);
+    if (card.priority) args.push(`--priority=${card.priority}`);
+    const texts = { title: card.title };
+    if (card.body) texts.body = card.body;
+    return this.parsed(args, parseCard, { texts });
+  }
+  move(ref, column) {
+    return this.parsed(["card", "move", ref, `--column=${column}`], parseCard);
+  }
+  async comment(ref, body) {
+    const res = await this.run(["card", "comment", ref], { texts: { body } });
+    return res.ok ? { ok: true, value: true } : res;
+  }
+  claim(ref) {
+    return this.parsed(["card", "claim", ref], parseCard);
+  }
+  async renew(ref) {
+    const res = await this.run(["card", "renew", ref]);
+    return res.ok ? { ok: true, value: true } : res;
+  }
+  async release(ref) {
+    const res = await this.run(["card", "release", ref]);
+    return res.ok ? { ok: true, value: true } : res;
+  }
+  vaultList(project) {
+    return this.parsed(["vault", "ls", "--project", project], parseVaultList);
+  }
+  vaultEntry(project, slug) {
+    return this.parsed(["vault", "show", slug, "--project", project], parseVaultEntry);
+  }
+  daemonStatus() {
+    return this.parsed(["daemon", "status"], parseDaemonStatus, { timeoutMs: 5e3 });
+  }
+  init(dir) {
+    return this.parsed(["init"], parseObjectOutput, { cwd: dir, timeoutMs: 3e4 });
+  }
+};
 
 // src/extensions/trellis/service.ts
 var CARDS_CHIP = "cards";
@@ -4411,24 +5185,18 @@ var PRIME_MAX_PAGES = 50;
 var ACK_DELAY_MS = 2e3;
 var FOLLOW_RESTART_MAX_MS = 5 * 6e4;
 var FOLLOW_HEALTHY_MS = 6e4;
+var CHANGE_DELAY_MS = 250;
+var PANEL_ENTITIES = /* @__PURE__ */ new Set(["card", "comment", "entry", "board"]);
 var UNKNOWN_PROJECT_RETRIES = 5;
 var UNKNOWN_PROJECT_RETRY_MS = 1e3;
-var TrellisUnavailable = class extends Error {
-  constructor(code, message) {
-    super(message);
-    this.code = code;
-  }
-};
 var TrellisService = class {
   constructor(opts) {
     this.opts = opts;
     this.bin = opts.bin ?? "trellis";
+    this.cli = new TrellisCli({ bin: this.bin });
   }
+  cli;
   bin;
-  installed = null;
-  ownedUi = null;
-  uiUrl = null;
-  uiStarting = null;
   shown = /* @__PURE__ */ new Set();
   projects = /* @__PURE__ */ new Map();
   workspacesKnown = false;
@@ -4437,35 +5205,23 @@ var TrellisService = class {
   followTimer = null;
   ackTimer = null;
   pendingAck = null;
+  refreshTimer = null;
+  changeTimer = null;
   stopped = false;
   locale = "en";
   notifyKinds = ALL_NOTIFY_KINDS;
-  get strings() {
-    return stringsFor(this.locale);
+  get t() {
+    return this.opts.translate(this.locale);
   }
-  run(args, cwd, timeoutMs) {
-    return runTool(this.bin, args, { cwd, timeoutMs });
-  }
-  async isInstalled() {
-    if (this.installed !== null) return this.installed;
-    const res = await this.run(["version", "--json"], void 0, 5e3);
-    this.installed = !res.missing && res.code === 0;
-    return this.installed;
-  }
-  owned() {
-    return this.ownedUi !== null;
+  isInstalled() {
+    return this.cli.isInstalled();
   }
   async counts(project) {
-    const scope = ["--project", project.project];
-    if (project.board) scope.push("--board", project.board);
-    const [cards, columns] = await Promise.all([
-      this.run(["card", "ls", "--json", "--all", ...scope]),
-      this.run(["column", "ls", "--json", ...scope])
-    ]);
-    const parsedCards = cards.code === 0 ? parseCards(cards.stdout) : null;
-    const parsedColumns = columns.code === 0 ? parseColumns(columns.stdout) : null;
-    if (!parsedCards || !parsedColumns) return null;
-    return countCards(parsedCards, parsedColumns, (this.opts.now ?? Date.now)());
+    const res = await this.cli.board({ project: project.project, board: project.board });
+    return res.ok ? countBoard(res.value, (this.opts.now ?? Date.now)()) : null;
+  }
+  chipTooltip(counts, t = this.t) {
+    return counts.claimed > 0 ? t("chip.openClaimed", { open: counts.open, claimed: counts.claimed }) : t("chip.open", { open: counts.open });
   }
   projectFor(workDir) {
     return workDir ? findProject(workDir, this.opts.home) : null;
@@ -4494,7 +5250,7 @@ var TrellisService = class {
         workspaceId,
         id: CARDS_CHIP,
         text: String(counts.open),
-        tooltip: this.strings.sidebar(counts),
+        tooltip: this.chipTooltip(counts),
         icon: "kanban",
         tone: counts.claimed > 0 ? "brand" : "neutral",
         command: OPEN_COMMAND
@@ -4535,101 +5291,17 @@ var TrellisService = class {
     if (!this.workspacesKnown) return null;
     return new Set([...this.projects.values()].map((p) => p.project));
   }
-  async ensureUi() {
-    if (!await this.isInstalled()) {
-      throw new TrellisUnavailable("not-installed", this.strings.notInstalled);
-    }
-    if (this.uiUrl && (this.ownedUi || await this.daemonUrl() === this.uiUrl)) return this.uiUrl;
-    this.uiUrl = null;
-    if (!this.uiStarting) {
-      this.uiStarting = this.startUi().finally(() => {
-        this.uiStarting = null;
-      });
-    }
-    return this.uiStarting;
-  }
-  async daemonUrl() {
-    const res = await this.run(["daemon", "status", "--json"], void 0, 5e3);
-    const status = res.code === 0 ? parseDaemonStatus(res.stdout) : null;
-    return status?.running ? status.url : null;
-  }
-  startUi() {
-    const probeMs = this.opts.uiProbeMs ?? 1500;
-    const timeoutMs = this.opts.uiStartTimeoutMs ?? 1e4;
-    return new Promise((resolve2, reject) => {
-      let stdout = "";
-      let stderr = "";
-      let settled = false;
-      const child = (0, import_node_child_process.spawn)(this.bin, ["ui", "--json"], { stdio: ["ignore", "pipe", "pipe"] });
-      const settle = (err, url) => {
-        if (settled) return;
-        settled = true;
-        clearTimeout(probe);
-        if (err) reject(err);
-        else {
-          this.uiUrl = url ?? null;
-          resolve2(url ?? "");
-        }
-      };
-      child.stdout.on("data", (c) => {
-        if (stdout.length < 65536) stdout += c.toString("utf8");
-      });
-      child.stderr.on("data", (c) => {
-        stderr = (stderr + c.toString("utf8")).slice(-4096);
-      });
-      child.on("error", (err) => {
-        if (err.code === "ENOENT") this.installed = false;
-        settle(new TrellisUnavailable("not-installed", this.strings.notInstalled));
-      });
-      child.on("exit", (code) => {
-        if (this.ownedUi === child) {
-          this.ownedUi = null;
-          this.uiUrl = null;
-        }
-        const info = parseUiInfo(stdout);
-        if (code === 0 && info) return settle(null, info.url);
-        const message = parseError(stderr)?.message ?? this.strings.uiFailed;
-        settle(new TrellisUnavailable("ui-failed", message));
-      });
-      const probe = setTimeout(async () => {
-        if (settled) return;
-        this.ownedUi = child;
-        const deadline = Date.now() + timeoutMs;
-        while (!settled && Date.now() < deadline && !this.stopped) {
-          const url = await this.daemonUrl();
-          if (url) return settle(null, url);
-          await (0, import_promises.setTimeout)(300);
-        }
-        if (!settled) {
-          this.stopOwnedUi();
-          settle(new TrellisUnavailable("ui-failed", this.strings.uiFailed));
-        }
-      }, probeMs);
-    });
-  }
-  stopOwnedUi() {
-    const child = this.ownedUi;
-    this.ownedUi = null;
-    this.uiUrl = null;
-    if (child && child.exitCode === null) child.kill("SIGTERM");
-  }
   async init(dir) {
-    if (!await this.isInstalled()) return { ok: false, message: this.strings.notInstalled };
-    const res = await this.run(["init", "--json"], dir, 3e4);
-    if (res.code !== 0) {
-      return {
-        ok: false,
-        message: parseError(res.stderr)?.message ?? (res.stderr.trim() || "failed")
-      };
-    }
-    let key = "";
-    try {
-      const parsed = JSON.parse(res.stdout);
-      if (typeof parsed.project?.key === "string") key = parsed.project.key;
-    } catch {
-    }
-    void this.refreshSidebar();
-    return { ok: true, text: this.strings.initDone(key, dir) };
+    if (!await this.isInstalled()) return { ok: false, message: this.t("notInstalled") };
+    const res = await this.cli.init(dir);
+    if (!res.ok) return { ok: false, message: res.error.message };
+    const project = res.value.project;
+    const key = typeof project?.key === "string" ? project.key : "";
+    this.changed();
+    return {
+      ok: true,
+      text: key ? this.t("initDone", { key, dir }) : this.t("initDoneNoKey", { dir })
+    };
   }
   async startEvents() {
     if (this.stopped || this.follower || !await this.isInstalled()) return;
@@ -4642,14 +5314,15 @@ var TrellisService = class {
     this.follow();
   }
   async consumerExists() {
-    const res = await this.run(["events", "consumers", "--json"]);
+    const res = await runTool(this.bin, ["events", "consumers", "--json"]);
     if (res.code !== 0) throw new Error(res.stderr.trim() || "events consumers failed");
     const list = JSON.parse(res.stdout || "[]");
     return Array.isArray(list) && list.some((c) => c?.name === this.opts.consumer);
   }
   async primeConsumer() {
     for (let page = 0; page < PRIME_MAX_PAGES; page++) {
-      const res = await this.run(
+      const res = await runTool(
+        this.bin,
         [
           "events",
           "--consumer",
@@ -4659,8 +5332,7 @@ var TrellisService = class {
           "--limit",
           `${PRIME_PAGE}`
         ],
-        void 0,
-        6e4
+        { timeoutMs: 6e4 }
       );
       if (res.code !== 0) throw new Error(res.stderr.trim() || "events failed");
       let last = null;
@@ -4677,7 +5349,7 @@ var TrellisService = class {
     }
   }
   async ack(seq) {
-    await this.run(["events", "ack", this.opts.consumer, `${seq}`]);
+    await runTool(this.bin, ["events", "ack", this.opts.consumer, `${seq}`]);
   }
   scheduleAck(seq) {
     this.pendingAck = Math.max(seq, this.pendingAck ?? 0);
@@ -4708,13 +5380,12 @@ var TrellisService = class {
         nl = buffer.indexOf("\n");
       }
     });
-    child.on("error", (err) => {
-      if (err.code === "ENOENT") this.installed = false;
+    child.on("error", () => {
     });
     child.on("close", () => {
       if (this.follower !== child) return;
       this.follower = null;
-      if (this.stopped || this.installed === false) return;
+      if (this.stopped || this.cli.knownMissing()) return;
       if (Date.now() - started > FOLLOW_HEALTHY_MS) this.followFailures = 0;
       this.scheduleFollow();
     });
@@ -4739,26 +5410,27 @@ var TrellisService = class {
     const ev = parseEventLine(line);
     if (!ev || "gap" in ev) return;
     this.scheduleAck(ev.seq);
+    if (PANEL_ENTITIES.has(ev.entity)) this.changed();
     void this.handleEvent(ev);
   }
   async handleEvent(ev, attempt = 0) {
+    if (ev.entity !== "card") return;
     if (!await this.isOpenProject(projectOfRef(ev.ref))) {
       if (attempt < UNKNOWN_PROJECT_RETRIES && !this.stopped) {
         setTimeout(() => void this.handleEvent(ev, attempt + 1), UNKNOWN_PROJECT_RETRY_MS);
       }
       return;
     }
-    if (ev.entity === "card") this.scheduleRefresh();
+    this.scheduleRefresh();
     const needs = needsUser(ev, this.notifyKinds);
     if (!needs) return;
-    const s = this.strings;
+    const t = this.t;
     void this.opts.host.notifyPanel(
-      needs.kind === "blocked" ? s.blockedTitle : s.reviewTitle,
+      needs.kind === "blocked" ? t("blockedTitle") : t("reviewTitle"),
       `${ev.ref} ${ev.title}`.trim(),
       cardPath(ev.ref) ?? void 0
     );
   }
-  refreshTimer = null;
   scheduleRefresh(delayMs = 1e3) {
     if (this.refreshTimer || this.stopped) return;
     this.refreshTimer = setTimeout(() => {
@@ -4766,12 +5438,44 @@ var TrellisService = class {
       void this.refreshSidebar();
     }, delayMs);
   }
+  changed() {
+    this.scheduleRefresh();
+    if (this.changeTimer || this.stopped) return;
+    this.changeTimer = setTimeout(() => {
+      this.changeTimer = null;
+      this.opts.host.changed();
+    }, this.opts.changeDelayMs ?? CHANGE_DELAY_MS);
+  }
   stop() {
     this.stopped = true;
-    for (const t of [this.followTimer, this.ackTimer, this.refreshTimer]) if (t) clearTimeout(t);
+    for (const t of [this.followTimer, this.ackTimer, this.refreshTimer, this.changeTimer]) {
+      if (t) clearTimeout(t);
+    }
     this.follower?.kill("SIGTERM");
     this.follower = null;
-    this.stopOwnedUi();
+  }
+};
+
+// src/extensions/trellis/tasks.ts
+var AgentTasks = class {
+  byRef = /* @__PURE__ */ new Map();
+  set(task) {
+    this.byRef.set(task.ref, task);
+  }
+  get(ref) {
+    return this.byRef.get(ref);
+  }
+  dropPane(paneId) {
+    let dropped = false;
+    for (const [ref, task] of this.byRef) {
+      if (task.paneId !== paneId) continue;
+      this.byRef.delete(ref);
+      dropped = true;
+    }
+    return dropped;
+  }
+  list() {
+    return [...this.byRef.values()];
   }
 };
 
@@ -4779,122 +5483,115 @@ var TrellisService = class {
 var REFRESH_SECONDS = { min: 10, max: 3600 };
 var EVENTS = ["pane.created", "pane.closed", "cwd.changed"];
 var FOCUS_EVENT = "focus.changed";
+var PANEL_FILES = ["panel.html", "panel.js", "panel.css", "base.css"];
+var TASK_CHIP = "task";
 function workspacesFrom(raw) {
   if (!Array.isArray(raw)) throw new Error("workspace.list returned no list");
   return raw.filter(
     (s) => typeof s?.workspaceId === "string" && typeof s?.workDir === "string"
   ).map((s) => ({ workspaceId: s.workspaceId, workDir: s.workDir }));
 }
-function upstreamOf(uiUrl) {
-  const url = loopbackHttpUrl(uiUrl);
-  if (!url) return null;
-  const headers = {};
-  const token = url.searchParams.get("token");
-  if (token) headers["x-trellis-token"] = token;
-  return { origin: url.origin, headers };
-}
 async function main() {
+  process.env.TRELLIS_AGENT = HUMAN_ACTOR;
   const ext = await connect();
+  const translate = createTranslator();
+  let panelChanged = () => {
+  };
   const service = new TrellisService({
-    home: (0, import_node_os.homedir)(),
+    home: (0, import_node_os2.homedir)(),
     consumer: PRODUCT_NAME,
+    translate,
     host: {
       listWorkspaces: async () => workspacesFrom(await ext.call("workspace.list")),
       setWorkspaceChip: (chip) => ext.setWorkspaceChip(chip),
       clearWorkspaceChip: (workspaceId, id) => ext.clearWorkspaceChip(workspaceId, id),
       notifyPanel: (title, body, path) => ext.notifyPanel(title, body, path),
+      changed: () => panelChanged(),
       log: (line) => console.error(line)
     }
   });
   onShutdown(() => service.stop());
-  let uiUrl = null;
-  let proxy = null;
-  const messages = await startMessageServer();
-  const ensureProxy = async () => {
-    proxy ??= await startAuthProxy({ upstream: () => upstreamOf(uiUrl), isAllowedEntry: isAppPath });
-    return proxy;
+  const tasks = new AgentTasks();
+  const agents = {
+    list: () => ext.listAgents(),
+    run: (opts) => ext.runAgent(opts),
+    offer: (opts) => ext.offerToAgent(opts),
+    focus: (paneId) => ext.focusPane(paneId),
+    mark: (paneId, card, locale) => void ext.setPaneChip({
+      paneId,
+      id: TASK_CHIP,
+      text: card.ref,
+      tooltip: translate(locale)("task.chip", { ref: card.ref, title: card.title })
+    }).catch(() => {
+    })
   };
-  const remember = (caller) => {
-    if (caller.locale) service.locale = caller.locale;
-  };
-  const unavailableText = (err) => err instanceof TrellisUnavailable ? err.message : service.strings.uiFailed;
-  const handlers = {
-    open: async (_args, caller) => {
-      remember(caller);
-      try {
-        uiUrl = await service.ensureUi();
-      } catch (err) {
-        return failure(
-          err instanceof TrellisUnavailable ? err.code : "ui-failed",
-          unavailableText(err)
-        );
-      }
-      await ext.openPanel(caller.workspaceId);
-      return ok("ok");
-    },
-    init: async (_args, caller) => {
-      remember(caller);
-      const dir = caller.cwd ?? caller.workDir;
-      if (!dir) return failure("no-dir", service.strings.noDir);
-      if (!await service.isInstalled()) {
-        return failure("not-installed", service.strings.notInstalled);
-      }
-      const s = service.strings;
-      const confirmed = await ext.confirm({
-        title: s.initTitle,
-        message: s.initMessage(dir),
-        detail: s.initDetail,
-        confirmLabel: s.initConfirm,
-        cancelLabel: s.cancel
-      });
-      if (!confirmed) return ok(s.initCancelled);
-      const res = await service.init(dir);
-      return res.ok ? ok(res.text) : failure("init-failed", res.message);
-    },
-    card: async (args, caller) => {
-      remember(caller);
-      const raw = cliArgs(args)?.argv[0];
-      if (!raw) return failure("missing-ref", service.strings.cardUsage);
-      const ref = cardRef(raw);
-      const path = ref ? cardPath(ref) : null;
-      if (!ref || !path) return failure("invalid-ref", service.strings.invalidRef(raw));
-      try {
-        uiUrl = await service.ensureUi();
-      } catch (err) {
-        return failure(
-          err instanceof TrellisUnavailable ? err.code : "ui-failed",
-          unavailableText(err)
-        );
-      }
-      await ext.openPanel(caller.workspaceId, path);
-      return ok(service.strings.cardOpened(ref), { ref, path });
-    },
-    status: async (_args, caller) => {
-      remember(caller);
-      if (!await service.isInstalled()) {
-        return failure("not-installed", service.strings.notInstalled);
-      }
-      const project = service.projectFor(caller.workDir);
-      if (!project) return ok("no trellis project", null);
-      const counts = await service.counts(project);
-      if (!counts) return failure("trellis-failed", service.strings.uiFailed);
-      const data = { project: project.project, board: project.board ?? null, ...counts };
-      return ok(`${project.project}: ${service.strings.sidebar(counts)}`, data);
-    }
-  };
-  ext.onPanel(async (caller, path) => {
-    remember(caller);
-    try {
-      uiUrl = await service.ensureUi();
-      const p = await ensureProxy();
-      const entry = path && isAppPath(path) ? path : projectPath(service.projectFor(caller.workDir));
-      return { url: p.entryUrl(entry) };
-    } catch (err) {
-      return { url: messages.url(service.strings.unavailableTitle, unavailableText(err)) };
+  const deps = { service, translate, confirm: ext.confirm, agents, tasks };
+  const panelOnly = panelHandlers(deps);
+  const panel = await startPanelServer({
+    dir: __dirname,
+    files: PANEL_FILES,
+    handle: async (command, args, caller) => {
+      const handler = panelOnly[command];
+      return handler ? handler(args, caller) : failure("unknown-command", command);
     }
   });
+  panelChanged = () => panel.changed();
+  service.locale = await ext.getLocale();
+  ext.onLocaleChanged((locale) => {
+    service.locale = locale;
+    void service.refreshSidebar();
+  });
+  const handlers = {
+    open: async (_args, caller) => {
+      await ext.openPanel(caller.workspaceId, BOARD_PATH);
+      return ok("ok");
+    },
+    vault: async (_args, caller) => {
+      await ext.openPanel(caller.workspaceId, VAULT_PATH);
+      return ok("ok");
+    },
+    init: async (_args, caller) => initHere(deps, caller),
+    card: async (args, caller) => {
+      const t = translate(caller.locale);
+      const raw = cliArgs(args)?.argv[0];
+      if (!raw) return failure("missing-ref", t("cardUsage"));
+      const ref = cardRef(raw);
+      const path = ref ? cardPath(ref) : null;
+      if (!ref || !path) return failure("invalid-ref", t("invalidRef", { raw }));
+      if (!await service.isInstalled()) return failure("not-installed", t("notInstalled"));
+      await ext.openPanel(caller.workspaceId, path);
+      return ok(t("cardOpened", { ref }), { ref, path });
+    },
+    status: async (_args, caller) => {
+      const t = translate(caller.locale);
+      if (!await service.isInstalled()) return failure("not-installed", t("notInstalled"));
+      const project = service.projectFor(caller.workDir);
+      if (!project) return ok(t("noProject"), null);
+      const counts = await service.counts(project);
+      if (!counts) return failure("trellis-failed", t("statusFailed"));
+      const data = { project: project.project, board: project.board ?? null, ...counts };
+      return ok(`${project.project}: ${service.chipTooltip(counts, t)}`, data);
+    },
+    "session-context": async (_args, caller) => ok(sessionContext(service.projectFor(caller.cwd ?? caller.workDir)))
+  };
+  ext.onPanel((caller, path) => {
+    const target = panelTarget(path);
+    const query = {
+      workDir: caller.workDir ?? "",
+      workspaceId: caller.workspaceId ?? "",
+      locale: caller.locale ?? "en",
+      view: target.view
+    };
+    if (target.card) query.card = target.card;
+    return { url: panel.url(query) };
+  });
   await ext.registerCommands(handlers);
-  const onEvent = () => service.scheduleRefresh();
+  const onEvent = (type, payload) => {
+    if (type === "pane.closed" && tasks.dropPane(payload.paneId)) {
+      service.changed();
+    }
+    service.scheduleRefresh();
+  };
   const withFocus = await ext.subscribe([...EVENTS, FOCUS_EVENT], onEvent);
   if (withFocus?.ok === false) await ext.subscribe(EVENTS, onEvent);
   let refresh = null;

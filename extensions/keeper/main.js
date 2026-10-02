@@ -3683,7 +3683,26 @@ var require_main = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.4.0_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_ff7cf2c8e9a6c60fd0a5a2b97d15b582/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-UDCLSES7.js
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
+var EXTENSION_BASE_LOCALE = "en";
+var LOCALE_CHANGED_EVENT = "locale.changed";
+function matchLocale(locale, available) {
+  if (!locale) return void 0;
+  const subtags = locale.toLowerCase().split("-");
+  for (let length = subtags.length; length > 0; length--) {
+    const wanted = subtags.slice(0, length).join("-");
+    const exact = available.find((tag) => tag.toLowerCase() === wanted);
+    if (exact) return exact;
+  }
+  return available.find((tag) => tag.toLowerCase().split("-")[0] === subtags[0]);
+}
+function localized(catalogs, locale) {
+  const tag = matchLocale(locale, Object.keys(catalogs));
+  return tag ? catalogs[tag] : catalogs.en;
+}
+
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-Z2JJV4MK.js
 var import_net = require("net");
 var import_node = __toESM(require_main(), 1);
 var import_child_process = require("child_process");
@@ -3709,13 +3728,15 @@ var ALL_CAPABILITIES = [
   "settings-read",
   "settings-write",
   "assist",
-  "credentials"
+  "credentials",
+  "language-server",
+  "agent-plugin"
 ];
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.3";
+var EXTENSION_API_VERSION = "1.11";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "PINE_EXTENSION_API";
 function parseApiVersion(value) {
@@ -3734,8 +3755,11 @@ function apiProblem(required, provided = EXTENSION_API_VERSION) {
   return `needs extension API ${required}; this ${PRODUCT_NAME} provides ${provided}`;
 }
 var SETTINGS_CHANGED_EVENT = "settings.changed";
+var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
 var DIFF_TEXT_MAX = 5 * 1024 * 1024;
+var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
+var FOLDER_CLOSED_EVENT = "folder.closed";
 var DEFAULT_TIMEOUT_MS = 15e3;
 var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
 function runTool(bin, args, opts = {}) {
@@ -3873,8 +3897,12 @@ async function connect() {
   let panelHandler = null;
   let eventHandler = null;
   let settingsHandler = null;
+  let localeHandler = null;
   let assistHandler = null;
+  let providersHandler = null;
   let modelsHandler = null;
+  let filesHandler = null;
+  let folderClosedHandler = null;
   conn.onRequest(
     "ext.command",
     async (params) => {
@@ -3898,6 +3926,7 @@ async function connect() {
         return await assistHandler(params.point, params.input, {
           requestId: params.requestId,
           signal: abort.signal,
+          ...params.model ? { model: params.model } : {},
           chunk: async (text) => {
             if (abort.signal.aborted) return false;
             const res = await conn.sendRequest("ext.assistChunk", {
@@ -3914,17 +3943,29 @@ async function connect() {
       }
     }
   );
-  conn.onRequest("ext.assistModels", async (params) => {
-    if (!modelsHandler) throw new Error("no models handler");
-    if (params.action === "list") return modelsHandler.list();
-    if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
-      return { ok: false, error: "invalid" };
+  conn.onRequest(
+    "ext.assistModels",
+    async (params) => {
+      if (!modelsHandler) throw new Error("no models handler");
+      const provider = typeof params.provider === "string" ? params.provider : void 0;
+      if (params.action === "list") return modelsHandler.list(provider);
+      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
+        return { ok: false, error: "invalid" };
+      }
+      try {
+        await modelsHandler.setLoaded(params.id, params.action === "load", provider);
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: errorMessage(err) };
+      }
     }
+  );
+  conn.onRequest("ext.files", async (params) => {
+    if (!filesHandler) return { ok: false, error: "unavailable" };
     try {
-      await modelsHandler.setLoaded(params.id, params.action === "load");
-      return { ok: true };
-    } catch (err) {
-      return { ok: false, error: errorMessage(err) };
+      return await filesHandler(params);
+    } catch {
+      return { ok: false, error: "failed" };
     }
   });
   conn.onRequest("ext.panel", async (params) => {
@@ -3936,6 +3977,12 @@ async function connect() {
     (params) => {
       if (params.type === SETTINGS_CHANGED_EVENT) {
         settingsHandler?.(params.payload.values);
+      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
+        providersHandler?.(params.payload.providers);
+      } else if (params.type === LOCALE_CHANGED_EVENT) {
+        localeHandler?.(params.payload.locale);
+      } else if (params.type === FOLDER_CLOSED_EVENT) {
+        folderClosedHandler?.(params.payload.folderId);
       } else {
         eventHandler?.(params.type, params.payload);
       }
@@ -3978,6 +4025,13 @@ async function connect() {
     onSettingsChanged: (handler) => {
       settingsHandler = handler;
     },
+    getLocale: async () => {
+      const res = await conn.sendRequest("ext.locale");
+      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
+    },
+    onLocaleChanged: (handler) => {
+      localeHandler = handler;
+    },
     callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
     setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
     openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
@@ -3986,6 +4040,35 @@ async function connect() {
         return await conn.sendRequest("ext.openTerminal", opts);
       } catch (err) {
         return { ok: false, error: "open-terminal-failed", message: errorMessage(err) };
+      }
+    },
+    listAgents: async () => {
+      try {
+        const res = await conn.sendRequest("ext.agents");
+        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
+      } catch {
+        return [];
+      }
+    },
+    runAgent: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.runAgent", opts);
+      } catch (err) {
+        return { ok: false, error: "run-agent-failed", message: errorMessage(err) };
+      }
+    },
+    offerToAgent: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.offerToAgent", opts);
+      } catch (err) {
+        return { ok: false, error: "offer-failed", message: errorMessage(err) };
+      }
+    },
+    focusPane: async (paneId) => {
+      try {
+        return await conn.sendRequest("ext.focusPane", { paneId });
+      } catch (err) {
+        return failure("focus-failed", errorMessage(err));
       }
     },
     listWorkspaces: () => conn.sendRequest("workspace.list"),
@@ -4008,6 +4091,35 @@ async function connect() {
     getSecret: async (key) => {
       const res = await conn.sendRequest("ext.getSecret", { key });
       return typeof res?.value === "string" ? res.value : null;
+    },
+    getAssistProviders: async () => {
+      const res = await conn.sendRequest(
+        "ext.assistProviders"
+      );
+      return Array.isArray(res?.providers) ? res.providers : [];
+    },
+    onAssistProvidersChanged: (handler) => {
+      providersHandler = handler;
+    },
+    openFolder: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.openFolder", opts);
+      } catch (err) {
+        return { ok: false, error: "open-folder-failed", message: errorMessage(err) };
+      }
+    },
+    closeFolder: async (folderId) => {
+      try {
+        return await conn.sendRequest("ext.closeFolder", { folderId });
+      } catch (err) {
+        return failure("close-folder-failed", errorMessage(err));
+      }
+    },
+    onFiles: (handler) => {
+      filesHandler = handler;
+    },
+    onFolderClosed: (handler) => {
+      folderClosedHandler = handler;
     }
   };
 }
@@ -4163,7 +4275,7 @@ var zhHant = {
   empty: "\u6C92\u6709\u7B49\u5F85\u6838\u51C6\u7684\u9805\u76EE\u3002"
 };
 function stringsFor(locale) {
-  return locale?.startsWith("zh") ? zhHant : en;
+  return localized({ en, "zh-Hant": zhHant }, locale);
 }
 
 // src/extensions/keeper/service.ts
@@ -4338,9 +4450,10 @@ async function main() {
   ext.onSettingsChanged((values) => service.configure(serviceSettings(values)));
   service.configure(serviceSettings(await ext.getSettings()));
   const messages = await startMessageServer();
-  const remember = (caller) => {
-    if (caller.locale) service.locale = caller.locale;
-  };
+  service.locale = await ext.getLocale();
+  ext.onLocaleChanged((locale) => {
+    service.locale = locale;
+  });
   const openPanel = async (caller, path) => {
     if (!await service.daemonRunning()) {
       return failure(service.state, service.unavailableMessage());
@@ -4350,11 +4463,9 @@ async function main() {
   };
   const handlers = {
     open: async (_args, caller) => {
-      remember(caller);
       return openPanel(caller, "/");
     },
     approvals: async (_args, caller) => {
-      remember(caller);
       await service.tick();
       if (service.state !== "ready") {
         return failure(service.state, service.unavailableMessage());
@@ -4365,8 +4476,7 @@ async function main() {
       return ok(text, list);
     }
   };
-  ext.onPanel(async (caller, requested) => {
-    remember(caller);
+  ext.onPanel(async (_caller, requested) => {
     const base = await service.uiUrl();
     const path = requested ?? (service.approvals().length > 0 ? APPROVALS_PATH : "/");
     if (base) return { url: `${base}${path}` };

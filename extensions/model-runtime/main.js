@@ -5401,11 +5401,11 @@ var require_request = __commonJS({
           } else if (typeof val[i] === "object") {
             throw new InvalidArgumentError3(`invalid ${key} header`);
           } else {
-            const str2 = `${val[i]}`;
-            if (!isValidHeaderValue(str2)) {
+            const str = `${val[i]}`;
+            if (!isValidHeaderValue(str)) {
               throw new InvalidArgumentError3(`invalid ${key} header`);
             }
-            arr.push(str2);
+            arr.push(str);
           }
         }
         val = arr;
@@ -6970,25 +6970,25 @@ var require_data_url = __commonJS({
     function isHTTPWhiteSpace(char) {
       return char === 13 || char === 10 || char === 9 || char === 32;
     }
-    function removeHTTPWhitespace(str2, leading = true, trailing = true) {
-      return removeChars(str2, leading, trailing, isHTTPWhiteSpace);
+    function removeHTTPWhitespace(str, leading = true, trailing = true) {
+      return removeChars(str, leading, trailing, isHTTPWhiteSpace);
     }
     function isASCIIWhitespace(char) {
       return char === 13 || char === 10 || char === 9 || char === 12 || char === 32;
     }
-    function removeASCIIWhitespace(str2, leading = true, trailing = true) {
-      return removeChars(str2, leading, trailing, isASCIIWhitespace);
+    function removeASCIIWhitespace(str, leading = true, trailing = true) {
+      return removeChars(str, leading, trailing, isASCIIWhitespace);
     }
-    function removeChars(str2, leading, trailing, predicate) {
+    function removeChars(str, leading, trailing, predicate) {
       let lead = 0;
-      let trail = str2.length - 1;
+      let trail = str.length - 1;
       if (leading) {
-        while (lead < str2.length && predicate(str2.charCodeAt(lead))) lead++;
+        while (lead < str.length && predicate(str.charCodeAt(lead))) lead++;
       }
       if (trailing) {
-        while (trail > 0 && predicate(str2.charCodeAt(trail))) trail--;
+        while (trail > 0 && predicate(str.charCodeAt(trail))) trail--;
       }
-      return lead === 0 && trail === str2.length - 1 ? str2 : str2.slice(lead, trail + 1);
+      return lead === 0 && trail === str.length - 1 ? str : str.slice(lead, trail + 1);
     }
     function isomorphicDecode(input2) {
       const length = input2.length;
@@ -8893,7 +8893,7 @@ var require_body = __commonJS({
         const boundary = `----formdata-undici-0${`${random(1e11)}`.padStart(11, "0")}`;
         const prefix = `--${boundary}\r
 Content-Disposition: form-data`;
-        const escape = (str2) => str2.replace(/\n/g, "%0A").replace(/\r/g, "%0D").replace(/"/g, "%22");
+        const escape = (str) => str.replace(/\n/g, "%0A").replace(/\r/g, "%0D").replace(/"/g, "%22");
         const normalizeLinefeeds = (value) => value.replace(/\r?\n|\r/g, "\r\n");
         const blobParts = [];
         const rn = new Uint8Array([13, 10]);
@@ -19876,9 +19876,9 @@ var require_cookies = __commonJS({
       webidl.argumentLengthCheck(arguments, 2, "setCookie");
       webidl.brandCheck(headers, Headers2, { strict: false });
       cookie = webidl.converters.Cookie(cookie);
-      const str2 = stringify2(cookie);
-      if (str2) {
-        headers.append("Set-Cookie", str2);
+      const str = stringify2(cookie);
+      if (str) {
+        headers.append("Set-Cookie", str);
       }
     }
     webidl.converters.DeleteCookieAttributes = webidl.dictionaryConverter([
@@ -24152,13 +24152,13 @@ var require_Collection = __commonJS({
 var require_stringifyComment = __commonJS({
   "node_modules/.pnpm/yaml@2.9.1/node_modules/yaml/dist/stringify/stringifyComment.js"(exports2) {
     "use strict";
-    var stringifyComment = (str2) => str2.replace(/^(?!$)(?: $)?/gm, "#");
+    var stringifyComment = (str) => str.replace(/^(?!$)(?: $)?/gm, "#");
     function indentComment(comment, indent) {
       if (/^\n+$/.test(comment))
         return comment.substring(1);
       return indent ? comment.replace(/^(?! *$)/gm, indent) : comment;
     }
-    var lineComment = (str2, indent, comment) => str2.endsWith("\n") ? indentComment(comment, indent) : comment.includes("\n") ? "\n" + indentComment(comment, indent) : (str2.endsWith(" ") ? "" : " ") + comment;
+    var lineComment = (str, indent, comment) => str.endsWith("\n") ? indentComment(comment, indent) : comment.includes("\n") ? "\n" + indentComment(comment, indent) : (str.endsWith(" ") ? "" : " ") + comment;
     exports2.indentComment = indentComment;
     exports2.lineComment = lineComment;
     exports2.stringifyComment = stringifyComment;
@@ -24312,16 +24312,16 @@ var require_stringifyString = __commonJS({
       lineWidth: ctx.options.lineWidth,
       minContentWidth: ctx.options.minContentWidth
     });
-    var containsDocumentMarker = (str2) => /^(%|---|\.\.\.)/m.test(str2);
-    function lineLengthOverLimit(str2, lineWidth, indentLength) {
+    var containsDocumentMarker = (str) => /^(%|---|\.\.\.)/m.test(str);
+    function lineLengthOverLimit(str, lineWidth, indentLength) {
       if (!lineWidth || lineWidth < 0)
         return false;
       const limit = lineWidth - indentLength;
-      const strLen = str2.length;
+      const strLen = str.length;
       if (strLen <= limit)
         return false;
       for (let i = 0, start = 0; i < strLen; ++i) {
-        if (str2[i] === "\n") {
+        if (str[i] === "\n") {
           if (i - start > limit)
             return true;
           start = i + 1;
@@ -24338,11 +24338,11 @@ var require_stringifyString = __commonJS({
       const { implicitKey } = ctx;
       const minMultiLineLength = ctx.options.doubleQuotedMinMultiLineLength;
       const indent = ctx.indent || (containsDocumentMarker(value) ? "  " : "");
-      let str2 = "";
+      let str = "";
       let start = 0;
       for (let i = 0, ch = json3[i]; ch; ch = json3[++i]) {
         if (ch === " " && json3[i + 1] === "\\" && json3[i + 2] === "n") {
-          str2 += json3.slice(start, i) + "\\ ";
+          str += json3.slice(start, i) + "\\ ";
           i += 1;
           start = i;
           ch = "\\";
@@ -24351,38 +24351,38 @@ var require_stringifyString = __commonJS({
           switch (json3[i + 1]) {
             case "u":
               {
-                str2 += json3.slice(start, i);
+                str += json3.slice(start, i);
                 const code = json3.substr(i + 2, 4);
                 switch (code) {
                   case "0000":
-                    str2 += "\\0";
+                    str += "\\0";
                     break;
                   case "0007":
-                    str2 += "\\a";
+                    str += "\\a";
                     break;
                   case "000b":
-                    str2 += "\\v";
+                    str += "\\v";
                     break;
                   case "001b":
-                    str2 += "\\e";
+                    str += "\\e";
                     break;
                   case "0085":
-                    str2 += "\\N";
+                    str += "\\N";
                     break;
                   case "00a0":
-                    str2 += "\\_";
+                    str += "\\_";
                     break;
                   case "2028":
-                    str2 += "\\L";
+                    str += "\\L";
                     break;
                   case "2029":
-                    str2 += "\\P";
+                    str += "\\P";
                     break;
                   default:
                     if (code.substr(0, 2) === "00")
-                      str2 += "\\x" + code.substr(2);
+                      str += "\\x" + code.substr(2);
                     else
-                      str2 += json3.substr(i, 6);
+                      str += json3.substr(i, 6);
                 }
                 i += 5;
                 start = i + 1;
@@ -24392,14 +24392,14 @@ var require_stringifyString = __commonJS({
               if (implicitKey || json3[i + 2] === '"' || json3.length < minMultiLineLength) {
                 i += 1;
               } else {
-                str2 += json3.slice(start, i) + "\n\n";
+                str += json3.slice(start, i) + "\n\n";
                 while (json3[i + 2] === "\\" && json3[i + 3] === "n" && json3[i + 4] !== '"') {
-                  str2 += "\n";
+                  str += "\n";
                   i += 2;
                 }
-                str2 += indent;
+                str += indent;
                 if (json3[i + 2] === " ")
-                  str2 += "\\";
+                  str += "\\";
                 i += 1;
                 start = i + 1;
               }
@@ -24408,8 +24408,8 @@ var require_stringifyString = __commonJS({
               i += 1;
           }
       }
-      str2 = start ? str2 + json3.slice(start) : json3;
-      return implicitKey ? str2 : foldFlowLines.foldFlowLines(str2, indent, foldFlowLines.FOLD_QUOTED, getFoldOptions(ctx, false));
+      str = start ? str + json3.slice(start) : json3;
+      return implicitKey ? str : foldFlowLines.foldFlowLines(str, indent, foldFlowLines.FOLD_QUOTED, getFoldOptions(ctx, false));
     }
     function singleQuotedString(value, ctx) {
       if (ctx.options.singleQuote === false || ctx.implicitKey && value.includes("\n") || /[ \t]\n|\n[ \t]/.test(value))
@@ -24537,15 +24537,15 @@ ${indent}${start}${value}${end}`;
           return quotedString(value, ctx);
         }
       }
-      const str2 = value.replace(/\n+/g, `$&
+      const str = value.replace(/\n+/g, `$&
 ${indent}`);
       if (actualString) {
-        const test = (tag) => tag.default && tag.tag !== "tag:yaml.org,2002:str" && tag.test?.test(str2);
+        const test = (tag) => tag.default && tag.tag !== "tag:yaml.org,2002:str" && tag.test?.test(str);
         const { compat, tags } = ctx.doc.schema;
         if (tags.some(test) || compat?.some(test))
           return quotedString(value, ctx);
       }
-      return implicitKey ? str2 : foldFlowLines.foldFlowLines(str2, indent, foldFlowLines.FOLD_FLOW, getFoldOptions(ctx, false));
+      return implicitKey ? str : foldFlowLines.foldFlowLines(str, indent, foldFlowLines.FOLD_FLOW, getFoldOptions(ctx, false));
     }
     function stringifyString(item, ctx, onComment, onChompKeep) {
       const { implicitKey, inFlow } = ctx;
@@ -24697,11 +24697,11 @@ var require_stringify = __commonJS({
       const props = stringifyProps(node2, tagObj, ctx);
       if (props.length > 0)
         ctx.indentAtStart = (ctx.indentAtStart ?? 0) + props.length + 1;
-      const str2 = typeof tagObj.stringify === "function" ? tagObj.stringify(node2, ctx, onComment, onChompKeep) : identity.isScalar(node2) ? stringifyString.stringifyString(node2, ctx, onComment, onChompKeep) : node2.toString(ctx, onComment, onChompKeep);
+      const str = typeof tagObj.stringify === "function" ? tagObj.stringify(node2, ctx, onComment, onChompKeep) : identity.isScalar(node2) ? stringifyString.stringifyString(node2, ctx, onComment, onChompKeep) : node2.toString(ctx, onComment, onChompKeep);
       if (!props)
-        return str2;
-      return identity.isScalar(node2) || str2[0] === "{" || str2[0] === "[" ? `${props} ${str2}` : `${props}
-${ctx.indent}${str2}`;
+        return str;
+      return identity.isScalar(node2) || str[0] === "{" || str[0] === "[" ? `${props} ${str}` : `${props}
+${ctx.indent}${str}`;
     }
     exports2.createStringifyContext = createStringifyContext;
     exports2.stringify = stringify2;
@@ -24736,8 +24736,8 @@ var require_stringifyPair = __commonJS({
       });
       let keyCommentDone = false;
       let chompKeep = false;
-      let str2 = stringify2.stringify(key, ctx, () => keyCommentDone = true, () => chompKeep = true);
-      if (!explicitKey && !ctx.inFlow && str2.length > 1024) {
+      let str = stringify2.stringify(key, ctx, () => keyCommentDone = true, () => chompKeep = true);
+      if (!explicitKey && !ctx.inFlow && str.length > 1024) {
         if (simpleKeys)
           throw new Error("With simple keys, single line scalar must not span more than 1024 characters");
         explicitKey = true;
@@ -24746,27 +24746,27 @@ var require_stringifyPair = __commonJS({
         if (allNullValues || value == null) {
           if (keyCommentDone && onComment)
             onComment();
-          return str2 === "" ? "?" : explicitKey ? `? ${str2}` : str2;
+          return str === "" ? "?" : explicitKey ? `? ${str}` : str;
         }
       } else if (allNullValues && !simpleKeys || value == null && explicitKey) {
-        str2 = `? ${str2}`;
+        str = `? ${str}`;
         if (keyComment && !keyCommentDone) {
-          str2 += stringifyComment.lineComment(str2, ctx.indent, commentString(keyComment));
+          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
         } else if (chompKeep && onChompKeep)
           onChompKeep();
-        return str2;
+        return str;
       }
       if (keyCommentDone)
         keyComment = null;
       if (explicitKey) {
         if (keyComment)
-          str2 += stringifyComment.lineComment(str2, ctx.indent, commentString(keyComment));
-        str2 = `? ${str2}
+          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
+        str = `? ${str}
 ${indent}:`;
       } else {
-        str2 = `${str2}:`;
+        str = `${str}:`;
         if (keyComment)
-          str2 += stringifyComment.lineComment(str2, ctx.indent, commentString(keyComment));
+          str += stringifyComment.lineComment(str, ctx.indent, commentString(keyComment));
       }
       let vsb, vcb, valueComment;
       if (identity.isNode(value)) {
@@ -24782,7 +24782,7 @@ ${indent}:`;
       }
       ctx.implicitKey = false;
       if (!explicitKey && !keyComment && identity.isScalar(value))
-        ctx.indentAtStart = str2.length + 1;
+        ctx.indentAtStart = str.length + 1;
       chompKeep = false;
       if (!indentSeq && indentStep.length >= 2 && !ctx.inFlow && !explicitKey && identity.isSeq(value) && !value.flow && !value.tag && !value.anchor) {
         ctx.indent = ctx.indent.substring(2);
@@ -24826,16 +24826,16 @@ ${ctx.indent}`;
       } else if (valueStr === "" || valueStr[0] === "\n") {
         ws = "";
       }
-      str2 += ws + valueStr;
+      str += ws + valueStr;
       if (ctx.inFlow) {
         if (valueCommentDone && onComment)
           onComment();
       } else if (valueComment && !valueCommentDone) {
-        str2 += stringifyComment.lineComment(str2, ctx.indent, commentString(valueComment));
+        str += stringifyComment.lineComment(str, ctx.indent, commentString(valueComment));
       } else if (chompKeep && onChompKeep) {
         onChompKeep();
       }
-      return str2;
+      return str;
     }
     exports2.stringifyPair = stringifyPair;
   }
@@ -25062,31 +25062,31 @@ var require_stringifyCollection = __commonJS({
           }
         }
         chompKeep = false;
-        let str3 = stringify2.stringify(item, itemCtx, () => comment2 = null, () => chompKeep = true);
+        let str2 = stringify2.stringify(item, itemCtx, () => comment2 = null, () => chompKeep = true);
         if (comment2)
-          str3 += stringifyComment.lineComment(str3, itemIndent, commentString(comment2));
+          str2 += stringifyComment.lineComment(str2, itemIndent, commentString(comment2));
         if (chompKeep && comment2)
           chompKeep = false;
-        lines.push(blockItemPrefix + str3);
+        lines.push(blockItemPrefix + str2);
       }
-      let str2;
+      let str;
       if (lines.length === 0) {
-        str2 = flowChars.start + flowChars.end;
+        str = flowChars.start + flowChars.end;
       } else {
-        str2 = lines[0];
+        str = lines[0];
         for (let i = 1; i < lines.length; ++i) {
           const line = lines[i];
-          str2 += line ? `
+          str += line ? `
 ${indent}${line}` : "\n";
         }
       }
       if (comment) {
-        str2 += "\n" + stringifyComment.indentComment(commentString(comment), indent);
+        str += "\n" + stringifyComment.indentComment(commentString(comment), indent);
         if (onComment)
           onComment();
       } else if (chompKeep && onChompKeep)
         onChompKeep();
-      return str2;
+      return str;
     }
     function stringifyFlowCollection({ items }, ctx, { flowChars, itemIndent }) {
       const { indent, indentStep, flowCollectionPadding: fcPadding, options: { commentString } } = ctx;
@@ -25129,21 +25129,21 @@ ${indent}${line}` : "\n";
         }
         if (comment)
           reqNewline = true;
-        let str2 = stringify2.stringify(item, itemCtx, () => comment = null);
-        reqNewline || (reqNewline = lines.length > linesAtValue || str2.includes("\n"));
+        let str = stringify2.stringify(item, itemCtx, () => comment = null);
+        reqNewline || (reqNewline = lines.length > linesAtValue || str.includes("\n"));
         if (i < items.length - 1) {
-          str2 += ",";
+          str += ",";
         } else if (ctx.options.trailingComma) {
           if (ctx.options.lineWidth > 0) {
-            reqNewline || (reqNewline = lines.reduce((sum, line) => sum + line.length + 2, 2) + (str2.length + 2) > ctx.options.lineWidth);
+            reqNewline || (reqNewline = lines.reduce((sum, line) => sum + line.length + 2, 2) + (str.length + 2) > ctx.options.lineWidth);
           }
           if (reqNewline) {
-            str2 += ",";
+            str += ",";
           }
         }
         if (comment)
-          str2 += stringifyComment.lineComment(str2, itemIndent, commentString(comment));
-        lines.push(str2);
+          str += stringifyComment.lineComment(str, itemIndent, commentString(comment));
+        lines.push(str);
         linesAtValue = lines.length;
       }
       const { start, end } = flowChars;
@@ -25155,11 +25155,11 @@ ${indent}${line}` : "\n";
           reqNewline = ctx.options.lineWidth > 0 && len > ctx.options.lineWidth;
         }
         if (reqNewline) {
-          let str2 = start;
+          let str = start;
           for (const line of lines)
-            str2 += line ? `
+            str += line ? `
 ${indentStep}${indent}${line}` : "\n";
-          return `${str2}
+          return `${str}
 ${indent}${end}`;
         } else {
           return `${start}${fcPadding}${lines.join(" ")}${fcPadding}${end}`;
@@ -25491,7 +25491,7 @@ var require_string = __commonJS({
       identify: (value) => typeof value === "string",
       default: true,
       tag: "tag:yaml.org,2002:str",
-      resolve: (str2) => str2,
+      resolve: (str) => str,
       stringify(item, ctx, onComment, onChompKeep) {
         ctx = Object.assign({ actualString: true }, ctx);
         return stringifyString.stringifyString(item, ctx, onComment, onChompKeep);
@@ -25529,7 +25529,7 @@ var require_bool = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:bool",
       test: /^(?:[Tt]rue|TRUE|[Ff]alse|FALSE)$/,
-      resolve: (str2) => new Scalar.Scalar(str2[0] === "t" || str2[0] === "T"),
+      resolve: (str) => new Scalar.Scalar(str[0] === "t" || str[0] === "T"),
       stringify({ source, value }, ctx) {
         if (source && boolTag.test.test(source)) {
           const sv = source[0] === "t" || source[0] === "T";
@@ -25581,7 +25581,7 @@ var require_float = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:float",
       test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
-      resolve: (str2) => str2.slice(-3).toLowerCase() === "nan" ? NaN : str2[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
+      resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
       stringify: stringifyNumber.stringifyNumber
     };
     var floatExp = {
@@ -25590,7 +25590,7 @@ var require_float = __commonJS({
       tag: "tag:yaml.org,2002:float",
       format: "EXP",
       test: /^[-+]?(?:\.[0-9]+|[0-9]+(?:\.[0-9]*)?)[eE][-+]?[0-9]+$/,
-      resolve: (str2) => parseFloat(str2),
+      resolve: (str) => parseFloat(str),
       stringify(node2) {
         const num = Number(node2.value);
         return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node2);
@@ -25601,11 +25601,11 @@ var require_float = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:float",
       test: /^[-+]?(?:\.[0-9]+|[0-9]+\.[0-9]*)$/,
-      resolve(str2) {
-        const node2 = new Scalar.Scalar(parseFloat(str2));
-        const dot = str2.indexOf(".");
-        if (dot !== -1 && str2[str2.length - 1] === "0")
-          node2.minFractionDigits = str2.length - dot - 1;
+      resolve(str) {
+        const node2 = new Scalar.Scalar(parseFloat(str));
+        const dot = str.indexOf(".");
+        if (dot !== -1 && str[str.length - 1] === "0")
+          node2.minFractionDigits = str.length - dot - 1;
         return node2;
       },
       stringify: stringifyNumber.stringifyNumber
@@ -25622,7 +25622,7 @@ var require_int = __commonJS({
     "use strict";
     var stringifyNumber = require_stringifyNumber();
     var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
-    var intResolve = (str2, offset, radix, { intAsBigInt }) => intAsBigInt ? BigInt(str2) : parseInt(str2.substring(offset), radix);
+    var intResolve = (str, offset, radix, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str.substring(offset), radix);
     function intStringify(node2, radix, prefix) {
       const { value } = node2;
       if (intIdentify(value) && value >= 0)
@@ -25635,7 +25635,7 @@ var require_int = __commonJS({
       tag: "tag:yaml.org,2002:int",
       format: "OCT",
       test: /^0o[0-7]+$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 2, 8, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 2, 8, opt),
       stringify: (node2) => intStringify(node2, 8, "0o")
     };
     var int2 = {
@@ -25643,7 +25643,7 @@ var require_int = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:int",
       test: /^[-+]?[0-9]+$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 0, 10, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 0, 10, opt),
       stringify: stringifyNumber.stringifyNumber
     };
     var intHex = {
@@ -25652,7 +25652,7 @@ var require_int = __commonJS({
       tag: "tag:yaml.org,2002:int",
       format: "HEX",
       test: /^0x[0-9a-fA-F]+$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 2, 16, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 2, 16, opt),
       stringify: (node2) => intStringify(node2, 16, "0x")
     };
     exports2.int = int2;
@@ -25705,7 +25705,7 @@ var require_schema2 = __commonJS({
         identify: (value) => typeof value === "string",
         default: true,
         tag: "tag:yaml.org,2002:str",
-        resolve: (str2) => str2,
+        resolve: (str) => str,
         stringify: stringifyJSON
       },
       {
@@ -25722,7 +25722,7 @@ var require_schema2 = __commonJS({
         default: true,
         tag: "tag:yaml.org,2002:bool",
         test: /^true$|^false$/,
-        resolve: (str2) => str2 === "true",
+        resolve: (str) => str === "true",
         stringify: stringifyJSON
       },
       {
@@ -25730,7 +25730,7 @@ var require_schema2 = __commonJS({
         default: true,
         tag: "tag:yaml.org,2002:int",
         test: /^-?(?:0|[1-9][0-9]*)$/,
-        resolve: (str2, _onError, { intAsBigInt }) => intAsBigInt ? BigInt(str2) : parseInt(str2, 10),
+        resolve: (str, _onError, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str, 10),
         stringify: ({ value }) => intIdentify(value) ? value.toString() : JSON.stringify(value)
       },
       {
@@ -25738,7 +25738,7 @@ var require_schema2 = __commonJS({
         default: true,
         tag: "tag:yaml.org,2002:float",
         test: /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]*)?(?:[eE][-+]?[0-9]+)?$/,
-        resolve: (str2) => parseFloat(str2),
+        resolve: (str) => parseFloat(str),
         stringify: stringifyJSON
       }
     ];
@@ -25746,9 +25746,9 @@ var require_schema2 = __commonJS({
       default: true,
       tag: "",
       test: /^/,
-      resolve(str2, onError) {
-        onError(`Unresolved plain scalar ${JSON.stringify(str2)}`);
-        return str2;
+      resolve(str, onError) {
+        onError(`Unresolved plain scalar ${JSON.stringify(str)}`);
+        return str;
       }
     };
     var schema = [map2.map, seq.seq].concat(jsonScalars, jsonError);
@@ -25780,10 +25780,10 @@ var require_binary = __commonJS({
         if (typeof node_buffer.Buffer === "function") {
           return node_buffer.Buffer.from(src, "base64");
         } else if (typeof atob === "function") {
-          const str2 = atob(src.replace(/[\n\r]/g, ""));
-          const buffer = new Uint8Array(str2.length);
-          for (let i = 0; i < str2.length; ++i)
-            buffer[i] = str2.charCodeAt(i);
+          const str = atob(src.replace(/[\n\r]/g, ""));
+          const buffer = new Uint8Array(str.length);
+          for (let i = 0; i < str.length; ++i)
+            buffer[i] = str.charCodeAt(i);
           return buffer;
         } else {
           onError("This environment does not support reading binary tags; either Buffer or atob is required");
@@ -25794,28 +25794,28 @@ var require_binary = __commonJS({
         if (!value)
           return "";
         const buf = value;
-        let str2;
+        let str;
         if (typeof node_buffer.Buffer === "function") {
-          str2 = buf instanceof node_buffer.Buffer ? buf.toString("base64") : node_buffer.Buffer.from(buf.buffer).toString("base64");
+          str = buf instanceof node_buffer.Buffer ? buf.toString("base64") : node_buffer.Buffer.from(buf.buffer).toString("base64");
         } else if (typeof btoa === "function") {
           let s = "";
           for (let i = 0; i < buf.length; ++i)
             s += String.fromCharCode(buf[i]);
-          str2 = btoa(s);
+          str = btoa(s);
         } else {
           throw new Error("This environment does not support writing binary tags; either Buffer or btoa is required");
         }
         type ?? (type = Scalar.Scalar.BLOCK_LITERAL);
         if (type !== Scalar.Scalar.QUOTE_DOUBLE) {
           const lineWidth = Math.max(ctx.options.lineWidth - ctx.indent.length, ctx.options.minContentWidth);
-          const n = Math.ceil(str2.length / lineWidth);
+          const n = Math.ceil(str.length / lineWidth);
           const lines = new Array(n);
           for (let i = 0, o = 0; i < n; ++i, o += lineWidth) {
-            lines[i] = str2.substr(o, lineWidth);
+            lines[i] = str.substr(o, lineWidth);
           }
-          str2 = lines.join(type === Scalar.Scalar.BLOCK_LITERAL ? "\n" : " ");
+          str = lines.join(type === Scalar.Scalar.BLOCK_LITERAL ? "\n" : " ");
         }
-        return stringifyString.stringifyString({ comment, type, value: str2 }, ctx, onComment, onChompKeep);
+        return stringifyString.stringifyString({ comment, type, value: str }, ctx, onComment, onChompKeep);
       }
     };
     exports2.binary = binary;
@@ -26021,7 +26021,7 @@ var require_float2 = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:float",
       test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
-      resolve: (str2) => str2.slice(-3).toLowerCase() === "nan" ? NaN : str2[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
+      resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
       stringify: stringifyNumber.stringifyNumber
     };
     var floatExp = {
@@ -26030,7 +26030,7 @@ var require_float2 = __commonJS({
       tag: "tag:yaml.org,2002:float",
       format: "EXP",
       test: /^[-+]?(?:[0-9][0-9_]*)?(?:\.[0-9_]*)?[eE][-+]?[0-9]+$/,
-      resolve: (str2) => parseFloat(str2.replace(/_/g, "")),
+      resolve: (str) => parseFloat(str.replace(/_/g, "")),
       stringify(node2) {
         const num = Number(node2.value);
         return isFinite(num) ? num.toExponential() : stringifyNumber.stringifyNumber(node2);
@@ -26041,11 +26041,11 @@ var require_float2 = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:float",
       test: /^[-+]?(?:[0-9][0-9_]*)?\.[0-9_]*$/,
-      resolve(str2) {
-        const node2 = new Scalar.Scalar(parseFloat(str2.replace(/_/g, "")));
-        const dot = str2.indexOf(".");
+      resolve(str) {
+        const node2 = new Scalar.Scalar(parseFloat(str.replace(/_/g, "")));
+        const dot = str.indexOf(".");
         if (dot !== -1) {
-          const f = str2.substring(dot + 1).replace(/_/g, "");
+          const f = str.substring(dot + 1).replace(/_/g, "");
           if (f[f.length - 1] === "0")
             node2.minFractionDigits = f.length;
         }
@@ -26065,34 +26065,34 @@ var require_int2 = __commonJS({
     "use strict";
     var stringifyNumber = require_stringifyNumber();
     var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
-    function intResolve(str2, offset, radix, { intAsBigInt }) {
-      const sign = str2[0];
+    function intResolve(str, offset, radix, { intAsBigInt }) {
+      const sign = str[0];
       if (sign === "-" || sign === "+")
         offset += 1;
-      str2 = str2.substring(offset).replace(/_/g, "");
+      str = str.substring(offset).replace(/_/g, "");
       if (intAsBigInt) {
         switch (radix) {
           case 2:
-            str2 = `0b${str2}`;
+            str = `0b${str}`;
             break;
           case 8:
-            str2 = `0o${str2}`;
+            str = `0o${str}`;
             break;
           case 16:
-            str2 = `0x${str2}`;
+            str = `0x${str}`;
             break;
         }
-        const n2 = BigInt(str2);
+        const n2 = BigInt(str);
         return sign === "-" ? BigInt(-1) * n2 : n2;
       }
-      const n = parseInt(str2, radix);
+      const n = parseInt(str, radix);
       return sign === "-" ? -1 * n : n;
     }
     function intStringify(node2, radix, prefix) {
       const { value } = node2;
       if (intIdentify(value)) {
-        const str2 = value.toString(radix);
-        return value < 0 ? "-" + prefix + str2.substr(1) : prefix + str2;
+        const str = value.toString(radix);
+        return value < 0 ? "-" + prefix + str.substr(1) : prefix + str;
       }
       return stringifyNumber.stringifyNumber(node2);
     }
@@ -26102,7 +26102,7 @@ var require_int2 = __commonJS({
       tag: "tag:yaml.org,2002:int",
       format: "BIN",
       test: /^[-+]?0b[0-1_]+$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 2, 2, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 2, 2, opt),
       stringify: (node2) => intStringify(node2, 2, "0b")
     };
     var intOct = {
@@ -26111,7 +26111,7 @@ var require_int2 = __commonJS({
       tag: "tag:yaml.org,2002:int",
       format: "OCT",
       test: /^[-+]?0[0-7_]+$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 1, 8, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 1, 8, opt),
       stringify: (node2) => intStringify(node2, 8, "0")
     };
     var int2 = {
@@ -26119,7 +26119,7 @@ var require_int2 = __commonJS({
       default: true,
       tag: "tag:yaml.org,2002:int",
       test: /^[-+]?[0-9][0-9_]*$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 0, 10, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 0, 10, opt),
       stringify: stringifyNumber.stringifyNumber
     };
     var intHex = {
@@ -26128,7 +26128,7 @@ var require_int2 = __commonJS({
       tag: "tag:yaml.org,2002:int",
       format: "HEX",
       test: /^[-+]?0x[0-9a-fA-F_]+$/,
-      resolve: (str2, _onError, opt) => intResolve(str2, 2, 16, opt),
+      resolve: (str, _onError, opt) => intResolve(str, 2, 16, opt),
       stringify: (node2) => intStringify(node2, 16, "0x")
     };
     exports2.int = int2;
@@ -26232,9 +26232,9 @@ var require_timestamp = __commonJS({
   "node_modules/.pnpm/yaml@2.9.1/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js"(exports2) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
-    function parseSexagesimal(str2, asBigInt) {
-      const sign = str2[0];
-      const parts = sign === "-" || sign === "+" ? str2.substring(1) : str2;
+    function parseSexagesimal(str, asBigInt) {
+      const sign = str[0];
+      const parts = sign === "-" || sign === "+" ? str.substring(1) : str;
       const num = (n) => asBigInt ? BigInt(n) : Number(n);
       const res = parts.replace(/_/g, "").split(":").reduce((res2, p) => res2 * num(60) + num(p), num(0));
       return sign === "-" ? num(-1) * res : res;
@@ -26271,7 +26271,7 @@ var require_timestamp = __commonJS({
       tag: "tag:yaml.org,2002:int",
       format: "TIME",
       test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+$/,
-      resolve: (str2, _onError, { intAsBigInt }) => parseSexagesimal(str2, intAsBigInt),
+      resolve: (str, _onError, { intAsBigInt }) => parseSexagesimal(str, intAsBigInt),
       stringify: stringifySexagesimal
     };
     var floatTime = {
@@ -26280,7 +26280,7 @@ var require_timestamp = __commonJS({
       tag: "tag:yaml.org,2002:float",
       format: "TIME",
       test: /^[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\.[0-9_]*$/,
-      resolve: (str2) => parseSexagesimal(str2, false),
+      resolve: (str) => parseSexagesimal(str, false),
       stringify: stringifySexagesimal
     };
     var timestamp = {
@@ -26291,8 +26291,8 @@ var require_timestamp = __commonJS({
       // may be omitted altogether, resulting in a date format. In such a case, the time part is
       // assumed to be 00:00:00Z (start of day, UTC).
       test: RegExp("^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})(?:(?:t|T|[ \\t]+)([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}(\\.[0-9]+)?)(?:[ \\t]*(Z|[-+][012]?[0-9](?::[0-9]{2})?))?)?$"),
-      resolve(str2) {
-        const match = str2.match(timestamp.test);
+      resolve(str) {
+        const match = str.match(timestamp.test);
         if (!match)
           throw new Error("!!timestamp expects a date, starting with yyyy-mm-dd");
         const [, year, month, day, hour, minute, second] = match.map(Number);
@@ -30521,7 +30521,12 @@ var require_dist2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.4.0_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_ff7cf2c8e9a6c60fd0a5a2b97d15b582/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-UDCLSES7.js
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
+var EXTENSION_BASE_LOCALE = "en";
+var LOCALE_CHANGED_EVENT = "locale.changed";
+
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-Z2JJV4MK.js
 var import_net = require("net");
 var import_node = __toESM(require_main(), 1);
 var ALL_CAPABILITIES = [
@@ -30544,13 +30549,15 @@ var ALL_CAPABILITIES = [
   "settings-read",
   "settings-write",
   "assist",
-  "credentials"
+  "credentials",
+  "language-server",
+  "agent-plugin"
 ];
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.3";
+var EXTENSION_API_VERSION = "1.11";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "PINE_EXTENSION_API";
 function parseApiVersion(value) {
@@ -30569,8 +30576,11 @@ function apiProblem(required2, provided = EXTENSION_API_VERSION) {
   return `needs extension API ${required2}; this ${PRODUCT_NAME} provides ${provided}`;
 }
 var SETTINGS_CHANGED_EVENT = "settings.changed";
+var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
 var DIFF_TEXT_MAX = 5 * 1024 * 1024;
+var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
+var FOLDER_CLOSED_EVENT = "folder.closed";
 var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
 var AssistFailure = class extends Error {
   constructor(code, message) {
@@ -30609,8 +30619,12 @@ async function connect() {
   let panelHandler = null;
   let eventHandler = null;
   let settingsHandler = null;
+  let localeHandler = null;
   let assistHandler = null;
+  let providersHandler = null;
   let modelsHandler = null;
+  let filesHandler = null;
+  let folderClosedHandler = null;
   conn.onRequest(
     "ext.command",
     async (params) => {
@@ -30634,6 +30648,7 @@ async function connect() {
         return await assistHandler(params.point, params.input, {
           requestId: params.requestId,
           signal: abort.signal,
+          ...params.model ? { model: params.model } : {},
           chunk: async (text2) => {
             if (abort.signal.aborted) return false;
             const res = await conn.sendRequest("ext.assistChunk", {
@@ -30650,17 +30665,29 @@ async function connect() {
       }
     }
   );
-  conn.onRequest("ext.assistModels", async (params) => {
-    if (!modelsHandler) throw new Error("no models handler");
-    if (params.action === "list") return modelsHandler.list();
-    if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
-      return { ok: false, error: "invalid" };
+  conn.onRequest(
+    "ext.assistModels",
+    async (params) => {
+      if (!modelsHandler) throw new Error("no models handler");
+      const provider = typeof params.provider === "string" ? params.provider : void 0;
+      if (params.action === "list") return modelsHandler.list(provider);
+      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
+        return { ok: false, error: "invalid" };
+      }
+      try {
+        await modelsHandler.setLoaded(params.id, params.action === "load", provider);
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: errorMessage(err) };
+      }
     }
+  );
+  conn.onRequest("ext.files", async (params) => {
+    if (!filesHandler) return { ok: false, error: "unavailable" };
     try {
-      await modelsHandler.setLoaded(params.id, params.action === "load");
-      return { ok: true };
-    } catch (err) {
-      return { ok: false, error: errorMessage(err) };
+      return await filesHandler(params);
+    } catch {
+      return { ok: false, error: "failed" };
     }
   });
   conn.onRequest("ext.panel", async (params) => {
@@ -30672,6 +30699,12 @@ async function connect() {
     (params) => {
       if (params.type === SETTINGS_CHANGED_EVENT) {
         settingsHandler?.(params.payload.values);
+      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
+        providersHandler?.(params.payload.providers);
+      } else if (params.type === LOCALE_CHANGED_EVENT) {
+        localeHandler?.(params.payload.locale);
+      } else if (params.type === FOLDER_CLOSED_EVENT) {
+        folderClosedHandler?.(params.payload.folderId);
       } else {
         eventHandler?.(params.type, params.payload);
       }
@@ -30714,6 +30747,13 @@ async function connect() {
     onSettingsChanged: (handler) => {
       settingsHandler = handler;
     },
+    getLocale: async () => {
+      const res = await conn.sendRequest("ext.locale");
+      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
+    },
+    onLocaleChanged: (handler) => {
+      localeHandler = handler;
+    },
     callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
     setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
     openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
@@ -30722,6 +30762,35 @@ async function connect() {
         return await conn.sendRequest("ext.openTerminal", opts);
       } catch (err) {
         return { ok: false, error: "open-terminal-failed", message: errorMessage(err) };
+      }
+    },
+    listAgents: async () => {
+      try {
+        const res = await conn.sendRequest("ext.agents");
+        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
+      } catch {
+        return [];
+      }
+    },
+    runAgent: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.runAgent", opts);
+      } catch (err) {
+        return { ok: false, error: "run-agent-failed", message: errorMessage(err) };
+      }
+    },
+    offerToAgent: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.offerToAgent", opts);
+      } catch (err) {
+        return { ok: false, error: "offer-failed", message: errorMessage(err) };
+      }
+    },
+    focusPane: async (paneId) => {
+      try {
+        return await conn.sendRequest("ext.focusPane", { paneId });
+      } catch (err) {
+        return failure("focus-failed", errorMessage(err));
       }
     },
     listWorkspaces: () => conn.sendRequest("workspace.list"),
@@ -30744,12 +30813,41 @@ async function connect() {
     getSecret: async (key) => {
       const res = await conn.sendRequest("ext.getSecret", { key });
       return typeof res?.value === "string" ? res.value : null;
+    },
+    getAssistProviders: async () => {
+      const res = await conn.sendRequest(
+        "ext.assistProviders"
+      );
+      return Array.isArray(res?.providers) ? res.providers : [];
+    },
+    onAssistProvidersChanged: (handler) => {
+      providersHandler = handler;
+    },
+    openFolder: async (opts) => {
+      try {
+        return await conn.sendRequest("ext.openFolder", opts);
+      } catch (err) {
+        return { ok: false, error: "open-folder-failed", message: errorMessage(err) };
+      }
+    },
+    closeFolder: async (folderId) => {
+      try {
+        return await conn.sendRequest("ext.closeFolder", { folderId });
+      } catch (err) {
+        return failure("close-folder-failed", errorMessage(err));
+      }
+    },
+    onFiles: (handler) => {
+      filesHandler = handler;
+    },
+    onFolderClosed: (handler) => {
+      folderClosedHandler = handler;
     }
   };
 }
 var MAX_BODY = 1024 * 1024;
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.4.0_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_ff7cf2c8e9a6c60fd0a5a2b97d15b582/node_modules/@aurigax-ai/pine-extension-sdk/dist/assist.js
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/assist.js
 var import_undici = __toESM(require_undici(), 1);
 
 // node_modules/.pnpm/ai@7.0.126_zod@4.6.5/node_modules/ai/dist/rolldown-runtime-D7D4PA-g.js
@@ -31843,14 +31941,14 @@ function promiseAllObject(promisesObj) {
 }
 function randomString(length = 10) {
   const chars = "abcdefghijklmnopqrstuvwxyz";
-  let str2 = "";
+  let str = "";
   for (let i = 0; i < length; i++) {
-    str2 += chars[Math.floor(Math.random() * chars.length)];
+    str += chars[Math.floor(Math.random() * chars.length)];
   }
-  return str2;
+  return str;
 }
-function esc(str2) {
-  return JSON.stringify(str2);
+function esc(str) {
+  return JSON.stringify(str);
 }
 function slugify(input2) {
   return input2.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, "");
@@ -31964,8 +32062,8 @@ var primitiveTypes = /* @__PURE__ */ new Set([
   "symbol",
   "undefined"
 ]);
-function escapeRegex(str2) {
-  return str2.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 function clone(inst, def, params) {
   const cl = new inst._zod.constr(def ?? inst._zod.def);
@@ -32219,13 +32317,13 @@ function getSizableOrigin(input2) {
   return "unknown";
 }
 var highSurrogate = /[\uD800-\uDBFF]/;
-function codePointLength(str2) {
-  const units = str2.length;
-  if (!highSurrogate.test(str2))
+function codePointLength(str) {
+  const units = str.length;
+  if (!highSurrogate.test(str))
     return units;
   let count = units;
   for (let i = 0; i < units - 1; i++) {
-    if ((str2.charCodeAt(i) & 64512) === 55296 && (str2.charCodeAt(i + 1) & 64512) === 56320) {
+    if ((str.charCodeAt(i) & 64512) === 55296 && (str.charCodeAt(i + 1) & 64512) === 56320) {
       count--;
       i++;
     }
@@ -61068,8 +61166,8 @@ async function hashCanonical(value) {
   return toBase64url(new Uint8Array(digest));
 }
 var encoder = new TextEncoder();
-function fromBase64url(str2) {
-  return convertBase64ToUint8Array(str2);
+function fromBase64url(str) {
+  return convertBase64ToUint8Array(str);
 }
 async function importKey(secret) {
   const keyData = typeof secret === "string" ? encoder.encode(secret) : secret;
@@ -67042,7 +67140,7 @@ function parseWithCustomParser(text2, options) {
 function parseWithTransform(text2, options) {
   let tokens = lexer(text2);
   tokens = stripTrailingComma(tokens);
-  const newtext = tokens.reduce((str2, token) => str2 + token.match, "");
+  const newtext = tokens.reduce((str, token) => str + token.match, "");
   return JSON.parse(newtext, options.reviver);
 }
 function parse3(text2, optsOrReviver) {
@@ -80939,7 +81037,7 @@ var yamlXmlToolMiddleware = createToolMiddleware({
   toolResponsePromptTemplate: formatToolResponseAsYaml
 });
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.4.0_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_ff7cf2c8e9a6c60fd0a5a2b97d15b582/node_modules/@aurigax-ai/pine-extension-sdk/dist/assist.js
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/assist.js
 var UNIX_PREFIX = "unix:";
 var SOCKET_ORIGIN = "http://localhost";
 var ERROR_BODY_MAX = 200;
@@ -81008,7 +81106,6 @@ async function requestJson(req) {
     throw new Error("invalid JSON from provider");
   }
 }
-var NO_PROVIDER = "none";
 var FEATURES = [
   "chat",
   "typos",
@@ -81019,41 +81116,23 @@ var FEATURES = [
   "explainError"
 ];
 var DEFAULT_REQUESTS_PER_MINUTE = 30;
-function str(values, key) {
-  const v = values[key];
-  return typeof v === "string" ? v.trim() : "";
-}
-function readConfig(values, catalog) {
-  const provider = typeof values.provider === "string" && catalog.kinds.includes(values.provider) ? values.provider : NO_PROVIDER;
+function readConfig(values, entries, catalog) {
   const rpm = values.requestsPerMinute;
   const features = {};
   for (const f of FEATURES) features[f] = values[f] !== false;
   return {
     catalog,
-    provider,
-    baseUrl: str(values, "baseUrl"),
-    fastModel: str(values, "fastModel"),
-    chatModel: str(values, "chatModel"),
+    entries: entries.filter((entry) => catalog.kinds.includes(entry.kind)),
     features,
     requestsPerMinute: typeof rpm === "number" && Number.isFinite(rpm) ? Math.min(600, Math.max(1, Math.round(rpm))) : DEFAULT_REQUESTS_PER_MINUTE
   };
 }
-function endpointOf(config2, env) {
-  if (config2.provider === NO_PROVIDER) return null;
-  return parseEndpoint(config2.baseUrl || config2.catalog.defaultBaseUrl(config2.provider, env));
+function endpointOf(entry, catalog, env) {
+  return parseEndpoint(entry.baseUrl || catalog.defaultBaseUrl(entry.kind, env));
 }
-function fastModelOf(config2) {
-  if (config2.fastModel) return config2.fastModel;
-  return config2.catalog.defaultFastModel(config2.provider);
-}
-function chatModelOf(config2) {
-  return config2.chatModel || fastModelOf(config2);
-}
-function setupProblem(config2, env, hasKey) {
-  if (config2.provider === NO_PROVIDER) return "no-provider";
-  if (!endpointOf(config2, env)) return "no-endpoint";
-  if (config2.catalog.keyRequired.has(config2.provider) && !hasKey) return "no-key";
-  if (!fastModelOf(config2) && !chatModelOf(config2)) return "no-model";
+function entryProblem(entry, catalog, env) {
+  if (!endpointOf(entry, catalog, env)) return "no-endpoint";
+  if (catalog.keyRequired.has(entry.kind) && !entry.apiKey) return "no-key";
   return null;
 }
 var POINT_FEATURES = {
@@ -81063,41 +81142,8 @@ var POINT_FEATURES = {
   terminal: ["terminalCompletions"],
   chat: ["chat", "explainError"]
 };
-function pointOf(feature) {
-  const entry = Object.entries(POINT_FEATURES).find(
-    ([, list]) => list.includes(feature)
-  );
-  return entry ? entry[0] : "chat";
-}
-function statusLabel(config2) {
-  if (config2.provider === NO_PROVIDER) return void 0;
-  const fast = fastModelOf(config2);
-  const chat = chatModelOf(config2);
-  const models = chat && chat !== fast ? `${fast} / ${chat}` : fast;
-  return models ? `${config2.provider} \xB7 ${models}` : config2.provider;
-}
-function featureStates(config2, problem) {
-  return FEATURES.map((id) => ({
-    id,
-    setting: id,
-    ready: problem === null && config2.features[id] && modelFor(config2, pointOf(id)) !== ""
-  }));
-}
-function modelFor(config2, point) {
-  return point === "chat" ? chatModelOf(config2) : fastModelOf(config2);
-}
-function assistStatus(config2, problem, tools) {
-  const status = {};
-  for (const point of Object.keys(POINT_FEATURES)) {
-    const model = modelFor(config2, point);
-    const on = POINT_FEATURES[point].some((f) => config2.features[f]);
-    const ready = problem === null && on && model !== "";
-    const label = `${config2.provider} \xB7 ${model}`;
-    if (!ready) status[point] = { ready: false };
-    else if (point === "chat" && tools) status[point] = { ready, label, tools };
-    else status[point] = { ready, label };
-  }
-  return status;
+function pointOn(config2, point) {
+  return POINT_FEATURES[point].some((f) => config2.features[f]);
 }
 function createFlight() {
   let flying = false;
@@ -81724,6 +81770,15 @@ function cleanTerminal(raw, line) {
   const rest = full.slice(line.trimStart().length).replace(/\s+$/, "");
   return rest.trim() ? rest.slice(0, TERMINAL_COMPLETION_MAX) : "";
 }
+function contextSection(item) {
+  const lines = item.startLine === void 0 ? "" : item.startLine === item.endLine ? `, line ${item.startLine}` : `, lines ${item.startLine}-${item.endLine}`;
+  const where = item.path ? `File: ${item.path}${lines}
+` : "";
+  return `## ${item.label} (${item.kind})
+${where}\`\`\`
+${item.text}
+\`\`\``;
+}
 function chatSystem(req) {
   const base = [
     `You are the assistant built into ${PRODUCT_NAME}, a terminal workspace where developers run shells and coding agents.`,
@@ -81735,14 +81790,11 @@ function chatSystem(req) {
   const tools = req.tools?.length ? [
     base,
     "You can call tools. Read-only tools run right away; tools that change something wait for the user to approve them in the chat, and a denied call means the user said no: do not retry it.",
-    "Propose shell commands with the propose_command tool when it is available instead of claiming to run them."
+    "Propose shell commands with the propose_command tool when it is available instead of claiming to run them.",
+    "To change a file, call edit_file with the exact text to replace and its replacement; read the file first unless the user shared that part of it. Use write_file only for a new file or a full rewrite. Never paste a whole changed file into your answer when an edit tool is available.",
+    'When the shared context names a file and lines, "this" and "here" mean that place: use that path with the read and edit tools.'
   ].join(" ") : base;
-  const sections = req.context.map(
-    (item) => `## ${item.label} (${item.kind})
-\`\`\`
-${item.text}
-\`\`\``
-  );
+  const sections = req.context.map(contextSection);
   return sections.length > 0 ? `${tools}
 
 Context the user shared:
@@ -81832,91 +81884,157 @@ function messageOf(err) {
   }
   return err instanceof Error ? err.message : String(err);
 }
+var BASE_LOCALE = "en";
 var AssistantService = class {
   constructor(catalog, env = process.env, now2 = Date.now, onReport = () => {
-  }) {
+  }, options = {}) {
     this.catalog = catalog;
     this.env = env;
     this.now = now2;
     this.onReport = onReport;
-    this.config = readConfig({}, catalog);
+    this.options = options;
+    this.config = readConfig({}, [], catalog);
   }
   config;
-  apiKey = null;
-  provider = null;
+  slots = [];
   limiters = /* @__PURE__ */ new Map();
   flights = /* @__PURE__ */ new Map();
-  toolMode = null;
-  unreachable = false;
-  lastError;
-  configure(values, apiKey) {
-    this.config = readConfig(values, this.catalog);
-    this.apiKey = apiKey?.trim() ? apiKey.trim() : null;
+  locale = BASE_LOCALE;
+  setLocale(locale) {
+    this.locale = locale;
+  }
+  configure(values, entries) {
+    this.config = readConfig(values, entries, this.catalog);
     this.limiters.clear();
     this.flights.clear();
-    this.toolMode = null;
-    this.unreachable = false;
-    this.lastError = void 0;
-    const endpoint = endpointOf(this.config, this.env);
-    this.provider = this.config.provider === NO_PROVIDER || !endpoint ? null : this.catalog.create(this.config.provider, endpoint, this.apiKey);
+    const previous = this.slots;
+    this.slots = this.config.entries.map((raw) => {
+      const entry = { ...raw, apiKey: raw.apiKey?.trim() ? raw.apiKey.trim() : null };
+      const endpoint = endpointOf(entry, this.catalog, this.env);
+      const problem = entryProblem(entry, this.catalog, this.env);
+      const same = previous.find((slot) => JSON.stringify(slot.entry) === JSON.stringify(entry));
+      return {
+        entry,
+        provider: endpoint ? this.catalog.create(entry.kind, endpoint, entry.apiKey) : null,
+        problem,
+        unreachable: same?.unreachable ?? false,
+        listed: same?.listed ?? [],
+        tools: same?.tools ?? /* @__PURE__ */ new Map()
+      };
+    });
+  }
+  modelIds(slot) {
+    if (!this.options.listedModels) return slot.entry.models;
+    return slot.listed.filter((m) => m.installed !== false).map((m) => m.id);
+  }
+  async probeSlot(slot) {
+    const provider = slot.provider;
+    if (!provider || slot.problem) return;
+    try {
+      slot.listed = await provider.models(void 0, PROBE_TIMEOUT_MS);
+      slot.unreachable = false;
+    } catch (err) {
+      slot.unreachable = true;
+      slot.lastError = this.redact(slot, messageOf(err));
+    }
+    const modes = await Promise.all(
+      this.modelIds(slot).map(async (id) => {
+        const mode = await provider.chatTools(id, AbortSignal.timeout(PROBE_TIMEOUT_MS));
+        return [id, mode];
+      })
+    );
+    slot.tools = new Map(modes);
   }
   async probe() {
-    const provider = this.provider;
-    if (!provider || setupProblem(this.config, this.env, this.apiKey !== null)) return;
-    const chatModel = modelFor(this.config, "chat");
-    const [reached, toolMode] = await Promise.all([
-      provider.models(void 0, PROBE_TIMEOUT_MS).then(
-        () => null,
-        (err) => err
-      ),
-      chatModel ? provider.chatTools(chatModel, AbortSignal.timeout(PROBE_TIMEOUT_MS)) : null
-    ]);
-    if (this.provider !== provider) return;
-    this.toolMode = toolMode;
-    this.unreachable = reached !== null;
-    if (reached !== null) this.lastError = this.redact(messageOf(reached));
+    const slots = this.slots;
+    await Promise.all(slots.map((slot) => this.probeSlot(slot)));
+  }
+  slotProblem(slot) {
+    if (slot.problem) return slot.problem;
+    if (slot.unreachable) return "unreachable";
+    return this.modelIds(slot).length === 0 ? "no-model" : null;
+  }
+  usable(slot) {
+    return slot.provider !== null && this.slotProblem(slot) === null;
   }
   problem() {
-    return setupProblem(this.config, this.env, this.apiKey !== null) ?? (this.unreachable ? "unreachable" : null);
+    if (this.slots.length === 0) return "no-provider";
+    if (this.slots.some((slot) => this.usable(slot))) return null;
+    return this.slotProblem(this.slots[0]);
+  }
+  providerStates() {
+    return this.slots.map((slot) => {
+      const models = this.modelIds(slot).map((id) => {
+        const tools = slot.tools.get(id);
+        return tools ? { id, tools } : { id };
+      });
+      const state = {
+        id: slot.entry.id,
+        kind: slot.entry.kind,
+        name: slot.entry.name || this.catalog.title(slot.entry.kind, this.locale),
+        setup: this.slotProblem(slot),
+        lifecycle: slot.provider?.lifecycle === true,
+        models
+      };
+      if (slot.lastError) state.lastError = slot.lastError;
+      return state;
+    });
   }
   report() {
     const problem = this.problem();
+    const status = {};
+    for (const point of Object.keys(POINT_FEATURES)) {
+      status[point] = { ready: problem === null && pointOn(this.config, point) };
+    }
     const report = {
-      status: assistStatus(this.config, problem, this.toolMode),
-      features: featureStates(this.config, problem).map((f) => ({
-        ...f,
-        on: this.config.features[f.id]
+      status,
+      features: FEATURES.map((id) => ({
+        id,
+        setting: id,
+        on: this.config.features[id],
+        ready: problem === null && this.config.features[id]
       })),
       setup: problem,
-      models: this.provider !== null
+      models: this.slots.some((slot) => slot.provider !== null),
+      providers: this.providerStates()
     };
-    const label = statusLabel(this.config);
-    if (label) report.label = label;
-    if (this.lastError) report.lastError = this.lastError;
+    if (this.options.configurable) {
+      report.kinds = this.catalog.kinds.map((id) => ({
+        id,
+        title: this.catalog.title(id, this.locale),
+        baseUrl: this.catalog.defaultBaseUrl(id, this.env),
+        key: this.catalog.keyRequired.has(id) ? "required" : "optional"
+      }));
+    }
+    const lastError = this.slots.find((slot) => slot.lastError)?.lastError;
+    if (lastError) report.lastError = lastError;
     return report;
   }
-  redact(message) {
-    const clean = this.apiKey ? message.split(this.apiKey).join("***") : message;
+  redact(slot, message) {
+    const key = slot.entry.apiKey;
+    const clean = key ? message.split(key).join("***") : message;
     return clean.replace(/\s+/g, " ").trim().slice(0, ERROR_MESSAGE_MAX);
   }
-  noteOutcome(error62) {
-    const recovered = this.unreachable && error62 === void 0;
-    if (recovered) this.unreachable = false;
-    if (error62 === this.lastError && !recovered) return;
-    this.lastError = error62;
+  noteOutcome(slot, error62) {
+    const recovered = slot.unreachable && error62 === void 0;
+    if (recovered) slot.unreachable = false;
+    if (error62 === slot.lastError && !recovered) return;
+    slot.lastError = error62;
     this.onReport();
   }
-  failure(err, signal) {
+  failure(slot, err, signal) {
     if (err instanceof AssistFailure) return err;
     if (signal.aborted) return new AssistFailure("cancelled");
-    const message = this.redact(messageOf(err));
-    this.noteOutcome(message);
+    if (!slot) return new AssistFailure("failed", messageOf(err).slice(0, ERROR_MESSAGE_MAX));
+    const message = this.redact(slot, messageOf(err));
+    this.noteOutcome(slot, message);
     if (statusOf(err) === 429) return new AssistFailure("rate-limited", message);
     return new AssistFailure("failed", message);
   }
-  ready(point) {
-    const provider = this.provider;
-    if (!provider || this.report().status[point]?.ready !== true) {
+  ready(point, target) {
+    const slot = this.slots.find((s) => s.entry.id === target?.provider);
+    const offered = slot && target ? this.modelIds(slot).includes(target.model) : false;
+    if (!slot || !offered || !this.usable(slot) || this.report().status[point]?.ready !== true) {
       throw new AssistFailure("unavailable", "This assistant feature is off or not set up.");
     }
     let limiter = this.limiters.get(point);
@@ -81925,12 +82043,12 @@ var AssistantService = class {
       this.limiters.set(point, limiter);
     }
     if (!limiter.take()) throw new AssistFailure("rate-limited", "Too many requests; slow down.");
-    return provider;
+    return slot;
   }
-  settings(provider, point, prompt, signal) {
+  settings(run2, point, prompt, signal) {
     const timeout = AbortSignal.timeout(signal ? TIMEOUTS[point] : UNCANCELLED_TIMEOUT_MS);
     return {
-      model: provider.model(modelFor(this.config, point)),
+      model: run2.provider.model(run2.model),
       system: prompt.system,
       messages: prompt.messages,
       temperature: prompt.temperature,
@@ -81947,23 +82065,23 @@ var AssistantService = class {
     }
     return flight;
   }
-  async text(provider, point, prompt, ctx) {
+  async text(run2, point, prompt, ctx) {
     if (!SINGLE_FLIGHT.has(point)) {
-      return (await generateText(this.settings(provider, point, prompt, ctx.signal))).text;
+      return (await generateText(this.settings(run2, point, prompt, ctx.signal))).text;
     }
-    const signal = provider.serverCancels ? ctx.signal : null;
+    const signal = run2.provider.serverCancels ? ctx.signal : null;
     return this.flight(point).run(ctx.signal, async () => {
-      const res = await generateText(this.settings(provider, point, prompt, signal));
+      const res = await generateText(this.settings(run2, point, prompt, signal));
       return res.text;
     });
   }
-  async object(provider, point, prompt, schema, ctx) {
+  async object(run2, point, prompt, schema, ctx) {
     for (let attempt = 0; attempt < OBJECT_ATTEMPTS; attempt++) {
       try {
         const res = await generateText({
-          ...this.settings(provider, point, prompt, ctx.signal),
+          ...this.settings(run2, point, prompt, ctx.signal),
           model: wrapLanguageModel({
-            model: provider.model(modelFor(this.config, point)),
+            model: run2.provider.model(run2.model),
             middleware: extractJsonMiddleware()
           }),
           output: output_exports.object({ schema })
@@ -81976,31 +82094,37 @@ var AssistantService = class {
     return null;
   }
   async handle(point, input2, ctx) {
+    let slot = null;
     try {
-      const provider = this.ready(point);
+      slot = this.ready(point, ctx.model);
+      const run2 = {
+        provider: slot.provider,
+        model: ctx.model.model,
+        tools: slot.tools.get(ctx.model.model) ?? null
+      };
       const handlers = {
-        input: (req) => this.input(provider, req, ctx),
-        command: (req) => this.command(provider, req, ctx),
-        completion: (req) => this.completion(provider, req, ctx),
-        terminal: (req) => this.terminal(provider, req, ctx),
-        chat: (req) => this.chat(provider, req, ctx)
+        input: (req) => this.input(run2, req, ctx),
+        command: (req) => this.command(run2, req, ctx),
+        completion: (req) => this.completion(run2, req, ctx),
+        terminal: (req) => this.terminal(run2, req, ctx),
+        chat: (req) => this.chat(run2, slot, req, ctx)
       };
       const result = await handlers[point](input2);
-      this.noteOutcome(void 0);
+      this.noteOutcome(slot, void 0);
       return result;
     } catch (err) {
-      throw this.failure(err, ctx.signal);
+      throw this.failure(slot, err, ctx.signal);
     }
   }
-  async input(provider, req, ctx) {
+  async input(run2, req, ctx) {
     const wantTypos = req.tasks.includes("typos") && this.config.features.typos;
     const wantReview = req.tasks.includes("review") && this.config.features.promptReview;
     if (!wantTypos && !wantReview) {
       throw new AssistFailure("unavailable", "Typo fixes and prompt review are off.");
     }
     const [typos, review] = await Promise.all([
-      wantTypos ? this.text(provider, "input", typoPrompt(req.text), ctx) : null,
-      wantReview ? this.object(provider, "input", reviewPrompt(req.text, req.agent), reviewSchema, ctx) : null
+      wantTypos ? this.text(run2, "input", typoPrompt(req.text), ctx) : null,
+      wantReview ? this.object(run2, "input", reviewPrompt(req.text, req.agent), reviewSchema, ctx) : null
     ]);
     const result = {};
     const corrected = typos === null ? null : parseCorrection(typos, req.text);
@@ -82009,31 +82133,31 @@ var AssistantService = class {
     if (parsed) result.review = parsed;
     return result;
   }
-  async command(provider, req, ctx) {
-    const parsed = await this.object(provider, "command", commandPrompt(req), commandSchema, ctx);
+  async command(run2, req, ctx) {
+    const parsed = await this.object(run2, "command", commandPrompt(req), commandSchema, ctx);
     return { suggestions: parsed ? commandsFrom(parsed) : [] };
   }
-  async completion(provider, req, ctx) {
-    const sent = provider.smallPrompts ? {
+  async completion(run2, req, ctx) {
+    const sent = run2.provider.smallPrompts ? {
       path: req.path,
       language: req.language,
       prefix: req.prefix.slice(-SMALL_PREFIX_MAX),
       suffix: req.suffix.slice(0, SMALL_SUFFIX_MAX)
     } : req;
-    const raw = await this.text(provider, "completion", completionPrompt(sent), ctx);
+    const raw = await this.text(run2, "completion", completionPrompt(sent), ctx);
     return { text: cleanCompletion(raw, sent.prefix, sent.suffix) };
   }
-  async terminal(provider, req, ctx) {
-    const raw = await this.text(provider, "terminal", terminalPrompt(req), ctx);
+  async terminal(run2, req, ctx) {
+    const raw = await this.text(run2, "terminal", terminalPrompt(req), ctx);
     return { text: cleanTerminal(raw, req.line) };
   }
-  async chat(provider, req, ctx) {
+  async chat(run2, slot, req, ctx) {
     let failure3 = null;
-    const settings = this.settings(provider, "chat", chatPrompt(req), ctx.signal);
+    const settings = this.settings(run2, "chat", chatPrompt(req), ctx.signal);
     const tools = req.tools?.length ? req.tools : null;
     const result = streamText({
       ...settings,
-      ...tools && this.toolMode === "prompted" ? { model: withPromptedTools(settings.model) } : {},
+      ...tools && run2.tools === "prompted" ? { model: withPromptedTools(settings.model) } : {},
       ...tools ? { tools: chatToolSet(tools) } : {},
       onError: ({ error: error62 }) => {
         failure3 = error62;
@@ -82041,7 +82165,7 @@ var AssistantService = class {
     });
     let live = true;
     const stream = result.toUIMessageStream({
-      onError: (error62) => this.redact(messageOf(error62))
+      onError: (error62) => this.redact(slot, messageOf(error62))
     });
     for await (const chunk of stream) {
       if (!live || chunk.type === "tool-input-delta") continue;
@@ -82050,18 +82174,22 @@ var AssistantService = class {
     if (failure3) throw failure3;
     return { text: await result.text };
   }
-  async modelList() {
-    const list = { lifecycle: this.provider?.lifecycle === true, models: [] };
-    if (!this.provider || this.problem() === "no-key") return list;
+  slotFor(providerId) {
+    return providerId ? this.slots.find((s) => s.entry.id === providerId) : this.slots[0];
+  }
+  async modelList(providerId) {
+    const slot = this.slotFor(providerId);
+    const list = { lifecycle: slot?.provider?.lifecycle === true, models: [] };
+    if (!slot?.provider || slot.problem === "no-key") return list;
     try {
-      list.models = await this.provider.models();
+      list.models = await slot.provider.models();
     } catch (err) {
-      list.error = this.redact(messageOf(err));
+      list.error = this.redact(slot, messageOf(err));
     }
     return list;
   }
-  async setLoaded(id, loaded) {
-    const provider = this.provider;
+  async setLoaded(id, loaded, providerId) {
+    const provider = this.slotFor(providerId)?.provider;
     const action = loaded ? provider?.load : provider?.unload;
     if (!provider || !action) throw new Error("this provider has no model lifecycle");
     await action(id);
@@ -82070,31 +82198,55 @@ var AssistantService = class {
 async function publish(ext, service) {
   await ext.setAssistStatus(service.report()).catch(() => void 0);
 }
-async function apply(ext, service, options, values) {
-  const apiKey = options.secret ? await ext.getSecret(options.secret).catch(() => null) : null;
-  service.configure(options.provider ? { ...values, provider: options.provider } : values, apiKey);
-  await publish(ext, service);
-  await service.probe();
-  await publish(ext, service);
+function fixedEntry(kind, values) {
+  const baseUrl2 = typeof values.baseUrl === "string" ? values.baseUrl.trim() : "";
+  return { id: kind, kind, name: "", baseUrl: baseUrl2, models: [], apiKey: null };
 }
 async function run(options) {
   Object.assign(globalThis, { AI_SDK_LOG_WARNINGS: false });
   const ext = await connect();
-  const service = new AssistantService(options.catalog, process.env, void 0, () => {
-    void publish(ext, service);
-  });
+  const fixed = options.provider;
+  const service = new AssistantService(
+    options.catalog,
+    process.env,
+    void 0,
+    () => {
+      void publish(ext, service);
+    },
+    fixed ? { listedModels: true } : { configurable: true }
+  );
+  let values = {};
+  let entries = [];
+  const apply = async () => {
+    service.configure(values, fixed ? [fixedEntry(fixed, values)] : entries);
+    await publish(ext, service);
+    await service.probe();
+    await publish(ext, service);
+  };
   ext.onAssist((point, input2, ctx) => service.handle(point, input2, ctx));
   ext.onAssistModels({
-    list: () => service.modelList(),
-    setLoaded: (id, loaded) => service.setLoaded(id, loaded)
+    list: (provider) => service.modelList(provider),
+    setLoaded: (id, loaded, provider) => service.setLoaded(id, loaded, provider)
   });
-  ext.onSettingsChanged((values) => {
-    void apply(ext, service, options, values);
+  ext.onSettingsChanged((next) => {
+    values = next;
+    void apply();
+  });
+  ext.onAssistProvidersChanged((next) => {
+    entries = next;
+    void apply();
+  });
+  ext.onLocaleChanged((locale) => {
+    service.setLocale(locale);
+    void publish(ext, service);
   });
   await ext.registerCommands({
     chat: async (_args, caller) => ext.openAssistUi("chat", caller.workspaceId)
   });
-  await apply(ext, service, options, await ext.getSettings());
+  service.setLocale(await ext.getLocale().catch(() => "en"));
+  values = await ext.getSettings();
+  entries = fixed ? [] : await ext.getAssistProviders().catch(() => []);
+  await apply();
 }
 function runAssistExtension(options) {
   run(options).catch((err) => {
@@ -82104,8 +82256,8 @@ function runAssistExtension(options) {
 }
 
 // node_modules/.pnpm/@ai-sdk+openai-compatible@3.0.62_zod@4.6.5/node_modules/@ai-sdk/openai-compatible/dist/index.js
-function toCamelCase(str2) {
-  return str2.replace(/[_-]([a-z])/g, (g) => g[1].toUpperCase());
+function toCamelCase(str) {
+  return str.replace(/[_-]([a-z])/g, (g) => g[1].toUpperCase());
 }
 function resolveProviderOptionsKey(rawName, providerOptions) {
   const camelName = toCamelCase(rawName);
@@ -83616,8 +83768,8 @@ function modelRuntimeProvider(endpoint) {
 var MODEL_RUNTIME_CATALOG = {
   kinds: [MODEL_RUNTIME],
   keyRequired: /* @__PURE__ */ new Set(),
+  title: () => "Model runtime",
   defaultBaseUrl: (_kind, env) => env.XDG_RUNTIME_DIR ? `${UNIX_PREFIX}${env.XDG_RUNTIME_DIR}/model-runtime.sock` : "",
-  defaultFastModel: () => "gemma",
   create: (_kind, endpoint) => modelRuntimeProvider(endpoint)
 };
 
