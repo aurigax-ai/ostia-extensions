@@ -3686,7 +3686,7 @@ var require_main = __commonJS({
 // src/extensions/trellis/main.ts
 var import_node_os2 = require("node:os");
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
 var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
 function isDangerousSegment(segment) {
   return DANGEROUS_SEGMENTS.has(segment);
@@ -3765,7 +3765,7 @@ function withPanelSize(sizes, key, fraction) {
   return parsePanelSizes(fraction === null ? rest : { ...rest, [key]: fraction });
 }
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.5_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_1ce77778bc56217765c7c49bcf4558dc/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-Z2JJV4MK.js
+// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-KD2Z2DCF.js
 var import_crypto = require("crypto");
 var import_fs = require("fs");
 var import_http = require("http");
@@ -3805,7 +3805,7 @@ var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.11";
+var EXTENSION_API_VERSION = "1.12";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "PINE_EXTENSION_API";
 function parseApiVersion(value) {

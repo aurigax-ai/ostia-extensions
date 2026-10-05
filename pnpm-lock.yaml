@@ -15,8 +15,8 @@ importers:
         specifier: ^3.0.59
         version: 3.0.62(zod@4.6.5)
       '@aurigax-ai/pine-extension-sdk':
-        specifier: 0.5.5
-        version: 0.5.5(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.126(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)
+        specifier: 0.5.6
+        version: 0.5.6(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.126(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)
       '@phosphor-icons/core':
         specifier: ^2.1.1
         version: 2.1.1
@@ -94,8 +94,8 @@ packages:
     resolution: {integrity: sha512-UpbC9C1oht8dhfKPbVXSLRZS3DI8uk8n5v2uMjBPNIYGsC2kL045ywq7D8Hh9KgnH9rP5W/GxQdYtWScRouqlA==}
     engines: {node: '>=22'}
 
-  '@aurigax-ai/pine-extension-sdk@0.5.5':
-    resolution: {integrity: sha512-pOwgoPY1QBwNCCByvsRWY4eVi2zqbYSSjrtgmwkqjZPCge2YVeIhQUbl8JuwOd1X8GYINuMDh52ocAk70KCUYA==}
+  '@aurigax-ai/pine-extension-sdk@0.5.6':
+    resolution: {integrity: sha512-Rww8AAXnedW9wwQD/CNkqTDbezmO866gdWvVROb70rCkdk5jmPKP87cO/cmVdbER8+gLXTEVTl6cBTpRq2aKgg==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
@@ -1117,7 +1117,7 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@aurigax-ai/pine-extension-sdk@0.5.5(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.126(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)':
+  '@aurigax-ai/pine-extension-sdk@0.5.6(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.126(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)':
     dependencies:
       vscode-jsonrpc: 9.0.3
     optionalDependencies:
