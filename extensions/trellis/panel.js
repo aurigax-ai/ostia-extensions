@@ -6,7 +6,7 @@
       __defProp(target, name, { get: all2[name], enumerable: true });
   };
 
-  // node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@file+..+aurigax-ai-ostia-extension-sdk-0.5.6.tgz_@ai-sd_a0c0707a1c6111a5fcc38d43c99d3aff/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
   var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
   var EXTENSION_BASE_LOCALE = "en";
   function matchLocale(locale, available) {
@@ -35,7 +35,7 @@
     return (key, vars) => formatMessage(messageIn(own2, key) ?? messageIn(base, key) ?? key, vars);
   }
 
-  // node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-3EQOKSAZ.js
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@file+..+aurigax-ai-ostia-extension-sdk-0.5.6.tgz_@ai-sd_a0c0707a1c6111a5fcc38d43c99d3aff/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-V364AUL5.js
   var params = new URLSearchParams(location.search);
   var secret = params.get("t") ?? "";
   var context = {
@@ -47,7 +47,7 @@
     try {
       const res = await fetch("/api", {
         method: "POST",
-        headers: { "content-type": "application/json", "x-pine-panel": secret },
+        headers: { "content-type": "application/json", "x-ostia-panel": secret },
         body: JSON.stringify({ command, args: args ?? {}, context })
       });
       return await res.json();
@@ -215,7 +215,7 @@
       initDoneNoKey: "Trellis is set up in {dir}",
       reviewTitle: "Trellis: ready for your review",
       blockedTitle: "Trellis: a card is blocked",
-      cardUsage: "Give a card id, for example: pine trellis card SHOP-12",
+      cardUsage: "Give a card id, for example: ostia trellis card SHOP-12",
       invalidRef: '"{raw}" is not a card id like SHOP-12',
       cardOpened: "Opened {ref}",
       noProject: "no trellis project",
@@ -350,7 +350,7 @@
       initDoneNoKey: "\u5DF2\u5728 {dir} \u8A2D\u5B9A Trellis",
       reviewTitle: "Trellis\uFF1A\u7B49\u5F85\u4F60\u5BE9\u95B1",
       blockedTitle: "Trellis\uFF1A\u6709\u5361\u7247\u88AB\u963B\u64CB",
-      cardUsage: "\u8ACB\u63D0\u4F9B\u5361\u7247\u7DE8\u865F\uFF0C\u4F8B\u5982\uFF1Apine trellis card SHOP-12",
+      cardUsage: "\u8ACB\u63D0\u4F9B\u5361\u7247\u7DE8\u865F\uFF0C\u4F8B\u5982\uFF1Aostia trellis card SHOP-12",
       invalidRef: "\u300C{raw}\u300D\u4E0D\u662F\u50CF SHOP-12 \u9019\u6A23\u7684\u5361\u7247\u7DE8\u865F",
       cardOpened: "\u5DF2\u958B\u555F {ref}",
       noProject: "\u6C92\u6709 trellis \u5C08\u6848",
@@ -5590,7 +5590,7 @@
     return value === null || value === void 0 ? empty : [value];
   }
 
-  // node_modules/.pnpm/mdast-util-find-and-replace@3.0.2/node_modules/mdast-util-find-and-replace/lib/index.js
+  // node_modules/.pnpm/mdast-util-find-and-replace@3.0.3/node_modules/mdast-util-find-and-replace/lib/index.js
   function findAndReplace(tree, list2, options) {
     const settings = options || {};
     const ignored = convert(settings.ignore || []);
@@ -5644,15 +5644,12 @@
           find.lastIndex = position2 + 1;
         } else {
           if (start !== position2) {
-            nodes.push({
-              type: "text",
-              value: node2.value.slice(start, position2)
-            });
+            add({ type: "text", value: node2.value.slice(start, position2) });
           }
           if (Array.isArray(value)) {
-            nodes.push(...value);
+            for (const child of value) add(child);
           } else if (value) {
-            nodes.push(value);
+            add(value);
           }
           start = position2 + match[0].length;
           change = true;
@@ -5664,20 +5661,28 @@
       }
       if (change) {
         if (start < node2.value.length) {
-          nodes.push({ type: "text", value: node2.value.slice(start) });
+          add({ type: "text", value: node2.value.slice(start) });
         }
         parent.children.splice(index2, 1, ...nodes);
       } else {
         nodes = [node2];
       }
       return index2 + nodes.length;
+      function add(child) {
+        const previous3 = nodes[nodes.length - 1];
+        if (previous3 && previous3.type === "text" && child.type === "text") {
+          previous3.value += child.value;
+        } else {
+          nodes.push(child);
+        }
+      }
     }
   }
   function toPairs(tupleOrList) {
-    const result = [];
     if (!Array.isArray(tupleOrList)) {
       throw new TypeError("Expected find and replace tuple or list of tuples");
     }
+    const result = [];
     const list2 = !tupleOrList[0] || Array.isArray(tupleOrList[0]) ? tupleOrList : [tupleOrList];
     let index2 = -1;
     while (++index2 < list2.length) {

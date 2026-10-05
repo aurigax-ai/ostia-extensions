@@ -29,13 +29,13 @@ Pick an extension and press Install. Ostia asks you to approve it before it runs
 | `src/extensions/<id>/` | An extension's source: `pine.json`, its translations under `locales/`, and when it runs a process `main.ts`, its modules and their tests. One with a panel adds `panel.html`, `panel.css` and `panel.ts`; a language extension that ships its server names the npm packages in `vendor.json` |
 | `extensions/<id>/` | What Ostia installs: `pine.json`, `locales/`, one bundled, unminified `main.js`, the panel's files, and under `server/` the vendored packages copied unchanged from `node_modules`. Built from the source and committed, because Ostia copies files and never runs a build |
 | `build.mjs`, `build-extension.mjs` | The build: `build-extension.mjs` builds one extension folder and is the same file Ostia builds its own extensions with |
-| `pine-marketplace.json` | The folders Ostia offers. `extensions` are shown in Settings; `unlisted` ones are installed only by typing their install code |
+| `pine-marketplace.json` | The folders Ostia offers. `extensions` are shown in Settings; `unlisted` ones are installed only by typing their install code. The manifests keep their old names, `pine-marketplace.json` and `pine.json`, because versions before the rename read only those; Ostia reads them and the newer `ostia-marketplace.json` and `ostia.json` |
 | `test/fixtures/tools/` | Stand-ins for the command-line tools some extensions wrap, with captured output, used by the tests |
 
 ## Build
 
 It needs Node 20 or newer and pnpm. The extensions are written against the
-[extension SDK](https://www.npmjs.com/package/@aurigax-ai/pine-extension-sdk), an ordinary
+[Ostia extension SDK](https://www.npmjs.com/package/@aurigax-ai/ostia-extension-sdk), an ordinary
 dependency. The language servers that ship inside an extension are dependencies too, each pinned
 to one exact version, so `extensions/` changes only when a version here does.
 
@@ -49,7 +49,7 @@ pnpm validate     # checks the marketplace and every extension the way Ostia wil
 
 CI runs the same steps and fails when `extensions/` is not what the source builds.
 
-To try a build, copy `extensions/<id>` to `~/.config/pine/extensions/<id>`; Ostia notices it within
+To try a build, copy `extensions/<id>` to `~/.config/ostia/extensions/<id>`; Ostia notices it within
 a moment and asks you to approve it.
 
 ## Where changes are made
@@ -61,5 +61,5 @@ commits the result. Send changes to the Ostia repository.
 
 ## Write your own
 
-Start from the SDK's template (`node_modules/@aurigax-ai/pine-extension-sdk/template`) and its
+Start from the SDK's template (`node_modules/@aurigax-ai/ostia-extension-sdk/template`) and its
 guide (`docs/EXTENSIONS.md` in the same package).

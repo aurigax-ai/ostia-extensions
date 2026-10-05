@@ -3686,7 +3686,7 @@ var require_main = __commonJS({
 // src/extensions/trellis/main.ts
 var import_node_os2 = require("node:os");
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@file+..+aurigax-ai-ostia-extension-sdk-0.5.6.tgz_@ai-sd_a0c0707a1c6111a5fcc38d43c99d3aff/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
 function isDangerousSegment(segment) {
   return DANGEROUS_SEGMENTS.has(segment);
@@ -3765,7 +3765,7 @@ function withPanelSize(sizes, key, fraction) {
   return parsePanelSizes(fraction === null ? rest : { ...rest, [key]: fraction });
 }
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-KD2Z2DCF.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@file+..+aurigax-ai-ostia-extension-sdk-0.5.6.tgz_@ai-sd_a0c0707a1c6111a5fcc38d43c99d3aff/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-MIMBLTU6.js
 var import_crypto = require("crypto");
 var import_fs = require("fs");
 var import_http = require("http");
@@ -3777,6 +3777,17 @@ var import_path2 = require("path");
 var import_fs3 = require("fs");
 var import_path3 = require("path");
 var import_child_process = require("child_process");
+var ENV_PREFIX = "OSTIA_";
+var LEGACY_ENV_PREFIX = "PINE_";
+function envName(name) {
+  return `${ENV_PREFIX}${name}`;
+}
+function legacyEnvName(name) {
+  return `${LEGACY_ENV_PREFIX}${name}`;
+}
+function readEnv(name, env = process.env) {
+  return env[envName(name)] || env[legacyEnvName(name)] || void 0;
+}
 var ALL_CAPABILITIES = [
   "drive-self",
   "read-board",
@@ -3804,10 +3815,10 @@ var ALL_CAPABILITIES = [
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
-var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.12";
+var PRODUCT_NAME = "ostia";
+var EXTENSION_API_VERSION = "1.17";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
-var EXTENSION_API_ENV = "PINE_EXTENSION_API";
+var EXTENSION_API_ENV = "EXTENSION_API";
 function parseApiVersion(value) {
   if (typeof value !== "string") return null;
   const match = EXTENSION_API_PATTERN.exec(value);
@@ -3864,7 +3875,7 @@ function readJson(file) {
 var LANGUAGE_ID_PATTERN = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8}){0,3}$/;
 var CATALOG_SUFFIX = ".json";
 function extensionDir() {
-  return process.env.PINE_EXTENSION_DIR ?? process.cwd();
+  return readEnv("EXTENSION_DIR") ?? process.cwd();
 }
 function readMessageFile(file) {
   try {
@@ -3973,10 +3984,10 @@ function errorMessage(err) {
   return err instanceof Error ? err.message : String(err);
 }
 async function connect() {
-  const socketPath = process.env.PINE_SOCKET;
-  const token = process.env.PINE_TOKEN;
-  if (!socketPath || !token) throw new Error("PINE_SOCKET / PINE_TOKEN missing");
-  const provided = process.env[EXTENSION_API_ENV];
+  const socketPath = readEnv("SOCKET");
+  const token = readEnv("TOKEN");
+  if (!socketPath || !token) throw new Error("OSTIA_SOCKET / OSTIA_TOKEN missing");
+  const provided = readEnv(EXTENSION_API_ENV);
   const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
   if (incompatible) throw new Error(`this extension ${incompatible}`);
   const socket = (0, import_net.createConnection)(socketPath);
@@ -4287,9 +4298,8 @@ function send(res, status, type, body) {
 }
 async function startPanelServer(opts) {
   const secret = (0, import_crypto.randomBytes)(24).toString("hex");
-  const sizes = new PanelSizeStore(
-    process.env.PINE_EXTENSION_DATA ? (0, import_path.join)(process.env.PINE_EXTENSION_DATA, PANEL_SIZES_FILE) : null
-  );
+  const dataDir = readEnv("EXTENSION_DATA");
+  const sizes = new PanelSizeStore(dataDir ? (0, import_path.join)(dataDir, PANEL_SIZES_FILE) : null);
   const streams = /* @__PURE__ */ new Set();
   let port = 0;
   const server = (0, import_http.createServer)(async (req, res) => {
@@ -4298,7 +4308,7 @@ async function startPanelServer(opts) {
     const origin = req.headers.origin;
     if (origin && origin !== `http://127.0.0.1:${port}`)
       return send(res, 403, "text/plain", "origin");
-    const authed = req.headers["x-pine-panel"] === secret || url.searchParams.get("t") === secret;
+    const authed = req.headers["x-ostia-panel"] === secret || url.searchParams.get("t") === secret;
     if (req.method === "GET" && url.pathname === "/events") {
       if (!authed) return send(res, 403, "text/plain", "forbidden");
       res.writeHead(200, { "content-type": "text/event-stream", "cache-control": "no-store" });
@@ -4308,7 +4318,7 @@ async function startPanelServer(opts) {
       return;
     }
     if (url.pathname === PANEL_SIZES_PATH) {
-      if (req.headers["x-pine-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
+      if (req.headers["x-ostia-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
       if (req.method === "GET")
         return send(res, 200, "application/json", JSON.stringify(sizes.all()));
       if (req.method !== "POST") return send(res, 405, "text/plain", "method not allowed");
@@ -4326,7 +4336,7 @@ async function startPanelServer(opts) {
       }
     }
     if (req.method === "POST" && url.pathname === "/api") {
-      if (req.headers["x-pine-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
+      if (req.headers["x-ostia-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
       try {
         const body = JSON.parse(await readBody(req));
         if (typeof body.command !== "string") throw new Error("missing command");
@@ -4375,7 +4385,8 @@ async function startPanelServer(opts) {
 // src/extensions/trellis/trellis.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
-var HUMAN_ACTOR = `human:${PRODUCT_NAME}`;
+var TRELLIS_IDENTITY = "pine";
+var HUMAN_ACTOR = `human:${TRELLIS_IDENTITY}`;
 var PRIORITIES = ["urgent", "high", "normal", "low"];
 var TITLE_MAX = 300;
 var TEXT_MAX = 64 * 1024;
@@ -5064,7 +5075,7 @@ var import_node_fs2 = require("node:fs");
 var import_node_os = require("node:os");
 var import_node_path2 = require("node:path");
 var NOT_INSTALLED = "not-installed";
-var TEXT_DIR_PREFIX = "pine-trellis-text-";
+var TEXT_DIR_PREFIX = "ostia-trellis-text-";
 var TEXT_FILE_MODE = 384;
 function scopeArgs(scope) {
   const args = ["--project", scope.project];
@@ -5499,7 +5510,7 @@ async function main() {
   };
   const service = new TrellisService({
     home: (0, import_node_os2.homedir)(),
-    consumer: PRODUCT_NAME,
+    consumer: TRELLIS_IDENTITY,
     translate,
     host: {
       listWorkspaces: async () => workspacesFrom(await ext.call("workspace.list")),
