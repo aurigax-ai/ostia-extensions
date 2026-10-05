@@ -1,12 +1,12 @@
 {
-  "name": "pine-extensions",
+  "name": "ostia-extensions",
   "version": "0.5.6",
   "private": true,
-  "description": "Extensions for Pine that are not built in",
+  "description": "Extensions for Ostia that are not built in",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aurigax-ai/pine-extensions.git"
+    "url": "git+https://github.com/aurigax-ai/ostia-extensions.git"
   },
   "packageManager": "pnpm@11.10.0",
   "engines": {
