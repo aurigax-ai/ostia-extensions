@@ -1,6 +1,6 @@
 {
   "name": "ostia-extensions",
-  "version": "0.5.6",
+  "version": "0.5.8",
   "private": true,
   "description": "Extensions for Ostia that are not built in",
   "license": "MIT",
@@ -16,10 +16,10 @@
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "validate": "pine-extension validate ."
+    "validate": "ostia-extension validate ."
   },
   "devDependencies": {
-    "@aurigax-ai/pine-extension-sdk": "0.5.6",
+    "@aurigax-ai/ostia-extension-sdk": "0.5.8",
     "@ai-sdk-tool/parser": "^5.1.6",
     "@ai-sdk/openai-compatible": "^3.0.59",
     "@phosphor-icons/core": "^2.1.1",

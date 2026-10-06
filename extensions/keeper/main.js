@@ -3683,7 +3683,7 @@ var require_main = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
 var EXTENSION_BASE_LOCALE = "en";
 var LOCALE_CHANGED_EVENT = "locale.changed";
@@ -3702,12 +3702,19 @@ function localized(catalogs, locale) {
   return tag ? catalogs[tag] : catalogs.en;
 }
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-KD2Z2DCF.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-R37FVTW3.js
 var import_net = require("net");
 var import_node = __toESM(require_main(), 1);
 var import_child_process = require("child_process");
 var import_crypto = require("crypto");
 var import_http = require("http");
+var ENV_PREFIX = "OSTIA_";
+function envName(name) {
+  return `${ENV_PREFIX}${name}`;
+}
+function readEnv(name, env = process.env) {
+  return env[envName(name)] || void 0;
+}
 var ALL_CAPABILITIES = [
   "drive-self",
   "read-board",
@@ -3735,10 +3742,10 @@ var ALL_CAPABILITIES = [
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
-var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.12";
+var PRODUCT_NAME = "ostia";
+var EXTENSION_API_VERSION = "2.1";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
-var EXTENSION_API_ENV = "PINE_EXTENSION_API";
+var EXTENSION_API_ENV = "EXTENSION_API";
 function parseApiVersion(value) {
   if (typeof value !== "string") return null;
   const match = EXTENSION_API_PATTERN.exec(value);
@@ -3809,10 +3816,10 @@ function messagePageHtml(title, body) {
   return `<!doctype html>
 <html><head><meta charset="utf-8"><title>${escapeHtml(title)}</title>
 <style>
-html,body{margin:0;height:100%;background:var(--pine-surface-1,#272a2d);color:var(--pine-fg,#e3edf5);font-family:var(--pine-font-ui,system-ui,sans-serif);font-size:var(--pine-font-size,13px);line-height:calc(var(--pine-font-size,13px) + 7px);font-weight:var(--pine-font-weight,400);color-scheme:var(--pine-color-scheme,dark)}
+html,body{margin:0;height:100%;background:var(--ostia-surface-1, #272a2d);color:var(--ostia-fg, #e3edf5);font-family:var(--ostia-font-ui,system-ui,sans-serif);font-size:var(--ostia-font-size,13px);line-height:calc(var(--ostia-font-size,13px) + 7px);font-weight:var(--ostia-font-weight,400);color-scheme:var(--ostia-color-scheme, dark)}
 main{display:flex;flex-direction:column;justify-content:center;gap:8px;height:100%;max-width:560px;margin:0 auto;padding:0 24px}
-h1{font-size:calc(var(--pine-font-size,13px) + 3px);line-height:calc(var(--pine-font-size,13px) + 9px);font-weight:calc(var(--pine-font-weight,400) + 200);margin:0}
-p{margin:0;color:var(--pine-fg-muted,#9aa1a5);white-space:pre-wrap}
+h1{font-size:calc(var(--ostia-font-size,13px) + 3px);line-height:calc(var(--ostia-font-size,13px) + 9px);font-weight:calc(var(--ostia-font-weight,400) + 200);margin:0}
+p{margin:0;color:var(--ostia-fg-muted, #9aa1a5);white-space:pre-wrap}
 </style></head>
 <body><main role="alert"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p></main></body></html>`;
 }
@@ -3878,10 +3885,10 @@ function errorMessage(err) {
   return err instanceof Error ? err.message : String(err);
 }
 async function connect() {
-  const socketPath = process.env.PINE_SOCKET;
-  const token = process.env.PINE_TOKEN;
-  if (!socketPath || !token) throw new Error("PINE_SOCKET / PINE_TOKEN missing");
-  const provided = process.env[EXTENSION_API_ENV];
+  const socketPath = readEnv("SOCKET");
+  const token = readEnv("TOKEN");
+  if (!socketPath || !token) throw new Error("OSTIA_SOCKET / OSTIA_TOKEN missing");
+  const provided = readEnv(EXTENSION_API_ENV);
   const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
   if (incompatible) throw new Error(`this extension ${incompatible}`);
   const socket = (0, import_net.createConnection)(socketPath);
@@ -4035,6 +4042,7 @@ async function connect() {
     callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
     setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
     openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
+    openFile: (file) => conn.sendRequest("ext.openFile", file),
     openTerminal: async (opts) => {
       try {
         return await conn.sendRequest("ext.openTerminal", opts);

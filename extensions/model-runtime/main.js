@@ -30521,14 +30521,21 @@ var require_dist2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
 var EXTENSION_BASE_LOCALE = "en";
 var LOCALE_CHANGED_EVENT = "locale.changed";
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/chunk-KD2Z2DCF.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-R37FVTW3.js
 var import_net = require("net");
 var import_node = __toESM(require_main(), 1);
+var ENV_PREFIX = "OSTIA_";
+function envName(name5) {
+  return `${ENV_PREFIX}${name5}`;
+}
+function readEnv(name5, env = process.env) {
+  return env[envName(name5)] || void 0;
+}
 var ALL_CAPABILITIES = [
   "drive-self",
   "read-board",
@@ -30556,10 +30563,10 @@ var ALL_CAPABILITIES = [
 var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
-var PRODUCT_NAME = "pine";
-var EXTENSION_API_VERSION = "1.12";
+var PRODUCT_NAME = "ostia";
+var EXTENSION_API_VERSION = "2.1";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
-var EXTENSION_API_ENV = "PINE_EXTENSION_API";
+var EXTENSION_API_ENV = "EXTENSION_API";
 function parseApiVersion(value) {
   if (typeof value !== "string") return null;
   const match = EXTENSION_API_PATTERN.exec(value);
@@ -30600,10 +30607,10 @@ function errorMessage(err) {
   return err instanceof Error ? err.message : String(err);
 }
 async function connect() {
-  const socketPath = process.env.PINE_SOCKET;
-  const token = process.env.PINE_TOKEN;
-  if (!socketPath || !token) throw new Error("PINE_SOCKET / PINE_TOKEN missing");
-  const provided = process.env[EXTENSION_API_ENV];
+  const socketPath = readEnv("SOCKET");
+  const token = readEnv("TOKEN");
+  if (!socketPath || !token) throw new Error("OSTIA_SOCKET / OSTIA_TOKEN missing");
+  const provided = readEnv(EXTENSION_API_ENV);
   const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
   if (incompatible) throw new Error(`this extension ${incompatible}`);
   const socket = (0, import_net.createConnection)(socketPath);
@@ -30757,6 +30764,7 @@ async function connect() {
     callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
     setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
     openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
+    openFile: (file2) => conn.sendRequest("ext.openFile", file2),
     openTerminal: async (opts) => {
       try {
         return await conn.sendRequest("ext.openTerminal", opts);
@@ -30847,10 +30855,10 @@ async function connect() {
 }
 var MAX_BODY = 1024 * 1024;
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/assist.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/assist.js
 var import_undici = __toESM(require_undici(), 1);
 
-// node_modules/.pnpm/ai@7.0.126_zod@4.6.5/node_modules/ai/dist/rolldown-runtime-D7D4PA-g.js
+// node_modules/.pnpm/ai@7.0.127_zod@4.6.5/node_modules/ai/dist/rolldown-runtime-D7D4PA-g.js
 var __defProp2 = Object.defineProperty;
 var __exportAll = (all, no_symbols) => {
   let target = {};
@@ -54145,7 +54153,7 @@ function getToolCaller(tool2) {
   return tool2?.experimental_toolCaller;
 }
 
-// node_modules/.pnpm/@ai-sdk+gateway@4.0.102_zod@4.6.5/node_modules/@ai-sdk/gateway/dist/index.js
+// node_modules/.pnpm/@ai-sdk+gateway@4.0.103_zod@4.6.5/node_modules/@ai-sdk/gateway/dist/index.js
 var import_oidc = __toESM(require_dist(), 1);
 var GATEWAY_REALTIME_SUBPROTOCOL = "ai-gateway-realtime.v1";
 var GATEWAY_TRANSCRIPTION_SUBPROTOCOL = "ai-gateway-transcription.v1";
@@ -56899,7 +56907,7 @@ var gatewayTools = {
 async function getVercelRequestId() {
   return (0, import_oidc.getContext)().headers?.["x-vercel-id"];
 }
-var VERSION2 = "4.0.102";
+var VERSION2 = "4.0.103";
 var AI_GATEWAY_PROTOCOL_VERSION = "0.0.1";
 var gatewayClientSecretResponseSchema = z2.object({
   token: z2.string(),
@@ -57197,7 +57205,7 @@ function assertGatewayClientSecretServerEnvironment() {
   if (typeof globalThis.window !== "undefined") throw new Error("AI Gateway client secrets must be minted server-side: minting needs your Gateway credential, which must never reach the browser. Call gateway.experimental_realtime.getToken() or gateway.experimental_transcription.getToken() from your server and pass the returned token to the client.");
 }
 
-// node_modules/.pnpm/ai@7.0.126_zod@4.6.5/node_modules/ai/dist/index.js
+// node_modules/.pnpm/ai@7.0.127_zod@4.6.5/node_modules/ai/dist/index.js
 var name$23 = "AI_InvalidArgumentError";
 var marker$232 = `vercel.ai.error.${name$23}`;
 var symbol$23 = Symbol.for(marker$232);
@@ -57905,7 +57913,7 @@ function cloneValue(value) {
   if (value != null && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, value2]) => [key, cloneValue(value2)]));
   return value;
 }
-var VERSION3 = "7.0.126";
+var VERSION3 = "7.0.127";
 var download = async ({ url: url2, maxBytes, abortSignal }) => {
   const urlText = url2.toString();
   try {
@@ -59498,6 +59506,14 @@ function appendToolCallerMessages({ messages, toolCallerMessages }) {
   return additions.length === 0 ? messages : [...messages, ...additions];
 }
 var toolSearchSymbol = Symbol.for("vercel.ai.toolSearch");
+var toolSearchFunctionSymbol = Symbol.for("vercel.ai.toolSearch.search");
+var toolSearchMaxResultsSymbol = Symbol.for("vercel.ai.toolSearch.maxResults");
+function getToolSearchMaxResults(tool2) {
+  return tool2[toolSearchMaxResultsSymbol] ?? 5;
+}
+function getToolSearchFunction(tool2) {
+  return tool2[toolSearchFunctionSymbol];
+}
 function isToolSearch(tool2) {
   return tool2[toolSearchSymbol] === true;
 }
@@ -59524,28 +59540,39 @@ function createToolSearchState({ tools, toolCallers }) {
       const candidates = entries.filter(([name5, candidate]) => candidate.deferLoading && !isToolSearch(candidate) && callers.some((caller) => getCallers(name5).includes(caller)));
       return [searchName, {
         ...tool2,
-        execute: ({ query }) => {
-          const terms = [...new Set(tokenize(query))];
-          const matches = candidates.map(([name5, candidate]) => {
+        execute: async ({ query }) => {
+          const availableTools = candidates.map(([name5, candidate]) => {
             const description = resolveToolDescription({
               tool: candidate,
               toolName: name5,
               toolsContext,
               experimental_sandbox
             });
+            return {
+              name: name5,
+              ...description == null ? {} : { description }
+            };
+          });
+          const toolsByName = new Map(availableTools.map((tool3) => [tool3.name, tool3]));
+          const customSearch = getToolSearchFunction(tool2);
+          const terms = [...new Set(tokenize(query))];
+          const rankedNames = customSearch ? await customSearch({
+            query,
+            tools: availableTools.map((tool3) => ({ ...tool3 }))
+          }) : availableTools.map(({ name: name5, description }) => {
             const nameTerms = tokenize(name5);
             const descriptionTerms = tokenize(description ?? "");
             return {
               name: name5,
-              description,
               score: terms.reduce((score, term) => score + (nameTerms.includes(term) ? 2 : 0) + (descriptionTerms.includes(term) ? 1 : 0), 0)
             };
-          }).filter((match) => match.score > 0).sort((a, b) => b.score - a.score).slice(0, 5);
+          }).filter((match) => match.score > 0).sort((a, b) => b.score - a.score).map((match) => match.name);
+          const matches = [...new Set(rankedNames)].flatMap((name5) => {
+            const match = toolsByName.get(name5);
+            return match == null ? [] : [match];
+          }).slice(0, getToolSearchMaxResults(tool2));
           for (const { name: name5 } of matches) discovered.add(name5);
-          return { tools: matches.map(({ name: name5, description }) => ({
-            name: name5,
-            ...description == null ? {} : { description }
-          })) };
+          return { tools: matches };
         }
       }];
     }));
@@ -61254,13 +61281,14 @@ async function validateApprovedToolApprovals({ approvedToolApprovals, tools, too
       let validationError;
       if (!validation.success) validationError = validation.error;
       else try {
-        if (!isDeepEqualData((await refineParsedToolCallInput({
+        const revalidatedToolCall = await refineParsedToolCallInput({
           toolCall: {
             ...toolCall,
             input: validation.value
           },
           refineToolInput
-        })).input, toolCall.input)) validationError = /* @__PURE__ */ new Error("Approved tool input does not match the validated schema output.");
+        });
+        if (!isDeepEqualData(structuredClone(revalidatedToolCall.input), structuredClone(toolCall.input))) validationError = /* @__PURE__ */ new Error("Approved tool input does not match the validated schema output.");
       } catch (error62) {
         validationError = error62;
       }
@@ -81037,7 +81065,7 @@ var yamlXmlToolMiddleware = createToolMiddleware({
   toolResponsePromptTemplate: formatToolResponseAsYaml
 });
 
-// node_modules/.pnpm/@aurigax-ai+pine-extension-sdk@0.5.6_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@5_327d1717bb8da9a2a56b309bdd52e193/node_modules/@aurigax-ai/pine-extension-sdk/dist/assist.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/assist.js
 var UNIX_PREFIX = "unix:";
 var SOCKET_ORIGIN = "http://localhost";
 var ERROR_BODY_MAX = 200;
