@@ -3686,7 +3686,7 @@ var require_main = __commonJS({
 // src/extensions/trellis/main.ts
 var import_node_os2 = require("node:os");
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.9_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_ca923e0435440fc2b5b53163da2c1042/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
 function isDangerousSegment(segment) {
   return DANGEROUS_SEGMENTS.has(segment);
@@ -3765,7 +3765,7 @@ function withPanelSize(sizes, key, fraction) {
   return parsePanelSizes(fraction === null ? rest : { ...rest, [key]: fraction });
 }
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-R37FVTW3.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.9_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_ca923e0435440fc2b5b53163da2c1042/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-2VJCY6RT.js
 var import_crypto = require("crypto");
 var import_fs = require("fs");
 var import_http = require("http");
@@ -3812,7 +3812,7 @@ var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 var PRODUCT_NAME = "ostia";
-var EXTENSION_API_VERSION = "2.1";
+var EXTENSION_API_VERSION = "2.3";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "EXTENSION_API";
 function parseApiVersion(value) {
@@ -3834,6 +3834,7 @@ var SETTINGS_CHANGED_EVENT = "settings.changed";
 var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
 var DIFF_TEXT_MAX = 5 * 1024 * 1024;
+var OPEN_TERMINAL_WAIT_MAX_MS = 10 * 6e4;
 var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
 var FOLDER_CLOSED_EVENT = "folder.closed";
 var PANEL_SIZES_FILE = "panel-sizes.json";

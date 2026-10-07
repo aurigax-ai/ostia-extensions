@@ -15,14 +15,14 @@ importers:
         specifier: ^3.0.59
         version: 3.0.62(zod@4.6.5)
       '@aurigax-ai/ostia-extension-sdk':
-        specifier: 0.5.8
-        version: 0.5.8(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)
+        specifier: 0.5.9
+        version: 0.5.9(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)
       '@phosphor-icons/core':
         specifier: ^2.1.1
         version: 2.1.1
       '@types/node':
-        specifier: ^22.20.1
-        version: 22.20.5
+        specifier: ^24.19.1
+        version: 24.19.1
       ai:
         specifier: ^7.0.122
         version: 7.0.127(zod@4.6.5)
@@ -55,7 +55,7 @@ importers:
         version: 6.29.0
       vitest:
         specifier: ^2.1.9
-        version: 2.1.9(@types/node@22.20.5)
+        version: 2.1.9(@types/node@24.19.1)
       yaml-language-server:
         specifier: 1.24.0
         version: 1.24.0
@@ -94,8 +94,8 @@ packages:
     resolution: {integrity: sha512-UpbC9C1oht8dhfKPbVXSLRZS3DI8uk8n5v2uMjBPNIYGsC2kL045ywq7D8Hh9KgnH9rP5W/GxQdYtWScRouqlA==}
     engines: {node: '>=22'}
 
-  '@aurigax-ai/ostia-extension-sdk@0.5.8':
-    resolution: {integrity: sha512-Nc+05mlIYrG8afnZH9sYjHDlyDH56Lil+m3tvGrwwaSG5jp4Jo3k/1ccXGqDlgC5S4mN4depX4odazgC+nMp8g==}
+  '@aurigax-ai/ostia-extension-sdk@0.5.9':
+    resolution: {integrity: sha512-Ps1H2fwIvh/uG6oUgos5atP6RP7+cxNntQPnQsZoFOnOtx9vWjjJM73o6NUPDkYKQhg0AgBaD2Jcjet/ALFVhQ==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
@@ -435,8 +435,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@22.20.5':
-    resolution: {integrity: sha512-U2+DNr+wSjpsTS/wZGYHq7GcwfuSmKiKvoPvK22zwTlRhU91yOniN4qRR5KhIjvif7ysw/dz/hKmfDH0Ris4aA==}
+  '@types/node@24.19.1':
+    resolution: {integrity: sha512-aS3/DG0oM05K0RIXXP+hKjinGG5IgSSVGzswZxW3O0sS3pH4/fycXundUC9XsszgKCk4gHXylTEK6hyFxVxnoQ==}
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
@@ -914,8 +914,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@6.21.0:
-    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+  undici-types@7.24.6:
+    resolution: {integrity: sha512-WRNW+sJgj5OBN4/0JpHFqtqzhpbnV0GuB+OozA9gCL7a993SmU+1JBZCzLNxYsbMfIeDL+lTsphD5jN5N+n0zg==}
 
   undici@6.29.0:
     resolution: {integrity: sha512-R+RODBqp6i2pPflGdq+xIOUkl+RNfGgHwoinecKu/JCuf2uO06cOKoDbI2P7Dn6KcswdKwrczbU6IYJ6K8X+wg==}
@@ -1117,7 +1117,7 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@aurigax-ai/ostia-extension-sdk@0.5.8(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)':
+  '@aurigax-ai/ostia-extension-sdk@0.5.9(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)':
     dependencies:
       vscode-jsonrpc: 9.0.3
     optionalDependencies:
@@ -1307,9 +1307,9 @@ snapshots:
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@22.20.5':
+  '@types/node@24.19.1':
     dependencies:
-      undici-types: 6.21.0
+      undici-types: 7.24.6
 
   '@types/unist@3.0.3': {}
 
@@ -1322,13 +1322,13 @@ snapshots:
       chai: 5.3.3
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.9(vite@5.4.21(@types/node@22.20.5))':
+  '@vitest/mocker@2.1.9(vite@5.4.21(@types/node@24.19.1))':
     dependencies:
       '@vitest/spy': 2.1.9
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 5.4.21(@types/node@22.20.5)
+      vite: 5.4.21(@types/node@24.19.1)
 
   '@vitest/pretty-format@2.1.9':
     dependencies:
@@ -1955,7 +1955,7 @@ snapshots:
 
   typescript@5.9.3: {}
 
-  undici-types@6.21.0: {}
+  undici-types@7.24.6: {}
 
   undici@6.29.0: {}
 
@@ -1980,13 +1980,13 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  vite-node@2.1.9(@types/node@22.20.5):
+  vite-node@2.1.9(@types/node@24.19.1):
     dependencies:
       cac: 6.7.14
       debug: 4.4.3
       es-module-lexer: 1.7.0
       pathe: 1.1.2
-      vite: 5.4.21(@types/node@22.20.5)
+      vite: 5.4.21(@types/node@24.19.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -1998,19 +1998,19 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.4.21(@types/node@22.20.5):
+  vite@5.4.21(@types/node@24.19.1):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.28
       rollup: 4.64.0
     optionalDependencies:
-      '@types/node': 22.20.5
+      '@types/node': 24.19.1
       fsevents: 2.3.3
 
-  vitest@2.1.9(@types/node@22.20.5):
+  vitest@2.1.9(@types/node@24.19.1):
     dependencies:
       '@vitest/expect': 2.1.9
-      '@vitest/mocker': 2.1.9(vite@5.4.21(@types/node@22.20.5))
+      '@vitest/mocker': 2.1.9(vite@5.4.21(@types/node@24.19.1))
       '@vitest/pretty-format': 2.1.9
       '@vitest/runner': 2.1.9
       '@vitest/snapshot': 2.1.9
@@ -2026,11 +2026,11 @@ snapshots:
       tinyexec: 0.3.2
       tinypool: 1.1.1
       tinyrainbow: 1.2.0
-      vite: 5.4.21(@types/node@22.20.5)
-      vite-node: 2.1.9(@types/node@22.20.5)
+      vite: 5.4.21(@types/node@24.19.1)
+      vite-node: 2.1.9(@types/node@24.19.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.20.5
+      '@types/node': 24.19.1
     transitivePeerDependencies:
       - less
       - lightningcss

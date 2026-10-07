@@ -6,7 +6,7 @@
       __defProp(target, name, { get: all2[name], enumerable: true });
   };
 
-  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.9_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_ca923e0435440fc2b5b53163da2c1042/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
   var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
   var EXTENSION_BASE_LOCALE = "en";
   function matchLocale(locale, available) {
@@ -35,7 +35,7 @@
     return (key, vars) => formatMessage(messageIn(own2, key) ?? messageIn(base, key) ?? key, vars);
   }
 
-  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.8_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_28137faf3eb90bdd3bce5b938e68f916/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-V364AUL5.js
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.9_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_ca923e0435440fc2b5b53163da2c1042/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-V364AUL5.js
   var params = new URLSearchParams(location.search);
   var secret = params.get("t") ?? "";
   var context = {

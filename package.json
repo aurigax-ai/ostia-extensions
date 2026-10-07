@@ -1,6 +1,6 @@
 {
   "name": "ostia-extensions",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "private": true,
   "description": "Extensions for Ostia that are not built in",
   "license": "MIT",
@@ -19,11 +19,11 @@
     "validate": "ostia-extension validate ."
   },
   "devDependencies": {
-    "@aurigax-ai/ostia-extension-sdk": "0.5.8",
+    "@aurigax-ai/ostia-extension-sdk": "0.5.9",
     "@ai-sdk-tool/parser": "^5.1.6",
     "@ai-sdk/openai-compatible": "^3.0.59",
     "@phosphor-icons/core": "^2.1.1",
-    "@types/node": "^22.20.1",
+    "@types/node": "^24.19.1",
     "ai": "^7.0.122",
     "bash-language-server": "5.8.1",
     "esbuild": "^0.21.5",
