@@ -3,7 +3,7 @@
   "version": "0.5.9",
   "private": true,
   "description": "Extensions for Ostia that are not built in",
-  "license": "MIT",
+  "license": "FSL-1.1-MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aurigax-ai/ostia-extensions.git"
