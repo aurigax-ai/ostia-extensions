@@ -3683,7 +3683,7 @@ var require_main = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.9_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_ca923e0435440fc2b5b53163da2c1042/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
 var EXTENSION_BASE_LOCALE = "en";
 var LOCALE_CHANGED_EVENT = "locale.changed";
@@ -3702,7 +3702,7 @@ function localized(catalogs, locale) {
   return tag ? catalogs[tag] : catalogs.en;
 }
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.9_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils@_ca923e0435440fc2b5b53163da2c1042/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-2VJCY6RT.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
 var import_net = require("net");
 var import_node = __toESM(require_main(), 1);
 var import_child_process = require("child_process");
@@ -3743,7 +3743,7 @@ var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
   (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
 );
 var PRODUCT_NAME = "ostia";
-var EXTENSION_API_VERSION = "2.3";
+var EXTENSION_API_VERSION = "3.0";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "EXTENSION_API";
 function parseApiVersion(value) {

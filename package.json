@@ -1,6 +1,6 @@
 {
   "name": "ostia-extensions",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "private": true,
   "description": "Extensions for Ostia that are not built in",
   "license": "FSL-1.1-MIT",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/aurigax-ai/ostia-extensions.git"
   },
-  "packageManager": "pnpm@11.10.0",
+  "packageManager": "pnpm@11.19.0",
   "engines": {
     "node": ">=20"
   },
@@ -19,7 +19,7 @@
     "validate": "ostia-extension validate ."
   },
   "devDependencies": {
-    "@aurigax-ai/ostia-extension-sdk": "0.5.9",
+    "@aurigax-ai/ostia-extension-sdk": "0.5.10",
     "@ai-sdk-tool/parser": "^5.1.6",
     "@ai-sdk/openai-compatible": "^3.0.59",
     "@phosphor-icons/core": "^2.1.1",
@@ -33,7 +33,7 @@
     "pyright": "1.1.414",
     "typescript": "5.9.3",
     "typescript-language-server": "5.3.0",
-    "undici": "^6.28.0",
+    "undici": "^6.29.0",
     "vitest": "^2.1.9",
     "yaml-language-server": "1.24.0",
     "zod": "^4.6.5"
