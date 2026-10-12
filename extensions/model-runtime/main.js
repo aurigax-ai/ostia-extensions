@@ -30521,12 +30521,12 @@ var require_dist2 = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
 var EXTENSION_BASE_LOCALE = "en";
 var LOCALE_CHANGED_EVENT = "locale.changed";
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
 var import_net = require("net");
 var import_node = __toESM(require_main(), 1);
 var ENV_PREFIX = "OSTIA_";
@@ -30856,7 +30856,7 @@ async function connect() {
 }
 var MAX_BODY = 1024 * 1024;
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/assist.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/assist.js
 var import_undici = __toESM(require_undici(), 1);
 
 // node_modules/.pnpm/ai@7.0.127_zod@4.6.5/node_modules/ai/dist/rolldown-runtime-D7D4PA-g.js
@@ -81066,7 +81066,7 @@ var yamlXmlToolMiddleware = createToolMiddleware({
   toolResponsePromptTemplate: formatToolResponseAsYaml
 });
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/assist.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/assist.js
 var UNIX_PREFIX = "unix:";
 var SOCKET_ORIGIN = "http://localhost";
 var ERROR_BODY_MAX = 200;

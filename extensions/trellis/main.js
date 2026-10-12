@@ -3686,7 +3686,7 @@ var require_main = __commonJS({
 // src/extensions/trellis/main.ts
 var import_node_os2 = require("node:os");
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
 var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
 function isDangerousSegment(segment) {
   return DANGEROUS_SEGMENTS.has(segment);
@@ -3765,7 +3765,7 @@ function withPanelSize(sizes, key, fraction) {
   return parsePanelSizes(fraction === null ? rest : { ...rest, [key]: fraction });
 }
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.10_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_bed62b86bc873d7cbc99dd13b15e92ae/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
 var import_crypto = require("crypto");
 var import_fs = require("fs");
 var import_http = require("http");

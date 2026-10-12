@@ -15,8 +15,8 @@ importers:
         specifier: ^3.0.59
         version: 3.0.62(zod@4.6.5)
       '@aurigax-ai/ostia-extension-sdk':
-        specifier: 0.5.10
-        version: 0.5.10(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)
+        specifier: 0.5.11
+        version: 0.5.11(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)
       '@phosphor-icons/core':
         specifier: ^2.1.1
         version: 2.1.1
@@ -94,8 +94,8 @@ packages:
     resolution: {integrity: sha512-UpbC9C1oht8dhfKPbVXSLRZS3DI8uk8n5v2uMjBPNIYGsC2kL045ywq7D8Hh9KgnH9rP5W/GxQdYtWScRouqlA==}
     engines: {node: '>=22'}
 
-  '@aurigax-ai/ostia-extension-sdk@0.5.10':
-    resolution: {integrity: sha512-t8IwTwaz0evovLHZsr0HNy97b4JlsuxqQ3vBGRbDy3R7ipFa3xvBPqOdo98J9dfdepCE4sBMpplO8r6zf/gS3A==}
+  '@aurigax-ai/ostia-extension-sdk@0.5.11':
+    resolution: {integrity: sha512-y0nCgUQIVGvALsUmheln4G5596V+mthPUWsK6JrHyJNFRhLJ54GXa97X2MMHwMSE7yhPFtYlSqgrulYJwELULg==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
@@ -1117,7 +1117,7 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@aurigax-ai/ostia-extension-sdk@0.5.10(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)':
+  '@aurigax-ai/ostia-extension-sdk@0.5.11(@ai-sdk-tool/parser@5.1.6(@ai-sdk/provider-utils@5.0.53(zod@4.6.5))(@ai-sdk/provider@4.0.21))(ai@7.0.127(zod@4.6.5))(undici@6.29.0)(zod@4.6.5)':
     dependencies:
       vscode-jsonrpc: 9.0.3
     optionalDependencies:
