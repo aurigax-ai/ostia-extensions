@@ -6,7 +6,11 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -65,7 +69,7 @@ var require_is = __commonJS({
 var require_messages = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messages.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -74,16 +78,16 @@ var require_messages = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -101,7 +105,7 @@ var require_messages = __commonJS({
         __setModuleDefault(result2, mod);
         return result2;
       };
-    }();
+    })();
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Message = exports2.NotificationType9 = exports2.NotificationType8 = exports2.NotificationType7 = exports2.NotificationType6 = exports2.NotificationType5 = exports2.NotificationType4 = exports2.NotificationType3 = exports2.NotificationType2 = exports2.NotificationType1 = exports2.NotificationType0 = exports2.NotificationType = exports2.RequestType9 = exports2.RequestType8 = exports2.RequestType7 = exports2.RequestType6 = exports2.RequestType5 = exports2.RequestType4 = exports2.RequestType3 = exports2.RequestType2 = exports2.RequestType1 = exports2.RequestType = exports2.RequestType0 = exports2.AbstractMessageSignature = exports2.ParameterStructures = exports2.ResponseError = exports2.ErrorCodes = void 0;
     var is = __importStar(require_is());
@@ -1014,7 +1018,7 @@ var require_events = __commonJS({
 var require_cancellation = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/cancellation.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1023,16 +1027,16 @@ var require_cancellation = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1050,7 +1054,7 @@ var require_cancellation = __commonJS({
         __setModuleDefault(result2, mod);
         return result2;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -1112,7 +1116,7 @@ var require_cancellation = __commonJS({
         }
       }
     };
-    var CancellationTokenSource = class {
+    var CancellationTokenSource2 = class {
       _token;
       get token() {
         if (!this._token) {
@@ -1135,7 +1139,7 @@ var require_cancellation = __commonJS({
         }
       }
     };
-    exports2.CancellationTokenSource = CancellationTokenSource;
+    exports2.CancellationTokenSource = CancellationTokenSource2;
   }
 });
 
@@ -1296,7 +1300,7 @@ var require_semaphore = __commonJS({
 var require_messageReader = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageReader.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1305,16 +1309,16 @@ var require_messageReader = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1332,7 +1336,7 @@ var require_messageReader = __commonJS({
         __setModuleDefault(result2, mod);
         return result2;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -1538,7 +1542,7 @@ ${JSON.stringify(Object.fromEntries(headers))}`));
 var require_messageWriter = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageWriter.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1547,16 +1551,16 @@ var require_messageWriter = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1574,7 +1578,7 @@ var require_messageWriter = __commonJS({
         __setModuleDefault(result2, mod);
         return result2;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -1847,7 +1851,7 @@ ${header}`);
 var require_connection = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/connection.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1856,16 +1860,16 @@ var require_connection = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1883,7 +1887,7 @@ var require_connection = __commonJS({
         __setModuleDefault(result2, mod);
         return result2;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -2371,29 +2375,29 @@ var require_connection = __commonJS({
           await replyError(new messages_1.ResponseError(messages_1.ErrorCodes.MethodNotFound, `Unhandled method ${requestMessage.method}`), requestMessage.method, startTime);
         }
       }
-      function handleResponse(responseMessage) {
+      function handleResponse(responseMessage2) {
         if (isDisposed()) {
           return;
         }
-        if (responseMessage.id === null) {
-          if (responseMessage.error) {
+        if (responseMessage2.id === null) {
+          if (responseMessage2.error) {
             logger.error(`Received response message without id: Error is: 
-${JSON.stringify(responseMessage.error, void 0, 4)}`);
+${JSON.stringify(responseMessage2.error, void 0, 4)}`);
           } else {
             logger.error(`Received response message without id. No further error information provided.`);
           }
         } else {
-          const key = responseMessage.id;
+          const key = responseMessage2.id;
           const responsePromise = responsePromises.get(key);
-          traceReceivedResponse(responseMessage, responsePromise);
+          traceReceivedResponse(responseMessage2, responsePromise);
           if (responsePromise !== void 0) {
             responsePromises.delete(key);
             try {
-              if (responseMessage.error) {
-                const error = responseMessage.error;
+              if (responseMessage2.error) {
+                const error = responseMessage2.error;
                 responsePromise.reject(new messages_1.ResponseError(error.code, error.message, error.data));
-              } else if (responseMessage.result !== void 0) {
-                responsePromise.resolve(responseMessage.result);
+              } else if (responseMessage2.result !== void 0) {
+                responsePromise.resolve(responseMessage2.result);
               } else {
                 throw new Error("Should never happen.");
               }
@@ -2478,9 +2482,9 @@ ${JSON.stringify(responseMessage.error, void 0, 4)}`);
         }
         logger.error(`Received message which is neither a response nor a notification message:
 ${JSON.stringify(message, null, 4)}`);
-        const responseMessage = message;
-        if (Is.string(responseMessage.id) || Is.number(responseMessage.id)) {
-          const key = responseMessage.id;
+        const responseMessage2 = message;
+        if (Is.string(responseMessage2.id) || Is.number(responseMessage2.id)) {
+          const key = responseMessage2.id;
           const responseHandler = responsePromises.get(key);
           if (responseHandler) {
             responseHandler.reject(new Error("The received response has neither a result nor an error property."));
@@ -3385,7 +3389,7 @@ var require_ril = __commonJS({
 var require_main = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/node/main.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -3394,16 +3398,16 @@ var require_main = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -3421,7 +3425,7 @@ var require_main = __commonJS({
         __setModuleDefault(result2, mod);
         return result2;
       };
-    }();
+    })();
     var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
       for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p)) __createBinding(exports3, m, p);
     };
@@ -3684,9 +3688,60 @@ var require_main = __commonJS({
 });
 
 // src/extensions/trellis/main.ts
-var import_node_os2 = require("node:os");
+var import_node_os3 = require("node:os");
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-BN4VRUVE.js
+var import_node_crypto = require("node:crypto");
+var import_node_fs = require("node:fs");
+var import_node_os = require("node:os");
+var import_node_path = require("node:path");
+var TEMP_NAME = /^(.+)\.([0-9a-f]{8})\.(\d+)\.[0-9a-f]{16}\.tmp$/;
+var HOST = (0, import_node_crypto.createHash)("sha256").update((0, import_node_os.hostname)()).digest("hex").slice(0, 8);
+function tempPath(path) {
+  return `${path}.${HOST}.${process.pid}.${(0, import_node_crypto.randomBytes)(8).toString("hex")}.tmp`;
+}
+function running(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (err) {
+    return err.code === "EPERM";
+  }
+}
+function staleTemps(path, names) {
+  const base = (0, import_node_path.basename)(path);
+  return names.filter((name) => {
+    const match = TEMP_NAME.exec(name);
+    if (match?.[1] !== base || match[2] !== HOST) return false;
+    const pid = Number(match[3]);
+    return pid !== process.pid && !running(pid);
+  }).map((name) => (0, import_node_path.join)((0, import_node_path.dirname)(path), name));
+}
+function writeFileAtomic(path, text, opts = {}) {
+  const dir = (0, import_node_path.dirname)(path);
+  (0, import_node_fs.mkdirSync)(dir, { recursive: true, mode: opts.dirMode ?? 511 });
+  if (opts.dirMode !== void 0) (0, import_node_fs.chmodSync)(dir, opts.dirMode);
+  for (const stale of staleTemps(path, (0, import_node_fs.readdirSync)(dir))) (0, import_node_fs.rmSync)(stale, { force: true });
+  const tmp = tempPath(path);
+  const fd = (0, import_node_fs.openSync)(tmp, "wx", opts.mode ?? 438);
+  try {
+    try {
+      (0, import_node_fs.writeFileSync)(fd, text, "utf8");
+      (0, import_node_fs.fsyncSync)(fd);
+    } finally {
+      (0, import_node_fs.closeSync)(fd);
+    }
+    (0, import_node_fs.renameSync)(tmp, path);
+  } catch (err) {
+    (0, import_node_fs.rmSync)(tmp, { force: true });
+    throw err;
+  }
+}
+
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-TO23AMVT.js
+function isRecord(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
 var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
 function isDangerousSegment(segment) {
   return DANGEROUS_SEGMENTS.has(segment);
@@ -3727,7 +3782,7 @@ function parseMessages(raw) {
   const messages = /* @__PURE__ */ Object.create(null);
   const problems = [];
   if (raw === void 0) return { messages, problems };
-  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+  if (!isRecord(raw)) {
     return { messages, problems: ["messages must be an object of strings"] };
   }
   const entries = Object.entries(raw);
@@ -3747,6 +3802,30 @@ function parseMessages(raw) {
   }
   return { messages, problems };
 }
+
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-AGWMOFL4.js
+function ok(text, data) {
+  const result2 = { ok: true };
+  if (text !== void 0) result2.text = text;
+  if (data !== void 0) result2.data = data;
+  return result2;
+}
+function failure(error, message) {
+  return message ? { ok: false, error, message } : { ok: false, error };
+}
+function numberSetting(values, key, fallback, range) {
+  const value = values[key];
+  if (typeof value !== "number" || !Number.isFinite(value)) return fallback;
+  return Math.min(range.max, Math.max(range.min, value));
+}
+function booleanSetting(values, key, fallback) {
+  const value = values[key];
+  return typeof value === "boolean" ? value : fallback;
+}
+function errorMessage(err) {
+  return err instanceof Error ? err.message : String(err);
+}
+var PANEL_TOOLBAR_PATH = "/toolbar";
 var PANEL_SIZES_PATH = "/sizes";
 var MAX_PANEL_SIZES = 64;
 var PANEL_SIZE_KEY = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
@@ -3754,7 +3833,7 @@ function isFraction(value) {
   return typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 1;
 }
 function parsePanelSizes(raw) {
-  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return {};
+  if (!isRecord(raw)) return {};
   const entries = Object.entries(raw).filter(
     ([key, value]) => PANEL_SIZE_KEY.test(key) && isFraction(value)
   );
@@ -3765,24 +3844,774 @@ function withPanelSize(sizes, key, fraction) {
   return parsePanelSizes(fraction === null ? rest : { ...rest, [key]: fraction });
 }
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
-var import_crypto = require("crypto");
-var import_fs = require("fs");
-var import_http = require("http");
-var import_net = require("net");
-var import_path = require("path");
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-D6E5XF3S.js
+var import_node_events = require("node:events");
+var import_node_net = require("node:net");
 var import_node = __toESM(require_main(), 1);
-var import_fs2 = require("fs");
-var import_path2 = require("path");
-var import_fs3 = require("fs");
-var import_path3 = require("path");
-var import_child_process = require("child_process");
+var import_node_fs2 = require("node:fs");
+var import_node_path2 = require("node:path");
+var import_node2 = __toESM(require_main(), 1);
+var import_node_fs3 = require("node:fs");
+var import_node_path3 = require("node:path");
+var import_node_stream = require("node:stream");
+var import_node_fs4 = require("node:fs");
+var import_node_path4 = require("node:path");
+var import_node_crypto2 = require("node:crypto");
+var import_node_fs5 = require("node:fs");
+var import_node_http = require("node:http");
+var import_node_path5 = require("node:path");
+var import_node_fs6 = require("node:fs");
+var import_node_child_process = require("node:child_process");
 var ENV_PREFIX = "OSTIA_";
 function envName(name) {
   return `${ENV_PREFIX}${name}`;
 }
 function readEnv(name, env = process.env) {
   return env[envName(name)] || void 0;
+}
+var PRODUCT_NAME = "ostia";
+var EXTENSION_API_VERSION = "7.8";
+var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
+var EXTENSION_API_ENV = "EXTENSION_API";
+function parseApiVersion(value) {
+  if (typeof value !== "string") return null;
+  const match = EXTENSION_API_PATTERN.exec(value);
+  return match ? { major: Number(match[1]), minor: Number(match[2]) } : null;
+}
+function isApiCompatible(required, provided) {
+  return required.major === provided.major && required.minor <= provided.minor;
+}
+function apiProblem(required, provided = EXTENSION_API_VERSION) {
+  const wanted = parseApiVersion(required);
+  if (!wanted) return "api must be an extension API version such as 1.0";
+  const have = parseApiVersion(provided);
+  if (have && isApiCompatible(wanted, have)) return null;
+  return `needs extension API ${required}; this ${PRODUCT_NAME} provides ${provided}`;
+}
+var EXTENSION_MANIFEST_FILE = "ostia.json";
+var INBOX_ACTION_EVENT = "inbox.action";
+var SETTINGS_CHANGED_EVENT = "settings.changed";
+var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
+var TARGET_PANE_PARAM = "targetPaneId";
+var DIFF_TEXT_MAX = 5 * 1024 * 1024;
+var OPEN_TERMINAL_WAIT_MAX_MS = 10 * 6e4;
+var EXEC_OUTPUT_DEFAULT = 64 * 1024;
+var EXEC_OUTPUT_MAX = 1024 * 1024;
+function declaredApi() {
+  const dir = readEnv("EXTENSION_DIR");
+  if (!dir) throw new Error("OSTIA_EXTENSION_DIR missing");
+  const file = (0, import_node_path2.join)(dir, EXTENSION_MANIFEST_FILE);
+  const manifest = JSON.parse((0, import_node_fs2.readFileSync)(file, "utf8"));
+  const api = isRecord(manifest) ? manifest.api : void 0;
+  if (typeof api !== "string") throw new Error(`${file} declares no api`);
+  return api;
+}
+var BROWSE_READ_MAX = 1024 * 1024;
+var BROWSE_PAGE_ENTRIES = 500;
+var BROWSE_PAGE_BYTES = 256 * 1024;
+var BROWSE_CACHE_BLOCKS = 8;
+var BROWSE_NAME_BYTES = 4 * 1024;
+var BROWSE_LISTING_BYTES = 8 * 1024 * 1024;
+var BROWSE_LIST_METHOD = "ext.browse.list";
+var BROWSE_READ_METHOD = "ext.browse.read";
+var BROWSE_READ_AT_METHOD = "ext.browse.readAt";
+var BROWSE_ENTRIES_METHOD = "ext.browse.entries";
+var BROWSE_CHUNK_METHOD = "ext.browse.chunk";
+var BROWSE_LIMITS = {
+  entries: 2e4,
+  depth: 32,
+  nameLength: 1024,
+  scanBytes: 1024 * 1024 * 1024,
+  scanMs: 2e4,
+  linkTargetBytes: 1024
+};
+var BrowseError = class extends Error {
+  constructor(code, message) {
+    super(message ?? code);
+    this.code = code;
+  }
+  code;
+};
+var Cancelled = class extends Error {
+};
+var LIST_ERRORS = [
+  "unsupported",
+  "corrupt",
+  "limit",
+  "cancelled",
+  "failed",
+  "encrypted"
+];
+var READ_ERRORS = [
+  "gone",
+  "encrypted",
+  "link",
+  "too-large",
+  "limit",
+  "corrupt",
+  "cancelled",
+  "failed"
+];
+function failureCode(err, allowed, signal) {
+  if (signal.aborted || err instanceof Cancelled) return "cancelled";
+  if (err instanceof BrowseError && allowed.includes(err.code)) return err.code;
+  return "failed";
+}
+function guard(result2) {
+  if (!result2.ok) throw new Cancelled(result2.error);
+}
+function blockCache(size, fetchBlock) {
+  const blocks = /* @__PURE__ */ new Map();
+  const block = (index) => {
+    const cached = blocks.get(index);
+    if (cached) {
+      blocks.delete(index);
+      blocks.set(index, cached);
+      return cached;
+    }
+    const start = index * BROWSE_READ_MAX;
+    const fetched = fetchBlock(start, Math.min(BROWSE_READ_MAX, size - start));
+    fetched.catch(() => blocks.delete(index));
+    blocks.set(index, fetched);
+    while (blocks.size > BROWSE_CACHE_BLOCKS) {
+      const oldest = blocks.keys().next().value;
+      if (oldest === void 0) break;
+      blocks.delete(oldest);
+    }
+    return fetched;
+  };
+  const readAt = async (offset, length) => {
+    if (!Number.isSafeInteger(offset) || !Number.isSafeInteger(length) || offset < 0 || length < 0) {
+      throw new RangeError("offset and length must be non-negative integers");
+    }
+    if (offset + length > size) throw new RangeError("read past the end of the file");
+    const out = new Uint8Array(length);
+    let done = 0;
+    while (done < length) {
+      const at = offset + done;
+      const index = Math.floor(at / BROWSE_READ_MAX);
+      const data = await block(index);
+      const inside = at - index * BROWSE_READ_MAX;
+      const take = Math.min(length - done, data.length - inside);
+      if (take <= 0) throw new RangeError("short block");
+      out.set(data.subarray(inside, inside + take), done);
+      done += take;
+    }
+    return out;
+  };
+  const stream = (start = 0, end = size) => {
+    const last = Math.min(end, size);
+    async function* pieces() {
+      let at = start;
+      let ahead = null;
+      while (at < last) {
+        const index = Math.floor(at / BROWSE_READ_MAX);
+        const current = ahead ?? block(index);
+        ahead = (index + 1) * BROWSE_READ_MAX < last ? block(index + 1) : null;
+        ahead?.catch(() => {
+        });
+        const data = await current;
+        const inside = at - index * BROWSE_READ_MAX;
+        const upTo = Math.min(data.length, last - index * BROWSE_READ_MAX);
+        yield data.subarray(inside, upTo);
+        at = index * BROWSE_READ_MAX + upTo;
+      }
+    }
+    return import_node_stream.Readable.from(pieces(), { objectMode: false });
+  };
+  return { readAt, stream };
+}
+function openFile(conn, ticket, size, token) {
+  const fetchBlock = async (offset, length) => {
+    if (token.isCancellationRequested) throw new Cancelled("cancelled");
+    const params = { ticket, offset, length };
+    const reply = await conn.sendRequest(BROWSE_READ_AT_METHOD, params);
+    guard(reply);
+    return new Uint8Array(Buffer.from(reply.data, "base64"));
+  };
+  return { size, ...blockCache(size, fetchBlock) };
+}
+function entrySink(conn, ticket) {
+  let page = [];
+  let bytes = 0;
+  let more = true;
+  const flush = async () => {
+    if (page.length === 0) return;
+    const params = { ticket, entries: page };
+    page = [];
+    bytes = 0;
+    const reply = await conn.sendRequest(BROWSE_ENTRIES_METHOD, params);
+    guard(reply);
+    more = reply.more;
+  };
+  const sink = {
+    add: async (entry) => {
+      if (!more) return false;
+      page.push(entry);
+      bytes += entry.name.length + (entry.link?.length ?? 0) + 64;
+      if (page.length >= BROWSE_PAGE_ENTRIES || bytes >= BROWSE_PAGE_BYTES) await flush();
+      return more;
+    }
+  };
+  return { sink, flush, stopped: () => !more };
+}
+function chunkSink(conn, ticket) {
+  let more = true;
+  return {
+    write: async (bytes) => {
+      for (let at = 0; more && at < bytes.length; at += BROWSE_READ_MAX) {
+        const params = {
+          ticket,
+          data: Buffer.from(bytes.subarray(at, at + BROWSE_READ_MAX)).toString("base64")
+        };
+        const reply = await conn.sendRequest(BROWSE_CHUNK_METHOD, params);
+        guard(reply);
+        more = reply.more;
+      }
+      return more;
+    }
+  };
+}
+function abortOn(token) {
+  const abort = new AbortController();
+  token.onCancellationRequested(() => abort.abort());
+  if (token.isCancellationRequested) abort.abort();
+  return abort;
+}
+function isListParams(params) {
+  return isRecord(params) && typeof params.ticket === "string" && typeof params.kind === "string" && typeof params.size === "number" && isRecord(params.limits);
+}
+var REGISTRATION_WAIT_MS = 10;
+var REGISTRATION_TRIES = 20;
+async function providerFor(providers, kind) {
+  for (let tries = 0; tries < REGISTRATION_TRIES; tries++) {
+    const found = providers.get(kind);
+    if (found) return found;
+    await new Promise((resolve2) => setTimeout(resolve2, REGISTRATION_WAIT_MS));
+  }
+  return void 0;
+}
+function listenForBrowse(conn, providers) {
+  conn.onRequest(
+    BROWSE_LIST_METHOD,
+    async (params, token) => {
+      const provider = isListParams(params) ? await providerFor(providers, params.kind) : void 0;
+      if (!provider) return { ok: false, error: "unsupported" };
+      const abort = abortOn(token);
+      const entries = entrySink(conn, params.ticket);
+      try {
+        const file = openFile(conn, params.ticket, params.size, token);
+        const result2 = await provider.list(file, entries.sink, {
+          signal: abort.signal,
+          limits: params.limits
+        });
+        await entries.flush();
+        if (result2.ok && entries.stopped()) return { ok: true, complete: false };
+        return result2;
+      } catch (err) {
+        return { ok: false, error: failureCode(err, LIST_ERRORS, abort.signal) };
+      }
+    }
+  );
+  conn.onRequest(
+    BROWSE_READ_METHOD,
+    async (params, token) => {
+      const provider = isListParams(params) ? await providerFor(providers, params.kind) : void 0;
+      if (!provider || !Number.isSafeInteger(params.index) || !Number.isSafeInteger(params.max)) {
+        return { ok: false, error: "failed" };
+      }
+      const abort = abortOn(token);
+      try {
+        const file = openFile(conn, params.ticket, params.size, token);
+        return await provider.read(file, params.index, chunkSink(conn, params.ticket), {
+          signal: abort.signal,
+          limits: params.limits,
+          max: params.max
+        });
+      } catch (err) {
+        return { ok: false, error: failureCode(err, READ_ERRORS, abort.signal) };
+      }
+    }
+  );
+}
+function declaresBrowseKind(extensionDir2, kindId) {
+  try {
+    const manifest = JSON.parse((0, import_node_fs3.readFileSync)((0, import_node_path3.join)(extensionDir2, "ostia.json"), "utf8"));
+    const contributes = isRecord(manifest) ? manifest.contributes : void 0;
+    const kinds = isRecord(contributes) ? contributes.fileKinds : void 0;
+    return Array.isArray(kinds) && kinds.some((kind) => isRecord(kind) && kind.id === kindId && isRecord(kind.browse));
+  } catch {
+    return false;
+  }
+}
+function rpcFailure(err, fallback) {
+  const message = errorMessage(err);
+  const code = /^([a-z][a-z0-9-]{0,40}):/.exec(message)?.[1];
+  return { ok: false, error: code ?? fallback, message };
+}
+async function sent(work, error) {
+  try {
+    return await work;
+  } catch (err) {
+    return failure(error, errorMessage(err));
+  }
+}
+async function sentRpc(work, fallback) {
+  try {
+    return await work;
+  } catch (err) {
+    return rpcFailure(err, fallback);
+  }
+}
+async function withCancel(signal, work) {
+  const source = new import_node2.CancellationTokenSource();
+  const cancel = () => source.cancel();
+  signal?.addEventListener("abort", cancel, { once: true });
+  if (signal?.aborted) source.cancel();
+  try {
+    return await work(source.token);
+  } finally {
+    signal?.removeEventListener("abort", cancel);
+    source.dispose();
+  }
+}
+function windowMethods(conn, handlers) {
+  return {
+    call: (method, params) => params === void 0 ? conn.sendRequest(method) : conn.sendRequest(method, params),
+    confirm: async (req) => {
+      const res = await conn.sendRequest("ext.confirm", req);
+      return res?.confirmed === true;
+    },
+    notifyPanel: (title, body, path) => conn.sendRequest("ext.notify", { title, body, openPanel: path ?? true }),
+    registerCommands: async (map) => {
+      for (const [id, handler] of Object.entries(map)) handlers.commands.set(id, handler);
+      await conn.sendRequest("ext.registerCommands", { commands: Object.keys(map) });
+    },
+    onPanel: (handler) => {
+      handlers.panel = handler;
+    },
+    subscribe: (events, handler) => {
+      handlers.event = handler;
+      return conn.sendRequest("ext.subscribe", { events });
+    },
+    setSidebarItem: (item) => conn.sendRequest("ext.setSidebarItem", item),
+    startWithWindow: (on) => conn.sendRequest("ext.startWithWindow", { on }),
+    wireRuntime: () => conn.sendRequest("ext.wireRuntime", {}),
+    notify: (title, body) => conn.sendRequest("ext.notify", { title, body }),
+    openPanel: (workspaceId, path) => conn.sendRequest("ext.openPanel", { workspaceId, path }),
+    setPanelToolbar: (toolbar) => conn.sendRequest("ext.setPanelToolbar", toolbar),
+    setInboxItems: (workspaceId, items) => conn.sendRequest("ext.setInboxItems", { workspaceId, items }),
+    onInboxAction: (handler) => {
+      handlers.inboxAction = handler;
+    },
+    setPaneChip: (chip) => conn.sendRequest("ext.setPaneChip", chip),
+    clearPaneChip: (paneId, id) => conn.sendRequest("ext.clearPaneChip", { paneId, id }),
+    setWorkspaceChip: (chip) => conn.sendRequest("ext.setWorkspaceChip", chip),
+    clearWorkspaceChip: (workspaceId, id) => conn.sendRequest("ext.clearWorkspaceChip", { workspaceId, id }),
+    getSettings: async () => {
+      const res = await conn.sendRequest("ext.getSettings");
+      return res?.values ?? {};
+    },
+    setSetting: (key, value) => conn.sendRequest("ext.setSetting", { key, value }),
+    onSettingsChanged: (handler) => {
+      handlers.settings = handler;
+    },
+    getLocale: async () => {
+      const res = await conn.sendRequest("ext.locale");
+      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
+    },
+    onLocaleChanged: (handler) => {
+      handlers.locale = handler;
+    },
+    callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId })
+  };
+}
+function agentMethods(conn) {
+  return {
+    setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
+    openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
+    openFile: (file) => conn.sendRequest("ext.openFile", file),
+    openTerminal: (opts) => sent(conn.sendRequest("ext.openTerminal", opts), "open-terminal-failed"),
+    listAgents: async () => {
+      try {
+        const res = await conn.sendRequest("ext.agents");
+        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
+      } catch {
+        return [];
+      }
+    },
+    runAgent: (opts) => sent(conn.sendRequest("ext.runAgent", opts), "run-agent-failed"),
+    offerToAgent: (opts) => sent(conn.sendRequest("ext.offerToAgent", opts), "offer-failed"),
+    focusPane: (paneId) => sent(conn.sendRequest("ext.focusPane", { paneId }), "focus-failed"),
+    redact: async (texts) => {
+      try {
+        const res = await conn.sendRequest("ext.redact", {
+          texts
+        });
+        const redacted = res?.ok === true && Array.isArray(res.texts) ? res.texts : null;
+        return redacted?.length === texts.length && redacted.every((t) => typeof t === "string") ? redacted : null;
+      } catch {
+        return null;
+      }
+    },
+    exec: (opts, signal) => withCancel(
+      signal,
+      (token) => sentRpc(conn.sendRequest("ext.exec", opts, token), "exec-failed")
+    ),
+    busSend: (to, text) => sentRpc(conn.sendRequest("ext.busSend", { to, text }), "bus-send-failed"),
+    wakePane: (paneId, waitMs) => sentRpc(
+      conn.sendRequest(
+        "ext.wakePane",
+        waitMs === void 0 ? { paneId } : { paneId, waitMs }
+      ),
+      "wake-failed"
+    ),
+    requireCallerCaps: (paneId, caps, reason) => sentRpc(
+      conn.sendRequest("ext.requireCallerCaps", { paneId, caps, reason }),
+      "caller-caps-failed"
+    ),
+    playbookEnabled: async () => {
+      try {
+        const res = await conn.sendRequest("ext.playbookEnabled");
+        return res?.enabled === true;
+      } catch {
+        return false;
+      }
+    }
+  };
+}
+function serviceMethods(conn, handlers) {
+  return {
+    ask: (opts, signal) => withCancel(
+      signal,
+      (token) => sentRpc(conn.sendRequest("ext.ask", opts, token), "ask-failed")
+    ),
+    mcpCall: (server, tool, input, signal) => withCancel(
+      signal,
+      (token) => sentRpc(
+        conn.sendRequest("ext.mcpCall", { server, tool, input }, token),
+        "mcp-call-failed"
+      )
+    ),
+    onAgent: (handler) => {
+      handlers.agent = handler;
+    },
+    agentEvent: async (sessionId, event) => {
+      await conn.sendRequest("ext.agentEvent", { sessionId, event });
+    },
+    agentTool: (call, signal) => withCancel(
+      signal,
+      (token) => conn.sendRequest("ext.agentTool", call, token).catch((err) => ({ ok: false, error: errorMessage(err) }))
+    ),
+    agentComplete: (opts, signal) => withCancel(
+      signal,
+      (token) => sentRpc(
+        conn.sendRequest("ext.agentComplete", opts, token),
+        "agent-complete-failed"
+      )
+    ),
+    parkedList: (workspaceId) => sentRpc(
+      conn.sendRequest("ext.parkedList", { workspaceId }),
+      "parked-failed"
+    ),
+    parkedResume: (id) => sentRpc(conn.sendRequest("ext.parkedResume", { id }), "parked-failed"),
+    parkedForget: (id) => sentRpc(conn.sendRequest("ext.parkedForget", { id }), "parked-failed"),
+    mcpServers: () => sentRpc(conn.sendRequest("ext.mcpServers"), "mcp-servers-failed"),
+    connections: () => sentRpc(conn.sendRequest("ext.connections"), "connections-failed"),
+    connection: (name) => sentRpc(conn.sendRequest("ext.connection", { name }), "connection-failed"),
+    onConnectionsChanged: (handler) => {
+      handlers.connections = handler;
+    },
+    listWorkspaces: () => conn.sendRequest("workspace.list"),
+    listPanes: () => conn.sendRequest("pane.list"),
+    onAssist: (handler) => {
+      handlers.assist = handler;
+    },
+    onAssistModels: (handler) => {
+      handlers.models = handler;
+    },
+    setAssistStatus: (report) => conn.sendRequest("ext.setAssistStatus", report),
+    getShortcuts: async (ids) => {
+      const res = await conn.sendRequest(
+        "ext.shortcuts",
+        { ids }
+      );
+      return res?.shortcuts ?? {};
+    },
+    openAssistUi: (ui, workspaceId) => conn.sendRequest("ext.openAssistUi", workspaceId ? { ui, workspaceId } : { ui }),
+    getSecret: async (key) => {
+      const res = await conn.sendRequest("ext.getSecret", { key });
+      return typeof res?.value === "string" ? res.value : null;
+    },
+    getAssistProviders: async () => {
+      const res = await conn.sendRequest(
+        "ext.assistProviders"
+      );
+      return Array.isArray(res?.providers) ? res.providers : [];
+    },
+    onAssistProvidersChanged: (handler) => {
+      handlers.providers = handler;
+    },
+    openFolder: (opts) => sent(conn.sendRequest("ext.openFolder", opts), "open-folder-failed"),
+    closeFolder: (folderId) => sent(
+      conn.sendRequest("ext.closeFolder", { folderId }),
+      "close-folder-failed"
+    ),
+    onFiles: (handler) => {
+      handlers.files = handler;
+    },
+    onFolderClosed: (handler) => {
+      handlers.folderClosed = handler;
+    },
+    onBrowse: (name, provider) => {
+      const id = `${readEnv("EXTENSION_ID") ?? ""}.${name}`;
+      if (!declaresBrowseKind(readEnv("EXTENSION_DIR") ?? "", id)) {
+        throw new Error(`${id} is not a browse kind in this extension's manifest`);
+      }
+      handlers.browse.set(id, provider);
+      void conn.sendRequest("ext.registerCommands", { commands: [] }).catch(() => {
+      });
+    },
+    sandboxDomains: (workspaceId) => sent(
+      conn.sendRequest("ext.sandboxDomains", { workspaceId }),
+      "sandbox-domains-failed"
+    )
+  };
+}
+var CONNECTIONS_CHANGED_EVENT = "connections.changed";
+var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
+var FOLDER_CLOSED_EVENT = "folder.closed";
+function createHostHandlers() {
+  return {
+    commands: /* @__PURE__ */ new Map(),
+    panel: null,
+    event: null,
+    settings: null,
+    connections: null,
+    locale: null,
+    agent: null,
+    assist: null,
+    providers: null,
+    models: null,
+    files: null,
+    folderClosed: null,
+    inboxAction: null,
+    browse: /* @__PURE__ */ new Map()
+  };
+}
+var AssistFailure = class extends Error {
+  constructor(code, message) {
+    super(message ?? code);
+    this.code = code;
+  }
+  code;
+};
+function assistFailureReply(err, aborted) {
+  if (aborted) return { error: "cancelled" };
+  if (err instanceof AssistFailure) return { error: err.code, message: err.message };
+  return { error: "failed", message: errorMessage(err) };
+}
+function listenToHost(conn, handlers) {
+  conn.onRequest(
+    "ext.command",
+    async (params) => {
+      const handler = handlers.commands.get(params.command);
+      if (!handler) return failure("unknown-command", params.command);
+      try {
+        return await handler(params.args, params.caller);
+      } catch (err) {
+        return failure("command-failed", errorMessage(err));
+      }
+    }
+  );
+  conn.onRequest("ext.agent", async (params) => {
+    if (!handlers.agent) return { ok: false, error: "unavailable" };
+    try {
+      return await handlers.agent(params);
+    } catch (err) {
+      return { ok: false, error: "failed", message: errorMessage(err) };
+    }
+  });
+  conn.onRequest(
+    "ext.assist",
+    async (params, token) => {
+      if (!handlers.assist) throw new Error("no assist handler");
+      const abort = new AbortController();
+      const sub = token.onCancellationRequested(() => abort.abort());
+      if (token.isCancellationRequested) abort.abort();
+      try {
+        return await handlers.assist(params.point, params.input, {
+          requestId: params.requestId,
+          signal: abort.signal,
+          ...params.model ? { model: params.model } : {},
+          chunk: async (text) => {
+            if (abort.signal.aborted) return false;
+            const res = await conn.sendRequest("ext.assistChunk", {
+              requestId: params.requestId,
+              text
+            });
+            return res?.live === true;
+          }
+        });
+      } catch (err) {
+        return assistFailureReply(err, abort.signal.aborted);
+      } finally {
+        sub.dispose();
+      }
+    }
+  );
+  conn.onRequest(
+    "ext.assistModels",
+    async (params) => {
+      if (!handlers.models) throw new Error("no models handler");
+      const provider = typeof params.provider === "string" ? params.provider : void 0;
+      if (params.action === "list") return handlers.models.list(provider);
+      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
+        return { ok: false, error: "invalid" };
+      }
+      try {
+        await handlers.models.setLoaded(params.id, params.action === "load", provider);
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: errorMessage(err) };
+      }
+    }
+  );
+  conn.onRequest("ext.files", async (params) => {
+    if (!handlers.files) return { ok: false, error: "unavailable" };
+    try {
+      return await handlers.files(params);
+    } catch {
+      return { ok: false, error: "failed" };
+    }
+  });
+  listenForBrowse(conn, handlers.browse);
+  conn.onRequest("ext.panel", async (params) => {
+    if (!handlers.panel) throw new Error("no panel handler");
+    return handlers.panel(params.caller, params.path);
+  });
+  conn.onNotification(
+    "ext.event",
+    (params) => {
+      if (params.type === SETTINGS_CHANGED_EVENT) {
+        handlers.settings?.(params.payload.values);
+      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
+        handlers.providers?.(params.payload.providers);
+      } else if (params.type === LOCALE_CHANGED_EVENT) {
+        handlers.locale?.(params.payload.locale);
+      } else if (params.type === CONNECTIONS_CHANGED_EVENT) {
+        handlers.connections?.();
+      } else if (params.type === INBOX_ACTION_EVENT) {
+        handlers.inboxAction?.(params.payload);
+      } else if (params.type === FOLDER_CLOSED_EVENT) {
+        handlers.folderClosed?.(params.payload.folderId);
+      } else {
+        handlers.event?.(params.type, params.payload);
+      }
+    }
+  );
+}
+var PHONE_SCREENS_LISTEN_METHOD = "ext.phoneScreens.listen";
+var PHONE_SCREENS_REQUEST_METHOD = "ext.phoneScreens.request";
+var PHONE_SCREENS_ASK_METHOD = "ext.phoneScreens.ask";
+var PHONE_SCREENS_ASK_FOR_METHOD = "ext.phoneScreens.askFor";
+var PHONE_SCREEN_OFFER_METHOD = "ext.phoneScreen.offer";
+var PHONE_SCREEN_FRAME_METHOD = "ext.phoneScreen.frame";
+var PHONE_SCREEN_EVENT_METHOD = "ext.phoneScreen.event";
+async function called(work) {
+  try {
+    const reply = await work;
+    if (isRecord(reply) && typeof reply.ok === "boolean") return reply;
+    return { ok: false, error: "failed" };
+  } catch (err) {
+    return { ok: false, error: "failed", message: errorMessage(err) };
+  }
+}
+function phoneScreenMethods(conn) {
+  let controller = null;
+  let listening = false;
+  const startListening = () => {
+    if (listening) return;
+    listening = true;
+    conn.onRequest(
+      PHONE_SCREEN_OFFER_METHOD,
+      async (link) => {
+        if (!controller) return { accept: false };
+        try {
+          return { accept: await controller.offer(link) === true };
+        } catch {
+          return { accept: false };
+        }
+      }
+    );
+    conn.onNotification(PHONE_SCREEN_FRAME_METHOD, (params) => {
+      controller?.frame?.({
+        linkId: params.linkId,
+        header: params.header,
+        jpeg: Buffer.from(params.jpeg, "base64")
+      });
+    });
+    conn.onNotification(PHONE_SCREEN_EVENT_METHOD, (event) => {
+      controller?.event?.(event);
+    });
+  };
+  return {
+    listen: (next) => {
+      controller = next;
+      startListening();
+      return called(conn.sendRequest(PHONE_SCREENS_LISTEN_METHOD, {}));
+    },
+    request: (linkId, method, params) => called(conn.sendRequest(PHONE_SCREENS_REQUEST_METHOD, { linkId, method, params })),
+    ask: (sessionId) => called(conn.sendRequest(PHONE_SCREENS_ASK_METHOD, { sessionId })),
+    askFor: (request) => called(conn.sendRequest(PHONE_SCREENS_ASK_FOR_METHOD, request))
+  };
+}
+var AGENT_SKILL_FILE_MAX_BYTES = 256 * 1024;
+var AGENT_SKILL_MAX_BYTES = 1024 * 1024;
+var AGENT_HOOK_INPUT_MAX = 1024 * 1024;
+var RESERVED_SKILL_IDS = [PRODUCT_NAME, `${PRODUCT_NAME}-manager`];
+var LANGUAGE_ID_PATTERN = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8}){0,3}$/;
+var CATALOG_SUFFIX = ".json";
+function extensionDir() {
+  return readEnv("EXTENSION_DIR") ?? process.cwd();
+}
+function readMessageFile(file) {
+  try {
+    if ((0, import_node_fs4.statSync)(file).size > EXTENSION_LOCALE_FILE_MAX_BYTES) return void 0;
+    const raw = JSON.parse((0, import_node_fs4.readFileSync)(file, "utf8"));
+    return typeof raw === "object" && raw !== null ? raw.messages : void 0;
+  } catch {
+    return void 0;
+  }
+}
+function readMessages(dir = extensionDir()) {
+  const catalogs = /* @__PURE__ */ Object.create(null);
+  const folder = (0, import_node_path4.join)(dir, EXTENSION_LOCALES_DIR);
+  let names = [];
+  try {
+    names = (0, import_node_fs4.readdirSync)(folder);
+  } catch {
+  }
+  for (const name of names) {
+    const tag = name.endsWith(CATALOG_SUFFIX) ? name.slice(0, -CATALOG_SUFFIX.length) : "";
+    if (!LANGUAGE_ID_PATTERN.test(tag)) continue;
+    catalogs[tag] = parseMessages(readMessageFile((0, import_node_path4.join)(folder, name))).messages;
+  }
+  return catalogs;
+}
+function createTranslator(dir = extensionDir()) {
+  const catalogs = readMessages(dir);
+  return (locale) => translatorFor(catalogs, locale);
+}
+function cliArgs(args) {
+  if (typeof args !== "object" || args === null) return null;
+  const argv = args.argv;
+  if (!Array.isArray(argv) || !argv.every((a) => typeof a === "string")) return null;
+  const stdin = args.stdin;
+  return typeof stdin === "string" ? { argv, stdin } : { argv };
+}
+function namedArgs(args) {
+  return typeof args === "object" && args !== null ? args : {};
 }
 var ALL_CAPABILITIES = [
   "drive-self",
@@ -3806,43 +4635,32 @@ var ALL_CAPABILITIES = [
   "assist",
   "credentials",
   "language-server",
-  "agent-plugin"
+  "agent-plugin",
+  "agent-complete",
+  "mcp",
+  "read-bus",
+  "file-contents",
+  "phone-screens"
 ];
-var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
-  (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
+var HUMAN_GRANTED_CAPABILITIES = [
+  "mcp",
+  "read-bus",
+  "file-contents",
+  "phone-screens"
+];
+var BUILTIN_CAPABILITIES = ALL_CAPABILITIES.filter(
+  (cap) => !HUMAN_GRANTED_CAPABILITIES.includes(cap)
 );
-var PRODUCT_NAME = "ostia";
-var EXTENSION_API_VERSION = "3.0";
-var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
-var EXTENSION_API_ENV = "EXTENSION_API";
-function parseApiVersion(value) {
-  if (typeof value !== "string") return null;
-  const match = EXTENSION_API_PATTERN.exec(value);
-  return match ? { major: Number(match[1]), minor: Number(match[2]) } : null;
-}
-function isApiCompatible(required, provided) {
-  return required.major === provided.major && required.minor <= provided.minor;
-}
-function apiProblem(required, provided = EXTENSION_API_VERSION) {
-  const wanted = parseApiVersion(required);
-  if (!wanted) return "api must be an extension API version such as 1.0";
-  const have = parseApiVersion(provided);
-  if (have && isApiCompatible(wanted, have)) return null;
-  return `needs extension API ${required}; this ${PRODUCT_NAME} provides ${provided}`;
-}
-var SETTINGS_CHANGED_EVENT = "settings.changed";
-var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
-var TARGET_PANE_PARAM = "targetPaneId";
-var DIFF_TEXT_MAX = 5 * 1024 * 1024;
-var OPEN_TERMINAL_WAIT_MAX_MS = 10 * 6e4;
-var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
-var FOLDER_CLOSED_EVENT = "folder.closed";
+var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
+  (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive" && cap !== "mcp" && cap !== "read-bus" && cap !== "file-contents" && cap !== "phone-screens"
+);
 var PANEL_SIZES_FILE = "panel-sizes.json";
 var PanelSizeStore = class {
   constructor(file) {
     this.file = file;
     this.sizes = parsePanelSizes(file ? readJson(file) : null);
   }
+  file;
   sizes;
   all() {
     return { ...this.sizes };
@@ -3856,404 +4674,15 @@ var PanelSizeStore = class {
   }
   save() {
     if (!this.file) return;
-    (0, import_fs2.mkdirSync)((0, import_path2.dirname)(this.file), { recursive: true, mode: 448 });
-    const tmp = `${this.file}.${process.pid}.tmp`;
-    (0, import_fs2.writeFileSync)(tmp, JSON.stringify(this.sizes, null, 2), { mode: 384 });
-    (0, import_fs2.renameSync)(tmp, this.file);
+    writeFileAtomic(this.file, JSON.stringify(this.sizes, null, 2), { mode: 384, dirMode: 448 });
   }
 };
 function readJson(file) {
   try {
-    return JSON.parse((0, import_fs2.readFileSync)(file, "utf8"));
+    return JSON.parse((0, import_node_fs6.readFileSync)(file, "utf8"));
   } catch {
     return null;
   }
-}
-var LANGUAGE_ID_PATTERN = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8}){0,3}$/;
-var CATALOG_SUFFIX = ".json";
-function extensionDir() {
-  return readEnv("EXTENSION_DIR") ?? process.cwd();
-}
-function readMessageFile(file) {
-  try {
-    if ((0, import_fs3.statSync)(file).size > EXTENSION_LOCALE_FILE_MAX_BYTES) return void 0;
-    const raw = JSON.parse((0, import_fs3.readFileSync)(file, "utf8"));
-    return typeof raw === "object" && raw !== null ? raw.messages : void 0;
-  } catch {
-    return void 0;
-  }
-}
-function readMessages(dir = extensionDir()) {
-  const catalogs = /* @__PURE__ */ Object.create(null);
-  const folder = (0, import_path3.join)(dir, EXTENSION_LOCALES_DIR);
-  let names = [];
-  try {
-    names = (0, import_fs3.readdirSync)(folder);
-  } catch {
-  }
-  for (const name of names) {
-    const tag = name.endsWith(CATALOG_SUFFIX) ? name.slice(0, -CATALOG_SUFFIX.length) : "";
-    if (!LANGUAGE_ID_PATTERN.test(tag)) continue;
-    catalogs[tag] = parseMessages(readMessageFile((0, import_path3.join)(folder, name))).messages;
-  }
-  return catalogs;
-}
-function createTranslator(dir = extensionDir()) {
-  const catalogs = readMessages(dir);
-  return (locale) => translatorFor(catalogs, locale);
-}
-var DEFAULT_TIMEOUT_MS = 15e3;
-var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
-function runTool(bin, args, opts = {}) {
-  const maxOutput = opts.maxOutput ?? DEFAULT_MAX_OUTPUT;
-  return new Promise((resolve2) => {
-    let stdout = "";
-    let stderr = "";
-    let timedOut = false;
-    let settled = false;
-    const finish = (run) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve2(run);
-    };
-    const child = (0, import_child_process.spawn)(bin, args, {
-      cwd: opts.cwd,
-      stdio: ["ignore", "pipe", "pipe"],
-      env: process.env
-    });
-    const timer = setTimeout(() => {
-      timedOut = true;
-      child.kill("SIGTERM");
-    }, opts.timeoutMs ?? DEFAULT_TIMEOUT_MS);
-    child.stdout.on("data", (chunk) => {
-      if (stdout.length < maxOutput) stdout += chunk.toString("utf8");
-    });
-    child.stderr.on("data", (chunk) => {
-      if (stderr.length < maxOutput) stderr += chunk.toString("utf8");
-    });
-    child.on("error", (err) => {
-      finish({
-        code: null,
-        stdout,
-        stderr: stderr || err.message,
-        missing: err.code === "ENOENT",
-        timedOut
-      });
-    });
-    child.on("close", (code) => finish({ code, stdout, stderr, missing: false, timedOut }));
-  });
-}
-function nextBackoff(failures, baseMs, maxMs) {
-  if (failures <= 0) return baseMs;
-  return Math.min(maxMs, baseMs * 2 ** Math.min(failures, 16));
-}
-var AssistFailure = class extends Error {
-  constructor(code, message) {
-    super(message ?? code);
-    this.code = code;
-  }
-};
-function assistFailureReply(err, aborted) {
-  if (aborted) return { error: "cancelled" };
-  if (err instanceof AssistFailure) return { error: err.code, message: err.message };
-  return { error: "failed", message: errorMessage(err) };
-}
-function ok(text, data) {
-  const result2 = { ok: true };
-  if (text !== void 0) result2.text = text;
-  if (data !== void 0) result2.data = data;
-  return result2;
-}
-function failure(error, message) {
-  return message ? { ok: false, error, message } : { ok: false, error };
-}
-function numberSetting(values, key, fallback, range) {
-  const value = values[key];
-  if (typeof value !== "number" || !Number.isFinite(value)) return fallback;
-  return Math.min(range.max, Math.max(range.min, value));
-}
-function booleanSetting(values, key, fallback) {
-  const value = values[key];
-  return typeof value === "boolean" ? value : fallback;
-}
-function errorMessage(err) {
-  return err instanceof Error ? err.message : String(err);
-}
-async function connect() {
-  const socketPath = readEnv("SOCKET");
-  const token = readEnv("TOKEN");
-  if (!socketPath || !token) throw new Error("OSTIA_SOCKET / OSTIA_TOKEN missing");
-  const provided = readEnv(EXTENSION_API_ENV);
-  const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
-  if (incompatible) throw new Error(`this extension ${incompatible}`);
-  const socket = (0, import_net.createConnection)(socketPath);
-  await new Promise((resolve2, reject) => {
-    socket.once("connect", resolve2);
-    socket.once("error", reject);
-  });
-  const conn = (0, import_node.createMessageConnection)(
-    new import_node.StreamMessageReader(socket),
-    new import_node.StreamMessageWriter(socket)
-  );
-  const handlers = /* @__PURE__ */ new Map();
-  let panelHandler = null;
-  let eventHandler = null;
-  let settingsHandler = null;
-  let localeHandler = null;
-  let assistHandler = null;
-  let providersHandler = null;
-  let modelsHandler = null;
-  let filesHandler = null;
-  let folderClosedHandler = null;
-  conn.onRequest(
-    "ext.command",
-    async (params) => {
-      const handler = handlers.get(params.command);
-      if (!handler) return failure("unknown-command", params.command);
-      try {
-        return await handler(params.args, params.caller);
-      } catch (err) {
-        return failure("command-failed", errorMessage(err));
-      }
-    }
-  );
-  conn.onRequest(
-    "ext.assist",
-    async (params, token2) => {
-      if (!assistHandler) throw new Error("no assist handler");
-      const abort = new AbortController();
-      const sub = token2.onCancellationRequested(() => abort.abort());
-      if (token2.isCancellationRequested) abort.abort();
-      try {
-        return await assistHandler(params.point, params.input, {
-          requestId: params.requestId,
-          signal: abort.signal,
-          ...params.model ? { model: params.model } : {},
-          chunk: async (text) => {
-            if (abort.signal.aborted) return false;
-            const res = await conn.sendRequest("ext.assistChunk", {
-              requestId: params.requestId,
-              text
-            });
-            return res?.live === true;
-          }
-        });
-      } catch (err) {
-        return assistFailureReply(err, abort.signal.aborted);
-      } finally {
-        sub.dispose();
-      }
-    }
-  );
-  conn.onRequest(
-    "ext.assistModels",
-    async (params) => {
-      if (!modelsHandler) throw new Error("no models handler");
-      const provider = typeof params.provider === "string" ? params.provider : void 0;
-      if (params.action === "list") return modelsHandler.list(provider);
-      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
-        return { ok: false, error: "invalid" };
-      }
-      try {
-        await modelsHandler.setLoaded(params.id, params.action === "load", provider);
-        return { ok: true };
-      } catch (err) {
-        return { ok: false, error: errorMessage(err) };
-      }
-    }
-  );
-  conn.onRequest("ext.files", async (params) => {
-    if (!filesHandler) return { ok: false, error: "unavailable" };
-    try {
-      return await filesHandler(params);
-    } catch {
-      return { ok: false, error: "failed" };
-    }
-  });
-  conn.onRequest("ext.panel", async (params) => {
-    if (!panelHandler) throw new Error("no panel handler");
-    return panelHandler(params.caller, params.path);
-  });
-  conn.onNotification(
-    "ext.event",
-    (params) => {
-      if (params.type === SETTINGS_CHANGED_EVENT) {
-        settingsHandler?.(params.payload.values);
-      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
-        providersHandler?.(params.payload.providers);
-      } else if (params.type === LOCALE_CHANGED_EVENT) {
-        localeHandler?.(params.payload.locale);
-      } else if (params.type === FOLDER_CLOSED_EVENT) {
-        folderClosedHandler?.(params.payload.folderId);
-      } else {
-        eventHandler?.(params.type, params.payload);
-      }
-    }
-  );
-  conn.onClose(() => process.exit(0));
-  socket.on("close", () => process.exit(0));
-  conn.listen();
-  await conn.sendRequest("hello", { token });
-  return {
-    call: (method, params) => params === void 0 ? conn.sendRequest(method) : conn.sendRequest(method, params),
-    confirm: async (req) => {
-      const res = await conn.sendRequest("ext.confirm", req);
-      return res?.confirmed === true;
-    },
-    notifyPanel: (title, body, path) => conn.sendRequest("ext.notify", { title, body, openPanel: path ?? true }),
-    registerCommands: async (map) => {
-      for (const [id, handler] of Object.entries(map)) handlers.set(id, handler);
-      await conn.sendRequest("ext.registerCommands", { commands: Object.keys(map) });
-    },
-    onPanel: (handler) => {
-      panelHandler = handler;
-    },
-    subscribe: (events, handler) => {
-      eventHandler = handler;
-      return conn.sendRequest("ext.subscribe", { events });
-    },
-    setSidebarItem: (item) => conn.sendRequest("ext.setSidebarItem", item),
-    notify: (title, body) => conn.sendRequest("ext.notify", { title, body }),
-    openPanel: (workspaceId, path) => conn.sendRequest("ext.openPanel", { workspaceId, path }),
-    setPaneChip: (chip) => conn.sendRequest("ext.setPaneChip", chip),
-    clearPaneChip: (paneId, id) => conn.sendRequest("ext.clearPaneChip", { paneId, id }),
-    setWorkspaceChip: (chip) => conn.sendRequest("ext.setWorkspaceChip", chip),
-    clearWorkspaceChip: (workspaceId, id) => conn.sendRequest("ext.clearWorkspaceChip", { workspaceId, id }),
-    getSettings: async () => {
-      const res = await conn.sendRequest("ext.getSettings");
-      return res?.values ?? {};
-    },
-    setSetting: (key, value) => conn.sendRequest("ext.setSetting", { key, value }),
-    onSettingsChanged: (handler) => {
-      settingsHandler = handler;
-    },
-    getLocale: async () => {
-      const res = await conn.sendRequest("ext.locale");
-      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
-    },
-    onLocaleChanged: (handler) => {
-      localeHandler = handler;
-    },
-    callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
-    setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
-    openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
-    openFile: (file) => conn.sendRequest("ext.openFile", file),
-    openTerminal: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.openTerminal", opts);
-      } catch (err) {
-        return { ok: false, error: "open-terminal-failed", message: errorMessage(err) };
-      }
-    },
-    listAgents: async () => {
-      try {
-        const res = await conn.sendRequest("ext.agents");
-        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
-      } catch {
-        return [];
-      }
-    },
-    runAgent: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.runAgent", opts);
-      } catch (err) {
-        return { ok: false, error: "run-agent-failed", message: errorMessage(err) };
-      }
-    },
-    offerToAgent: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.offerToAgent", opts);
-      } catch (err) {
-        return { ok: false, error: "offer-failed", message: errorMessage(err) };
-      }
-    },
-    focusPane: async (paneId) => {
-      try {
-        return await conn.sendRequest("ext.focusPane", { paneId });
-      } catch (err) {
-        return failure("focus-failed", errorMessage(err));
-      }
-    },
-    listWorkspaces: () => conn.sendRequest("workspace.list"),
-    listPanes: () => conn.sendRequest("pane.list"),
-    onAssist: (handler) => {
-      assistHandler = handler;
-    },
-    onAssistModels: (handler) => {
-      modelsHandler = handler;
-    },
-    setAssistStatus: (report) => conn.sendRequest("ext.setAssistStatus", report),
-    getShortcuts: async (ids) => {
-      const res = await conn.sendRequest(
-        "ext.shortcuts",
-        { ids }
-      );
-      return res?.shortcuts ?? {};
-    },
-    openAssistUi: (ui, workspaceId) => conn.sendRequest("ext.openAssistUi", workspaceId ? { ui, workspaceId } : { ui }),
-    getSecret: async (key) => {
-      const res = await conn.sendRequest("ext.getSecret", { key });
-      return typeof res?.value === "string" ? res.value : null;
-    },
-    getAssistProviders: async () => {
-      const res = await conn.sendRequest(
-        "ext.assistProviders"
-      );
-      return Array.isArray(res?.providers) ? res.providers : [];
-    },
-    onAssistProvidersChanged: (handler) => {
-      providersHandler = handler;
-    },
-    openFolder: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.openFolder", opts);
-      } catch (err) {
-        return { ok: false, error: "open-folder-failed", message: errorMessage(err) };
-      }
-    },
-    closeFolder: async (folderId) => {
-      try {
-        return await conn.sendRequest("ext.closeFolder", { folderId });
-      } catch (err) {
-        return failure("close-folder-failed", errorMessage(err));
-      }
-    },
-    onFiles: (handler) => {
-      filesHandler = handler;
-    },
-    onFolderClosed: (handler) => {
-      folderClosedHandler = handler;
-    }
-  };
-}
-function onShutdown(fn) {
-  let ran = false;
-  const once = () => {
-    if (ran) return;
-    ran = true;
-    try {
-      fn();
-    } catch {
-    }
-  };
-  process.on("exit", once);
-  for (const signal of ["SIGTERM", "SIGINT", "SIGHUP"]) {
-    process.on(signal, () => {
-      once();
-      process.exit(0);
-    });
-  }
-}
-function cliArgs(args) {
-  if (typeof args !== "object" || args === null) return null;
-  const argv = args.argv;
-  if (!Array.isArray(argv) || !argv.every((a) => typeof a === "string")) return null;
-  const stdin = args.stdin;
-  return typeof stdin === "string" ? { argv, stdin } : { argv };
-}
-function namedArgs(args) {
-  return typeof args === "object" && args !== null ? args : {};
 }
 function panelCaller(context) {
   const caller = { kind: "user", capabilities: [...ALL_CAPABILITIES] };
@@ -4270,6 +4699,9 @@ var CONTENT_TYPES = {
   ".css": "text/css; charset=utf-8"
 };
 var MAX_BODY = 1024 * 1024;
+function responseMessage(err) {
+  return err instanceof Error ? err.message : "bad request";
+}
 function readBody(req) {
   return new Promise((resolve2, reject) => {
     let size = 0;
@@ -4294,13 +4726,20 @@ function send(res, status, type, body) {
   });
   res.end(body);
 }
+async function jsonReply(res, work) {
+  try {
+    send(res, 200, "application/json", JSON.stringify(await work()));
+  } catch (err) {
+    send(res, 400, "application/json", JSON.stringify(failure("bad-request", responseMessage(err))));
+  }
+}
 async function startPanelServer(opts) {
-  const secret = (0, import_crypto.randomBytes)(24).toString("hex");
+  const secret = (0, import_node_crypto2.randomBytes)(24).toString("hex");
   const dataDir = readEnv("EXTENSION_DATA");
-  const sizes = new PanelSizeStore(dataDir ? (0, import_path.join)(dataDir, PANEL_SIZES_FILE) : null);
+  const sizes = new PanelSizeStore(dataDir ? (0, import_node_path5.join)(dataDir, PANEL_SIZES_FILE) : null);
   const streams = /* @__PURE__ */ new Set();
   let port = 0;
-  const server = (0, import_http.createServer)(async (req, res) => {
+  const server = (0, import_node_http.createServer)(async (req, res) => {
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
     if (req.headers.host !== `127.0.0.1:${port}`) return send(res, 421, "text/plain", "bad host");
     const origin = req.headers.origin;
@@ -4320,34 +4759,26 @@ async function startPanelServer(opts) {
       if (req.method === "GET")
         return send(res, 200, "application/json", JSON.stringify(sizes.all()));
       if (req.method !== "POST") return send(res, 405, "text/plain", "method not allowed");
-      try {
+      return jsonReply(res, async () => {
         const body = JSON.parse(await readBody(req));
         if (!sizes.set(body.key, body.fraction ?? null)) throw new Error("key, fraction");
-        return send(res, 200, "application/json", JSON.stringify(sizes.all()));
-      } catch (err) {
-        return send(
-          res,
-          400,
-          "application/json",
-          JSON.stringify(failure("bad-request", errorMessage(err)))
-        );
-      }
+        return sizes.all();
+      });
+    }
+    if (req.method === "POST" && url.pathname === PANEL_TOOLBAR_PATH) {
+      if (req.headers["x-ostia-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
+      return jsonReply(res, async () => {
+        const body = JSON.parse(await readBody(req));
+        return opts.toolbar ? opts.toolbar(body) : failure("not-contributed", "no toolbar handler");
+      });
     }
     if (req.method === "POST" && url.pathname === "/api") {
       if (req.headers["x-ostia-panel"] !== secret) return send(res, 403, "text/plain", "forbidden");
-      try {
+      return jsonReply(res, async () => {
         const body = JSON.parse(await readBody(req));
         if (typeof body.command !== "string") throw new Error("missing command");
-        const result2 = await opts.handle(body.command, body.args, panelCaller(body.context ?? {}));
-        return send(res, 200, "application/json", JSON.stringify(result2));
-      } catch (err) {
-        return send(
-          res,
-          400,
-          "application/json",
-          JSON.stringify(failure("bad-request", errorMessage(err)))
-        );
-      }
+        return opts.handle(body.command, body.args, panelCaller(body.context ?? {}));
+      });
     }
     if (req.method === "GET") {
       const name = url.pathname === "/" ? "panel.html" : url.pathname.slice(1);
@@ -4358,7 +4789,7 @@ async function startPanelServer(opts) {
           res,
           200,
           CONTENT_TYPES[ext] ?? "application/octet-stream",
-          (0, import_fs.readFileSync)((0, import_path.join)(opts.dir, name))
+          (0, import_node_fs5.readFileSync)((0, import_node_path5.join)(opts.dir, name))
         );
       } catch {
         return send(res, 404, "text/plain", "not found");
@@ -4379,20 +4810,197 @@ async function startPanelServer(opts) {
     }
   };
 }
+var DEFAULT_TIMEOUT_MS = 15e3;
+var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
+var KILL_GRACE_MS = 2e3;
+function runTool(bin, args, opts = {}) {
+  const maxOutput = opts.maxOutput ?? DEFAULT_MAX_OUTPUT;
+  return new Promise((resolve2) => {
+    let stdout = "";
+    let stderr = "";
+    let settled = false;
+    const finish = (run) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve2(run);
+    };
+    const child = (0, import_node_child_process.spawn)(bin, args, {
+      cwd: opts.cwd,
+      stdio: ["ignore", "pipe", "pipe"],
+      env: opts.env ?? process.env,
+      detached: true
+    });
+    const group = (signal) => {
+      try {
+        if (child.pid) process.kill(-child.pid, signal);
+      } catch {
+      }
+    };
+    const timer = setTimeout(() => {
+      group("SIGTERM");
+      setTimeout(() => group("SIGKILL"), KILL_GRACE_MS);
+      finish({ code: null, stdout, stderr, missing: false, timedOut: true });
+      child.stdout.destroy();
+      child.stderr.destroy();
+    }, opts.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+    child.stdout.on("data", (chunk) => {
+      if (stdout.length < maxOutput) stdout += chunk.toString("utf8");
+    });
+    child.stderr.on("data", (chunk) => {
+      if (stderr.length < maxOutput) stderr += chunk.toString("utf8");
+    });
+    child.on("error", (err) => {
+      finish({
+        code: null,
+        stdout,
+        stderr: stderr || err.message,
+        missing: err.code === "ENOENT",
+        timedOut: false
+      });
+    });
+    child.on("close", (code) => finish({ code, stdout, stderr, missing: false, timedOut: false }));
+  });
+}
+function nextBackoff(failures, baseMs, maxMs) {
+  if (failures <= 0) return baseMs;
+  return Math.min(maxMs, baseMs * 2 ** Math.min(failures, 16));
+}
+async function connect() {
+  const socketPath = readEnv("SOCKET");
+  const token = readEnv("TOKEN");
+  if (!socketPath || !token) throw new Error("OSTIA_SOCKET / OSTIA_TOKEN missing");
+  const provided = readEnv(EXTENSION_API_ENV);
+  const incompatible = provided ? apiProblem(declaredApi(), provided) : null;
+  if (incompatible) throw new Error(`this extension ${incompatible}`);
+  const socket = (0, import_node_net.createConnection)(socketPath);
+  await (0, import_node_events.once)(socket, "connect");
+  const conn = (0, import_node.createMessageConnection)(
+    new import_node.StreamMessageReader(socket),
+    new import_node.StreamMessageWriter(socket)
+  );
+  const handlers = createHostHandlers();
+  listenToHost(conn, handlers);
+  conn.onClose(() => process.exit(0));
+  socket.on("close", () => process.exit(0));
+  conn.listen();
+  await conn.sendRequest("hello", { token });
+  return {
+    ...windowMethods(conn, handlers),
+    ...agentMethods(conn),
+    ...serviceMethods(conn, handlers),
+    phoneScreens: phoneScreenMethods(conn)
+  };
+}
+function onShutdown(fn) {
+  let ran = false;
+  const once2 = () => {
+    if (ran) return;
+    ran = true;
+    try {
+      fn();
+    } catch {
+    }
+  };
+  process.on("exit", once2);
+  for (const signal of ["SIGTERM", "SIGINT", "SIGHUP"]) {
+    process.on(signal, () => {
+      once2();
+      process.exit(0);
+    });
+  }
+}
 
 // src/extensions/trellis/trellis.ts
-var import_node_fs = require("node:fs");
-var import_node_path = require("node:path");
+var import_node_fs7 = require("node:fs");
+var import_node_path6 = require("node:path");
 var TRELLIS_IDENTITY = "ostia";
 var HUMAN_ACTOR = `human:${TRELLIS_IDENTITY}`;
-var PRIORITIES = ["urgent", "high", "normal", "low"];
-var TITLE_MAX = 300;
-var TEXT_MAX = 64 * 1024;
-var NAME_MAX = 100;
 var KEY_RE = /^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*$/;
 var SLUG_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-var ENTRY_SLUG_RE = /^[a-z0-9][a-z0-9_-]*(\/[a-z0-9][a-z0-9_-]*)*$/;
 var MARKER_FILE = ".trellis";
+function countBoard(board, nowMs) {
+  let open = 0;
+  let claimed = 0;
+  for (const column of board.columns) {
+    if (column.done) continue;
+    for (const card of column.cards) {
+      open += 1;
+      if (isClaimLive(card, nowMs)) claimed += 1;
+    }
+  }
+  return { open, claimed };
+}
+function isClaimLive(card, nowMs) {
+  return Boolean(card.claimedBy) && (card.claimUntil === void 0 || card.claimUntil > nowMs);
+}
+function projectOfRef(ref) {
+  const address = /^\/([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*)\//.exec(ref);
+  if (address) return address[1] === "GLOBAL" ? null : address[1];
+  const m = /^([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*?)-\d+$/.exec(ref);
+  return m ? m[1] : null;
+}
+var REVIEW_COLUMN = /review|needs?[-_ ]?(you|user|human|input)|waiting|approv/i;
+var BLOCKED_COLUMN = /block/i;
+var ALL_NOTIFY_KINDS = { review: true, blocked: true };
+function needsUser(ev, kinds = ALL_NOTIFY_KINDS) {
+  if (ev.entity !== "card" || ev.action !== "moved" || ev.field !== "column") return null;
+  if (!ev.actor.startsWith("agent:")) return null;
+  const column = ev.new ?? "";
+  if (BLOCKED_COLUMN.test(column)) return kinds.blocked ? { kind: "blocked", column } : null;
+  if (REVIEW_COLUMN.test(column)) return kinds.review ? { kind: "review", column } : null;
+  return null;
+}
+function parseMarker(text) {
+  const s = text.trim();
+  if (!s.startsWith("/") || /[\r\n]/.test(s)) return null;
+  const segs = s.slice(1).split("/");
+  const project = segs[0].toUpperCase();
+  if (!KEY_RE.test(project) || project === "GLOBAL") return null;
+  if (segs.length === 1) return { project };
+  if (segs.length === 3 && segs[1] === "boards" && SLUG_RE.test(segs[2])) {
+    return { project, board: segs[2] };
+  }
+  return null;
+}
+function exists(path) {
+  try {
+    (0, import_node_fs7.lstatSync)(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
+function findProject(workDir, home) {
+  let start;
+  try {
+    start = (0, import_node_fs7.realpathSync)((0, import_node_path6.resolve)(workDir));
+    if (!(0, import_node_fs7.statSync)(start).isDirectory()) return null;
+  } catch {
+    return null;
+  }
+  let homeReal = (0, import_node_path6.resolve)(home);
+  try {
+    homeReal = (0, import_node_fs7.realpathSync)(homeReal);
+  } catch {
+  }
+  for (let dir = start; ; ) {
+    const parent = (0, import_node_path6.dirname)(dir);
+    if (dir === homeReal || parent === dir) return null;
+    const marker = (0, import_node_path6.join)(dir, MARKER_FILE);
+    try {
+      if ((0, import_node_fs7.statSync)(marker).isFile()) {
+        const parsed = parseMarker((0, import_node_fs7.readFileSync)(marker, "utf8"));
+        return parsed ? { ...parsed, marker } : null;
+      }
+    } catch {
+    }
+    if (exists((0, import_node_path6.join)(dir, ".git"))) return null;
+    dir = parent;
+  }
+}
+
+// src/extensions/trellis/parsers.ts
 function parseJson(text) {
   try {
     return JSON.parse(text);
@@ -4404,13 +5012,13 @@ function parseObjectOutput(stdout) {
   const trimmed = stdout.trim();
   let value = parseJson(trimmed);
   if (value === void 0) value = parseJson(trimmed.split("\n")[0] ?? "");
-  return isRecord(value) ? value : null;
+  return isRecord2(value) ? value : null;
 }
-function isRecord(value) {
+function isRecord2(value) {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 function records(value) {
-  return Array.isArray(value) ? value.filter(isRecord) : [];
+  return Array.isArray(value) ? value.filter(isRecord2) : [];
 }
 var str = (v) => typeof v === "string" ? v : void 0;
 var num = (v) => typeof v === "number" && Number.isFinite(v) ? v : void 0;
@@ -4435,7 +5043,7 @@ function parseDaemonStatus(stdout) {
 function parseError(output) {
   const obj = parseObjectOutput(output);
   const err = obj?.error;
-  if (!isRecord(err)) return null;
+  if (!isRecord2(err)) return null;
   const code = str(err.code);
   const message = str(err.message);
   if (!code || !message) return null;
@@ -4592,21 +5200,6 @@ function parseVaultEntry(stdout) {
     version: num(obj.version) ?? 0
   };
 }
-function countBoard(board, nowMs) {
-  let open = 0;
-  let claimed = 0;
-  for (const column of board.columns) {
-    if (column.done) continue;
-    for (const card of column.cards) {
-      open += 1;
-      if (isClaimLive(card, nowMs)) claimed += 1;
-    }
-  }
-  return { open, claimed };
-}
-function isClaimLive(card, nowMs) {
-  return Boolean(card.claimedBy) && (card.claimUntil === void 0 || card.claimUntil > nowMs);
-}
 function parseEventLine(line) {
   const obj = parseObjectOutput(line);
   if (!obj) return null;
@@ -4631,123 +5224,6 @@ function parseEventLine(line) {
   const newValue = str(obj.new);
   if (newValue !== void 0) ev.new = newValue;
   return ev;
-}
-function projectOfRef(ref) {
-  const address = /^\/([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*)\//.exec(ref);
-  if (address) return address[1] === "GLOBAL" ? null : address[1];
-  const m = /^([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*?)-\d+$/.exec(ref);
-  return m ? m[1] : null;
-}
-var REVIEW_COLUMN = /review|needs?[-_ ]?(you|user|human|input)|waiting|approv/i;
-var BLOCKED_COLUMN = /block/i;
-var ALL_NOTIFY_KINDS = { review: true, blocked: true };
-function needsUser(ev, kinds = ALL_NOTIFY_KINDS) {
-  if (ev.entity !== "card" || ev.action !== "moved" || ev.field !== "column") return null;
-  if (!ev.actor.startsWith("agent:")) return null;
-  const column = ev.new ?? "";
-  if (BLOCKED_COLUMN.test(column)) return kinds.blocked ? { kind: "blocked", column } : null;
-  if (REVIEW_COLUMN.test(column)) return kinds.review ? { kind: "review", column } : null;
-  return null;
-}
-function parseMarker(text) {
-  const s = text.trim();
-  if (!s.startsWith("/") || /[\r\n]/.test(s)) return null;
-  const segs = s.slice(1).split("/");
-  const project = segs[0].toUpperCase();
-  if (!KEY_RE.test(project) || project === "GLOBAL") return null;
-  if (segs.length === 1) return { project };
-  if (segs.length === 3 && segs[1] === "boards" && SLUG_RE.test(segs[2])) {
-    return { project, board: segs[2] };
-  }
-  return null;
-}
-function exists(path) {
-  try {
-    (0, import_node_fs.lstatSync)(path);
-    return true;
-  } catch {
-    return false;
-  }
-}
-function findProject(workDir, home) {
-  let start;
-  try {
-    start = (0, import_node_fs.realpathSync)((0, import_node_path.resolve)(workDir));
-    if (!(0, import_node_fs.statSync)(start).isDirectory()) return null;
-  } catch {
-    return null;
-  }
-  let homeReal = (0, import_node_path.resolve)(home);
-  try {
-    homeReal = (0, import_node_fs.realpathSync)(homeReal);
-  } catch {
-  }
-  for (let dir = start; ; ) {
-    const parent = (0, import_node_path.dirname)(dir);
-    if (dir === homeReal || parent === dir) return null;
-    const marker = (0, import_node_path.join)(dir, MARKER_FILE);
-    try {
-      if ((0, import_node_fs.statSync)(marker).isFile()) {
-        const parsed = parseMarker((0, import_node_fs.readFileSync)(marker, "utf8"));
-        return parsed ? { ...parsed, marker } : null;
-      }
-    } catch {
-    }
-    if (exists((0, import_node_path.join)(dir, ".git"))) return null;
-    dir = parent;
-  }
-}
-function cardRef(raw) {
-  if (typeof raw !== "string") return null;
-  const ref = raw.trim().toUpperCase();
-  return /^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*-\d+$/.test(ref) ? ref : null;
-}
-function projectKey(raw) {
-  return typeof raw === "string" && KEY_RE.test(raw) && raw !== "GLOBAL" ? raw : null;
-}
-function boardSlug(raw) {
-  return typeof raw === "string" && SLUG_RE.test(raw) && raw.length <= NAME_MAX ? raw : null;
-}
-function entrySlug(raw) {
-  return typeof raw === "string" && raw.length <= 200 && ENTRY_SLUG_RE.test(raw) ? raw : null;
-}
-function hasControlCharacter(text) {
-  for (let i = 0; i < text.length; i++) {
-    const code = text.charCodeAt(i);
-    if (code < 32 || code === 127) return true;
-  }
-  return false;
-}
-function columnName(raw) {
-  if (typeof raw !== "string") return null;
-  const name = raw.trim();
-  return name && name.length <= NAME_MAX && !hasControlCharacter(name) ? name : null;
-}
-function priority(raw) {
-  return PRIORITIES.find((p) => p === raw) ?? null;
-}
-function cardTitle(raw) {
-  if (typeof raw !== "string") return null;
-  const title = raw.replace(/\s+/g, " ").trim();
-  return title && title.length <= TITLE_MAX ? title : null;
-}
-function longText(raw) {
-  if (typeof raw !== "string") return null;
-  const text = raw.replace(/\r\n?/g, "\n");
-  return text.length <= TEXT_MAX ? text : null;
-}
-function cardPath(ref) {
-  const valid = cardRef(ref);
-  return valid ? `/card/${valid}` : null;
-}
-var BOARD_PATH = "/board";
-var VAULT_PATH = "/vault";
-function panelTarget(path) {
-  if (!path) return { view: "board" };
-  if (path === VAULT_PATH) return { view: "vault" };
-  const card = /^\/card\/([^/?#]+)$/.exec(path);
-  const ref = card ? cardRef(card[1]) : null;
-  return ref ? { view: "board", card: ref } : { view: "board" };
 }
 
 // src/extensions/trellis/daemon.ts
@@ -4834,6 +5310,65 @@ function taskLabel(card) {
   return label.length <= OFFER_LABEL_MAX ? label : `${label.slice(0, OFFER_LABEL_MAX - 1)}\u2026`;
 }
 
+// src/extensions/trellis/validate.ts
+var PRIORITIES = ["urgent", "high", "normal", "low"];
+var TITLE_MAX = 300;
+var TEXT_MAX = 64 * 1024;
+var NAME_MAX = 100;
+var ENTRY_SLUG_RE = /^[a-z0-9][a-z0-9_-]*(\/[a-z0-9][a-z0-9_-]*)*$/;
+function cardRef(raw) {
+  if (typeof raw !== "string") return null;
+  const ref = raw.trim().toUpperCase();
+  return /^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*-\d+$/.test(ref) ? ref : null;
+}
+function projectKey(raw) {
+  return typeof raw === "string" && KEY_RE.test(raw) && raw !== "GLOBAL" ? raw : null;
+}
+function boardSlug(raw) {
+  return typeof raw === "string" && SLUG_RE.test(raw) && raw.length <= NAME_MAX ? raw : null;
+}
+function entrySlug(raw) {
+  return typeof raw === "string" && raw.length <= 200 && ENTRY_SLUG_RE.test(raw) ? raw : null;
+}
+function hasControlCharacter(text) {
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    if (code < 32 || code === 127) return true;
+  }
+  return false;
+}
+function columnName(raw) {
+  if (typeof raw !== "string") return null;
+  const name = raw.trim();
+  return name && name.length <= NAME_MAX && !hasControlCharacter(name) ? name : null;
+}
+function priority(raw) {
+  return PRIORITIES.find((p) => p === raw) ?? null;
+}
+function cardTitle(raw) {
+  if (typeof raw !== "string") return null;
+  const title = raw.replace(/\s+/g, " ").trim();
+  return title && title.length <= TITLE_MAX ? title : null;
+}
+function longText(raw) {
+  if (typeof raw !== "string") return null;
+  const text = raw.replace(/\r\n?/g, "\n");
+  return text.length <= TEXT_MAX ? text : null;
+}
+function cardPath(ref) {
+  const valid = cardRef(ref);
+  return valid ? `/card/${valid}` : null;
+}
+var BOARD_PATH = "/board";
+var VAULT_PATH = "/vault";
+function panelTarget(path) {
+  if (!path) return { view: "board" };
+  if (path === VAULT_PATH) return { view: "vault" };
+  const card = /^\/card\/([^/?#]+)$/.exec(path);
+  const ref = card ? cardRef(card[1]) : null;
+  return ref ? { view: "board", card: ref } : { view: "board" };
+}
+
 // src/extensions/trellis/panelApi.ts
 var AGENT_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 function agentArg(raw) {
@@ -4850,7 +5385,7 @@ function result(res, data) {
 function invalid(field) {
   return failure("invalid-args", field);
 }
-function panelHandlers(deps) {
+function handlerKit(deps) {
   const { service } = deps;
   const cli = service.cli;
   let daemon = null;
@@ -4891,6 +5426,10 @@ function panelHandlers(deps) {
     }
     return { ref, board, workspaceId: caller.workspaceId };
   };
+  return { deps, service, cli, currentDaemon, wrote, refArg, taskCard, track, taskArgs };
+}
+function boardHandlers(kit) {
+  const { deps, service, cli, currentDaemon, refArg } = kit;
   return {
     context: async (_args, caller) => {
       if (!await cli.isInstalled()) {
@@ -4926,10 +5465,15 @@ function panelHandlers(deps) {
       const detail = await cli.card(ref);
       if (!detail.ok) return errorResult(detail.error);
       const api = board ? await currentDaemon() : null;
-      const project = ref.slice(0, ref.lastIndexOf("-"));
-      const thread = api && board ? await readThread(api, project, board, ref) : null;
+      const project = projectOfRef(ref);
+      const thread = api && board && project ? await readThread(api, project, board, ref) : null;
       return ok(void 0, { card: detail.value, thread });
-    },
+    }
+  };
+}
+function writeHandlers(kit) {
+  const { cli, wrote, refArg } = kit;
+  return {
     move: async (args) => {
       const ref = refArg(args);
       const column = columnName(namedArgs(args).column);
@@ -4982,7 +5526,12 @@ function panelHandlers(deps) {
         priority: level
       });
       return wrote(res, (card) => ({ card }));
-    },
+    }
+  };
+}
+function vaultHandlers(kit) {
+  const { cli } = kit;
+  return {
     vault: async (args) => {
       const project = projectKey(namedArgs(args).project);
       if (!project) return invalid("project");
@@ -4995,8 +5544,12 @@ function panelHandlers(deps) {
       if (!project) return invalid("project");
       if (!slug) return invalid("slug");
       return result(await cli.vaultEntry(project, slug), (entry) => ({ entry }));
-    },
-    init: async (_args, caller) => initHere(deps, caller),
+    }
+  };
+}
+function agentHandlers(kit) {
+  const { deps, service, refArg, taskCard, track, taskArgs } = kit;
+  return {
     agents: async () => ok(void 0, { agents: await deps.agents.list() }),
     tasks: async () => ok(void 0, {
       tasks: deps.tasks.list().map(({ ref, agent, at }) => ({ ref, agent, at }))
@@ -5048,6 +5601,16 @@ function panelHandlers(deps) {
     }
   };
 }
+function panelHandlers(deps) {
+  const kit = handlerKit(deps);
+  return {
+    ...boardHandlers(kit),
+    ...writeHandlers(kit),
+    ...vaultHandlers(kit),
+    init: async (_args, caller) => initHere(deps, caller),
+    ...agentHandlers(kit)
+  };
+}
 async function initHere(deps, caller) {
   const t = deps.translate(caller.locale);
   const dir = caller.cwd ?? caller.workDir;
@@ -5066,12 +5629,12 @@ async function initHere(deps, caller) {
 }
 
 // src/extensions/trellis/service.ts
-var import_node_child_process = require("node:child_process");
+var import_node_child_process2 = require("node:child_process");
 
 // src/extensions/trellis/cli.ts
-var import_node_fs2 = require("node:fs");
-var import_node_os = require("node:os");
-var import_node_path2 = require("node:path");
+var import_node_fs8 = require("node:fs");
+var import_node_os2 = require("node:os");
+var import_node_path7 = require("node:path");
 var NOT_INSTALLED = "not-installed";
 var TEXT_DIR_PREFIX = "ostia-trellis-text-";
 var TEXT_FILE_MODE = 384;
@@ -5093,16 +5656,17 @@ var TrellisCli = class {
     this.opts = opts;
     this.bin = opts.bin ?? "trellis";
   }
+  opts;
   bin;
   installed = null;
   async run(args, opts = {}) {
     const texts = Object.entries(opts.texts ?? {});
-    const dir = texts.length > 0 ? (0, import_node_fs2.mkdtempSync)((0, import_node_path2.join)((0, import_node_os.tmpdir)(), TEXT_DIR_PREFIX)) : null;
+    const dir = texts.length > 0 ? (0, import_node_fs8.mkdtempSync)((0, import_node_path7.join)((0, import_node_os2.tmpdir)(), TEXT_DIR_PREFIX)) : null;
     const full = [...args];
     try {
       texts.forEach(([flag, value], i) => {
-        const file = (0, import_node_path2.join)(dir, `text-${i}`);
-        (0, import_node_fs2.writeFileSync)(file, value, { mode: TEXT_FILE_MODE });
+        const file = (0, import_node_path7.join)(dir, `text-${i}`);
+        (0, import_node_fs8.writeFileSync)(file, value, { mode: TEXT_FILE_MODE });
         full.push(`--${flag}`, `@${file}`);
       });
       const run = await runTool(this.bin, [...full, "--json"], {
@@ -5113,7 +5677,7 @@ var TrellisCli = class {
       if (run.code === 0) return { ok: true, value: run.stdout };
       return { ok: false, error: failureOf(run) };
     } finally {
-      if (dir) (0, import_node_fs2.rmSync)(dir, { recursive: true, force: true });
+      if (dir) (0, import_node_fs8.rmSync)(dir, { recursive: true, force: true });
     }
   }
   async parsed(args, parse, opts = {}) {
@@ -5204,6 +5768,7 @@ var TrellisService = class {
     this.bin = opts.bin ?? "trellis";
     this.cli = new TrellisCli({ bin: this.bin });
   }
+  opts;
   cli;
   bin;
   shown = /* @__PURE__ */ new Set();
@@ -5320,6 +5885,7 @@ var TrellisService = class {
       this.opts.host.log(`events: ${err.message}`);
       return this.scheduleFollow();
     }
+    if (this.stopped || this.follower) return;
     this.follow();
   }
   async consumerExists() {
@@ -5372,7 +5938,7 @@ var TrellisService = class {
   }
   follow() {
     const started = Date.now();
-    const child = (0, import_node_child_process.spawn)(
+    const child = (0, import_node_child_process2.spawn)(
       this.bin,
       ["events", "--consumer", this.opts.consumer, "--json", "--all-projects", "--follow"],
       { stdio: ["ignore", "pipe", "ignore"] }
@@ -5507,7 +6073,7 @@ async function main() {
   let panelChanged = () => {
   };
   const service = new TrellisService({
-    home: (0, import_node_os2.homedir)(),
+    home: (0, import_node_os3.homedir)(),
     consumer: TRELLIS_IDENTITY,
     translate,
     host: {
@@ -5539,6 +6105,7 @@ async function main() {
   const panel = await startPanelServer({
     dir: __dirname,
     files: PANEL_FILES,
+    toolbar: (state) => ext.setPanelToolbar(state),
     handle: async (command, args, caller) => {
       const handler = panelOnly[command];
       return handler ? handler(args, caller) : failure("unknown-command", command);

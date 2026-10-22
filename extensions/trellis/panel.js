@@ -6,7 +6,7 @@
       __defProp(target, name, { get: all2[name], enumerable: true });
   };
 
-  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-TO23AMVT.js
   var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
   var EXTENSION_BASE_LOCALE = "en";
   function matchLocale(locale, available) {
@@ -35,7 +35,71 @@
     return (key, vars) => formatMessage(messageIn(own2, key) ?? messageIn(base, key) ?? key, vars);
   }
 
-  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-V364AUL5.js
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-AGWMOFL4.js
+  function failure(error, message) {
+    return message ? { ok: false, error, message } : { ok: false, error };
+  }
+  function errorMessage(err) {
+    return err instanceof Error ? err.message : String(err);
+  }
+  var PANEL_TOOLBAR_EVENT = "ostia-panel-toolbar";
+  var PANEL_TOOLBAR_PATH = "/toolbar";
+
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-JX32SXV4.js
+  var SCROLL_IDLE_MS = 500;
+  var SCROLLING_ATTRIBUTE = "data-scrolling";
+  var SCROLLBAR_HOVER_ATTRIBUTE = "data-scrollbar-hover";
+  function watchScrolling(doc) {
+    const win = doc.defaultView;
+    if (!win) return () => {
+    };
+    const timers = /* @__PURE__ */ new Map();
+    const onScroll = (event) => {
+      const target = event.target === doc ? doc.documentElement : event.target;
+      target.setAttribute(SCROLLING_ATTRIBUTE, "");
+      win.clearTimeout(timers.get(target));
+      timers.set(
+        target,
+        win.setTimeout(() => {
+          target.removeAttribute(SCROLLING_ATTRIBUTE);
+          timers.delete(target);
+        }, SCROLL_IDLE_MS)
+      );
+    };
+    let hovered = null;
+    const setHovered = (next) => {
+      if (next === hovered) return;
+      hovered?.removeAttribute(SCROLLBAR_HOVER_ATTRIBUTE);
+      next?.setAttribute(SCROLLBAR_HOVER_ATTRIBUTE, "");
+      hovered = next;
+    };
+    const onPointerMove = (event) => {
+      const target = event.target === doc ? doc.documentElement : event.target;
+      const overVertical = target.clientWidth < target.offsetWidth && event.offsetX >= target.clientWidth;
+      const overHorizontal = target.clientHeight < target.offsetHeight && event.offsetY >= target.clientHeight;
+      setHovered(overVertical || overHorizontal ? target : null);
+    };
+    const onPointerOut = (event) => {
+      if (event.relatedTarget === null) setHovered(null);
+    };
+    doc.addEventListener("scroll", onScroll, { capture: true, passive: true });
+    doc.addEventListener("pointermove", onPointerMove, { passive: true });
+    doc.addEventListener("pointerout", onPointerOut, { passive: true });
+    return () => {
+      doc.removeEventListener("scroll", onScroll, { capture: true });
+      doc.removeEventListener("pointermove", onPointerMove);
+      doc.removeEventListener("pointerout", onPointerOut);
+      setHovered(null);
+      for (const [target, timer] of timers) {
+        win.clearTimeout(timer);
+        target.removeAttribute(SCROLLING_ATTRIBUTE);
+      }
+      timers.clear();
+    };
+  }
+
+  // node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-EBKWVBF5.js
+  watchScrolling(document);
   var params = new URLSearchParams(location.search);
   var secret = params.get("t") ?? "";
   var context = {
@@ -52,11 +116,7 @@
       });
       return await res.json();
     } catch (err) {
-      return {
-        ok: false,
-        error: "unreachable",
-        message: err instanceof Error ? err.message : String(err)
-      };
+      return failure("unreachable", errorMessage(err));
     }
   }
   function onChange(cb) {
@@ -91,27 +151,27 @@
     if (res.ok) return "";
     return res.message ? `${res.error}: ${res.message}` : res.error;
   }
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/arrow-clockwise.svg
-  var arrow_clockwise_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M240,56v48a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16H211.4L184.81,71.64l-.25-.24a80,80,0,1,0-1.67,114.78,8,8,0,0,1,11,11.63A95.44,95.44,0,0,1,128,224h-1.32A96,96,0,1,1,195.75,60L224,85.8V56a8,8,0,1,1,16,0Z"/></svg>';
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/caret-down.svg
-  var caret_down_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>';
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/lock-simple.svg
-  var lock_simple_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z"/></svg>';
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/plus.svg
-  var plus_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>';
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/robot.svg
-  var robot_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16Zm-52-56H92a28,28,0,0,0,0,56h72a28,28,0,0,0,0-56Zm-24,16v24H116V152ZM80,164a12,12,0,0,1,12-12h8v24H92A12,12,0,0,1,80,164Zm84,12h-8V152h8a12,12,0,0,1,0,24ZM72,108a12,12,0,1,1,12,12A12,12,0,0,1,72,108Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,108Z"/></svg>';
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/user-circle.svg
-  var user_circle_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/></svg>';
-
-  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/x.svg
-  var x_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>';
+  var sentToolbar = "";
+  function setPanelToolbar(state2) {
+    const body2 = JSON.stringify({ workspaceId: context.workspaceId, ...state2 });
+    if (body2 === sentToolbar) return;
+    sentToolbar = body2;
+    void fetch(PANEL_TOOLBAR_PATH, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-ostia-panel": secret },
+      body: body2
+    }).catch(() => {
+      sentToolbar = "";
+    });
+  }
+  function onPanelToolbar(cb) {
+    window.addEventListener(PANEL_TOOLBAR_EVENT, (event) => {
+      cb(event.detail);
+    });
+  }
+  function emptyState(text4, action, attrs = {}) {
+    return h("div", { class: "ostia-empty", ...attrs }, h("p", {}, text4), action);
+  }
 
   // src/extensions/trellis/board.ts
   var DONE_COLUMN_LIMIT = 30;
@@ -183,10 +243,10 @@
     const cut = slug.lastIndexOf("/");
     return cut < 0 ? "" : slug.slice(0, cut);
   }
-  function groupEntries(entries2, query) {
+  function groupEntries(entries, query) {
     const words = query.toLowerCase().split(/\s+/).filter(Boolean);
     const groups = /* @__PURE__ */ new Map();
-    for (const entry of entries2) {
+    for (const entry of entries) {
       const haystack = [entry.slug, entry.title, entry.summary, entry.template, ...entry.tags].join("\n").toLowerCase();
       if (!words.every((word) => haystack.includes(word))) continue;
       const dir = entryDir(entry.slug);
@@ -196,6 +256,113 @@
       dir,
       entries: [...list2].sort((a, b) => a.title.localeCompare(b.title))
     }));
+  }
+
+  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/user-circle.svg
+  var user_circle_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/></svg>';
+
+  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/x.svg
+  var x_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>';
+
+  // src/extensions/trellis/panelState.ts
+  var CARD_REF = /^([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*?)-\d+$/;
+  var params2 = new URLSearchParams(location.search);
+  var rootEl = document.getElementById("root");
+  if (!rootEl) throw new Error("missing #root");
+  var root = rootEl;
+  var state = {
+    view: params2.get("view") === "vault" ? "vault" : "board",
+    ctx: null,
+    failed: null,
+    project: null,
+    boardSlug: null,
+    boardData: null,
+    boardFailure: null,
+    openRef: params2.get("card"),
+    cardData: null,
+    cardFailure: null,
+    cardQuery: "",
+    commentDraft: "",
+    newCard: null,
+    entries: null,
+    vaultFailure: null,
+    entryQuery: "",
+    openSlug: null,
+    entryData: null,
+    entryFailure: null,
+    banner: null,
+    notice: null,
+    tasks: /* @__PURE__ */ new Map(),
+    agentNames: null,
+    workMenu: null,
+    busy: false,
+    requestSeq: 0
+  };
+  var hooks = { render: () => {
+  } };
+
+  // src/extensions/trellis/panelData.ts
+  async function loadContext() {
+    const res = await call("context");
+    if (!res.ok) {
+      state.failed = res;
+      return;
+    }
+    state.failed = null;
+    state.ctx = res.data;
+    if (state.project) return;
+    const fromCard = state.openRef ? CARD_REF.exec(state.openRef)?.[1] : null;
+    state.project = fromCard ?? state.ctx.workspace?.project ?? null;
+    state.boardSlug = state.project === state.ctx.workspace?.project ? state.ctx.workspace?.board ?? null : null;
+  }
+  async function loadBoard(seq) {
+    const [res, working] = await Promise.all([
+      call("board", { project: state.project, board: state.boardSlug ?? void 0 }),
+      call("tasks")
+    ]);
+    if (seq !== state.requestSeq) return;
+    state.boardFailure = res.ok ? null : res;
+    if (res.ok) state.boardData = res.data;
+    if (working.ok) {
+      const list2 = working.data.tasks;
+      state.tasks = new Map(list2.map((task) => [task.ref, task]));
+    }
+  }
+  async function loadCard(seq, ref) {
+    const res = await call("card", { ref, board: state.boardData?.board.slug || void 0 });
+    if (seq !== state.requestSeq || state.openRef !== ref) return;
+    state.cardFailure = res.ok ? null : res;
+    if (res.ok) state.cardData = res.data;
+  }
+  async function loadVault(seq) {
+    const res = await call("vault", { project: state.project });
+    if (seq !== state.requestSeq) return;
+    state.vaultFailure = res.ok ? null : res;
+    if (res.ok) state.entries = res.data.entries;
+    const slug = state.openSlug;
+    if (!slug) return;
+    const shown = await call("entry", { project: state.project, slug });
+    if (seq !== state.requestSeq || state.openSlug !== slug) return;
+    state.entryFailure = shown.ok ? null : shown;
+    if (shown.ok) state.entryData = shown.data.entry;
+  }
+  async function refresh() {
+    const seq = ++state.requestSeq;
+    if (!state.ctx || state.failed) await loadContext();
+    if (seq !== state.requestSeq) return;
+    if (state.ctx && state.project) {
+      if (state.view === "vault") await loadVault(seq);
+      else {
+        await loadBoard(seq);
+        if (seq === state.requestSeq && state.openRef) {
+          if (state.boardData && !findCard(state.boardData.board, state.openRef) && state.cardData?.card.ref !== state.openRef) {
+            state.cardData = null;
+          }
+          await loadCard(seq, state.openRef);
+        }
+      }
+    }
+    if (seq === state.requestSeq) hooks.render();
   }
 
   // src/extensions/trellis/locales/en.json
@@ -220,13 +387,9 @@
       cardOpened: "Opened {ref}",
       noProject: "no trellis project",
       statusFailed: "Trellis could not read this project's board. Run `trellis doctor` in a terminal to see why.",
-      "panel.tab.board": "Board",
-      "panel.tab.vault": "Vault",
-      "panel.refresh": "Refresh",
       "panel.loading": "Loading\u2026",
       "panel.project": "Project",
       "panel.board": "Board",
-      "panel.newCard": "New card",
       "panel.filterCards": "Filter cards",
       "panel.filterEntries": "Filter entries",
       "panel.column.count": "{count} cards",
@@ -281,19 +444,19 @@
       "panel.new.priority": "Priority",
       "panel.new.create": "Create card",
       "panel.new.cancel": "Cancel",
-      "panel.vault.empty": "This project's vault has no entries",
+      "panel.vault.empty": "This project's vault has no entries.",
       "panel.vault.noMatch": "No entries match",
-      "panel.vault.pick": "Pick an entry to read it",
+      "panel.vault.pick": "Pick an entry to read it.",
       "panel.vault.private": "Private",
       "panel.vault.sources": "Sources",
       "panel.vault.top": "Top level",
       "panel.vault.close": "Close entry",
       "panel.vault.entries": "Vault entries",
-      "panel.empty.noProject": "No Trellis project for this folder",
+      "panel.empty.noProject": "No Trellis project for this folder.",
       "panel.empty.noProjectHint": "This workspace's folder has no .trellis marker. Pick a project above, or set one up for this folder.",
-      "panel.empty.noProjects": "Trellis has no projects yet",
+      "panel.empty.noProjects": "Trellis has no projects yet.",
       "panel.empty.init": "Set up a project here",
-      "panel.unavailable": "Trellis is unavailable",
+      "panel.unavailable": "Trellis is unavailable.",
       "task.heading": "Work on Trellis card {ref}: {title}",
       "task.bodyCut": "(The description is cut here; read all of it with `trellis card show`.)",
       "task.how": 'Follow the {skill} skill to work on it. Without that skill: read the card with `trellis card show {ref}`, claim it with `trellis card claim {ref}`, comment your progress with `trellis card comment {ref} --body "\u2026"`, and {last}',
@@ -321,6 +484,10 @@
   var zh_Hant_default = {
     manifest: {
       description: "\u4F60\u7684 Trellis \u770B\u677F\u8207\u77E5\u8B58\u5EAB\u9762\u677F\uFF1A\u5361\u7247\u3001\u8A8D\u9818\u3001\u7559\u8A00\u8207\u689D\u76EE\uFF0C\u4E26\u5728\u5176\u4ED6\u5730\u65B9\u8B8A\u66F4\u6642\u5373\u6642\u66F4\u65B0\uFF1B\u5F9E\u770B\u677F\u628A\u5361\u7247\u4EA4\u7D66\u4EE3\u7406\u7A0B\u5F0F\uFF08\u50B3\u9001\u7D66\u57F7\u884C\u4E2D\u7684\u4EE3\u7406\u7A0B\u5F0F\u6216\u555F\u52D5\u65B0\u7684\uFF09\uFF0C\u4E26\u770B\u5230\u662F\u54EA\u500B\u4EE3\u7406\u7A0B\u5F0F\u5728\u8655\u7406\uFF1B\u9644\u5E36\u4E00\u500B\u6559\u9019\u4E9B\u4EE3\u7406\u7A0B\u5F0F\u5361\u7247\u6307\u4EE4\u7684\u6280\u80FD\uFF1B\u6BCF\u500B\u5DE5\u4F5C\u5340\u672A\u5B8C\u6210\u8207\u5DF2\u8A8D\u9818\u7684\u5361\u7247\u6578\uFF0C\u4EE5\u53CA\u4EE3\u7406\u7A0B\u5F0F\u628A\u5361\u7247\u79FB\u5230\u5BE9\u95B1\u6216\u963B\u64CB\u6642\u53EF\u958B\u555F\u8A72\u5361\u7247\u7684\u901A\u77E5\u3002",
+      "panel.toolbar.tabs.board.title": "\u770B\u677F",
+      "panel.toolbar.tabs.vault.title": "\u77E5\u8B58\u5EAB",
+      "panel.toolbar.actions.refresh.title": "\u91CD\u65B0\u6574\u7406",
+      "panel.toolbar.actions.new-card.title": "\u65B0\u589E\u5361\u7247",
       "commands.open.title": "Trellis\uFF1A\u958B\u555F\u770B\u677F",
       "commands.card.title": "Trellis\uFF1A\u958B\u555F\u5361\u7247",
       "commands.card.argument": "\u5361\u7247\u7DE8\u865F\uFF0C\u4F8B\u5982 SHOP-12",
@@ -355,13 +522,9 @@
       cardOpened: "\u5DF2\u958B\u555F {ref}",
       noProject: "\u6C92\u6709 trellis \u5C08\u6848",
       statusFailed: "Trellis \u7121\u6CD5\u8B80\u53D6\u6B64\u5C08\u6848\u7684\u770B\u677F\u3002\u8ACB\u5728\u7D42\u7AEF\u6A5F\u57F7\u884C `trellis doctor` \u67E5\u770B\u539F\u56E0\u3002",
-      "panel.tab.board": "\u770B\u677F",
-      "panel.tab.vault": "\u77E5\u8B58\u5EAB",
-      "panel.refresh": "\u91CD\u65B0\u6574\u7406",
       "panel.loading": "\u8F09\u5165\u4E2D\u2026",
       "panel.project": "\u5C08\u6848",
       "panel.board": "\u770B\u677F",
-      "panel.newCard": "\u65B0\u589E\u5361\u7247",
       "panel.filterCards": "\u7BE9\u9078\u5361\u7247",
       "panel.filterEntries": "\u7BE9\u9078\u689D\u76EE",
       "panel.column.count": "{count} \u5F35\u5361\u7247",
@@ -416,19 +579,19 @@
       "panel.new.priority": "\u512A\u5148\u9806\u5E8F",
       "panel.new.create": "\u5EFA\u7ACB\u5361\u7247",
       "panel.new.cancel": "\u53D6\u6D88",
-      "panel.vault.empty": "\u6B64\u5C08\u6848\u7684\u77E5\u8B58\u5EAB\u6C92\u6709\u689D\u76EE",
+      "panel.vault.empty": "\u6B64\u5C08\u6848\u7684\u77E5\u8B58\u5EAB\u6C92\u6709\u689D\u76EE\u3002",
       "panel.vault.noMatch": "\u6C92\u6709\u7B26\u5408\u7684\u689D\u76EE",
-      "panel.vault.pick": "\u9078\u64C7\u689D\u76EE\u5373\u53EF\u95B1\u8B80",
+      "panel.vault.pick": "\u9078\u64C7\u689D\u76EE\u5373\u53EF\u95B1\u8B80\u3002",
       "panel.vault.private": "\u79C1\u4EBA",
       "panel.vault.sources": "\u4F86\u6E90",
       "panel.vault.top": "\u6700\u4E0A\u5C64",
       "panel.vault.close": "\u95DC\u9589\u689D\u76EE",
       "panel.vault.entries": "\u77E5\u8B58\u5EAB\u689D\u76EE",
-      "panel.empty.noProject": "\u6B64\u8CC7\u6599\u593E\u6C92\u6709 Trellis \u5C08\u6848",
+      "panel.empty.noProject": "\u6B64\u8CC7\u6599\u593E\u6C92\u6709 Trellis \u5C08\u6848\u3002",
       "panel.empty.noProjectHint": "\u6B64\u5DE5\u4F5C\u5340\u7684\u8CC7\u6599\u593E\u6C92\u6709 .trellis \u6A19\u8A18\u3002\u8ACB\u5728\u4E0A\u65B9\u9078\u64C7\u5C08\u6848\uFF0C\u6216\u70BA\u6B64\u8CC7\u6599\u593E\u5EFA\u7ACB\u4E00\u500B\u3002",
-      "panel.empty.noProjects": "Trellis \u5C1A\u7121\u4EFB\u4F55\u5C08\u6848",
+      "panel.empty.noProjects": "Trellis \u5C1A\u7121\u4EFB\u4F55\u5C08\u6848\u3002",
       "panel.empty.init": "\u5728\u9019\u88E1\u5EFA\u7ACB\u5C08\u6848",
-      "panel.unavailable": "Trellis \u7121\u6CD5\u4F7F\u7528",
+      "panel.unavailable": "Trellis \u7121\u6CD5\u4F7F\u7528\u3002",
       "task.heading": "\u8655\u7406 Trellis \u5361\u7247 {ref}\uFF1A{title}",
       "task.bodyCut": "\uFF08\u8AAA\u660E\u5728\u6B64\u622A\u65B7\uFF1B\u7528 `trellis card show` \u8B80\u53D6\u5B8C\u6574\u5167\u5BB9\u3002\uFF09",
       "task.how": '\u8ACB\u4F9D\u7167 {skill} \u6280\u80FD\u8655\u7406\u9019\u5F35\u5361\u7247\u3002\u82E5\u6C92\u6709\u8A72\u6280\u80FD\uFF1A\u7528 `trellis card show {ref}` \u8B80\u53D6\u5361\u7247\uFF0C\u7528 `trellis card claim {ref}` \u8A8D\u9818\uFF0C\u7528 `trellis card comment {ref} --body "\u2026"` \u56DE\u5831\u9032\u5EA6\uFF0C\u4E26\u4E14{last}',
@@ -1294,12 +1457,12 @@
     return start;
     function start(code2) {
       if (code2 === 62) {
-        const state = self.containerState;
-        if (!state.open) {
+        const state2 = self.containerState;
+        if (!state2.open) {
           effects.enter("blockQuote", {
             _container: true
           });
-          state.open = true;
+          state2.open = true;
         }
         effects.enter("blockQuotePrefix");
         effects.enter("blockQuoteMarker");
@@ -4226,7 +4389,7 @@
       sliceStream,
       write
     };
-    let state = initialize.tokenize.call(context2, effects);
+    let state2 = initialize.tokenize.call(context2, effects);
     let expectedCode;
     if (initialize.resolveAll) {
       resolveAllConstructs.push(initialize);
@@ -4287,7 +4450,7 @@
     function go(code2) {
       consumed = void 0;
       expectedCode = code2;
-      state = state(code2);
+      state2 = state2(code2);
     }
     function consume(code2) {
       if (markdownLineEnding(code2)) {
@@ -4452,24 +4615,24 @@
     const startBufferIndex = token.start._bufferIndex;
     const endIndex = token.end._index;
     const endBufferIndex = token.end._bufferIndex;
-    let view2;
+    let view;
     if (startIndex === endIndex) {
-      view2 = [chunks[startIndex].slice(startBufferIndex, endBufferIndex)];
+      view = [chunks[startIndex].slice(startBufferIndex, endBufferIndex)];
     } else {
-      view2 = chunks.slice(startIndex, endIndex);
+      view = chunks.slice(startIndex, endIndex);
       if (startBufferIndex > -1) {
-        const head = view2[0];
+        const head = view[0];
         if (typeof head === "string") {
-          view2[0] = head.slice(startBufferIndex);
+          view[0] = head.slice(startBufferIndex);
         } else {
-          view2.shift();
+          view.shift();
         }
       }
       if (endBufferIndex > 0) {
-        view2.push(chunks[endIndex].slice(0, endBufferIndex));
+        view.push(chunks[endIndex].slice(0, endBufferIndex));
       }
     }
-    return view2;
+    return view;
   }
   function serializeChunks(chunks, expandTabs) {
     let index2 = -1;
@@ -5425,7 +5588,7 @@
      * @param {Test} [test]
      * @returns {Check}
      */
-    function(test) {
+    (function(test) {
       if (test === null || test === void 0) {
         return ok2;
       }
@@ -5446,7 +5609,7 @@
         return typeFactory(test);
       }
       throw new Error("Expected function, string, or object as test");
-    }
+    })
   );
   function anyFactory(tests) {
     const checks = [];
@@ -5865,13 +6028,13 @@
   function footnoteReferencePeek() {
     return "[";
   }
-  function footnoteReference(node2, _, state, info) {
-    const tracker = state.createTracker(info);
+  function footnoteReference(node2, _, state2, info) {
+    const tracker = state2.createTracker(info);
     let value = tracker.move("[^");
-    const exit3 = state.enter("footnoteReference");
-    const subexit = state.enter("reference");
+    const exit3 = state2.enter("footnoteReference");
+    const subexit = state2.enter("reference");
     value += tracker.move(
-      state.safe(state.associationId(node2), { after: "]", before: value })
+      state2.safe(state2.associationId(node2), { after: "]", before: value })
     );
     subexit();
     exit3();
@@ -5911,12 +6074,12 @@
   function exitStrikethrough(token) {
     this.exit(token);
   }
-  function handleDelete(node2, _, state, info) {
-    const tracker = state.createTracker(info);
-    const sequence = state.stack.includes("strikethrough") ? "~" : "~~";
-    const exit3 = state.enter("strikethrough");
+  function handleDelete(node2, _, state2, info) {
+    const tracker = state2.createTracker(info);
+    const sequence = state2.stack.includes("strikethrough") ? "~" : "~~";
+    const exit3 = state2.enter("strikethrough");
     let value = tracker.move(sequence);
-    value += state.containerPhrasing(node2, {
+    value += state2.containerPhrasing(node2, {
       ...tracker.current(),
       before: value,
       after: "~"
@@ -7437,43 +7600,11 @@
     }
   }
 
-  // src/extensions/trellis/panel.ts
+  // src/extensions/trellis/panelDom.ts
   var PRIORITY_VALUES = ["urgent", "high", "normal", "low"];
   var DEFAULT_PRIORITY = "normal";
-  var SEND_KEYS = /Mac/.test(navigator.platform) ? "\u2318Enter" : "Ctrl+Enter";
-  var CARD_REF = /^([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*?)-\d+$/;
   var t = panelTranslator({ en: en_default.messages, "zh-Hant": zh_Hant_default.messages });
   var p = (key, vars) => t(`panel.${key}`, vars);
-  var params2 = new URLSearchParams(location.search);
-  var rootEl = document.getElementById("root");
-  if (!rootEl) throw new Error("missing #root");
-  var root = rootEl;
-  var view = params2.get("view") === "vault" ? "vault" : "board";
-  var ctx = null;
-  var failed = null;
-  var project = null;
-  var boardSlug = null;
-  var boardData = null;
-  var boardFailure = null;
-  var openRef = params2.get("card");
-  var cardData = null;
-  var cardFailure = null;
-  var cardQuery = "";
-  var commentDraft = "";
-  var newCard = null;
-  var entries = null;
-  var vaultFailure = null;
-  var entryQuery = "";
-  var openSlug = null;
-  var entryData = null;
-  var entryFailure = null;
-  var banner = null;
-  var notice = null;
-  var tasks = /* @__PURE__ */ new Map();
-  var agentNames = null;
-  var workMenu = null;
-  var busy = false;
-  var requestSeq = 0;
   var relative = new Intl.RelativeTimeFormat(context.locale, { numeric: "auto" });
   var RELATIVE_STEPS = [
     ["year", 31536e6],
@@ -7547,21 +7678,19 @@
       icon(svg)
     );
   }
-  function emptyState(title, hint, tone = "muted", action) {
-    return h(
-      "div",
-      { class: `empty ${tone}`, role: tone === "error" ? "alert" : "status" },
-      h("p", { class: "empty-title" }, title),
-      hint ? h("p", { class: "empty-hint" }, hint) : null,
-      action ?? null
-    );
+  function emptyState2(title, hint, tone = "muted", action) {
+    const el2 = emptyState(hint ? `${title} ${hint}` : title, action, {
+      role: tone === "error" ? "alert" : "status"
+    });
+    if (tone === "error") el2.classList.add("error");
+    return el2;
   }
   function failureState(res) {
-    if (res.ok) return emptyState("");
-    return emptyState(p("unavailable"), res.message ?? res.error, "error");
+    if (res.ok) return emptyState2("");
+    return emptyState2(p("unavailable"), res.message ?? res.error, "error");
   }
   function actorLabel(actor) {
-    return ctx && actor === ctx.actor ? p("you") : actorName(actor);
+    return state.ctx && actor === state.ctx.actor ? p("you") : actorName(actor);
   }
   function priorityLabel(value) {
     return PRIORITY_VALUES.includes(value) ? p(`priority.${value}`) : value;
@@ -7583,93 +7712,22 @@
     el2.value = value;
     return el2;
   }
-  function setView(next) {
-    view = next;
-    banner = null;
-    void refresh();
+  function field(label, control) {
+    return h("label", { class: "field" }, h("span", { class: "field-label" }, label), control);
   }
-  function setProject(next) {
-    project = next;
-    boardSlug = ctx?.workspace?.project === next ? ctx.workspace.board ?? null : null;
-    boardData = null;
-    entries = null;
-    openRef = null;
-    cardData = null;
-    openSlug = null;
-    entryData = null;
-    newCard = null;
-    banner = null;
-    void refresh();
-  }
-  function toolbar() {
-    const views = ["board", "vault"];
-    const projects = ctx?.projects ?? [];
-    const boards = boardData?.boards ?? [];
-    return h(
-      "nav",
-      { class: "toolbar" },
-      h(
-        "div",
-        { class: "tabs", role: "tablist" },
-        ...views.map(
-          (v) => h(
-            "button",
-            {
-              class: "tab",
-              role: "tab",
-              "data-key": `tab-${v}`,
-              "aria-selected": v === view ? "true" : "false",
-              onclick: () => setView(v)
-            },
-            p(`tab.${v}`)
-          )
-        )
-      ),
-      projects.length > 0 && project ? select(
-        "project",
-        p("project"),
-        projects.map((x) => ({ value: x.key, text: x.key })),
-        project,
-        setProject
-      ) : projects.length > 0 ? select(
-        "project",
-        p("project"),
-        [
-          { value: "", text: p("project") },
-          ...projects.map((x) => ({ value: x.key, text: x.key }))
-        ],
-        "",
-        (value) => value && setProject(value)
-      ) : null,
-      view === "board" && boards.length > 1 && boardData ? select(
-        "board",
-        p("board"),
-        boards.map((b) => ({ value: b.slug, text: b.name })),
-        boardData.board.slug,
-        (slug) => {
-          boardSlug = slug;
-          void refresh();
-        }
-      ) : null,
-      h("span", { class: "spacer" }),
-      view === "board" && boardData ? h(
-        "button",
-        { class: "with-icon", "data-key": "new-card", onclick: openNewCard },
-        icon(plus_default),
-        p("newCard")
-      ) : null,
-      iconButton(p("refresh"), arrow_clockwise_default, () => void refresh(), { "data-key": "refresh" })
-    );
-  }
-  function bannerView() {
-    if (banner) return h("div", { class: "banner error", role: "alert" }, banner);
-    return notice ? h("div", { class: "banner", role: "status" }, notice) : null;
-  }
+
+  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/caret-down.svg
+  var caret_down_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>';
+
+  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/robot.svg
+  var robot_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M200,48H136V16a8,8,0,0,0-16,0V48H56A32,32,0,0,0,24,80V192a32,32,0,0,0,32,32H200a32,32,0,0,0,32-32V80A32,32,0,0,0,200,48Zm16,144a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V80A16,16,0,0,1,56,64H200a16,16,0,0,1,16,16Zm-52-56H92a28,28,0,0,0,0,56h72a28,28,0,0,0,0-56Zm-24,16v24H116V152ZM80,164a12,12,0,0,1,12-12h8v24H92A12,12,0,0,1,80,164Zm84,12h-8V152h8a12,12,0,0,1,0,24ZM72,108a12,12,0,1,1,12,12A12,12,0,0,1,72,108Zm88,0a12,12,0,1,1,12,12A12,12,0,0,1,160,108Z"/></svg>';
+
+  // src/extensions/trellis/panelWork.ts
   function taskText(task) {
     return task.agent ? p("task.started", { agent: task.agent }) : p("task.sent");
   }
   function taskButton(ref, key) {
-    const task = tasks.get(ref);
+    const task = state.tasks.get(ref);
     if (!task) return null;
     return h(
       "button",
@@ -7687,32 +7745,32 @@
   }
   async function focusTask(ref) {
     const res = await call("focus", { ref });
-    banner = res.ok ? null : errorText(res);
-    notice = null;
+    state.banner = res.ok ? null : errorText(res);
+    state.notice = null;
     if (!res.ok) await refresh();
   }
   async function toggleWorkMenu(ref) {
-    workMenu = workMenu === ref ? null : ref;
-    render2();
-    if (!workMenu || agentNames) return;
+    state.workMenu = state.workMenu === ref ? null : ref;
+    hooks.render();
+    if (!state.workMenu || state.agentNames) return;
     const res = await call("agents");
-    agentNames = res.ok ? res.data.agents : [];
-    render2();
+    state.agentNames = res.ok ? res.data.agents : [];
+    hooks.render();
   }
   async function handOff(command, ref, agent) {
-    workMenu = null;
-    render2();
+    state.workMenu = null;
+    hooks.render();
     const res = await call(command, {
       ref,
-      board: boardData?.board.slug || void 0,
+      board: state.boardData?.board.slug || void 0,
       ...agent ? { agent } : {}
     });
-    banner = res.ok ? null : errorText(res);
-    notice = res.ok && res.data.sent === false ? p("work.notSent") : null;
+    state.banner = res.ok ? null : errorText(res);
+    state.notice = res.ok && res.data.sent === false ? p("work.notSent") : null;
     await refresh();
   }
   function workMenuView(ref) {
-    const names = agentNames;
+    const names = state.agentNames;
     return h(
       "div",
       { class: "work-menu", role: "menu", "aria-label": p("work.menu") },
@@ -7742,7 +7800,7 @@
     );
   }
   function workRow(ref) {
-    const open = workMenu === ref;
+    const open = state.workMenu === ref;
     return h(
       "div",
       { class: "work-row" },
@@ -7766,11 +7824,14 @@
       taskButton(ref, "task-detail")
     );
   }
+
+  // src/extensions/trellis/panelCard.ts
+  var SEND_KEYS = /Mac/.test(navigator.platform) ? "\u2318Enter" : "Ctrl+Enter";
   function claimLine(card) {
-    const state = claimState(card, ctx?.actor ?? "", Date.now());
-    if (state === "none") return null;
-    const text4 = state === "mine" ? p("claim.mine") : p("claim.other", { actor: actorName(card.claimedBy ?? "") });
-    return h("span", { class: `claim claim-${state}` }, icon(user_circle_default), text4);
+    const claim = claimState(card, state.ctx?.actor ?? "", Date.now());
+    if (claim === "none") return null;
+    const text4 = claim === "mine" ? p("claim.mine") : p("claim.other", { actor: actorName(card.claimedBy ?? "") });
+    return h("span", { class: `claim claim-${claim}` }, icon(user_circle_default), text4);
   }
   function labelChips(card) {
     const chips = [];
@@ -7782,216 +7843,52 @@
     for (const label of card.labels) chips.push(h("span", { class: "chip" }, label));
     return chips.length > 0 ? h("span", { class: "chips" }, ...chips) : null;
   }
-  function cardTile(card) {
-    return h(
-      "li",
-      { class: tasks.has(card.ref) ? "has-task" : "" },
-      h(
-        "button",
-        {
-          class: "card",
-          "data-key": `card-${card.ref}`,
-          "data-ref": card.ref,
-          "aria-current": card.ref === openRef ? "true" : "false",
-          onclick: () => openCard(card.ref)
-        },
-        h("span", { class: "card-ref" }, card.ref),
-        h("span", { class: "card-title" }, card.title),
-        labelChips(card),
-        claimLine(card)
-      ),
-      taskButton(card.ref, `task-${card.ref}`)
-    );
-  }
-  function columnView(column) {
-    return h(
-      "section",
-      { class: "column", "aria-label": column.name, "data-column": column.name },
-      h(
-        "h2",
-        {},
-        h("span", { class: "column-name" }, column.name),
-        column.done ? h("span", { class: "muted" }, p("card.doneMark")) : null,
-        h(
-          "span",
-          { class: "count", "aria-label": p("column.count", { count: column.total }) },
-          String(column.total)
-        )
-      ),
-      h(
-        "ul",
-        { class: "cards", "data-scroll": `column-${column.name}` },
-        ...column.cards.map(cardTile),
-        column.cards.length === 0 ? h("li", { class: "column-empty muted" }, p(cardQuery ? "column.noMatch" : "column.empty")) : null,
-        column.hidden > 0 ? h("li", { class: "column-empty muted" }, p("column.more", { count: column.hidden })) : null
-      )
-    );
-  }
-  function openNewCard() {
-    newCard = {
-      title: "",
-      body: "",
-      column: boardData?.board.columns[0]?.name ?? "",
-      priority: DEFAULT_PRIORITY
-    };
-    render2();
-    root.querySelector('[data-key="new-title"]')?.focus();
-  }
-  async function createCard() {
-    if (!newCard || !project || busy || !newCard.title.trim()) return;
-    busy = true;
-    const res = await call("create", {
-      project,
-      board: boardData?.board.slug || void 0,
-      title: newCard.title,
-      body: newCard.body,
-      column: newCard.column || void 0,
-      priority: newCard.priority
-    });
-    busy = false;
-    if (res.ok) {
-      newCard = null;
-      banner = null;
-      const created = res.data.card;
-      openRef = created.ref;
-      cardData = null;
-    } else {
-      banner = errorText(res);
-    }
-    await refresh();
-  }
-  function field(label, control) {
-    return h("label", { class: "field" }, h("span", { class: "field-label" }, label), control);
-  }
-  function newCardForm(board, draft) {
-    const title = h("input", {
-      type: "text",
-      "data-key": "new-title",
-      maxlength: "300",
-      oninput: (e) => {
-        draft.title = e.target.value;
-      }
-    });
-    title.value = draft.title;
-    const body2 = h("textarea", {
-      "data-key": "new-body",
-      rows: "5",
-      oninput: (e) => {
-        draft.body = e.target.value;
-      }
-    });
-    body2.value = draft.body;
-    return h(
-      "form",
-      {
-        class: "new-card",
-        "aria-label": p("new.heading"),
-        onsubmit: (e) => {
-          e.preventDefault();
-          void createCard();
-        },
-        onkeydown: (e) => {
-          const key = e;
-          if (key.key === "Escape") {
-            newCard = null;
-            render2();
-          } else if (key.key === "Enter" && (key.ctrlKey || key.metaKey)) {
-            key.preventDefault();
-            void createCard();
-          }
-        }
-      },
-      field(p("new.title"), title),
-      field(p("new.body"), body2),
-      h(
-        "div",
-        { class: "field-row" },
-        field(
-          p("new.column"),
-          select(
-            "new-column",
-            p("new.column"),
-            board.columns.map((c) => ({ value: c.name, text: c.name })),
-            draft.column,
-            (value) => {
-              draft.column = value;
-            }
-          )
-        ),
-        field(
-          p("new.priority"),
-          select(
-            "new-priority",
-            p("new.priority"),
-            PRIORITY_VALUES.map((v) => ({ value: v, text: priorityLabel(v) })),
-            draft.priority,
-            (value) => {
-              draft.priority = value;
-            }
-          )
-        ),
-        h("span", { class: "spacer" }),
-        h(
-          "button",
-          {
-            type: "button",
-            "data-key": "new-cancel",
-            onclick: () => {
-              newCard = null;
-              render2();
-            }
-          },
-          p("new.cancel")
-        ),
-        h("button", { type: "submit", class: "primary", "data-key": "new-create" }, p("new.create"))
-      )
-    );
-  }
   function openCard(ref) {
-    if (openRef !== ref) {
-      cardData = null;
-      cardFailure = null;
-      commentDraft = "";
+    if (state.openRef !== ref) {
+      state.cardData = null;
+      state.cardFailure = null;
+      state.commentDraft = "";
     }
-    openRef = ref;
+    state.openRef = ref;
     const key = CARD_REF.exec(ref)?.[1];
-    if (key && key !== project && ctx?.projects.some((x) => x.key === key)) {
-      project = key;
-      boardSlug = null;
-      boardData = null;
+    if (key && key !== state.project && state.ctx?.projects.some((x) => x.key === key)) {
+      state.project = key;
+      state.boardSlug = null;
+      state.boardData = null;
     }
-    view = "board";
-    render2();
+    state.view = "board";
+    hooks.render();
     void refresh();
   }
   function closeCard() {
-    const ref = openRef;
-    openRef = null;
-    cardData = null;
-    cardFailure = null;
-    render2();
+    const ref = state.openRef;
+    state.openRef = null;
+    state.cardData = null;
+    state.cardFailure = null;
+    hooks.render();
     if (ref) root.querySelector(`[data-key="card-${ref}"]`)?.focus();
   }
   async function act(command, args) {
-    if (busy) return false;
-    busy = true;
+    if (state.busy) return false;
+    state.busy = true;
     const res = await call(command, args);
-    busy = false;
-    banner = res.ok ? null : errorText(res);
+    state.busy = false;
+    state.banner = res.ok ? null : errorText(res);
     await refresh();
     return res.ok;
   }
   async function moveTo(ref, column) {
-    if (boardData) boardData = { ...boardData, board: moveCard(boardData.board, ref, column) };
-    render2();
+    if (state.boardData)
+      state.boardData = { ...state.boardData, board: moveCard(state.boardData.board, ref, column) };
+    hooks.render();
     await act("move", { ref, column });
   }
   async function sendComment() {
-    if (!openRef || !commentDraft.trim()) return;
-    const body2 = commentDraft;
-    if (await act("comment", { ref: openRef, body: body2 })) {
-      commentDraft = "";
-      render2();
+    if (!state.openRef || !state.commentDraft.trim()) return;
+    const body2 = state.commentDraft;
+    if (await act("comment", { ref: state.openRef, body: body2 })) {
+      state.commentDraft = "";
+      hooks.render();
     }
   }
   function activityText(a) {
@@ -8037,7 +7934,7 @@
       placeholder: p("comment.placeholder"),
       rows: "3",
       oninput: (e) => {
-        commentDraft = e.target.value;
+        state.commentDraft = e.target.value;
       },
       onkeydown: (e) => {
         const key = e;
@@ -8047,7 +7944,7 @@
         }
       }
     });
-    box.value = commentDraft;
+    box.value = state.commentDraft;
     return h(
       "form",
       {
@@ -8062,7 +7959,7 @@
         "div",
         { class: "field-row" },
         h("span", { class: "muted hint" }, p("comment.hint", { keys: SEND_KEYS })),
-        h("span", { class: "spacer" }),
+        h("span", { class: "ostia-spacer" }),
         h(
           "button",
           { type: "submit", class: "primary", "data-key": "comment-send" },
@@ -8072,8 +7969,8 @@
     );
   }
   function claimControls(card) {
-    const state = claimState(card, ctx?.actor ?? "", Date.now());
-    const until = state !== "none" && card.claimUntil ? h("span", { class: "muted" }, p("claim.until", { time: relativeTime(card.claimUntil) })) : null;
+    const claim = claimState(card, state.ctx?.actor ?? "", Date.now());
+    const until = claim !== "none" && card.claimUntil ? h("span", { class: "muted" }, p("claim.until", { time: relativeTime(card.claimUntil) })) : null;
     const button = (key, command) => h(
       "button",
       { "data-key": `claim-${command}`, onclick: () => void act(command, { ref: card.ref }) },
@@ -8082,17 +7979,17 @@
     return h(
       "div",
       { class: "claim-row" },
-      state === "none" ? h("span", { class: "muted" }, p("claim.none")) : h(
+      claim === "none" ? h("span", { class: "muted" }, p("claim.none")) : h(
         "span",
-        { class: `claim claim-${state}` },
+        { class: `claim claim-${claim}` },
         icon(user_circle_default),
-        state === "mine" ? p("claim.mine") : p("claim.other", { actor: actorName(card.claimedBy ?? "") })
+        claim === "mine" ? p("claim.mine") : p("claim.other", { actor: actorName(card.claimedBy ?? "") })
       ),
       until,
-      h("span", { class: "spacer" }),
-      state === "none" ? button("claim", "claim") : null,
-      state === "mine" ? button("renew", "renew") : null,
-      state === "mine" ? button("release", "release") : null
+      h("span", { class: "ostia-spacer" }),
+      claim === "none" ? button("claim", "claim") : null,
+      claim === "mine" ? button("renew", "renew") : null,
+      claim === "mine" ? button("release", "release") : null
     );
   }
   function relationsView(card) {
@@ -8135,16 +8032,16 @@
       "header",
       { class: "detail-head" },
       h("span", { class: "card-ref" }, ref),
-      h("span", { class: "spacer" }),
+      h("span", { class: "ostia-spacer" }),
       iconButton(p("card.close"), x_default, closeCard, { "data-key": "card-close" })
     );
     const attrs = { class: "detail", "aria-label": ref, "data-scroll": "detail" };
-    if (cardFailure) return h("aside", attrs, head, failureState(cardFailure));
-    if (!cardData || cardData.card.ref !== ref) {
-      return h("aside", attrs, head, h("div", { class: "empty muted", role: "status" }, p("loading")));
+    if (state.cardFailure) return h("aside", attrs, head, failureState(state.cardFailure));
+    if (!state.cardData || state.cardData.card.ref !== ref) {
+      return h("aside", attrs, head, emptyState2(p("loading")));
     }
-    const card = cardData.card;
-    const columns = boardData?.board.columns.map((c) => c.name) ?? [];
+    const card = state.cardData.card;
+    const columns = state.boardData?.board.columns.map((c) => c.name) ?? [];
     const options = columns.includes(card.column) ? columns : [card.column, ...columns];
     return h(
       "aside",
@@ -8165,20 +8062,188 @@
           )
         ),
         labelChips(card),
-        h("span", { class: "spacer" }),
+        h("span", { class: "ostia-spacer" }),
         h("span", { class: "muted" }, p("card.updated", { time: relativeTime(card.updatedAt) }))
       ),
       claimControls(card),
       workRow(card.ref),
       relationsView(card),
       card.body.trim() ? markdown(card.body) : h("p", { class: "muted note" }, p("card.noBody")),
-      threadView(cardData.thread),
+      threadView(state.cardData.thread),
       commentForm()
     );
   }
+
+  // src/extensions/trellis/panelBoard.ts
+  function cardTile(card) {
+    return h(
+      "li",
+      { class: state.tasks.has(card.ref) ? "has-task" : "" },
+      h(
+        "button",
+        {
+          class: "card",
+          "data-key": `card-${card.ref}`,
+          "data-ref": card.ref,
+          "aria-current": card.ref === state.openRef ? "true" : "false",
+          onclick: () => openCard(card.ref)
+        },
+        h("span", { class: "card-ref" }, card.ref),
+        h("span", { class: "card-title" }, card.title),
+        labelChips(card),
+        claimLine(card)
+      ),
+      taskButton(card.ref, `task-${card.ref}`)
+    );
+  }
+  function columnView(column) {
+    return h(
+      "section",
+      { class: "column", "aria-label": column.name, "data-column": column.name },
+      h(
+        "h2",
+        {},
+        h("span", { class: "column-name" }, column.name),
+        column.done ? h("span", { class: "muted" }, p("card.doneMark")) : null,
+        h(
+          "span",
+          { class: "count", "aria-label": p("column.count", { count: column.total }) },
+          String(column.total)
+        )
+      ),
+      h(
+        "ul",
+        { class: "cards", "data-scroll": `column-${column.name}` },
+        ...column.cards.map(cardTile),
+        column.cards.length === 0 ? h(
+          "li",
+          { class: "column-empty muted" },
+          p(state.cardQuery ? "column.noMatch" : "column.empty")
+        ) : null,
+        column.hidden > 0 ? h("li", { class: "column-empty muted" }, p("column.more", { count: column.hidden })) : null
+      )
+    );
+  }
+  function openNewCard() {
+    state.newCard = {
+      title: "",
+      body: "",
+      column: state.boardData?.board.columns[0]?.name ?? "",
+      priority: DEFAULT_PRIORITY
+    };
+    hooks.render();
+    root.querySelector('[data-key="new-title"]')?.focus();
+  }
+  async function createCard() {
+    if (!state.newCard || !state.project || state.busy || !state.newCard.title.trim()) return;
+    state.busy = true;
+    const res = await call("create", {
+      project: state.project,
+      board: state.boardData?.board.slug || void 0,
+      title: state.newCard.title,
+      body: state.newCard.body,
+      column: state.newCard.column || void 0,
+      priority: state.newCard.priority
+    });
+    state.busy = false;
+    if (res.ok) {
+      state.newCard = null;
+      state.banner = null;
+      const created = res.data.card;
+      state.openRef = created.ref;
+      state.cardData = null;
+    } else {
+      state.banner = errorText(res);
+    }
+    await refresh();
+  }
+  function newCardForm(board, draft) {
+    const title = h("input", {
+      type: "text",
+      "data-key": "new-title",
+      maxlength: "300",
+      oninput: (e) => {
+        draft.title = e.target.value;
+      }
+    });
+    title.value = draft.title;
+    const body2 = h("textarea", {
+      "data-key": "new-body",
+      rows: "5",
+      oninput: (e) => {
+        draft.body = e.target.value;
+      }
+    });
+    body2.value = draft.body;
+    return h(
+      "form",
+      {
+        class: "new-card",
+        "aria-label": p("new.heading"),
+        onsubmit: (e) => {
+          e.preventDefault();
+          void createCard();
+        },
+        onkeydown: (e) => {
+          const key = e;
+          if (key.key === "Escape") {
+            state.newCard = null;
+            hooks.render();
+          } else if (key.key === "Enter" && (key.ctrlKey || key.metaKey)) {
+            key.preventDefault();
+            void createCard();
+          }
+        }
+      },
+      field(p("new.title"), title),
+      field(p("new.body"), body2),
+      h(
+        "div",
+        { class: "field-row" },
+        field(
+          p("new.column"),
+          select(
+            "new-column",
+            p("new.column"),
+            board.columns.map((c) => ({ value: c.name, text: c.name })),
+            draft.column,
+            (value) => {
+              draft.column = value;
+            }
+          )
+        ),
+        field(
+          p("new.priority"),
+          select(
+            "new-priority",
+            p("new.priority"),
+            PRIORITY_VALUES.map((v) => ({ value: v, text: priorityLabel(v) })),
+            draft.priority,
+            (value) => {
+              draft.priority = value;
+            }
+          )
+        ),
+        h("span", { class: "ostia-spacer" }),
+        h(
+          "button",
+          {
+            type: "button",
+            "data-key": "new-cancel",
+            onclick: () => {
+              state.newCard = null;
+              hooks.render();
+            }
+          },
+          p("new.cancel")
+        ),
+        h("button", { type: "submit", class: "primary", "data-key": "new-create" }, p("new.create"))
+      )
+    );
+  }
   function boardView() {
-    if (boardFailure) return failureState(boardFailure);
-    if (!boardData) return h("div", { class: "empty muted", role: "status" }, p("loading"));
+    if (state.boardFailure) return failureState(state.boardFailure);
+    if (!state.boardData) return emptyState2(p("loading"));
     const filter = h("input", {
       type: "search",
       class: "filter",
@@ -8186,35 +8251,40 @@
       "aria-label": p("filterCards"),
       placeholder: p("filterCards"),
       oninput: (e) => {
-        cardQuery = e.target.value;
-        render2();
+        state.cardQuery = e.target.value;
+        hooks.render();
       }
     });
-    filter.value = cardQuery;
+    filter.value = state.cardQuery;
     return h(
       "div",
-      { class: `board-layout${openRef ? " has-detail" : ""}` },
+      { class: `board-layout${state.openRef ? " has-detail" : ""}` },
       h(
         "div",
         { class: "board-main" },
-        newCard ? newCardForm(boardData.board, newCard) : null,
+        state.newCard ? newCardForm(state.boardData.board, state.newCard) : null,
         h("div", { class: "filter-row" }, filter),
         h(
           "div",
           { class: "columns", "data-scroll": "columns" },
-          ...shownColumns(boardData.board, cardQuery).map(columnView)
+          ...shownColumns(state.boardData.board, state.cardQuery).map(columnView)
         )
       ),
-      openRef ? detailView(openRef) : null
+      state.openRef ? detailView(state.openRef) : null
     );
   }
+
+  // node_modules/.pnpm/@phosphor-icons+core@2.1.1/node_modules/@phosphor-icons/core/assets/regular/lock-simple.svg
+  var lock_simple_default = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z"/></svg>';
+
+  // src/extensions/trellis/panelVault.ts
   function openEntry(slug) {
-    if (openSlug !== slug) {
-      entryData = null;
-      entryFailure = null;
+    if (state.openSlug !== slug) {
+      state.entryData = null;
+      state.entryFailure = null;
     }
-    openSlug = slug;
-    render2();
+    state.openSlug = slug;
+    hooks.render();
     void refresh();
   }
   function entryRow(entry) {
@@ -8227,7 +8297,7 @@
           class: "entry",
           "data-key": `entry-${entry.slug}`,
           "data-slug": entry.slug,
-          "aria-current": entry.slug === openSlug ? "true" : "false",
+          "aria-current": entry.slug === state.openSlug ? "true" : "false",
           onclick: () => openEntry(entry.slug)
         },
         h(
@@ -8246,30 +8316,25 @@
       "header",
       { class: "detail-head" },
       h("span", { class: "card-ref" }, slug),
-      h("span", { class: "spacer" }),
+      h("span", { class: "ostia-spacer" }),
       iconButton(
         p("vault.close"),
         x_default,
         () => {
-          openSlug = null;
-          entryData = null;
-          render2();
+          state.openSlug = null;
+          state.entryData = null;
+          hooks.render();
           root.querySelector(`[data-key="entry-${slug}"]`)?.focus();
         },
         { "data-key": "entry-close" }
       )
     );
     const attrs = { class: "detail entry-detail", "aria-label": slug, "data-scroll": "entry" };
-    if (entryFailure) return h("article", attrs, head, failureState(entryFailure));
-    if (!entryData || entryData.slug !== slug) {
-      return h(
-        "article",
-        attrs,
-        head,
-        h("div", { class: "empty muted", role: "status" }, p("loading"))
-      );
+    if (state.entryFailure) return h("article", attrs, head, failureState(state.entryFailure));
+    if (!state.entryData || state.entryData.slug !== slug) {
+      return h("article", attrs, head, emptyState2(p("loading")));
     }
-    const entry = entryData;
+    const entry = state.entryData;
     return h(
       "article",
       attrs,
@@ -8281,7 +8346,7 @@
         entry.template ? h("span", { class: "chip" }, entry.template) : null,
         entry.private ? h("span", { class: "chip" }, icon(lock_simple_default), p("vault.private")) : null,
         ...entry.tags.map((tag) => h("span", { class: "chip" }, tag)),
-        h("span", { class: "spacer" }),
+        h("span", { class: "ostia-spacer" }),
         h("span", { class: "muted" }, p("card.updated", { time: relativeTime(entry.updatedAt) }))
       ),
       entry.summary ? h("p", { class: "summary" }, entry.summary) : null,
@@ -8295,9 +8360,9 @@
     );
   }
   function vaultView() {
-    if (vaultFailure) return failureState(vaultFailure);
-    if (!entries) return h("div", { class: "empty muted", role: "status" }, p("loading"));
-    if (entries.length === 0) return emptyState(p("vault.empty"));
+    if (state.vaultFailure) return failureState(state.vaultFailure);
+    if (!state.entries) return emptyState2(p("loading"));
+    if (state.entries.length === 0) return emptyState2(p("vault.empty"));
     const filter = h("input", {
       type: "search",
       class: "filter",
@@ -8305,15 +8370,15 @@
       "aria-label": p("filterEntries"),
       placeholder: p("filterEntries"),
       oninput: (e) => {
-        entryQuery = e.target.value;
-        render2();
+        state.entryQuery = e.target.value;
+        hooks.render();
       }
     });
-    filter.value = entryQuery;
-    const groups = groupEntries(entries, entryQuery);
+    filter.value = state.entryQuery;
+    const groups = groupEntries(state.entries, state.entryQuery);
     return h(
       "div",
-      { class: `vault-layout${openSlug ? " has-detail" : ""}` },
+      { class: `vault-layout${state.openSlug ? " has-detail" : ""}` },
       h(
         "div",
         { class: "vault-list", "data-scroll": "vault-list" },
@@ -8328,105 +8393,111 @@
           )
         )
       ),
-      openSlug ? entryView(openSlug) : h("div", { class: "vault-hint" }, emptyState(p("vault.pick")))
+      state.openSlug ? entryView(state.openSlug) : h("div", { class: "vault-hint" }, emptyState2(p("vault.pick")))
     );
+  }
+
+  // src/extensions/trellis/panel.ts
+  function setView(next) {
+    state.view = next;
+    state.banner = null;
+    void refresh();
+  }
+  function setProject(next) {
+    state.project = next;
+    state.boardSlug = state.ctx?.workspace?.project === next ? state.ctx.workspace.board ?? null : null;
+    state.boardData = null;
+    state.entries = null;
+    state.openRef = null;
+    state.cardData = null;
+    state.openSlug = null;
+    state.entryData = null;
+    state.newCard = null;
+    state.banner = null;
+    void refresh();
+  }
+  function scopeRow() {
+    const projects = state.ctx?.projects ?? [];
+    const boards = state.boardData?.boards ?? [];
+    const projectSelect = projects.length === 0 ? null : state.project ? select(
+      "project",
+      p("project"),
+      projects.map((x) => ({ value: x.key, text: x.key })),
+      state.project,
+      setProject
+    ) : select(
+      "project",
+      p("project"),
+      [
+        { value: "", text: p("project") },
+        ...projects.map((x) => ({ value: x.key, text: x.key }))
+      ],
+      "",
+      (value) => value && setProject(value)
+    );
+    const boardSelect = state.view === "board" && boards.length > 1 && state.boardData ? select(
+      "board",
+      p("board"),
+      boards.map((b) => ({ value: b.slug, text: b.name })),
+      state.boardData.board.slug,
+      (slug) => {
+        state.boardSlug = slug;
+        void refresh();
+      }
+    ) : null;
+    return projectSelect || boardSelect ? h("div", { class: "scope-row" }, projectSelect, boardSelect) : null;
+  }
+  function syncToolbar() {
+    setPanelToolbar({
+      tab: state.view,
+      hidden: state.view === "board" && state.boardData ? [] : ["new-card"]
+    });
+  }
+  function bannerView() {
+    if (state.banner) return h("div", { class: "banner error", role: "alert" }, state.banner);
+    return state.notice ? h("div", { class: "banner", role: "status" }, state.notice) : null;
   }
   async function initProject() {
     const res = await call("init");
-    banner = res.ok || res.error === "cancelled" ? null : errorText(res);
-    ctx = null;
+    state.banner = res.ok || res.error === "cancelled" ? null : errorText(res);
+    state.ctx = null;
     await refresh();
   }
   function body() {
-    if (failed) return failureState(failed);
-    if (!ctx) return h("div", { class: "empty muted", role: "status" }, p("loading"));
-    if (!project) {
-      const init = ctx.canInit ? h("button", { "data-key": "init", onclick: () => void initProject() }, p("empty.init")) : void 0;
-      return ctx.projects.length === 0 && !ctx.canInit ? emptyState(p("empty.noProjects")) : emptyState(p("empty.noProject"), p("empty.noProjectHint"), "muted", init);
+    if (state.failed) return failureState(state.failed);
+    if (!state.ctx) return emptyState2(p("loading"));
+    if (!state.project) {
+      const init = state.ctx.canInit ? h("button", { "data-key": "init", onclick: () => void initProject() }, p("empty.init")) : void 0;
+      return state.ctx.projects.length === 0 && !state.ctx.canInit ? emptyState2(p("empty.noProjects")) : emptyState2(p("empty.noProject"), p("empty.noProjectHint"), "muted", init);
     }
-    return view === "vault" ? vaultView() : boardView();
+    return state.view === "vault" ? vaultView() : boardView();
   }
   function render2() {
-    show(h("main", { class: "page" }, toolbar(), bannerView(), body()));
-  }
-  async function loadContext() {
-    const res = await call("context");
-    if (!res.ok) {
-      failed = res;
-      return;
-    }
-    failed = null;
-    ctx = res.data;
-    if (project) return;
-    const fromCard = openRef ? CARD_REF.exec(openRef)?.[1] : null;
-    project = fromCard ?? ctx.workspace?.project ?? null;
-    boardSlug = project === ctx.workspace?.project ? ctx.workspace?.board ?? null : null;
-  }
-  async function loadBoard(seq) {
-    const [res, working] = await Promise.all([
-      call("board", { project, board: boardSlug ?? void 0 }),
-      call("tasks")
-    ]);
-    if (seq !== requestSeq) return;
-    boardFailure = res.ok ? null : res;
-    if (res.ok) boardData = res.data;
-    if (working.ok) {
-      const list2 = working.data.tasks;
-      tasks = new Map(list2.map((task) => [task.ref, task]));
-    }
-  }
-  async function loadCard(seq, ref) {
-    const res = await call("card", { ref, board: boardData?.board.slug || void 0 });
-    if (seq !== requestSeq || openRef !== ref) return;
-    cardFailure = res.ok ? null : res;
-    if (res.ok) cardData = res.data;
-  }
-  async function loadVault(seq) {
-    const res = await call("vault", { project });
-    if (seq !== requestSeq) return;
-    vaultFailure = res.ok ? null : res;
-    if (res.ok) entries = res.data.entries;
-    const slug = openSlug;
-    if (!slug) return;
-    const shown = await call("entry", { project, slug });
-    if (seq !== requestSeq || openSlug !== slug) return;
-    entryFailure = shown.ok ? null : shown;
-    if (shown.ok) entryData = shown.data.entry;
-  }
-  async function refresh() {
-    const seq = ++requestSeq;
-    if (!ctx || failed) await loadContext();
-    if (seq !== requestSeq) return;
-    if (ctx && project) {
-      if (view === "vault") await loadVault(seq);
-      else {
-        await loadBoard(seq);
-        if (seq === requestSeq && openRef) {
-          if (boardData && !findCard(boardData.board, openRef) && cardData?.card.ref !== openRef) {
-            cardData = null;
-          }
-          await loadCard(seq, openRef);
-        }
-      }
-    }
-    if (seq === requestSeq) render2();
+    syncToolbar();
+    show(h("main", { class: "ostia-page" }, scopeRow(), bannerView(), body()));
   }
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape" || e.defaultPrevented) return;
     const target = e.target;
     if (target?.closest(".new-card")) return;
-    if (workMenu) {
-      workMenu = null;
+    if (state.workMenu) {
+      state.workMenu = null;
       render2();
       return;
     }
-    if (view === "board" && openRef) closeCard();
+    if (state.view === "board" && state.openRef) closeCard();
   });
   document.addEventListener("pointerdown", (e) => {
-    if (!workMenu || e.target?.closest(".work")) return;
-    workMenu = null;
+    if (!state.workMenu || e.target?.closest(".work")) return;
+    state.workMenu = null;
     render2();
   });
+  onPanelToolbar((event) => {
+    if (event.kind === "tab") setView(event.id);
+    else if (event.kind === "action" && event.id === "refresh") void refresh();
+    else if (event.kind === "action" && event.id === "new-card") openNewCard();
+  });
+  hooks.render = render2;
   render2();
   onChange(() => void refresh());
   void refresh();

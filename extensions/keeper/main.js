@@ -6,7 +6,11 @@ var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -65,7 +69,7 @@ var require_is = __commonJS({
 var require_messages = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messages.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -74,16 +78,16 @@ var require_messages = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -101,7 +105,7 @@ var require_messages = __commonJS({
         __setModuleDefault(result, mod);
         return result;
       };
-    }();
+    })();
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Message = exports2.NotificationType9 = exports2.NotificationType8 = exports2.NotificationType7 = exports2.NotificationType6 = exports2.NotificationType5 = exports2.NotificationType4 = exports2.NotificationType3 = exports2.NotificationType2 = exports2.NotificationType1 = exports2.NotificationType0 = exports2.NotificationType = exports2.RequestType9 = exports2.RequestType8 = exports2.RequestType7 = exports2.RequestType6 = exports2.RequestType5 = exports2.RequestType4 = exports2.RequestType3 = exports2.RequestType2 = exports2.RequestType1 = exports2.RequestType = exports2.RequestType0 = exports2.AbstractMessageSignature = exports2.ParameterStructures = exports2.ResponseError = exports2.ErrorCodes = void 0;
     var is = __importStar(require_is());
@@ -1014,7 +1018,7 @@ var require_events = __commonJS({
 var require_cancellation = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/cancellation.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1023,16 +1027,16 @@ var require_cancellation = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1050,7 +1054,7 @@ var require_cancellation = __commonJS({
         __setModuleDefault(result, mod);
         return result;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -1112,7 +1116,7 @@ var require_cancellation = __commonJS({
         }
       }
     };
-    var CancellationTokenSource = class {
+    var CancellationTokenSource2 = class {
       _token;
       get token() {
         if (!this._token) {
@@ -1135,7 +1139,7 @@ var require_cancellation = __commonJS({
         }
       }
     };
-    exports2.CancellationTokenSource = CancellationTokenSource;
+    exports2.CancellationTokenSource = CancellationTokenSource2;
   }
 });
 
@@ -1296,7 +1300,7 @@ var require_semaphore = __commonJS({
 var require_messageReader = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageReader.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1305,16 +1309,16 @@ var require_messageReader = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1332,7 +1336,7 @@ var require_messageReader = __commonJS({
         __setModuleDefault(result, mod);
         return result;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -1538,7 +1542,7 @@ ${JSON.stringify(Object.fromEntries(headers))}`));
 var require_messageWriter = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/messageWriter.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1547,16 +1551,16 @@ var require_messageWriter = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1574,7 +1578,7 @@ var require_messageWriter = __commonJS({
         __setModuleDefault(result, mod);
         return result;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -1847,7 +1851,7 @@ ${header}`);
 var require_connection = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/common/connection.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -1856,16 +1860,16 @@ var require_connection = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -1883,7 +1887,7 @@ var require_connection = __commonJS({
         __setModuleDefault(result, mod);
         return result;
       };
-    }();
+    })();
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
@@ -3385,7 +3389,7 @@ var require_ril = __commonJS({
 var require_main = __commonJS({
   "node_modules/.pnpm/vscode-jsonrpc@9.0.3/node_modules/vscode-jsonrpc/lib/node/main.js"(exports2) {
     "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
       if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
@@ -3394,16 +3398,16 @@ var require_main = __commonJS({
         } };
       }
       Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
+    }) : (function(o, m, k, k2) {
       if (k2 === void 0) k2 = k;
       o[k2] = m[k];
-    });
-    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+    }));
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? (function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
+    }) : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ (function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -3421,7 +3425,7 @@ var require_main = __commonJS({
         __setModuleDefault(result, mod);
         return result;
       };
-    }();
+    })();
     var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
       for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p)) __createBinding(exports3, m, p);
     };
@@ -3683,8 +3687,24 @@ var require_main = __commonJS({
   }
 });
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-FA6PUJIY.js
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-BN4VRUVE.js
+var import_node_crypto = require("node:crypto");
+var import_node_os = require("node:os");
+var HOST = (0, import_node_crypto.createHash)("sha256").update((0, import_node_os.hostname)()).digest("hex").slice(0, 8);
+
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-TO23AMVT.js
+function isRecord(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+var DANGEROUS_SEGMENTS = /* @__PURE__ */ new Set(["__proto__", "prototype", "constructor"]);
+function isDangerousSegment(segment) {
+  return DANGEROUS_SEGMENTS.has(segment);
+}
+var EXTENSION_LOCALES_DIR = "locales";
 var EXTENSION_LOCALE_FILE_MAX_BYTES = 256 * 1024;
+var EXTENSION_MESSAGES_MAX = 2e3;
+var EXTENSION_MESSAGE_MAX = 4e3;
+var EXTENSION_MESSAGE_KEY_MAX = 120;
 var EXTENSION_BASE_LOCALE = "en";
 var LOCALE_CHANGED_EVENT = "locale.changed";
 function matchLocale(locale, available) {
@@ -3697,17 +3717,84 @@ function matchLocale(locale, available) {
   }
   return available.find((tag) => tag.toLowerCase().split("-")[0] === subtags[0]);
 }
-function localized(catalogs, locale) {
+function formatMessage(template, vars = {}) {
+  return template.replace(
+    /\{([A-Za-z0-9_]+)\}/g,
+    (placeholder, name) => Object.hasOwn(vars, name) ? String(vars[name]) : placeholder
+  );
+}
+function messageIn(catalog, key) {
+  return catalog && Object.hasOwn(catalog, key) ? catalog[key] : void 0;
+}
+function translatorFor(catalogs, locale) {
   const tag = matchLocale(locale, Object.keys(catalogs));
-  return tag ? catalogs[tag] : catalogs.en;
+  const own = tag ? catalogs[tag] : void 0;
+  const base = Object.hasOwn(catalogs, EXTENSION_BASE_LOCALE) ? catalogs[EXTENSION_BASE_LOCALE] : void 0;
+  return (key, vars) => formatMessage(messageIn(own, key) ?? messageIn(base, key) ?? key, vars);
+}
+function parseMessages(raw) {
+  const messages = /* @__PURE__ */ Object.create(null);
+  const problems = [];
+  if (raw === void 0) return { messages, problems };
+  if (!isRecord(raw)) {
+    return { messages, problems: ["messages must be an object of strings"] };
+  }
+  const entries = Object.entries(raw);
+  if (entries.length > EXTENSION_MESSAGES_MAX) {
+    problems.push(`messages holds more than ${EXTENSION_MESSAGES_MAX} strings`);
+  }
+  for (const [key, value] of entries.slice(0, EXTENSION_MESSAGES_MAX)) {
+    if (!key || key.length > EXTENSION_MESSAGE_KEY_MAX || isDangerousSegment(key)) {
+      problems.push(`messages.${key}: not a usable key`);
+    } else if (typeof value !== "string") {
+      problems.push(`messages.${key}: must be a string`);
+    } else if (value.length > EXTENSION_MESSAGE_MAX) {
+      problems.push(`messages.${key}: longer than ${EXTENSION_MESSAGE_MAX} characters`);
+    } else {
+      messages[key] = value;
+    }
+  }
+  return { messages, problems };
 }
 
-// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.11_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_96b5e3340e30f41326304f20d4fdcbce/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-K2WTNHGU.js
-var import_net = require("net");
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-AGWMOFL4.js
+function ok(text, data) {
+  const result = { ok: true };
+  if (text !== void 0) result.text = text;
+  if (data !== void 0) result.data = data;
+  return result;
+}
+function failure(error, message) {
+  return message ? { ok: false, error, message } : { ok: false, error };
+}
+function numberSetting(values, key, fallback, range) {
+  const value = values[key];
+  if (typeof value !== "number" || !Number.isFinite(value)) return fallback;
+  return Math.min(range.max, Math.max(range.min, value));
+}
+function booleanSetting(values, key, fallback) {
+  const value = values[key];
+  return typeof value === "boolean" ? value : fallback;
+}
+function errorMessage(err) {
+  return err instanceof Error ? err.message : String(err);
+}
+
+// node_modules/.pnpm/@aurigax-ai+ostia-extension-sdk@0.5.12_@ai-sdk-tool+parser@5.1.6_@ai-sdk+provider-utils_543b04fec801434e40bf01e9641afba2/node_modules/@aurigax-ai/ostia-extension-sdk/dist/chunk-D6E5XF3S.js
+var import_node_events = require("node:events");
+var import_node_net = require("node:net");
 var import_node = __toESM(require_main(), 1);
-var import_child_process = require("child_process");
-var import_crypto = require("crypto");
-var import_http = require("http");
+var import_node_fs = require("node:fs");
+var import_node_path = require("node:path");
+var import_node2 = __toESM(require_main(), 1);
+var import_node_fs2 = require("node:fs");
+var import_node_path2 = require("node:path");
+var import_node_stream = require("node:stream");
+var import_node_fs3 = require("node:fs");
+var import_node_path3 = require("node:path");
+var import_node_crypto2 = require("node:crypto");
+var import_node_http = require("node:http");
+var import_node_child_process = require("node:child_process");
 var ENV_PREFIX = "OSTIA_";
 function envName(name) {
   return `${ENV_PREFIX}${name}`;
@@ -3715,35 +3802,8 @@ function envName(name) {
 function readEnv(name, env = process.env) {
   return env[envName(name)] || void 0;
 }
-var ALL_CAPABILITIES = [
-  "drive-self",
-  "read-board",
-  "send-other-pane",
-  "type-other-pane",
-  "read-other-pane",
-  "kill-pane",
-  "all-workspaces",
-  "shell",
-  "destructive",
-  "phone",
-  "gateway",
-  "notify",
-  "process",
-  "vault-read",
-  "vault-write",
-  "browse",
-  "settings-read",
-  "settings-write",
-  "assist",
-  "credentials",
-  "language-server",
-  "agent-plugin"
-];
-var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
-  (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive"
-);
 var PRODUCT_NAME = "ostia";
-var EXTENSION_API_VERSION = "3.0";
+var EXTENSION_API_VERSION = "7.8";
 var EXTENSION_API_PATTERN = /^(0|[1-9]\d{0,3})\.(0|[1-9]\d{0,3})$/;
 var EXTENSION_API_ENV = "EXTENSION_API";
 function parseApiVersion(value) {
@@ -3761,54 +3821,720 @@ function apiProblem(required, provided = EXTENSION_API_VERSION) {
   if (have && isApiCompatible(wanted, have)) return null;
   return `needs extension API ${required}; this ${PRODUCT_NAME} provides ${provided}`;
 }
+var EXTENSION_MANIFEST_FILE = "ostia.json";
+var INBOX_ACTION_EVENT = "inbox.action";
 var SETTINGS_CHANGED_EVENT = "settings.changed";
 var ASSIST_PROVIDERS_CHANGED_EVENT = "assist.providers.changed";
 var TARGET_PANE_PARAM = "targetPaneId";
 var DIFF_TEXT_MAX = 5 * 1024 * 1024;
 var OPEN_TERMINAL_WAIT_MAX_MS = 10 * 6e4;
+var EXEC_OUTPUT_DEFAULT = 64 * 1024;
+var EXEC_OUTPUT_MAX = 1024 * 1024;
+function declaredApi() {
+  const dir = readEnv("EXTENSION_DIR");
+  if (!dir) throw new Error("OSTIA_EXTENSION_DIR missing");
+  const file = (0, import_node_path.join)(dir, EXTENSION_MANIFEST_FILE);
+  const manifest = JSON.parse((0, import_node_fs.readFileSync)(file, "utf8"));
+  const api = isRecord(manifest) ? manifest.api : void 0;
+  if (typeof api !== "string") throw new Error(`${file} declares no api`);
+  return api;
+}
+var BROWSE_READ_MAX = 1024 * 1024;
+var BROWSE_PAGE_ENTRIES = 500;
+var BROWSE_PAGE_BYTES = 256 * 1024;
+var BROWSE_CACHE_BLOCKS = 8;
+var BROWSE_NAME_BYTES = 4 * 1024;
+var BROWSE_LISTING_BYTES = 8 * 1024 * 1024;
+var BROWSE_LIST_METHOD = "ext.browse.list";
+var BROWSE_READ_METHOD = "ext.browse.read";
+var BROWSE_READ_AT_METHOD = "ext.browse.readAt";
+var BROWSE_ENTRIES_METHOD = "ext.browse.entries";
+var BROWSE_CHUNK_METHOD = "ext.browse.chunk";
+var BROWSE_LIMITS = {
+  entries: 2e4,
+  depth: 32,
+  nameLength: 1024,
+  scanBytes: 1024 * 1024 * 1024,
+  scanMs: 2e4,
+  linkTargetBytes: 1024
+};
+var BrowseError = class extends Error {
+  constructor(code, message) {
+    super(message ?? code);
+    this.code = code;
+  }
+  code;
+};
+var Cancelled = class extends Error {
+};
+var LIST_ERRORS = [
+  "unsupported",
+  "corrupt",
+  "limit",
+  "cancelled",
+  "failed",
+  "encrypted"
+];
+var READ_ERRORS = [
+  "gone",
+  "encrypted",
+  "link",
+  "too-large",
+  "limit",
+  "corrupt",
+  "cancelled",
+  "failed"
+];
+function failureCode(err, allowed, signal) {
+  if (signal.aborted || err instanceof Cancelled) return "cancelled";
+  if (err instanceof BrowseError && allowed.includes(err.code)) return err.code;
+  return "failed";
+}
+function guard(result) {
+  if (!result.ok) throw new Cancelled(result.error);
+}
+function blockCache(size, fetchBlock) {
+  const blocks = /* @__PURE__ */ new Map();
+  const block = (index) => {
+    const cached = blocks.get(index);
+    if (cached) {
+      blocks.delete(index);
+      blocks.set(index, cached);
+      return cached;
+    }
+    const start = index * BROWSE_READ_MAX;
+    const fetched = fetchBlock(start, Math.min(BROWSE_READ_MAX, size - start));
+    fetched.catch(() => blocks.delete(index));
+    blocks.set(index, fetched);
+    while (blocks.size > BROWSE_CACHE_BLOCKS) {
+      const oldest = blocks.keys().next().value;
+      if (oldest === void 0) break;
+      blocks.delete(oldest);
+    }
+    return fetched;
+  };
+  const readAt = async (offset, length) => {
+    if (!Number.isSafeInteger(offset) || !Number.isSafeInteger(length) || offset < 0 || length < 0) {
+      throw new RangeError("offset and length must be non-negative integers");
+    }
+    if (offset + length > size) throw new RangeError("read past the end of the file");
+    const out = new Uint8Array(length);
+    let done = 0;
+    while (done < length) {
+      const at = offset + done;
+      const index = Math.floor(at / BROWSE_READ_MAX);
+      const data = await block(index);
+      const inside = at - index * BROWSE_READ_MAX;
+      const take = Math.min(length - done, data.length - inside);
+      if (take <= 0) throw new RangeError("short block");
+      out.set(data.subarray(inside, inside + take), done);
+      done += take;
+    }
+    return out;
+  };
+  const stream = (start = 0, end = size) => {
+    const last = Math.min(end, size);
+    async function* pieces() {
+      let at = start;
+      let ahead = null;
+      while (at < last) {
+        const index = Math.floor(at / BROWSE_READ_MAX);
+        const current = ahead ?? block(index);
+        ahead = (index + 1) * BROWSE_READ_MAX < last ? block(index + 1) : null;
+        ahead?.catch(() => {
+        });
+        const data = await current;
+        const inside = at - index * BROWSE_READ_MAX;
+        const upTo = Math.min(data.length, last - index * BROWSE_READ_MAX);
+        yield data.subarray(inside, upTo);
+        at = index * BROWSE_READ_MAX + upTo;
+      }
+    }
+    return import_node_stream.Readable.from(pieces(), { objectMode: false });
+  };
+  return { readAt, stream };
+}
+function openFile(conn, ticket, size, token) {
+  const fetchBlock = async (offset, length) => {
+    if (token.isCancellationRequested) throw new Cancelled("cancelled");
+    const params = { ticket, offset, length };
+    const reply = await conn.sendRequest(BROWSE_READ_AT_METHOD, params);
+    guard(reply);
+    return new Uint8Array(Buffer.from(reply.data, "base64"));
+  };
+  return { size, ...blockCache(size, fetchBlock) };
+}
+function entrySink(conn, ticket) {
+  let page = [];
+  let bytes = 0;
+  let more = true;
+  const flush = async () => {
+    if (page.length === 0) return;
+    const params = { ticket, entries: page };
+    page = [];
+    bytes = 0;
+    const reply = await conn.sendRequest(BROWSE_ENTRIES_METHOD, params);
+    guard(reply);
+    more = reply.more;
+  };
+  const sink = {
+    add: async (entry) => {
+      if (!more) return false;
+      page.push(entry);
+      bytes += entry.name.length + (entry.link?.length ?? 0) + 64;
+      if (page.length >= BROWSE_PAGE_ENTRIES || bytes >= BROWSE_PAGE_BYTES) await flush();
+      return more;
+    }
+  };
+  return { sink, flush, stopped: () => !more };
+}
+function chunkSink(conn, ticket) {
+  let more = true;
+  return {
+    write: async (bytes) => {
+      for (let at = 0; more && at < bytes.length; at += BROWSE_READ_MAX) {
+        const params = {
+          ticket,
+          data: Buffer.from(bytes.subarray(at, at + BROWSE_READ_MAX)).toString("base64")
+        };
+        const reply = await conn.sendRequest(BROWSE_CHUNK_METHOD, params);
+        guard(reply);
+        more = reply.more;
+      }
+      return more;
+    }
+  };
+}
+function abortOn(token) {
+  const abort = new AbortController();
+  token.onCancellationRequested(() => abort.abort());
+  if (token.isCancellationRequested) abort.abort();
+  return abort;
+}
+function isListParams(params) {
+  return isRecord(params) && typeof params.ticket === "string" && typeof params.kind === "string" && typeof params.size === "number" && isRecord(params.limits);
+}
+var REGISTRATION_WAIT_MS = 10;
+var REGISTRATION_TRIES = 20;
+async function providerFor(providers, kind) {
+  for (let tries = 0; tries < REGISTRATION_TRIES; tries++) {
+    const found = providers.get(kind);
+    if (found) return found;
+    await new Promise((resolve) => setTimeout(resolve, REGISTRATION_WAIT_MS));
+  }
+  return void 0;
+}
+function listenForBrowse(conn, providers) {
+  conn.onRequest(
+    BROWSE_LIST_METHOD,
+    async (params, token) => {
+      const provider = isListParams(params) ? await providerFor(providers, params.kind) : void 0;
+      if (!provider) return { ok: false, error: "unsupported" };
+      const abort = abortOn(token);
+      const entries = entrySink(conn, params.ticket);
+      try {
+        const file = openFile(conn, params.ticket, params.size, token);
+        const result = await provider.list(file, entries.sink, {
+          signal: abort.signal,
+          limits: params.limits
+        });
+        await entries.flush();
+        if (result.ok && entries.stopped()) return { ok: true, complete: false };
+        return result;
+      } catch (err) {
+        return { ok: false, error: failureCode(err, LIST_ERRORS, abort.signal) };
+      }
+    }
+  );
+  conn.onRequest(
+    BROWSE_READ_METHOD,
+    async (params, token) => {
+      const provider = isListParams(params) ? await providerFor(providers, params.kind) : void 0;
+      if (!provider || !Number.isSafeInteger(params.index) || !Number.isSafeInteger(params.max)) {
+        return { ok: false, error: "failed" };
+      }
+      const abort = abortOn(token);
+      try {
+        const file = openFile(conn, params.ticket, params.size, token);
+        return await provider.read(file, params.index, chunkSink(conn, params.ticket), {
+          signal: abort.signal,
+          limits: params.limits,
+          max: params.max
+        });
+      } catch (err) {
+        return { ok: false, error: failureCode(err, READ_ERRORS, abort.signal) };
+      }
+    }
+  );
+}
+function declaresBrowseKind(extensionDir2, kindId) {
+  try {
+    const manifest = JSON.parse((0, import_node_fs2.readFileSync)((0, import_node_path2.join)(extensionDir2, "ostia.json"), "utf8"));
+    const contributes = isRecord(manifest) ? manifest.contributes : void 0;
+    const kinds = isRecord(contributes) ? contributes.fileKinds : void 0;
+    return Array.isArray(kinds) && kinds.some((kind) => isRecord(kind) && kind.id === kindId && isRecord(kind.browse));
+  } catch {
+    return false;
+  }
+}
+function rpcFailure(err, fallback) {
+  const message = errorMessage(err);
+  const code = /^([a-z][a-z0-9-]{0,40}):/.exec(message)?.[1];
+  return { ok: false, error: code ?? fallback, message };
+}
+async function sent(work, error) {
+  try {
+    return await work;
+  } catch (err) {
+    return failure(error, errorMessage(err));
+  }
+}
+async function sentRpc(work, fallback) {
+  try {
+    return await work;
+  } catch (err) {
+    return rpcFailure(err, fallback);
+  }
+}
+async function withCancel(signal, work) {
+  const source = new import_node2.CancellationTokenSource();
+  const cancel = () => source.cancel();
+  signal?.addEventListener("abort", cancel, { once: true });
+  if (signal?.aborted) source.cancel();
+  try {
+    return await work(source.token);
+  } finally {
+    signal?.removeEventListener("abort", cancel);
+    source.dispose();
+  }
+}
+function windowMethods(conn, handlers) {
+  return {
+    call: (method, params) => params === void 0 ? conn.sendRequest(method) : conn.sendRequest(method, params),
+    confirm: async (req) => {
+      const res = await conn.sendRequest("ext.confirm", req);
+      return res?.confirmed === true;
+    },
+    notifyPanel: (title, body, path) => conn.sendRequest("ext.notify", { title, body, openPanel: path ?? true }),
+    registerCommands: async (map) => {
+      for (const [id, handler] of Object.entries(map)) handlers.commands.set(id, handler);
+      await conn.sendRequest("ext.registerCommands", { commands: Object.keys(map) });
+    },
+    onPanel: (handler) => {
+      handlers.panel = handler;
+    },
+    subscribe: (events, handler) => {
+      handlers.event = handler;
+      return conn.sendRequest("ext.subscribe", { events });
+    },
+    setSidebarItem: (item) => conn.sendRequest("ext.setSidebarItem", item),
+    startWithWindow: (on) => conn.sendRequest("ext.startWithWindow", { on }),
+    wireRuntime: () => conn.sendRequest("ext.wireRuntime", {}),
+    notify: (title, body) => conn.sendRequest("ext.notify", { title, body }),
+    openPanel: (workspaceId, path) => conn.sendRequest("ext.openPanel", { workspaceId, path }),
+    setPanelToolbar: (toolbar) => conn.sendRequest("ext.setPanelToolbar", toolbar),
+    setInboxItems: (workspaceId, items) => conn.sendRequest("ext.setInboxItems", { workspaceId, items }),
+    onInboxAction: (handler) => {
+      handlers.inboxAction = handler;
+    },
+    setPaneChip: (chip) => conn.sendRequest("ext.setPaneChip", chip),
+    clearPaneChip: (paneId, id) => conn.sendRequest("ext.clearPaneChip", { paneId, id }),
+    setWorkspaceChip: (chip) => conn.sendRequest("ext.setWorkspaceChip", chip),
+    clearWorkspaceChip: (workspaceId, id) => conn.sendRequest("ext.clearWorkspaceChip", { workspaceId, id }),
+    getSettings: async () => {
+      const res = await conn.sendRequest("ext.getSettings");
+      return res?.values ?? {};
+    },
+    setSetting: (key, value) => conn.sendRequest("ext.setSetting", { key, value }),
+    onSettingsChanged: (handler) => {
+      handlers.settings = handler;
+    },
+    getLocale: async () => {
+      const res = await conn.sendRequest("ext.locale");
+      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
+    },
+    onLocaleChanged: (handler) => {
+      handlers.locale = handler;
+    },
+    callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId })
+  };
+}
+function agentMethods(conn) {
+  return {
+    setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
+    openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
+    openFile: (file) => conn.sendRequest("ext.openFile", file),
+    openTerminal: (opts) => sent(conn.sendRequest("ext.openTerminal", opts), "open-terminal-failed"),
+    listAgents: async () => {
+      try {
+        const res = await conn.sendRequest("ext.agents");
+        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
+      } catch {
+        return [];
+      }
+    },
+    runAgent: (opts) => sent(conn.sendRequest("ext.runAgent", opts), "run-agent-failed"),
+    offerToAgent: (opts) => sent(conn.sendRequest("ext.offerToAgent", opts), "offer-failed"),
+    focusPane: (paneId) => sent(conn.sendRequest("ext.focusPane", { paneId }), "focus-failed"),
+    redact: async (texts) => {
+      try {
+        const res = await conn.sendRequest("ext.redact", {
+          texts
+        });
+        const redacted = res?.ok === true && Array.isArray(res.texts) ? res.texts : null;
+        return redacted?.length === texts.length && redacted.every((t) => typeof t === "string") ? redacted : null;
+      } catch {
+        return null;
+      }
+    },
+    exec: (opts, signal) => withCancel(
+      signal,
+      (token) => sentRpc(conn.sendRequest("ext.exec", opts, token), "exec-failed")
+    ),
+    busSend: (to, text) => sentRpc(conn.sendRequest("ext.busSend", { to, text }), "bus-send-failed"),
+    wakePane: (paneId, waitMs) => sentRpc(
+      conn.sendRequest(
+        "ext.wakePane",
+        waitMs === void 0 ? { paneId } : { paneId, waitMs }
+      ),
+      "wake-failed"
+    ),
+    requireCallerCaps: (paneId, caps, reason) => sentRpc(
+      conn.sendRequest("ext.requireCallerCaps", { paneId, caps, reason }),
+      "caller-caps-failed"
+    ),
+    playbookEnabled: async () => {
+      try {
+        const res = await conn.sendRequest("ext.playbookEnabled");
+        return res?.enabled === true;
+      } catch {
+        return false;
+      }
+    }
+  };
+}
+function serviceMethods(conn, handlers) {
+  return {
+    ask: (opts, signal) => withCancel(
+      signal,
+      (token) => sentRpc(conn.sendRequest("ext.ask", opts, token), "ask-failed")
+    ),
+    mcpCall: (server, tool, input, signal) => withCancel(
+      signal,
+      (token) => sentRpc(
+        conn.sendRequest("ext.mcpCall", { server, tool, input }, token),
+        "mcp-call-failed"
+      )
+    ),
+    onAgent: (handler) => {
+      handlers.agent = handler;
+    },
+    agentEvent: async (sessionId, event) => {
+      await conn.sendRequest("ext.agentEvent", { sessionId, event });
+    },
+    agentTool: (call, signal) => withCancel(
+      signal,
+      (token) => conn.sendRequest("ext.agentTool", call, token).catch((err) => ({ ok: false, error: errorMessage(err) }))
+    ),
+    agentComplete: (opts, signal) => withCancel(
+      signal,
+      (token) => sentRpc(
+        conn.sendRequest("ext.agentComplete", opts, token),
+        "agent-complete-failed"
+      )
+    ),
+    parkedList: (workspaceId) => sentRpc(
+      conn.sendRequest("ext.parkedList", { workspaceId }),
+      "parked-failed"
+    ),
+    parkedResume: (id) => sentRpc(conn.sendRequest("ext.parkedResume", { id }), "parked-failed"),
+    parkedForget: (id) => sentRpc(conn.sendRequest("ext.parkedForget", { id }), "parked-failed"),
+    mcpServers: () => sentRpc(conn.sendRequest("ext.mcpServers"), "mcp-servers-failed"),
+    connections: () => sentRpc(conn.sendRequest("ext.connections"), "connections-failed"),
+    connection: (name) => sentRpc(conn.sendRequest("ext.connection", { name }), "connection-failed"),
+    onConnectionsChanged: (handler) => {
+      handlers.connections = handler;
+    },
+    listWorkspaces: () => conn.sendRequest("workspace.list"),
+    listPanes: () => conn.sendRequest("pane.list"),
+    onAssist: (handler) => {
+      handlers.assist = handler;
+    },
+    onAssistModels: (handler) => {
+      handlers.models = handler;
+    },
+    setAssistStatus: (report) => conn.sendRequest("ext.setAssistStatus", report),
+    getShortcuts: async (ids) => {
+      const res = await conn.sendRequest(
+        "ext.shortcuts",
+        { ids }
+      );
+      return res?.shortcuts ?? {};
+    },
+    openAssistUi: (ui, workspaceId) => conn.sendRequest("ext.openAssistUi", workspaceId ? { ui, workspaceId } : { ui }),
+    getSecret: async (key) => {
+      const res = await conn.sendRequest("ext.getSecret", { key });
+      return typeof res?.value === "string" ? res.value : null;
+    },
+    getAssistProviders: async () => {
+      const res = await conn.sendRequest(
+        "ext.assistProviders"
+      );
+      return Array.isArray(res?.providers) ? res.providers : [];
+    },
+    onAssistProvidersChanged: (handler) => {
+      handlers.providers = handler;
+    },
+    openFolder: (opts) => sent(conn.sendRequest("ext.openFolder", opts), "open-folder-failed"),
+    closeFolder: (folderId) => sent(
+      conn.sendRequest("ext.closeFolder", { folderId }),
+      "close-folder-failed"
+    ),
+    onFiles: (handler) => {
+      handlers.files = handler;
+    },
+    onFolderClosed: (handler) => {
+      handlers.folderClosed = handler;
+    },
+    onBrowse: (name, provider) => {
+      const id = `${readEnv("EXTENSION_ID") ?? ""}.${name}`;
+      if (!declaresBrowseKind(readEnv("EXTENSION_DIR") ?? "", id)) {
+        throw new Error(`${id} is not a browse kind in this extension's manifest`);
+      }
+      handlers.browse.set(id, provider);
+      void conn.sendRequest("ext.registerCommands", { commands: [] }).catch(() => {
+      });
+    },
+    sandboxDomains: (workspaceId) => sent(
+      conn.sendRequest("ext.sandboxDomains", { workspaceId }),
+      "sandbox-domains-failed"
+    )
+  };
+}
+var CONNECTIONS_CHANGED_EVENT = "connections.changed";
 var REMOTE_FILE_MAX_BYTES = 2 * 1024 * 1024;
 var FOLDER_CLOSED_EVENT = "folder.closed";
-var DEFAULT_TIMEOUT_MS = 15e3;
-var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
-function runTool(bin, args, opts = {}) {
-  const maxOutput = opts.maxOutput ?? DEFAULT_MAX_OUTPUT;
-  return new Promise((resolve) => {
-    let stdout = "";
-    let stderr = "";
-    let timedOut = false;
-    let settled = false;
-    const finish = (run) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve(run);
-    };
-    const child = (0, import_child_process.spawn)(bin, args, {
-      cwd: opts.cwd,
-      stdio: ["ignore", "pipe", "pipe"],
-      env: process.env
-    });
-    const timer = setTimeout(() => {
-      timedOut = true;
-      child.kill("SIGTERM");
-    }, opts.timeoutMs ?? DEFAULT_TIMEOUT_MS);
-    child.stdout.on("data", (chunk) => {
-      if (stdout.length < maxOutput) stdout += chunk.toString("utf8");
-    });
-    child.stderr.on("data", (chunk) => {
-      if (stderr.length < maxOutput) stderr += chunk.toString("utf8");
-    });
-    child.on("error", (err) => {
-      finish({
-        code: null,
-        stdout,
-        stderr: stderr || err.message,
-        missing: err.code === "ENOENT",
-        timedOut
+function createHostHandlers() {
+  return {
+    commands: /* @__PURE__ */ new Map(),
+    panel: null,
+    event: null,
+    settings: null,
+    connections: null,
+    locale: null,
+    agent: null,
+    assist: null,
+    providers: null,
+    models: null,
+    files: null,
+    folderClosed: null,
+    inboxAction: null,
+    browse: /* @__PURE__ */ new Map()
+  };
+}
+var AssistFailure = class extends Error {
+  constructor(code, message) {
+    super(message ?? code);
+    this.code = code;
+  }
+  code;
+};
+function assistFailureReply(err, aborted) {
+  if (aborted) return { error: "cancelled" };
+  if (err instanceof AssistFailure) return { error: err.code, message: err.message };
+  return { error: "failed", message: errorMessage(err) };
+}
+function listenToHost(conn, handlers) {
+  conn.onRequest(
+    "ext.command",
+    async (params) => {
+      const handler = handlers.commands.get(params.command);
+      if (!handler) return failure("unknown-command", params.command);
+      try {
+        return await handler(params.args, params.caller);
+      } catch (err) {
+        return failure("command-failed", errorMessage(err));
+      }
+    }
+  );
+  conn.onRequest("ext.agent", async (params) => {
+    if (!handlers.agent) return { ok: false, error: "unavailable" };
+    try {
+      return await handlers.agent(params);
+    } catch (err) {
+      return { ok: false, error: "failed", message: errorMessage(err) };
+    }
+  });
+  conn.onRequest(
+    "ext.assist",
+    async (params, token) => {
+      if (!handlers.assist) throw new Error("no assist handler");
+      const abort = new AbortController();
+      const sub = token.onCancellationRequested(() => abort.abort());
+      if (token.isCancellationRequested) abort.abort();
+      try {
+        return await handlers.assist(params.point, params.input, {
+          requestId: params.requestId,
+          signal: abort.signal,
+          ...params.model ? { model: params.model } : {},
+          chunk: async (text) => {
+            if (abort.signal.aborted) return false;
+            const res = await conn.sendRequest("ext.assistChunk", {
+              requestId: params.requestId,
+              text
+            });
+            return res?.live === true;
+          }
+        });
+      } catch (err) {
+        return assistFailureReply(err, abort.signal.aborted);
+      } finally {
+        sub.dispose();
+      }
+    }
+  );
+  conn.onRequest(
+    "ext.assistModels",
+    async (params) => {
+      if (!handlers.models) throw new Error("no models handler");
+      const provider = typeof params.provider === "string" ? params.provider : void 0;
+      if (params.action === "list") return handlers.models.list(provider);
+      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
+        return { ok: false, error: "invalid" };
+      }
+      try {
+        await handlers.models.setLoaded(params.id, params.action === "load", provider);
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: errorMessage(err) };
+      }
+    }
+  );
+  conn.onRequest("ext.files", async (params) => {
+    if (!handlers.files) return { ok: false, error: "unavailable" };
+    try {
+      return await handlers.files(params);
+    } catch {
+      return { ok: false, error: "failed" };
+    }
+  });
+  listenForBrowse(conn, handlers.browse);
+  conn.onRequest("ext.panel", async (params) => {
+    if (!handlers.panel) throw new Error("no panel handler");
+    return handlers.panel(params.caller, params.path);
+  });
+  conn.onNotification(
+    "ext.event",
+    (params) => {
+      if (params.type === SETTINGS_CHANGED_EVENT) {
+        handlers.settings?.(params.payload.values);
+      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
+        handlers.providers?.(params.payload.providers);
+      } else if (params.type === LOCALE_CHANGED_EVENT) {
+        handlers.locale?.(params.payload.locale);
+      } else if (params.type === CONNECTIONS_CHANGED_EVENT) {
+        handlers.connections?.();
+      } else if (params.type === INBOX_ACTION_EVENT) {
+        handlers.inboxAction?.(params.payload);
+      } else if (params.type === FOLDER_CLOSED_EVENT) {
+        handlers.folderClosed?.(params.payload.folderId);
+      } else {
+        handlers.event?.(params.type, params.payload);
+      }
+    }
+  );
+}
+var PHONE_SCREENS_LISTEN_METHOD = "ext.phoneScreens.listen";
+var PHONE_SCREENS_REQUEST_METHOD = "ext.phoneScreens.request";
+var PHONE_SCREENS_ASK_METHOD = "ext.phoneScreens.ask";
+var PHONE_SCREENS_ASK_FOR_METHOD = "ext.phoneScreens.askFor";
+var PHONE_SCREEN_OFFER_METHOD = "ext.phoneScreen.offer";
+var PHONE_SCREEN_FRAME_METHOD = "ext.phoneScreen.frame";
+var PHONE_SCREEN_EVENT_METHOD = "ext.phoneScreen.event";
+async function called(work) {
+  try {
+    const reply = await work;
+    if (isRecord(reply) && typeof reply.ok === "boolean") return reply;
+    return { ok: false, error: "failed" };
+  } catch (err) {
+    return { ok: false, error: "failed", message: errorMessage(err) };
+  }
+}
+function phoneScreenMethods(conn) {
+  let controller = null;
+  let listening = false;
+  const startListening = () => {
+    if (listening) return;
+    listening = true;
+    conn.onRequest(
+      PHONE_SCREEN_OFFER_METHOD,
+      async (link) => {
+        if (!controller) return { accept: false };
+        try {
+          return { accept: await controller.offer(link) === true };
+        } catch {
+          return { accept: false };
+        }
+      }
+    );
+    conn.onNotification(PHONE_SCREEN_FRAME_METHOD, (params) => {
+      controller?.frame?.({
+        linkId: params.linkId,
+        header: params.header,
+        jpeg: Buffer.from(params.jpeg, "base64")
       });
     });
-    child.on("close", (code) => finish({ code, stdout, stderr, missing: false, timedOut }));
-  });
+    conn.onNotification(PHONE_SCREEN_EVENT_METHOD, (event) => {
+      controller?.event?.(event);
+    });
+  };
+  return {
+    listen: (next) => {
+      controller = next;
+      startListening();
+      return called(conn.sendRequest(PHONE_SCREENS_LISTEN_METHOD, {}));
+    },
+    request: (linkId, method, params) => called(conn.sendRequest(PHONE_SCREENS_REQUEST_METHOD, { linkId, method, params })),
+    ask: (sessionId) => called(conn.sendRequest(PHONE_SCREENS_ASK_METHOD, { sessionId })),
+    askFor: (request) => called(conn.sendRequest(PHONE_SCREENS_ASK_FOR_METHOD, request))
+  };
+}
+var AGENT_SKILL_FILE_MAX_BYTES = 256 * 1024;
+var AGENT_SKILL_MAX_BYTES = 1024 * 1024;
+var AGENT_HOOK_INPUT_MAX = 1024 * 1024;
+var RESERVED_SKILL_IDS = [PRODUCT_NAME, `${PRODUCT_NAME}-manager`];
+var LANGUAGE_ID_PATTERN = /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8}){0,3}$/;
+var CATALOG_SUFFIX = ".json";
+function extensionDir() {
+  return readEnv("EXTENSION_DIR") ?? process.cwd();
+}
+function readMessageFile(file) {
+  try {
+    if ((0, import_node_fs3.statSync)(file).size > EXTENSION_LOCALE_FILE_MAX_BYTES) return void 0;
+    const raw = JSON.parse((0, import_node_fs3.readFileSync)(file, "utf8"));
+    return typeof raw === "object" && raw !== null ? raw.messages : void 0;
+  } catch {
+    return void 0;
+  }
+}
+function readMessages(dir = extensionDir()) {
+  const catalogs = /* @__PURE__ */ Object.create(null);
+  const folder = (0, import_node_path3.join)(dir, EXTENSION_LOCALES_DIR);
+  let names = [];
+  try {
+    names = (0, import_node_fs3.readdirSync)(folder);
+  } catch {
+  }
+  for (const name of names) {
+    const tag = name.endsWith(CATALOG_SUFFIX) ? name.slice(0, -CATALOG_SUFFIX.length) : "";
+    if (!LANGUAGE_ID_PATTERN.test(tag)) continue;
+    catalogs[tag] = parseMessages(readMessageFile((0, import_node_path3.join)(folder, name))).messages;
+  }
+  return catalogs;
+}
+function createTranslator(dir = extensionDir()) {
+  const catalogs = readMessages(dir);
+  return (locale) => translatorFor(catalogs, locale);
 }
 function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -3825,9 +4551,9 @@ p{margin:0;color:var(--ostia-fg-muted, #9aa1a5);white-space:pre-wrap}
 <body><main role="alert"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p></main></body></html>`;
 }
 async function startMessageServer() {
-  const secret = (0, import_crypto.randomBytes)(16).toString("hex");
+  const secret = (0, import_node_crypto2.randomBytes)(16).toString("hex");
   let port = 0;
-  const server = (0, import_http.createServer)((req, res) => {
+  const server = (0, import_node_http.createServer)((req, res) => {
     const url = new URL(req.url ?? "/", "http://127.0.0.1");
     const ok2 = req.method === "GET" && req.headers.host === `127.0.0.1:${port}` && url.pathname === "/message" && url.searchParams.get("t") === secret;
     if (!ok2) {
@@ -3853,288 +4579,133 @@ async function startMessageServer() {
     close: () => new Promise((resolve) => server.close(() => resolve()))
   };
 }
-var AssistFailure = class extends Error {
-  constructor(code, message) {
-    super(message ?? code);
-    this.code = code;
-  }
-};
-function assistFailureReply(err, aborted) {
-  if (aborted) return { error: "cancelled" };
-  if (err instanceof AssistFailure) return { error: err.code, message: err.message };
-  return { error: "failed", message: errorMessage(err) };
+var ALL_CAPABILITIES = [
+  "drive-self",
+  "read-board",
+  "send-other-pane",
+  "type-other-pane",
+  "read-other-pane",
+  "kill-pane",
+  "all-workspaces",
+  "shell",
+  "destructive",
+  "phone",
+  "gateway",
+  "notify",
+  "process",
+  "vault-read",
+  "vault-write",
+  "browse",
+  "settings-read",
+  "settings-write",
+  "assist",
+  "credentials",
+  "language-server",
+  "agent-plugin",
+  "agent-complete",
+  "mcp",
+  "read-bus",
+  "file-contents",
+  "phone-screens"
+];
+var HUMAN_GRANTED_CAPABILITIES = [
+  "mcp",
+  "read-bus",
+  "file-contents",
+  "phone-screens"
+];
+var BUILTIN_CAPABILITIES = ALL_CAPABILITIES.filter(
+  (cap) => !HUMAN_GRANTED_CAPABILITIES.includes(cap)
+);
+var MANAGER_CAPABILITIES = ALL_CAPABILITIES.filter(
+  (cap) => cap !== "phone" && cap !== "gateway" && cap !== "destructive" && cap !== "mcp" && cap !== "read-bus" && cap !== "file-contents" && cap !== "phone-screens"
+);
+var MAX_BODY = 1024 * 1024;
+var DEFAULT_TIMEOUT_MS = 15e3;
+var DEFAULT_MAX_OUTPUT = 8 * 1024 * 1024;
+var KILL_GRACE_MS = 2e3;
+function runTool(bin, args, opts = {}) {
+  const maxOutput = opts.maxOutput ?? DEFAULT_MAX_OUTPUT;
+  return new Promise((resolve) => {
+    let stdout = "";
+    let stderr = "";
+    let settled = false;
+    const finish = (run) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      resolve(run);
+    };
+    const child = (0, import_node_child_process.spawn)(bin, args, {
+      cwd: opts.cwd,
+      stdio: ["ignore", "pipe", "pipe"],
+      env: opts.env ?? process.env,
+      detached: true
+    });
+    const group = (signal) => {
+      try {
+        if (child.pid) process.kill(-child.pid, signal);
+      } catch {
+      }
+    };
+    const timer = setTimeout(() => {
+      group("SIGTERM");
+      setTimeout(() => group("SIGKILL"), KILL_GRACE_MS);
+      finish({ code: null, stdout, stderr, missing: false, timedOut: true });
+      child.stdout.destroy();
+      child.stderr.destroy();
+    }, opts.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+    child.stdout.on("data", (chunk) => {
+      if (stdout.length < maxOutput) stdout += chunk.toString("utf8");
+    });
+    child.stderr.on("data", (chunk) => {
+      if (stderr.length < maxOutput) stderr += chunk.toString("utf8");
+    });
+    child.on("error", (err) => {
+      finish({
+        code: null,
+        stdout,
+        stderr: stderr || err.message,
+        missing: err.code === "ENOENT",
+        timedOut: false
+      });
+    });
+    child.on("close", (code) => finish({ code, stdout, stderr, missing: false, timedOut: false }));
+  });
 }
-function ok(text, data) {
-  const result = { ok: true };
-  if (text !== void 0) result.text = text;
-  if (data !== void 0) result.data = data;
-  return result;
-}
-function failure(error, message) {
-  return message ? { ok: false, error, message } : { ok: false, error };
-}
-function numberSetting(values, key, fallback, range) {
-  const value = values[key];
-  if (typeof value !== "number" || !Number.isFinite(value)) return fallback;
-  return Math.min(range.max, Math.max(range.min, value));
-}
-function booleanSetting(values, key, fallback) {
-  const value = values[key];
-  return typeof value === "boolean" ? value : fallback;
-}
-function errorMessage(err) {
-  return err instanceof Error ? err.message : String(err);
+function nextBackoff(failures, baseMs, maxMs) {
+  if (failures <= 0) return baseMs;
+  return Math.min(maxMs, baseMs * 2 ** Math.min(failures, 16));
 }
 async function connect() {
   const socketPath = readEnv("SOCKET");
   const token = readEnv("TOKEN");
   if (!socketPath || !token) throw new Error("OSTIA_SOCKET / OSTIA_TOKEN missing");
   const provided = readEnv(EXTENSION_API_ENV);
-  const incompatible = provided ? apiProblem(EXTENSION_API_VERSION, provided) : null;
+  const incompatible = provided ? apiProblem(declaredApi(), provided) : null;
   if (incompatible) throw new Error(`this extension ${incompatible}`);
-  const socket = (0, import_net.createConnection)(socketPath);
-  await new Promise((resolve, reject) => {
-    socket.once("connect", resolve);
-    socket.once("error", reject);
-  });
+  const socket = (0, import_node_net.createConnection)(socketPath);
+  await (0, import_node_events.once)(socket, "connect");
   const conn = (0, import_node.createMessageConnection)(
     new import_node.StreamMessageReader(socket),
     new import_node.StreamMessageWriter(socket)
   );
-  const handlers = /* @__PURE__ */ new Map();
-  let panelHandler = null;
-  let eventHandler = null;
-  let settingsHandler = null;
-  let localeHandler = null;
-  let assistHandler = null;
-  let providersHandler = null;
-  let modelsHandler = null;
-  let filesHandler = null;
-  let folderClosedHandler = null;
-  conn.onRequest(
-    "ext.command",
-    async (params) => {
-      const handler = handlers.get(params.command);
-      if (!handler) return failure("unknown-command", params.command);
-      try {
-        return await handler(params.args, params.caller);
-      } catch (err) {
-        return failure("command-failed", errorMessage(err));
-      }
-    }
-  );
-  conn.onRequest(
-    "ext.assist",
-    async (params, token2) => {
-      if (!assistHandler) throw new Error("no assist handler");
-      const abort = new AbortController();
-      const sub = token2.onCancellationRequested(() => abort.abort());
-      if (token2.isCancellationRequested) abort.abort();
-      try {
-        return await assistHandler(params.point, params.input, {
-          requestId: params.requestId,
-          signal: abort.signal,
-          ...params.model ? { model: params.model } : {},
-          chunk: async (text) => {
-            if (abort.signal.aborted) return false;
-            const res = await conn.sendRequest("ext.assistChunk", {
-              requestId: params.requestId,
-              text
-            });
-            return res?.live === true;
-          }
-        });
-      } catch (err) {
-        return assistFailureReply(err, abort.signal.aborted);
-      } finally {
-        sub.dispose();
-      }
-    }
-  );
-  conn.onRequest(
-    "ext.assistModels",
-    async (params) => {
-      if (!modelsHandler) throw new Error("no models handler");
-      const provider = typeof params.provider === "string" ? params.provider : void 0;
-      if (params.action === "list") return modelsHandler.list(provider);
-      if (params.action !== "load" && params.action !== "unload" || typeof params.id !== "string") {
-        return { ok: false, error: "invalid" };
-      }
-      try {
-        await modelsHandler.setLoaded(params.id, params.action === "load", provider);
-        return { ok: true };
-      } catch (err) {
-        return { ok: false, error: errorMessage(err) };
-      }
-    }
-  );
-  conn.onRequest("ext.files", async (params) => {
-    if (!filesHandler) return { ok: false, error: "unavailable" };
-    try {
-      return await filesHandler(params);
-    } catch {
-      return { ok: false, error: "failed" };
-    }
-  });
-  conn.onRequest("ext.panel", async (params) => {
-    if (!panelHandler) throw new Error("no panel handler");
-    return panelHandler(params.caller, params.path);
-  });
-  conn.onNotification(
-    "ext.event",
-    (params) => {
-      if (params.type === SETTINGS_CHANGED_EVENT) {
-        settingsHandler?.(params.payload.values);
-      } else if (params.type === ASSIST_PROVIDERS_CHANGED_EVENT) {
-        providersHandler?.(params.payload.providers);
-      } else if (params.type === LOCALE_CHANGED_EVENT) {
-        localeHandler?.(params.payload.locale);
-      } else if (params.type === FOLDER_CLOSED_EVENT) {
-        folderClosedHandler?.(params.payload.folderId);
-      } else {
-        eventHandler?.(params.type, params.payload);
-      }
-    }
-  );
+  const handlers = createHostHandlers();
+  listenToHost(conn, handlers);
   conn.onClose(() => process.exit(0));
   socket.on("close", () => process.exit(0));
   conn.listen();
   await conn.sendRequest("hello", { token });
   return {
-    call: (method, params) => params === void 0 ? conn.sendRequest(method) : conn.sendRequest(method, params),
-    confirm: async (req) => {
-      const res = await conn.sendRequest("ext.confirm", req);
-      return res?.confirmed === true;
-    },
-    notifyPanel: (title, body, path) => conn.sendRequest("ext.notify", { title, body, openPanel: path ?? true }),
-    registerCommands: async (map) => {
-      for (const [id, handler] of Object.entries(map)) handlers.set(id, handler);
-      await conn.sendRequest("ext.registerCommands", { commands: Object.keys(map) });
-    },
-    onPanel: (handler) => {
-      panelHandler = handler;
-    },
-    subscribe: (events, handler) => {
-      eventHandler = handler;
-      return conn.sendRequest("ext.subscribe", { events });
-    },
-    setSidebarItem: (item) => conn.sendRequest("ext.setSidebarItem", item),
-    notify: (title, body) => conn.sendRequest("ext.notify", { title, body }),
-    openPanel: (workspaceId, path) => conn.sendRequest("ext.openPanel", { workspaceId, path }),
-    setPaneChip: (chip) => conn.sendRequest("ext.setPaneChip", chip),
-    clearPaneChip: (paneId, id) => conn.sendRequest("ext.clearPaneChip", { paneId, id }),
-    setWorkspaceChip: (chip) => conn.sendRequest("ext.setWorkspaceChip", chip),
-    clearWorkspaceChip: (workspaceId, id) => conn.sendRequest("ext.clearWorkspaceChip", { workspaceId, id }),
-    getSettings: async () => {
-      const res = await conn.sendRequest("ext.getSettings");
-      return res?.values ?? {};
-    },
-    setSetting: (key, value) => conn.sendRequest("ext.setSetting", { key, value }),
-    onSettingsChanged: (handler) => {
-      settingsHandler = handler;
-    },
-    getLocale: async () => {
-      const res = await conn.sendRequest("ext.locale");
-      return typeof res?.locale === "string" ? res.locale : EXTENSION_BASE_LOCALE;
-    },
-    onLocaleChanged: (handler) => {
-      localeHandler = handler;
-    },
-    callAs: (paneId, method, params) => conn.sendRequest(method, { ...params, [TARGET_PANE_PARAM]: paneId }),
-    setAttention: (paneId, state, message) => conn.sendRequest("pane.setAttention", { [TARGET_PANE_PARAM]: paneId, state, message }),
-    openDiff: (diff) => conn.sendRequest("ext.openDiff", diff),
-    openFile: (file) => conn.sendRequest("ext.openFile", file),
-    openTerminal: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.openTerminal", opts);
-      } catch (err) {
-        return { ok: false, error: "open-terminal-failed", message: errorMessage(err) };
-      }
-    },
-    listAgents: async () => {
-      try {
-        const res = await conn.sendRequest("ext.agents");
-        return Array.isArray(res?.agents) ? res.agents.filter((a) => typeof a === "string") : [];
-      } catch {
-        return [];
-      }
-    },
-    runAgent: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.runAgent", opts);
-      } catch (err) {
-        return { ok: false, error: "run-agent-failed", message: errorMessage(err) };
-      }
-    },
-    offerToAgent: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.offerToAgent", opts);
-      } catch (err) {
-        return { ok: false, error: "offer-failed", message: errorMessage(err) };
-      }
-    },
-    focusPane: async (paneId) => {
-      try {
-        return await conn.sendRequest("ext.focusPane", { paneId });
-      } catch (err) {
-        return failure("focus-failed", errorMessage(err));
-      }
-    },
-    listWorkspaces: () => conn.sendRequest("workspace.list"),
-    listPanes: () => conn.sendRequest("pane.list"),
-    onAssist: (handler) => {
-      assistHandler = handler;
-    },
-    onAssistModels: (handler) => {
-      modelsHandler = handler;
-    },
-    setAssistStatus: (report) => conn.sendRequest("ext.setAssistStatus", report),
-    getShortcuts: async (ids) => {
-      const res = await conn.sendRequest(
-        "ext.shortcuts",
-        { ids }
-      );
-      return res?.shortcuts ?? {};
-    },
-    openAssistUi: (ui, workspaceId) => conn.sendRequest("ext.openAssistUi", workspaceId ? { ui, workspaceId } : { ui }),
-    getSecret: async (key) => {
-      const res = await conn.sendRequest("ext.getSecret", { key });
-      return typeof res?.value === "string" ? res.value : null;
-    },
-    getAssistProviders: async () => {
-      const res = await conn.sendRequest(
-        "ext.assistProviders"
-      );
-      return Array.isArray(res?.providers) ? res.providers : [];
-    },
-    onAssistProvidersChanged: (handler) => {
-      providersHandler = handler;
-    },
-    openFolder: async (opts) => {
-      try {
-        return await conn.sendRequest("ext.openFolder", opts);
-      } catch (err) {
-        return { ok: false, error: "open-folder-failed", message: errorMessage(err) };
-      }
-    },
-    closeFolder: async (folderId) => {
-      try {
-        return await conn.sendRequest("ext.closeFolder", { folderId });
-      } catch (err) {
-        return failure("close-folder-failed", errorMessage(err));
-      }
-    },
-    onFiles: (handler) => {
-      filesHandler = handler;
-    },
-    onFolderClosed: (handler) => {
-      folderClosedHandler = handler;
-    }
+    ...windowMethods(conn, handlers),
+    ...agentMethods(conn),
+    ...serviceMethods(conn, handlers),
+    phoneScreens: phoneScreenMethods(conn)
   };
 }
 function onShutdown(fn) {
   let ran = false;
-  const once = () => {
+  const once2 = () => {
     if (ran) return;
     ran = true;
     try {
@@ -4142,15 +4713,14 @@ function onShutdown(fn) {
     } catch {
     }
   };
-  process.on("exit", once);
+  process.on("exit", once2);
   for (const signal of ["SIGTERM", "SIGINT", "SIGHUP"]) {
     process.on(signal, () => {
-      once();
+      once2();
       process.exit(0);
     });
   }
 }
-var MAX_BODY = 1024 * 1024;
 
 // src/extensions/keeper/keeper.ts
 var FAST_POLL_MS = 5e3;
@@ -4221,7 +4791,7 @@ function parseApprovals(stdout) {
 }
 function nextPollDelay(s, intervals = DEFAULT_INTERVALS) {
   if (!s.installed) return null;
-  if (s.failures > 0) return Math.min(MAX_BACKOFF_MS, FAST_POLL_MS * 2 ** Math.min(s.failures, 10));
+  if (s.failures > 0) return nextBackoff(s.failures, FAST_POLL_MS, MAX_BACKOFF_MS);
   if (s.pending > 0 || s.focused) return intervals.fastMs;
   return intervals.idleMs;
 }
@@ -4253,40 +4823,6 @@ function formatQueue(list, nowMs, empty) {
   return ["TICKET  AGENT  WORKSPACE  INTENT  CONNECTION  TIER  AGE", ...rows].join("\n");
 }
 
-// src/extensions/keeper/strings.ts
-var describe = (a) => a ? [a.agent, a.intent].filter(Boolean).join(": ") : "";
-var en = {
-  sidebar: (n) => `${n} waiting for approval`,
-  needsApproval: "Keeper needs approval",
-  notifyBody: (n, first) => {
-    const what = describe(first);
-    const head = n === 1 ? "1 query is waiting" : `${n} queries are waiting`;
-    return what ? `${head} (${what})` : head;
-  },
-  notInstalled: "Keeper is not installed or not on PATH. Install it, then run `keeper daemon start` in a terminal.",
-  daemonDown: "The Keeper daemon is not running. Start it with `keeper daemon start` in a terminal.",
-  unavailableTitle: "Keeper is unavailable",
-  noUi: "The Keeper daemon is running but not serving its dashboard.",
-  empty: "Nothing is waiting for approval."
-};
-var zhHant = {
-  sidebar: (n) => `${n} \u7B46\u7B49\u5F85\u6838\u51C6`,
-  needsApproval: "Keeper \u9700\u8981\u6838\u51C6",
-  notifyBody: (n, first) => {
-    const what = describe(first);
-    const head = `${n} \u7B46\u67E5\u8A62\u7B49\u5F85\u6838\u51C6`;
-    return what ? `${head}\uFF08${what}\uFF09` : head;
-  },
-  notInstalled: "\u5C1A\u672A\u5B89\u88DD Keeper\uFF0C\u6216\u5B83\u4E0D\u5728 PATH \u4E2D\u3002\u5B89\u88DD\u5F8C\u8ACB\u5728\u7D42\u7AEF\u6A5F\u57F7\u884C `keeper daemon start`\u3002",
-  daemonDown: "Keeper \u5E38\u99D0\u7A0B\u5F0F\u6C92\u6709\u57F7\u884C\u3002\u8ACB\u5728\u7D42\u7AEF\u6A5F\u57F7\u884C `keeper daemon start` \u555F\u52D5\u3002",
-  unavailableTitle: "Keeper \u7121\u6CD5\u4F7F\u7528",
-  noUi: "Keeper \u5E38\u99D0\u7A0B\u5F0F\u6B63\u5728\u57F7\u884C\uFF0C\u4F46\u6C92\u6709\u63D0\u4F9B\u5100\u8868\u677F\u3002",
-  empty: "\u6C92\u6709\u7B49\u5F85\u6838\u51C6\u7684\u9805\u76EE\u3002"
-};
-function stringsFor(locale) {
-  return localized({ en, "zh-Hant": zhHant }, locale);
-}
-
 // src/extensions/keeper/service.ts
 var SIDEBAR_KEY = "approvals";
 var KeeperService = class {
@@ -4294,6 +4830,7 @@ var KeeperService = class {
     this.opts = opts;
     this.bin = opts.bin ?? "keeper";
   }
+  opts;
   bin;
   installed = true;
   focused = false;
@@ -4308,8 +4845,8 @@ var KeeperService = class {
   notifies = true;
   state = "unknown";
   locale = "en";
-  get strings() {
-    return stringsFor(this.locale);
+  get t() {
+    return this.opts.translate(this.locale);
   }
   approvals() {
     return this.pending;
@@ -4339,7 +4876,7 @@ var KeeperService = class {
     return res.code === 0 ? parseUiUrl(res.stdout) : null;
   }
   unavailableMessage() {
-    return this.state === "not-installed" ? this.strings.notInstalled : this.strings.daemonDown;
+    return this.state === "not-installed" ? this.t("notInstalled") : this.t("daemonDown");
   }
   tick() {
     this.ticking ??= this.poll().finally(() => {
@@ -4371,15 +4908,21 @@ var KeeperService = class {
       this.schedule();
     }
   }
+  notifyBody(n, first) {
+    const t = this.t;
+    const head = n === 1 ? t("notifyOne") : t("notifyMany", { n });
+    const what = first ? [first.agent, first.intent].filter(Boolean).join(": ") : "";
+    return what ? t("notifyWhat", { head, what }) : head;
+  }
   async update(list) {
     const fresh = newTickets(this.seen, list);
     this.pending = list;
     this.seen = new Set(list.map((a) => a.ticket));
-    const s = this.strings;
+    const t = this.t;
     if (list.length > 0) {
       await this.opts.host.setSidebarItem({
         key: SIDEBAR_KEY,
-        text: s.sidebar(list.length),
+        text: t("sidebar", { n: list.length }),
         icon: "shield",
         tone: "warn"
       });
@@ -4391,8 +4934,8 @@ var KeeperService = class {
     if (fresh.length > 0 && this.notifies) {
       const first = list.find((a) => a.ticket === fresh[0]);
       await this.opts.host.notifyPanel(
-        s.needsApproval,
-        s.notifyBody(fresh.length, first),
+        t("needsApproval"),
+        this.notifyBody(fresh.length, first),
         APPROVALS_PATH
       );
     }
@@ -4449,6 +4992,7 @@ function serviceSettings(values) {
 async function main() {
   const ext = await connect();
   const service = new KeeperService({
+    translate: createTranslator(),
     host: {
       setSidebarItem: (item) => ext.setSidebarItem(item),
       notifyPanel: (title, body, path) => ext.notifyPanel(title, body, path),
@@ -4480,7 +5024,7 @@ async function main() {
         return failure(service.state, service.unavailableMessage());
       }
       const list = service.approvals();
-      const text = formatQueue(list, Date.now(), service.strings.empty);
+      const text = formatQueue(list, Date.now(), service.t("empty"));
       if (caller.kind === "user") await openPanel(caller, APPROVALS_PATH);
       return ok(text, list);
     }
@@ -4489,9 +5033,9 @@ async function main() {
     const base = await service.uiUrl();
     const path = requested ?? (service.approvals().length > 0 ? APPROVALS_PATH : "/");
     if (base) return { url: `${base}${path}` };
-    const s = service.strings;
-    const body = service.state === "ready" ? s.noUi : service.unavailableMessage();
-    return { url: messages.url(s.unavailableTitle, body) };
+    const t = service.t;
+    const body = service.state === "ready" ? t("noUi") : service.unavailableMessage();
+    return { url: messages.url(t("unavailableTitle"), body) };
   });
   await ext.registerCommands(handlers);
   const focus = await ext.subscribe([FOCUS_EVENT], (type, payload) => {

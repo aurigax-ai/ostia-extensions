@@ -1,4 +1,5 @@
-import { type CardThread, loopbackHttpUrl, parseCardThread } from './trellis'
+import { loopbackHttpUrl, parseCardThread } from './parsers'
+import type { CardThread } from './trellis'
 
 export interface DaemonApi {
   origin: string
@@ -15,7 +16,7 @@ export function daemonApi(url: string | null): DaemonApi | null {
   return parsed && token ? { origin: parsed.origin, token } : null
 }
 
-export function threadUrl(api: DaemonApi, project: string, board: string, ref: string): string {
+function threadUrl(api: DaemonApi, project: string, board: string, ref: string): string {
   const path = ['api', 'p', project, 'b', board, 'cards', ref].map(encodeURIComponent).join('/')
   return `${api.origin}/${path}`
 }

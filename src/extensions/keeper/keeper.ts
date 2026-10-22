@@ -1,3 +1,5 @@
+import { nextBackoff } from '@aurigax-ai/ostia-extension-sdk'
+
 export interface KeeperApproval {
   ticket: string
   agent: string
@@ -104,7 +106,7 @@ export function nextPollDelay(
   intervals: PollIntervals = DEFAULT_INTERVALS,
 ): number | null {
   if (!s.installed) return null
-  if (s.failures > 0) return Math.min(MAX_BACKOFF_MS, FAST_POLL_MS * 2 ** Math.min(s.failures, 10))
+  if (s.failures > 0) return nextBackoff(s.failures, FAST_POLL_MS, MAX_BACKOFF_MS)
   if (s.pending > 0 || s.focused) return intervals.fastMs
   return intervals.idleMs
 }
@@ -113,7 +115,7 @@ export function newTickets(previous: ReadonlySet<string>, current: KeeperApprova
   return current.filter((a) => !previous.has(a.ticket)).map((a) => a.ticket)
 }
 
-export function ageLabel(createdAt: string, nowMs: number): string {
+function ageLabel(createdAt: string, nowMs: number): string {
   const t = Date.parse(createdAt)
   if (Number.isNaN(t)) return '?'
   const s = Math.max(0, Math.round((nowMs - t) / 1000))

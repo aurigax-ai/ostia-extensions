@@ -1,13 +1,13 @@
 import { homedir } from 'node:os'
 import {
-  type CommandHandler,
-  type EventHandler,
-  type ExtensionEventType,
-  type ExtensionSettingValues,
   booleanSetting,
+  type CommandHandler,
   cliArgs,
   connect,
   createTranslator,
+  type EventHandler,
+  type ExtensionEventType,
+  type ExtensionSettingValues,
   failure,
   numberSetting,
   ok,
@@ -18,15 +18,8 @@ import { type AgentLauncher, initHere, panelHandlers } from './panelApi'
 import { sessionContext } from './prompt'
 import { TrellisService, type WorkspaceRef } from './service'
 import { AgentTasks } from './tasks'
-import {
-  BOARD_PATH,
-  HUMAN_ACTOR,
-  TRELLIS_IDENTITY,
-  VAULT_PATH,
-  cardPath,
-  cardRef,
-  panelTarget,
-} from './trellis'
+import { HUMAN_ACTOR, TRELLIS_IDENTITY } from './trellis'
+import { BOARD_PATH, cardPath, cardRef, panelTarget, VAULT_PATH } from './validate'
 
 const REFRESH_SECONDS = { min: 10, max: 3600 }
 const EVENTS: ExtensionEventType[] = ['pane.created', 'pane.closed', 'cwd.changed']
@@ -85,6 +78,7 @@ async function main(): Promise<void> {
   const panel = await startPanelServer({
     dir: __dirname,
     files: PANEL_FILES,
+    toolbar: (state) => ext.setPanelToolbar(state),
     handle: async (command, args, caller) => {
       const handler = panelOnly[command]
       return handler ? handler(args, caller) : failure('unknown-command', command)

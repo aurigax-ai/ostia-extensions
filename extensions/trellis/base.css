@@ -45,6 +45,9 @@
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-full: 999px;
+  --scrollbar-size: 11px;
+  --scrollbar-thumb: var(--line-strong);
+  --scrollbar-thumb-hover: color-mix(in srgb, var(--fg) 26%, transparent);
   --switch-width: 32px;
   --switch-height: 18px;
   --switch-thumb: 14px;
@@ -52,8 +55,24 @@
   --motion-base: calc(150ms * var(--ostia-motion-scale, 1));
   --motion-fast-exit: calc(63ms * var(--ostia-motion-scale, 1));
   --motion-base-exit: calc(105ms * var(--ostia-motion-scale, 1));
+  --motion-panel: calc(180ms * var(--ostia-motion-scale, 1));
+  --motion-pulse: calc(1500ms * var(--ostia-motion-scale, 1));
+  --motion-breathe: calc(2400ms * var(--ostia-motion-scale, 1));
+  --motion-highlight: calc(2000ms * var(--ostia-motion-scale, 1));
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motion-reveal {
+  animation: reveal var(--motion-base) var(--ease-out);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
 }
 
 * {
@@ -97,7 +116,9 @@ button.primary {
 
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+.ostia-grid-scroll:focus-visible,
+.ostia-grid-cell:focus-visible:not(.ostia-grid-selected) {
   outline: 2px solid var(--brand);
   outline-offset: -1px;
 }
@@ -115,8 +136,38 @@ textarea {
   background: var(--brand-glow);
 }
 
-html {
-  scrollbar-color: var(--line-strong) transparent;
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 28px;
+  border: 3px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  background-clip: padding-box;
+}
+
+[data-scrolling]::-webkit-scrollbar-thumb,
+[data-scrollbar-hover]::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+[data-scrolling]::-webkit-scrollbar-thumb:hover,
+[data-scrollbar-hover]::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
 }
 
 button:disabled {
@@ -173,8 +224,9 @@ input[type="radio"]:focus-visible {
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-full);
   background: var(--surface-3);
-  transition: background-color var(--motion-fast) var(--ease-out), border-color var(--motion-fast)
-    var(--ease-out);
+  transition:
+    background-color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out);
 }
 
 .switch::after {
@@ -276,4 +328,466 @@ input[type="radio"]:focus-visible {
 .ostia-split-dragging * {
   cursor: row-resize !important;
   user-select: none !important;
+}
+
+.ostia-viewer-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 16px;
+  color: var(--fg-muted);
+  font-size: var(--text-ui-sm);
+  line-height: var(--text-ui-sm--line-height);
+  text-align: center;
+}
+
+.ostia-grid {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  background: var(--surface-1);
+}
+
+.ostia-grid-note {
+  flex: none;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg-muted);
+  font-size: var(--text-ui-sm);
+  line-height: var(--text-ui-sm--line-height);
+}
+
+.ostia-grid-scroll {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  user-select: none;
+}
+
+.ostia-grid-canvas {
+  position: relative;
+  font-family: var(--font-code);
+  font-size: var(--text-ui-sm);
+  line-height: var(--text-ui-sm--line-height);
+}
+
+.ostia-grid-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.ostia-grid-corner {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  box-sizing: border-box;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.ostia-grid-body {
+  position: relative;
+}
+
+.ostia-grid-labels {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  background: var(--surface-2);
+}
+
+.ostia-grid-cells {
+  position: absolute;
+  inset: 0;
+}
+
+.ostia-grid-cell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 3px 8px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--fg);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ostia-grid-column {
+  background: var(--surface-2);
+  font-weight: var(--font-weight-medium);
+}
+
+.ostia-grid-label {
+  color: var(--fg-muted);
+  text-align: right;
+}
+
+.ostia-grid-probe {
+  position: absolute;
+  visibility: hidden;
+}
+
+.ostia-grid-selected {
+  background-image: linear-gradient(var(--brand-glow), var(--brand-glow));
+}
+
+.ostia-grid-edged {
+  box-shadow:
+    inset 0 var(--edge-top, 0px) 0 var(--brand),
+    inset calc(-1 * var(--edge-right, 0px)) 0 0 var(--brand),
+    inset 0 calc(-1 * var(--edge-bottom, 0px)) 0 var(--brand),
+    inset var(--edge-left, 0px) 0 0 var(--brand);
+}
+
+.ostia-grid-edge-top {
+  --edge-top: 1px;
+}
+
+.ostia-grid-edge-right {
+  --edge-right: 1px;
+}
+
+.ostia-grid-edge-bottom {
+  --edge-bottom: 1px;
+}
+
+.ostia-grid-edge-left {
+  --edge-left: 1px;
+}
+
+.ostia-spacer {
+  flex: 1;
+}
+
+.ostia-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+}
+
+button.quiet {
+  padding: 0 4px;
+  border-color: transparent;
+  color: var(--fg-muted);
+  font-size: var(--text-ui-sm);
+}
+
+button.quiet.strong {
+  color: var(--fg);
+}
+
+.ostia-empty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding: 6px 0;
+  color: var(--fg-muted);
+  font-size: var(--text-ui-sm);
+  line-height: var(--text-ui-sm--line-height);
+}
+
+.ostia-empty p {
+  margin: 0;
+}
+
+.ostia-row {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+  list-style: none;
+}
+
+.ostia-row-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+  min-width: 0;
+  font-size: var(--text-ui-base);
+  line-height: var(--text-ui-base--line-height);
+}
+
+.ostia-row-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ostia-row-head > :not(.ostia-row-title) {
+  flex: none;
+  color: var(--fg-muted);
+  font-size: var(--text-ui-xs);
+  line-height: var(--text-ui-xs--line-height);
+}
+
+.ostia-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.ostia-pill {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  max-width: calc(100vw - 24px);
+  padding: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: calc(var(--radius-md) + 4px);
+  background: var(--surface-2);
+  color: var(--fg-muted);
+  font-size: var(--text-ui-sm);
+  line-height: var(--text-ui-sm--line-height);
+  box-shadow: 0 8px 24px -12px var(--bg-sunken);
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--motion-base) var(--ease-out),
+    transform var(--motion-base) var(--ease-out);
+}
+
+.ostia-pill[data-state="hidden"] {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition:
+    opacity var(--motion-base-exit) var(--ease-in),
+    transform var(--motion-base-exit) var(--ease-in);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ostia-pill,
+  .ostia-pill[data-state="hidden"] {
+    transform: none;
+    transition: none;
+  }
+}
+
+.ostia-pill [hidden] {
+  display: none;
+}
+
+.ostia-pill-controls,
+.ostia-pill-find,
+.ostia-pill-pager {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.ostia-pill-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-color: transparent;
+  color: inherit;
+  font-size: var(--text-ui-base);
+}
+
+.ostia-pill-button:hover:not(:disabled),
+.ostia-pill-button[aria-pressed="true"],
+.ostia-pill-button[aria-expanded="true"] {
+  background: var(--surface-3);
+  color: var(--fg);
+}
+
+.ostia-pill-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ostia-pill-menu-button {
+  font-variant-numeric: tabular-nums;
+}
+
+.ostia-pill-case {
+  font-size: var(--text-ui-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.ostia-pill-menu-anchor {
+  position: relative;
+}
+
+.ostia-pill-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  box-shadow: 0 8px 24px -12px var(--bg-sunken);
+}
+
+.ostia-pill-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 4px 8px 4px 4px;
+  border-color: transparent;
+  color: var(--fg);
+  text-align: left;
+}
+
+.ostia-pill-menu-item:hover,
+.ostia-pill-menu-item:focus-visible {
+  background: var(--surface-3);
+}
+
+.ostia-pill-menu-check {
+  display: inline-flex;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  visibility: hidden;
+}
+
+.ostia-pill-menu-item[aria-checked="true"] .ostia-pill-menu-check {
+  visibility: visible;
+}
+
+.ostia-pill-menu-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ostia-pill-menu-chord {
+  flex: none;
+  color: var(--fg-dim);
+  font-size: var(--text-ui-xs);
+  line-height: var(--text-ui-xs--line-height);
+}
+
+.ostia-pill-menu-separator {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--line);
+}
+
+.ostia-pill-page {
+  width: calc(var(--digits, 2) * 1ch + 16px);
+  min-width: 28px;
+  height: 24px;
+  padding: 0 4px;
+  border-color: transparent;
+  background: var(--bg-sunken);
+  color: var(--fg);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ostia-pill-of {
+  padding: 0 4px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ostia-pill-find {
+  gap: 4px;
+}
+
+.ostia-pill-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: min(280px, calc(100vw - 220px));
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg-sunken);
+  color: var(--fg-muted);
+}
+
+.ostia-pill-field:focus-within {
+  border-color: var(--brand);
+}
+
+.ostia-pill-field svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.ostia-pill-find-field {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+}
+
+.ostia-pill-find-field:focus-visible {
+  outline: none;
+}
+
+.ostia-pill-find-count {
+  flex: none;
+  color: var(--fg-muted);
+  font-size: var(--text-ui-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ostia-slider {
+  --fill: 0%;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ostia-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(to right, var(--fg) var(--fill), var(--line-strong) var(--fill));
+}
+
+.ostia-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--fg);
+}
+
+.ostia-slider:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
 }
