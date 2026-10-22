@@ -1,13 +1,13 @@
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible'
 import {
   type AssistModel,
+  baseUrl,
   type Endpoint,
+  endpointFetch,
   type Provider,
   type ProviderCatalog,
-  UNIX_PREFIX,
-  baseUrl,
-  endpointFetch,
   requestJson,
+  UNIX_PREFIX,
 } from '@aurigax-ai/ostia-extension-sdk/assist'
 import { simulateStreamingMiddleware, wrapLanguageModel } from 'ai'
 
@@ -24,7 +24,7 @@ interface RuntimeModel {
   idle_secs?: unknown
 }
 
-export function modelRuntimeProvider(endpoint: Endpoint): Provider {
+function modelRuntimeProvider(endpoint: Endpoint): Provider {
   const fetch = endpointFetch(endpoint)
   const compat = createOpenAICompatible({
     name: MODEL_RUNTIME,

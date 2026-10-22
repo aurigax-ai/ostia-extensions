@@ -1,9 +1,18 @@
-import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, realpathSync } from 'node:fs'
-import { dirname, join, resolve, sep } from 'node:path'
+import {
+  copyFileSync,
+  cpSync,
+  existsSync,
+  lstatSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  realpathSync,
+} from 'node:fs'
+import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path'
 import { build } from 'esbuild'
 
-const manifestFiles = ['ostia.json']
-const assets = [...manifestFiles, 'panel.html', 'panel.css']
+const manifestFile = 'ostia.json'
+const assets = [manifestFile, 'panel.html', 'panel.css']
 const copiedDirs = ['locales', 'assets']
 const vendorList = 'vendor.json'
 const skillEntry = 'SKILL.md'
@@ -21,9 +30,60 @@ export function installedPackage(name) {
 
 export function vendoredPackages(src) {
   const list = join(src, vendorList)
-  if (!existsSync(list)) return { packages: {}, closures: {} }
-  const { packages = {}, closures = {} } = JSON.parse(readFileSync(list, 'utf8'))
-  return { packages, closures }
+  if (!existsSync(list)) return { packages: {}, closures: {}, files: {} }
+  const { packages = {}, closures = {}, files = {} } = JSON.parse(readFileSync(list, 'utf8'))
+  return { packages, closures, files }
+}
+
+function packageParts(spec) {
+  const parts = spec.split('/')
+  const length = spec.startsWith('@') ? 2 : 1
+  return { name: parts.slice(0, length).join('/'), path: parts.slice(length) }
+}
+
+function within(root, path) {
+  const step = relative(root, path)
+  return step === '' || (!step.startsWith('..') && !isAbsolute(step))
+}
+
+function copyRegularTree(from, to, label) {
+  const stat = lstatSync(from)
+  if (stat.isDirectory()) {
+    mkdirSync(to, { recursive: true })
+    for (const entry of readdirSync(from))
+      copyRegularTree(join(from, entry), join(to, entry), label)
+  } else if (stat.isFile()) {
+    mkdirSync(dirname(to), { recursive: true })
+    copyFileSync(from, to)
+  } else {
+    throw new Error(
+      `vendor.json files: ${label} holds ${from}, which is not a regular file or folder`,
+    )
+  }
+}
+
+export function copyPackagePath(packageDir, path, outDir, target, label = path.join('/')) {
+  const root = realpathSync(packageDir)
+  const from = resolve(root, ...path)
+  if (!within(root, from) || !existsSync(from)) {
+    throw new Error(`vendor.json files: ${label} is not inside its package`)
+  }
+  if (!within(root, realpathSync(from))) {
+    throw new Error(`vendor.json files: ${label} leaves its package through a link`)
+  }
+  const out = resolve(outDir)
+  const to = resolve(out, target)
+  if (to === out || !within(out, to)) {
+    throw new Error(`vendor.json files: ${label} is copied outside the extension to ${target}`)
+  }
+  copyRegularTree(from, to, label)
+}
+
+export function copyVendoredFiles(src, out) {
+  for (const [spec, target] of Object.entries(vendoredPackages(src).files)) {
+    const { name, path } = packageParts(spec)
+    copyPackagePath(installedPackage(name), path, out, target, spec)
+  }
 }
 
 function withoutNestedModules(from) {
@@ -51,10 +111,42 @@ function dependencyClosure(dir, found = new Map()) {
   return found
 }
 
+function modulesOf(dir) {
+  const marker = `${sep}node_modules${sep}`
+  return dir.slice(0, dir.lastIndexOf(marker) + marker.length)
+}
+
+function installedOptionals(dir) {
+  const manifest = JSON.parse(readFileSync(join(dir, 'package.json'), 'utf8'))
+  return Object.keys(manifest.optionalDependencies ?? {})
+    .map((name) => [name, join(modulesOf(dir), name)])
+    .filter(([, from]) => existsSync(join(from, 'package.json')))
+}
+
+function modulesTarget(name, target) {
+  const folder = join(target)
+  const suffix = join('node_modules', name)
+  if (folder !== suffix && !folder.endsWith(`${sep}${suffix}`)) return null
+  return folder.slice(0, folder.length - name.length)
+}
+
+export function requiredPackages(src) {
+  const { packages } = vendoredPackages(src)
+  return Object.entries(packages)
+    .filter(([name, target]) => join(target) === join('node_modules', name))
+    .flatMap(([name]) => [name, `${name}/*`])
+}
+
 function copyVendoredPackages(src, out) {
   const { packages, closures } = vendoredPackages(src)
   for (const [name, target] of Object.entries(packages)) {
-    copyPackage(installedPackage(name), join(out, target))
+    const from = installedPackage(name)
+    copyPackage(from, join(out, target))
+    const modules = modulesTarget(name, target)
+    if (modules === null) continue
+    for (const [optional, dir] of installedOptionals(from)) {
+      copyPackage(realpathSync(dir), join(out, modules, optional))
+    }
   }
   for (const [name, target] of Object.entries(closures)) {
     for (const [dependency, from] of dependencyClosure(installedPackage(name))) {
@@ -63,14 +155,124 @@ function copyVendoredPackages(src, out) {
   }
 }
 
+function readSourceManifest(src) {
+  return JSON.parse(readFileSync(join(src, manifestFile), 'utf8'))
+}
+
 function copyAgentSkills(src, out) {
-  const file = manifestFiles.find((name) => existsSync(join(src, name))) ?? manifestFiles[0]
-  const manifest = JSON.parse(readFileSync(join(src, file), 'utf8'))
+  const manifest = readSourceManifest(src)
   for (const skill of manifest.contributes?.agentSkills ?? []) {
     mkdirSync(join(out, skill.path), { recursive: true })
     for (const file of [skillEntry, ...(skill.files ?? [])]) {
       copyFileSync(join(src, skill.path, file), join(out, skill.path, file))
     }
+  }
+}
+
+function bundleAliases(src) {
+  const file = join(src, 'bundle.json')
+  return existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')).alias ?? {}) : {}
+}
+
+function browserBundle(entry, outfile, alias = {}) {
+  return build({
+    entryPoints: [entry],
+    outfile,
+    bundle: true,
+    platform: 'browser',
+    format: 'iife',
+    target: 'chrome120',
+    loader: { '.svg': 'text' },
+    define: { 'process.env.NODE_ENV': '"production"' },
+    alias,
+    logLevel: 'warning',
+  })
+}
+
+function nodeBundle(entry, outfile, src) {
+  return build({
+    entryPoints: [entry],
+    outfile,
+    bundle: true,
+    platform: 'node',
+    format: 'cjs',
+    target: 'node20',
+    external: requiredPackages(src),
+    logLevel: 'warning',
+  })
+}
+
+async function buildFileKinds(src, out, panelBaseCss) {
+  const kinds = (readSourceManifest(src).contributes?.fileKinds ?? []).filter((kind) => kind.view)
+  if (kinds.length === 0) return
+  const alias = bundleAliases(src)
+  copyFileSync(panelBaseCss, join(out, 'base.css'))
+  for (const {
+    view: { entry },
+  } of kinds) {
+    copyFileSync(join(src, entry), join(out, entry))
+    const script = entry.replace(/\.html$/, '.ts')
+    if (existsSync(join(src, script))) {
+      await browserBundle(join(src, script), join(out, script.replace(/\.ts$/, '.js')), alias)
+    }
+  }
+  for (const name of readdirSync(src).filter((file) => /\.(worker|script)\.ts$/.test(file))) {
+    await browserBundle(join(src, name), join(out, name.replace(/\.ts$/, '.js')), alias)
+  }
+}
+
+const wasmFiles = [
+  ['quickjs-wasi', 'quickjs.wasm'],
+  ['@silvia-odwyer/photon-node', 'photon_rs_bg.wasm'],
+]
+
+function siblingPackage(from, name) {
+  let dir = from
+  for (;;) {
+    const candidate = join(dir, 'node_modules', name)
+    if (existsSync(join(candidate, 'package.json'))) return realpathSync(candidate)
+    const parent = dirname(dir)
+    if (parent === dir) return null
+    dir = parent
+  }
+}
+
+function copyWasm(out) {
+  const owner = installedPackage('@earendil-works/pi-coding-agent')
+  for (const [name, file] of wasmFiles) {
+    const dir = siblingPackage(owner, name)
+    if (!dir || !existsSync(join(dir, file)))
+      throw new Error(`missing ${name}/${file} for ${owner}`)
+    copyFileSync(join(dir, file), join(out, file))
+  }
+}
+
+async function bundleModuleMain(src, out) {
+  await build({
+    entryPoints: [join(src, 'main.ts')],
+    outdir: out,
+    bundle: true,
+    splitting: true,
+    platform: 'node',
+    format: 'esm',
+    target: 'node24',
+    outExtension: { '.js': '.mjs' },
+    banner: {
+      js: "import { createRequire as __createRequire } from 'node:module'; const require = __createRequire(import.meta.url);",
+    },
+    logLevel: 'warning',
+  })
+  copyWasm(out)
+}
+
+async function bundleMain(src, out) {
+  if (readSourceManifest(src).main?.endsWith('.mjs')) {
+    await bundleModuleMain(src, out)
+    return
+  }
+  const threads = readdirSync(src).filter((file) => file.endsWith('.thread.ts'))
+  for (const entry of ['main.ts', ...threads]) {
+    await nodeBundle(join(src, entry), join(out, entry.replace(/\.ts$/, '.js')), src)
   }
 }
 
@@ -83,29 +285,12 @@ export async function buildExtension(src, out, panelBaseCss) {
     if (existsSync(join(src, dir))) cpSync(join(src, dir), join(out, dir), { recursive: true })
   }
   copyVendoredPackages(src, out)
+  copyVendoredFiles(src, out)
   copyAgentSkills(src, out)
+  await buildFileKinds(src, out, panelBaseCss)
   if (existsSync(join(src, 'panel.html'))) copyFileSync(panelBaseCss, join(out, 'base.css'))
-  if (existsSync(join(src, 'main.ts'))) {
-    await build({
-      entryPoints: [join(src, 'main.ts')],
-      outfile: join(out, 'main.js'),
-      bundle: true,
-      platform: 'node',
-      format: 'cjs',
-      target: 'node20',
-      logLevel: 'warning',
-    })
-  }
+  if (existsSync(join(src, 'main.ts'))) await bundleMain(src, out)
   if (existsSync(join(src, 'panel.ts'))) {
-    await build({
-      entryPoints: [join(src, 'panel.ts')],
-      outfile: join(out, 'panel.js'),
-      bundle: true,
-      platform: 'browser',
-      format: 'iife',
-      target: 'chrome120',
-      loader: { '.svg': 'text' },
-      logLevel: 'warning',
-    })
+    await browserBundle(join(src, 'panel.ts'), join(out, 'panel.js'))
   }
 }

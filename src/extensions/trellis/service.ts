@@ -1,32 +1,32 @@
 import { type ChildProcess, spawn } from 'node:child_process'
 import {
   type ExtensionIcon,
-  type SidebarTone,
-  type Translate,
   nextBackoff,
   runTool,
+  type SidebarTone,
+  type Translate,
 } from '@aurigax-ai/ostia-extension-sdk'
 import { TrellisCli } from './cli'
+import { parseEventLine } from './parsers'
 import {
   ALL_NOTIFY_KINDS,
   type CardCounts,
-  type NotifyKinds,
-  type TrellisEvent,
-  type TrellisProject,
-  cardPath,
   countBoard,
   findProject,
+  type NotifyKinds,
   needsUser,
-  parseEventLine,
   projectOfRef,
+  type TrellisEvent,
+  type TrellisProject,
 } from './trellis'
+import { cardPath } from './validate'
 
 export interface WorkspaceRef {
   workspaceId: string
   workDir: string
 }
 
-export interface TrellisHost {
+interface TrellisHost {
   listWorkspaces: () => Promise<WorkspaceRef[]>
   setWorkspaceChip: (chip: {
     workspaceId: string
@@ -64,8 +64,8 @@ const FOLLOW_HEALTHY_MS = 60_000
 const CHANGE_DELAY_MS = 250
 const PANEL_ENTITIES = new Set(['card', 'comment', 'entry', 'board'])
 
-export const UNKNOWN_PROJECT_RETRIES = 5
-export const UNKNOWN_PROJECT_RETRY_MS = 1000
+const UNKNOWN_PROJECT_RETRIES = 5
+const UNKNOWN_PROJECT_RETRY_MS = 1000
 
 export type InitResult = { ok: true; text: string } | { ok: false; message: string }
 
@@ -205,6 +205,7 @@ export class TrellisService {
       this.opts.host.log(`events: ${(err as Error).message}`)
       return this.scheduleFollow()
     }
+    if (this.stopped || this.follower) return
     this.follow()
   }
 
